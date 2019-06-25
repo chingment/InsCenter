@@ -1,0 +1,4 @@
+D:\github\Ins\LocalService.BLL\bin\Debug\LocalService.BLL.dll
+D:\github\Ins\LocalService.BLL\bin\Debug\LocalService.BLL.pdb
+D:\github\Ins\LocalService.BLL\obj\Debug\LocalService.BLL.dll
+D:\github\Ins\LocalService.BLL\obj\Debug\LocalService.BLL.pdb

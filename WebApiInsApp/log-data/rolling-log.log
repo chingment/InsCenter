@@ -1,0 +1,461 @@
+2019-06-20 17:39:27,709 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 17:39:42,050 [10] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 28e13807-eb85-4549-b5b8-cf133998b639 - 
+Url: /Api/Test/Test
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+
+2019-06-20 17:39:42,122 [14] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 28e13807-eb85-4549-b5b8-cf133998b639 - 
+Url: /Api/Test/Test
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:44:08,234 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 17:44:09,301 [15] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext e0af2c38-69fd-4291-a773-311de227e5b2 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+
+2019-06-20 17:44:09,373 [12] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext e0af2c38-69fd-4291-a773-311de227e5b2 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:45:04,730 [16] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 3ce4b8cd-e8d1-443a-8a5a-84ee5ae0a011 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+
+2019-06-20 17:45:04,733 [15] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 3ce4b8cd-e8d1-443a-8a5a-84ee5ae0a011 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:47:17,517 [33] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 17:47:18,492 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext abd4103b-c728-429a-86de-561fd95cdf03 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+
+2019-06-20 17:47:18,557 [16] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext abd4103b-c728-429a-86de-561fd95cdf03 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:47:25,664 [15] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext a2cbc86a-542c-4319-80ac-8026f4935375 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+
+2019-06-20 17:47:25,667 [12] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext a2cbc86a-542c-4319-80ac-8026f4935375 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:48:05,152 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 17:48:42,244 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 810ec475-8f9e-49b1-a581-872667d74583 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+
+2019-06-20 17:49:52,377 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 17:49:59,017 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 2dfa05b6-8229-459d-b5d9-260cb2324a4b - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+
+2019-06-20 17:50:49,672 [8] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 2dfa05b6-8229-459d-b5d9-260cb2324a4b - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:54:40,206 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 17:54:46,989 [9] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 4d2cd7f8-b3bf-4a4e-86cf-b01a376f70ba - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+
+2019-06-20 17:54:47,060 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 4d2cd7f8-b3bf-4a4e-86cf-b01a376f70ba - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:55:06,803 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 17:55:23,368 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext ed13e664-24f4-4d51-91c8-ef4e740019d6 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+
+2019-06-20 17:55:35,169 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext ed13e664-24f4-4d51-91c8-ef4e740019d6 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:55:47,411 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 9ec94682-f7ba-453d-b880-2c81283e9c09 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+
+2019-06-20 17:55:51,408 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 9ec94682-f7ba-453d-b880-2c81283e9c09 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 17:58:56,500 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 17:59:57,259 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 18:01:51,127 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 18:02:03,088 [10] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 515a5253-f5c7-4e50-8582-e50e2090d8ac - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: System.String[]
+Header.RequestGuid: System.String[]
+
+2019-06-20 18:02:03,159 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 515a5253-f5c7-4e50-8582-e50e2090d8ac - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: System.String[]
+Header.RequestGuid: System.String[]
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 18:02:40,981 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 18:03:33,939 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 18:06:14,501 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 18:08:11,788 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 18:09:55,694 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 18:10:00,991 [11] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 0b5122c9-eb5f-4c30-9547-76ea612252e8 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: cc871b2c85a84165ab7e2c532d29f7d9
+Header.RequestGuid: 6ae22b47be7c49d2adeca33daba77ea1
+
+2019-06-20 18:10:01,061 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 0b5122c9-eb5f-4c30-9547-76ea612252e8 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: cc871b2c85a84165ab7e2c532d29f7d9
+Header.RequestGuid: 6ae22b47be7c49d2adeca33daba77ea1
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-20 18:11:07,933 [1] INFO  WebAppApi.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-20 18:11:08,877 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext b86acff3-8ff3-4e5d-8ad7-c95616ec36b8 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 95fe25e6ea3a4176b5481ba37d9c87d6
+
+2019-06-20 18:11:08,943 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext b86acff3-8ff3-4e5d-8ad7-c95616ec36b8 - 
+Url: /Api/Test/Test
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 95fe25e6ea3a4176b5481ba37d9c87d6
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-06-24 10:10:40,969 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 10:10:42,542 [10] ERROR WebApiInsApp.WebApiApplication.Application_Error (null) - 应用程序捕捉到异常
+System.InvalidOperationException: Multiple types were found that match the controller named 'Home'. This can happen if the route that services this request ('{controller}/{action}/{id}') does not specify namespaces to search for a controller that matches the request. If this is the case, register this route by calling an overload of the 'MapRoute' method that takes a 'namespaces' parameter.
+
+The request for 'Home' has found the following matching controllers:
+WebApiInsApp.Controllers.HomeController
+WebAppApi.Controllers.HomeController
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerTypeWithinNamespaces(RouteBase route, String controllerName, HashSet`1 namespaces)
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerType(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.DefaultControllerFactory.System.Web.Mvc.IControllerFactory.GetControllerSessionBehavior(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcRouteHandler.GetSessionStateBehavior(RequestContext requestContext)
+   在 System.Web.Mvc.MvcRouteHandler.GetHttpHandler(RequestContext requestContext)
+   在 System.Web.Mvc.MvcRouteHandler.System.Web.Routing.IRouteHandler.GetHttpHandler(RequestContext requestContext)
+   在 System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   在 System.Web.Routing.UrlRoutingModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2019-06-24 10:12:25,868 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 10:13:02,224 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext fd8db242-3f1a-4ef7-95ba-9e658141a630 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 09638cb68b944f1cb4ac2ab57614e014
+
+2019-06-24 10:13:02,382 [9] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext fd8db242-3f1a-4ef7-95ba-9e658141a630 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 09638cb68b944f1cb4ac2ab57614e014
+Response: {"result": 1,"data":{"rules":[],"orders":[],"searchRecords":null},"code": "1000","message":""}
+
+2019-06-24 10:14:21,365 [21] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 10:14:21,956 [15] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext a7194789-37ab-4a5d-a759-9499a6c8cd66 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: d07d161bfb3c41a3bacb8499a0f588e5
+
+2019-06-24 10:14:22,075 [18] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext a7194789-37ab-4a5d-a759-9499a6c8cd66 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: d07d161bfb3c41a3bacb8499a0f588e5
+Response: {"result": 1,"data":{"rules":[],"orders":[],"searchRecords":[]},"code": "1000","message":""}
+
+2019-06-24 11:15:35,587 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 11:15:46,598 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext f4f4df1e-9ba9-491a-8be1-2cc340068259 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 4d504ad275ed412086ee2d6be99e7129
+
+2019-06-24 11:15:59,743 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext f4f4df1e-9ba9-491a-8be1-2cc340068259 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 4d504ad275ed412086ee2d6be99e7129
+Response: {"result": 1,"data":{"rules":[],"orders":[],"searchRecords":[]},"code": "1000","message":""}
+
+2019-06-24 14:24:30,449 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 14:24:46,149 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 03ba34c0-7780-48f8-8bfe-0acd8ee943eb - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: ce702b68fe0e458fb3d1b42cc24edeb7
+
+2019-06-24 14:24:57,934 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 03ba34c0-7780-48f8-8bfe-0acd8ee943eb - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: ce702b68fe0e458fb3d1b42cc24edeb7
+Response: {"result": 1,"data":{"rules":[],"orders":[],"searchRecords":[{"carPlateNo":"粤AT810P"},{"carPlateNo":"粤A8K96A"},{"carPlateNo":"粤ECK520"}]},"code": "1000","message":""}
+
+2019-06-24 14:36:40,394 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 14:36:47,942 [9] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 9769c28b-cbf0-4ebc-aa49-1d6d6656e5d0 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 227d1ec0a9884d43ade9243ab236bce4
+
+2019-06-24 14:36:48,760 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 9769c28b-cbf0-4ebc-aa49-1d6d6656e5d0 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 227d1ec0a9884d43ade9243ab236bce4
+Response: {"result": 1,"data":{"rules":[],"orders":[],"searchRecords":[{"carPlateNo":"粤AT810P"},{"carPlateNo":"粤A8K96A"},{"carPlateNo":"粤ECK520"}]},"code": "1000","message":""}
+
+2019-06-24 15:00:19,133 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 15:00:19,846 [52] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 49e5c1ca-cc5f-474b-83fa-95e6e59093cc - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: edf8bfb9ce484b05aa8f3ef8dc0e90e7
+
+2019-06-24 15:00:22,069 [52] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 49e5c1ca-cc5f-474b-83fa-95e6e59093cc - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: edf8bfb9ce484b05aa8f3ef8dc0e90e7
+
+2019-06-24 15:00:22,072 [52] ERROR WebApiInsApp.OwnApiExceptionAttribute 1dcd1ccc-b059-47bb-a4bc-7d31fb12b65b - API调用出现异常
+System.InvalidOperationException: The 'Priority' property on 'InsCarCompanyRule' could not be set to a 'System.Int32' value. You must set this property to a non-null value of type 'System.String'. 
+   在 System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__1.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.ApiController.<InvokeActionWithExceptionFilters>d__1.MoveNext()
+2019-06-24 15:00:37,173 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 15:00:41,614 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext f88b7b48-d24a-4fa8-9738-fa895c22b818 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: bd28602f43374bc8bb9e8906d62f3e72
+
+2019-06-24 15:01:15,287 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 15:01:20,595 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 6c72d246-8d80-47f5-b855-9b493fc2c4b9 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 1b000fcde8104e1f9a97a62c105e494f
+
+2019-06-24 15:01:21,148 [11] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 6c72d246-8d80-47f5-b855-9b493fc2c4b9 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 1b000fcde8104e1f9a97a62c105e494f
+Response: {"result": 1,"data":{"rules":[{"companyId":"00000000000000000000000000000001","companyName":null,"companyImgUrl":null,"commissionRate":21},{"companyId":"00000000000000000000000000000002","companyName":null,"companyImgUrl":null,"commissionRate":20},{"companyId":"00000000000000000000000000000003","companyName":null,"companyImgUrl":null,"commissionRate":23}],"orders":[],"searchRecords":[{"carPlateNo":"粤AT810P"},{"carPlateNo":"粤A8K96A"},{"carPlateNo":"粤ECK520"}]},"code": "1000","message":""}
+
+2019-06-24 15:01:47,680 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-24 15:01:48,272 [9] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 6a7fb6e0-e122-4c54-8db9-13d1912c505c - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 6c54f50fa1624daa8e1bf59479dd2499
+
+2019-06-24 15:01:50,284 [8] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 6a7fb6e0-e122-4c54-8db9-13d1912c505c - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 6c54f50fa1624daa8e1bf59479dd2499
+Response: {"result": 1,"data":{"rules":[{"companyId":"00000000000000000000000000000001","companyName":"平安保险","companyImgUrl":null,"commissionRate":21},{"companyId":"00000000000000000000000000000002","companyName":"人民保险","companyImgUrl":null,"commissionRate":20},{"companyId":"00000000000000000000000000000003","companyName":"太平洋保险","companyImgUrl":null,"commissionRate":23}],"orders":[],"searchRecords":[{"carPlateNo":"粤AT810P"},{"carPlateNo":"粤A8K96A"},{"carPlateNo":"粤ECK520"}]},"code": "1000","message":""}
+
+2019-06-24 15:04:04,303 [13] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext af79d980-d327-46b6-aed5-3a870f690cb0 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 80c95c29fdd140daa2b36af88896370e
+
+2019-06-24 15:04:04,308 [12] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext af79d980-d327-46b6-aed5-3a870f690cb0 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 80c95c29fdd140daa2b36af88896370e
+Response: {"result": 1,"data":{"rules":[{"companyId":"00000000000000000000000000000001","companyName":"平安保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company1.png","commissionRate":21},{"companyId":"00000000000000000000000000000002","companyName":"人民保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company2.png","commissionRate":20},{"companyId":"00000000000000000000000000000003","companyName":"太平洋保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company3.png","commissionRate":23}],"orders":[],"searchRecords":[{"carPlateNo":"粤AT810P"},{"carPlateNo":"粤A8K96A"},{"carPlateNo":"粤ECK520"}]},"code": "1000","message":""}
+
+2019-06-24 15:17:29,901 [23] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 5a346d34-a0f9-4b50-b958-7e19631bd598 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: a5afac8aa7ae45dfa4094d3a42cb675a
+
+2019-06-24 15:17:29,927 [11] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 5a346d34-a0f9-4b50-b958-7e19631bd598 - 
+Url: /Api/InsCar/GetIndexPageData
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: a5afac8aa7ae45dfa4094d3a42cb675a
+Response: {"result": 1,"data":{"rules":[{"companyId":"00000000000000000000000000000001","companyName":"平安保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company1.png","commissionRate":21},{"companyId":"00000000000000000000000000000002","companyName":"人民保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company2.png","commissionRate":20},{"companyId":"00000000000000000000000000000003","companyName":"太平洋保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company3.png","commissionRate":23}],"orders":[],"searchRecords":[{"carPlateNo":"粤AT810P"},{"carPlateNo":"粤A8K96A"},{"carPlateNo":"粤ECK520"}]},"code": "1000","message":""}
+

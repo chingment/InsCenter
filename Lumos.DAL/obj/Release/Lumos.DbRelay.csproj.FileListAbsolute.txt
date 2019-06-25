@@ -1,0 +1,5 @@
+D:\InsCenter\WebApiInsApp\bin\Lumos.DbRelay.dll
+D:\InsCenter\WebApiInsApp\bin\Lumos.DbRelay.pdb
+D:\github\InsCenter\Lumos.DAL\obj\Release\Lumos.DbRelay.csprojResolveAssemblyReference.cache
+D:\github\InsCenter\Lumos.DAL\obj\Release\Lumos.DbRelay.dll
+D:\github\InsCenter\Lumos.DAL\obj\Release\Lumos.DbRelay.pdb

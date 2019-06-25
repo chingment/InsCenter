@@ -1,0 +1,5 @@
+D:\InsCenter\WebApiInsApp\bin\LocalS.Entity.dll
+D:\InsCenter\WebApiInsApp\bin\LocalS.Entity.pdb
+D:\github\InsCenter\LocalS.Entity\obj\Release\LocalS.Entity.csprojResolveAssemblyReference.cache
+D:\github\InsCenter\LocalS.Entity\obj\Release\LocalS.Entity.dll
+D:\github\InsCenter\LocalS.Entity\obj\Release\LocalS.Entity.pdb

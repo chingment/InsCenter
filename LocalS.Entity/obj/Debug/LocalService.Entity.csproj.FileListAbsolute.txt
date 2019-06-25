@@ -1,0 +1,5 @@
+D:\github\Ins\LocalService.Entity\bin\Debug\LocalService.Entity.dll
+D:\github\Ins\LocalService.Entity\bin\Debug\LocalService.Entity.pdb
+D:\github\Ins\LocalService.Entity\obj\Debug\LocalService.Entity.csprojResolveAssemblyReference.cache
+D:\github\Ins\LocalService.Entity\obj\Debug\LocalService.Entity.dll
+D:\github\Ins\LocalService.Entity\obj\Debug\LocalService.Entity.pdb

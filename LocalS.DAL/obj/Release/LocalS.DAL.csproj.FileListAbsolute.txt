@@ -1,0 +1,5 @@
+D:\InsCenter\WebApiInsApp\bin\LocalS.DAL.dll
+D:\InsCenter\WebApiInsApp\bin\LocalS.DAL.pdb
+D:\github\InsCenter\LocalS.DAL\obj\Release\LocalS.DAL.csprojResolveAssemblyReference.cache
+D:\github\InsCenter\LocalS.DAL\obj\Release\LocalS.DAL.dll
+D:\github\InsCenter\LocalS.DAL\obj\Release\LocalS.DAL.pdb

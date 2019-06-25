@@ -1,0 +1,15 @@
+D:\github\InsCenter\Test\bin\Debug\Test.exe.config
+D:\github\InsCenter\Test\bin\Debug\Test.exe
+D:\github\InsCenter\Test\bin\Debug\Test.pdb
+D:\github\InsCenter\Test\bin\Debug\log4net.dll
+D:\github\InsCenter\Test\bin\Debug\Newtonsoft.Json.dll
+D:\github\InsCenter\Test\bin\Debug\YsyInscarSdk.dll
+D:\github\InsCenter\Test\bin\Debug\Lumos.dll
+D:\github\InsCenter\Test\bin\Debug\System.Web.Mvc.dll
+D:\github\InsCenter\Test\bin\Debug\YsyInscarSdk.pdb
+D:\github\InsCenter\Test\bin\Debug\Newtonsoft.Json.xml
+D:\github\InsCenter\Test\bin\Debug\Lumos.pdb
+D:\github\InsCenter\Test\bin\Debug\System.Web.Mvc.xml
+D:\github\InsCenter\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+D:\github\InsCenter\Test\obj\Debug\Test.exe
+D:\github\InsCenter\Test\obj\Debug\Test.pdb
