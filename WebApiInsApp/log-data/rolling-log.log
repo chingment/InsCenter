@@ -459,3 +459,181 @@ Header.CurrentUserId:
 Header.RequestGuid: a5afac8aa7ae45dfa4094d3a42cb675a
 Response: {"result": 1,"data":{"rules":[{"companyId":"00000000000000000000000000000001","companyName":"平安保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company1.png","commissionRate":21},{"companyId":"00000000000000000000000000000002","companyName":"人民保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company2.png","commissionRate":20},{"companyId":"00000000000000000000000000000003","companyName":"太平洋保险","companyImgUrl":"http://demo.ins.17fanju.com/Static/Img/company3.png","commissionRate":23}],"orders":[],"searchRecords":[{"carPlateNo":"粤AT810P"},{"carPlateNo":"粤A8K96A"},{"carPlateNo":"粤ECK520"}]},"code": "1000","message":""}
 
+2019-06-26 15:50:33,209 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-26 15:51:11,859 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 5b05b23c-e83a-401b-998c-fa5002318e16 - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 8797ada168e842a6a1a2e5d62995aa03
+
+2019-06-26 15:51:13,055 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 5b05b23c-e83a-401b-998c-fa5002318e16 - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 8797ada168e842a6a1a2e5d62995aa03
+
+2019-06-26 15:51:13,057 [7] ERROR WebApiInsApp.OwnApiExceptionAttribute f52f5325-dec4-4234-ad05-3baff730604f - API调用出现异常
+System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__1.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.ApiController.<InvokeActionWithExceptionFilters>d__1.MoveNext()
+2019-06-26 15:51:33,502 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-26 15:51:35,100 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 755b59a4-9066-4ce5-9e64-735f2aa44caf - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: c9f7898c620e424c881f94424e866a71
+
+2019-06-26 15:52:30,689 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 755b59a4-9066-4ce5-9e64-735f2aa44caf - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: c9f7898c620e424c881f94424e866a71
+
+2019-06-26 15:52:30,692 [7] ERROR WebApiInsApp.OwnApiExceptionAttribute 6280e197-1966-4903-9c68-7b258f51351a - API调用出现异常
+System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__1.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.ApiController.<InvokeActionWithExceptionFilters>d__1.MoveNext()
+2019-06-26 15:52:59,095 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-26 15:53:11,317 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 56bc84a7-3053-4a25-bc24-b53039a11911 - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: dd16f32ed6464e8e94f9f220ebad06fc
+
+2019-06-26 15:53:29,295 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 56bc84a7-3053-4a25-bc24-b53039a11911 - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: dd16f32ed6464e8e94f9f220ebad06fc
+
+2019-06-26 15:53:29,300 [6] ERROR WebApiInsApp.OwnApiExceptionAttribute e19f72af-f232-44f2-adf8-f1ccda15e477 - API调用出现异常
+System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__1.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.ApiController.<InvokeActionWithExceptionFilters>d__1.MoveNext()
+2019-06-26 15:54:32,578 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext bb84a57b-3640-4b55-a000-57de7bd09d8c - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: cba97497dc5a41208b49ce02b9f1729e
+
+2019-06-26 15:54:38,958 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext bb84a57b-3640-4b55-a000-57de7bd09d8c - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: cba97497dc5a41208b49ce02b9f1729e
+
+2019-06-26 15:54:38,961 [6] ERROR WebApiInsApp.OwnApiExceptionAttribute 33201a8b-2789-41b7-ba7a-127e824ebc51 - API调用出现异常
+System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__1.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.ApiController.<InvokeActionWithExceptionFilters>d__1.MoveNext()
+2019-06-26 15:54:41,758 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext df9adaee-d072-436e-9a42-8d8577b15266 - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: b67647ed5d8e4f11a0749a78199bbe1d
+
+2019-06-26 15:56:05,744 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-26 15:56:07,093 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext e36d7001-204d-403a-8fd4-c9dda68b7cbf - 
+Url: /Api/InsCar/SearchCarInfo?plateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: ce2f2db1b22d4854a6406dd082543c81
+
+2019-06-26 15:56:55,372 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-26 15:56:58,246 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext dc0bf252-feec-4460-b67f-09f1e817ef90 - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 78624bfc37614001a92773eded4248e7
+
+2019-06-26 15:57:17,845 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-26 15:57:21,566 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext aff0d08f-49a4-406b-b397-7f6366478abf - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 0de753eb78674a5686f23d06bce7f8a6
+
+2019-06-26 15:57:40,500 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext aff0d08f-49a4-406b-b397-7f6366478abf - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 0de753eb78674a5686f23d06bce7f8a6
+Response: {"result": 1,"data":{"carInfo":{"plateNo":"粤A8K96A","vin":"LFMB0ABB3J0076940","engineNo":"W77990","registerDate":"2018-07-20","modelCode":null,"modelName":"丰田牌RV7202P","displacement":"1800ML","marketYear":"2018","passengerNumber":5,"purchasePrice":"2300000.00","tonnage":"18","wholeWeight":"1690kg","isTransfer":false,"transferDate":"2019-01-21","isCompanyCar":false},"carOwner":{"name":"邱庆文","certNo":"440182198804141553","mobile":"15989287032","address":"广州市花都区狮岭镇"}},"code": "1000","message":""}
+
+2019-06-26 15:57:45,692 [12] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 87807ca4-57a5-4485-bf92-d15b4b51a26f - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A4
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: b3545b24e2e64e31a0fed3cd56660021
+
+2019-06-26 15:57:47,452 [12] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 87807ca4-57a5-4485-bf92-d15b4b51a26f - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A4
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: b3545b24e2e64e31a0fed3cd56660021
+Response: {"result": 2,"code": "2000","message":"找不到车牌号信息"}
+

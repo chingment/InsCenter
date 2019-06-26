@@ -20,7 +20,7 @@ namespace WebApiInsApp.Controllers
         }
 
         [HttpGet]
-        public OwnApiHttpResponse SearchCarInfo(RupSearchCarInfo rup)
+        public OwnApiHttpResponse SearchCarInfo([FromUri]RupSearchCarInfo rup)
         {
             IResult result = InsAppServiceFactory.InsCar.SearchCarInfo(rup);
 

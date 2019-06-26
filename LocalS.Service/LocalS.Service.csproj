@@ -49,10 +49,12 @@
   <ItemGroup>
     <Compile Include="Api\InsApp\InsAppServiceFactory.cs" />
     <Compile Include="Api\InsApp\InsCarService.cs" />
+    <Compile Include="Api\InsApp\Models\InsCarInfoModel.cs" />
     <Compile Include="Api\InsApp\Models\InsCarInsureCityModel.cs" />
     <Compile Include="Api\InsApp\Models\InsCarOrderModel.cs" />
     <Compile Include="Api\InsApp\Models\InsCarSearchPlateNoRecordModel.cs" />
     <Compile Include="Api\InsApp\Models\InsCarCompanyRuleModel.cs" />
+    <Compile Include="Api\InsApp\Models\InsCustomerModel.cs" />
     <Compile Include="Api\InsApp\RModels\RetGetIndexPageData.cs" />
     <Compile Include="Api\InsApp\RModels\RetSearchCarInfo.cs" />
     <Compile Include="Api\InsApp\RModels\RupSearchCarInfo.cs" />
