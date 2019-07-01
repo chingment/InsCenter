@@ -8,5 +8,8 @@ namespace LocalS.Service.Api.InsApp
 {
     public class RupInsCarSearchModelInfo
     {
+        public string Type { get; set; }
+        public string Key { get; set; }
+
     }
 }

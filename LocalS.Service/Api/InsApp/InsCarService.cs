@@ -83,11 +83,28 @@ namespace LocalS.Service.Api.InsApp
         {
             var result = new CustomJsonResult();
 
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", null);
+            var ret = new RetInsCarSearchModelInfo();
+            var carModelInfos = CurrentDb.InsCarModelInfo.Where(m => m.ModelName.Contains(rup.Key)).ToList();
+
+
+            foreach (var item in carModelInfos)
+            {
+                var model = new InsCarModelInfoModel();
+
+                model.ModelCode = item.ModelCode;
+                model.ModelName = item.ModelName;
+                model.MarketYear = item.MarketYear;
+                model.PurchasePrice = item.PurchasePrice.ToString("F2");
+                model.Seat = item.Seat;
+                model.Exhaust = item.Exhaust;
+                ret.Models.Add(model);
+            }
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", ret);
 
             return result;
         }
 
-        
+
     }
 }

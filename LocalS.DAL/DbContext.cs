@@ -20,6 +20,9 @@ namespace LocalS.DAL
         public IDbSet<InsCarCompanyRule> InsCarCompanyRule { get; set; }
 
         public IDbSet<InsCarPlateNoInfo> InsCarPlateNoInfo { get; set; }
+        public IDbSet<InsCarModelInfo> InsCarModelInfo { get; set; }
+        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

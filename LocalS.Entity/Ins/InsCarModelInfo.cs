@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LocalS.Entity
 {
-    [Table("InsCarCompanyRule")]
+    [Table("InsCarModelInfo")]
     public class InsCarModelInfo
     {
         [Key]
@@ -19,13 +19,13 @@ namespace LocalS.Entity
         public string MarketYear { get; set; }
         public string BrandCode { get; set; }
         public string BrandName { get; set; }
-        public string Seat { get; set; }
+        public int Seat { get; set; }
         public string Quality { get; set; }
         public string Weight { get; set; }
         public string Exhaust { get; set; }
         public string BelongCode { get; set; }
         public string BelongName { get; set; }
-        public string PurchasePrice { get; set; }
+        public decimal PurchasePrice { get; set; }
         public string EnergySourceType { get; set; }
         public string EnergySourceName { get; set; }
         public string Creator { get; set; }

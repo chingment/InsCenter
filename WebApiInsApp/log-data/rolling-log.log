@@ -673,3 +673,155 @@ Header.CurrentUserId:
 Header.RequestGuid: dc41dd47263f48d799d0d5930c91bfc2
 Response: {"result": 1,"data":{"carInfo":{"plateNo":"粤A8K96A","vin":"LFMB0ABB3J0076940","engineNo":"W77990","registerDate":"2018-07-20","modelCode":null,"modelName":"丰田牌RV7202P","displacement":"1800ML","marketYear":"2018","passengerNumber":5,"purchasePrice":"2300000.00","tonnage":"18","wholeWeight":"1690kg","isTransfer":false,"transferDate":"2019-01-21","isCompanyCar":false},"carOwner":{"name":"邱庆文","certNo":"440182198804141553","mobile":"15989287032","address":"广州市花都区狮岭镇"}},"code": "1000","message":""}
 
+2019-07-01 10:56:25,821 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 10:58:21,607 [10] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 3a2fdcee-4fe5-4549-a57a-a798be5b47eb - 
+Url: /Api/InsCar/SearchPlateNoInfo?PlateNo=%E7%B2%A4A8K96A4
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 9abc5df8758a4bd2a665a7ab66b3f0fc
+
+2019-07-01 10:58:22,268 [10] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 3a2fdcee-4fe5-4549-a57a-a798be5b47eb - 
+Url: /Api/InsCar/SearchPlateNoInfo?PlateNo=%E7%B2%A4A8K96A4
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 9abc5df8758a4bd2a665a7ab66b3f0fc
+
+2019-07-01 10:58:22,270 [10] ERROR WebApiInsApp.OwnApiExceptionAttribute c8d58076-bee1-4dd8-9c8f-bc43f8e3220e - API调用出现异常
+System.InvalidOperationException: The entity types 'InsCarCompanyRule' and 'InsCarModelInfo' cannot share table 'InsCarCompanyRules' because they are not in the same type hierarchy or do not have a valid one to one foreign key relationship with matching primary keys between them.
+   在 System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__1.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.ApiController.<InvokeActionWithExceptionFilters>d__1.MoveNext()
+2019-07-01 10:58:36,664 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 10:58:52,916 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext c3936c9a-5436-4b9d-8d18-77f42f31adf7 - 
+Url: /Api/InsCar/SearchPlateNoInfo?PlateNo=%E7%B2%A4A8K96A4
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 94bb9cc2e5944e6ab9ae447bf5b60f69
+
+2019-07-01 11:00:31,292 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 11:00:57,800 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext bbbb43c7-4e1a-42be-a9e6-03d5cfae707d - 
+Url: /Api/InsCar/SearchPlateNoInfo?PlateNo=%E7%B2%A4A8K96A4
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 73d69f95f2a048c68e32ff86fafae5c3
+
+2019-07-01 11:01:01,362 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 18290925-b319-4886-a642-1793809ed733 - 
+Url: /Api/InsCar/SearchPlateNoInfo?PlateNo=%E7%B2%A4A8K96A4
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 519bf687b14c4f9dbf7d0732266127b3
+
+2019-07-01 11:06:50,573 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 11:06:56,745 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext d54a5829-edf9-4a78-be17-ac1709945da0 - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: c58f8bd663834d8e81a1cfa0d037ecd5
+
+2019-07-01 11:08:56,682 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 11:10:54,474 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext e64a4459-c0c9-452c-b8b5-7ce9ed196e3a - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: a29448e2d1dc410ba85af75cb611b10a
+
+2019-07-01 11:14:33,129 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 11:14:41,713 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext f7e0ed03-370c-4460-86ca-1d33fa9b449d - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: cf97f70b8490444bb0d77f8561aae351
+
+2019-07-01 11:15:31,918 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 11:15:47,468 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext e6a77e5f-f21c-4167-b65e-c72a52da3b77 - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: b7524b75422c446d892a72cffbbed08e
+
+2019-07-01 11:15:59,731 [8] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext e6a77e5f-f21c-4167-b65e-c72a52da3b77 - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: b7524b75422c446d892a72cffbbed08e
+Response: {"result": 1,"code": "1000","message":""}
+
+2019-07-01 11:16:03,982 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 1eaf0382-a082-43e2-a932-4e1af2e370e5 - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: b1ac4c4af5fc4d7a84dcb535dea7ff3a
+
+2019-07-01 11:16:26,905 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 11:16:36,444 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 7470ddc5-c6dd-4af0-9856-91155de607da - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 73f65620880b44bcb324144f079479a8
+
+2019-07-01 11:16:39,065 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 7470ddc5-c6dd-4af0-9856-91155de607da - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 73f65620880b44bcb324144f079479a8
+Response: {"result": 1,"data":{"models":[{"modelName":"丰田TV7202B桥车：手自一体 先锋版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"F:2"},{"modelName":"丰田TV7202S桥车：手自一体 时尚版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"F:2"},{"modelName":"丰田TV7202P桥车：手自一体 运动版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"F:2"},{"modelName":"丰田TV7202S桥车：手自一体 精英版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"F:2"},{"modelName":"丰田TV7202Q桥车：手自一体 尊享版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"F:2"}]},"code": "1000","message":""}
+
+2019-07-01 11:17:09,378 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-01 11:17:18,664 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext dd469539-a1d0-42cc-9dac-654c60169678 - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 6f5d8c45fd27493685f7be39d7af7587
+
+2019-07-01 11:17:19,513 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext dd469539-a1d0-42cc-9dac-654c60169678 - 
+Url: /Api/InsCar/SearchModelInfo?key=TV
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 6f5d8c45fd27493685f7be39d7af7587
+Response: {"result": 1,"data":{"models":[{"modelName":"丰田TV7202B桥车：手自一体 先锋版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"212800.00"},{"modelName":"丰田TV7202S桥车：手自一体 时尚版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"242800.00"},{"modelName":"丰田TV7202P桥车：手自一体 运动版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"252800.00"},{"modelName":"丰田TV7202S桥车：手自一体 精英版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"272800.00"},{"modelName":"丰田TV7202Q桥车：手自一体 尊享版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"292800.00"}]},"code": "1000","message":""}
+
