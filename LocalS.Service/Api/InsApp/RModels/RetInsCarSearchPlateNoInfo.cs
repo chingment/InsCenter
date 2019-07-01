@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.InsApp
 {
-    public class RetSearchCarInfo
+    public class RetInsCarSearchCarPlateNoInfo
     {
-        public RetSearchCarInfo()
+        public RetInsCarSearchCarPlateNoInfo()
         {
             this.CarInfo = new InsCarInfoModel();
-            this.CarOwner = new InsCustomerModel();
+            this.CarOwner = new InsCarCustomerModel();
         }
 
         public InsCarInfoModel CarInfo { get; set; }
-        public InsCustomerModel CarOwner { get; set; }
+        public InsCarCustomerModel CarOwner { get; set; }
     }
 }

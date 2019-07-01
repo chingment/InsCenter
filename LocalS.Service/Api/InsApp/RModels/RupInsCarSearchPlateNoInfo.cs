@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.InsApp
 {
-    public class RupSearchCarInfo
+    public class RupInsCarSearchPlateNoInfo
     {
         public string PlateNo { get; set; }
     }

@@ -637,3 +637,39 @@ Header.CurrentUserId:
 Header.RequestGuid: b3545b24e2e64e31a0fed3cd56660021
 Response: {"result": 2,"code": "2000","message":"找不到车牌号信息"}
 
+2019-06-26 16:11:43,667 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-06-26 16:11:54,210 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 884c0551-0ecd-4628-8fe4-c95bc5975535 - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: bcb1c1121ecf4b7abd95f131a3972367
+
+2019-06-26 16:11:54,967 [8] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 884c0551-0ecd-4628-8fe4-c95bc5975535 - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: bcb1c1121ecf4b7abd95f131a3972367
+Response: {"result": 1,"data":{"carInfo":{"plateNo":"粤A8K96A","vin":"LFMB0ABB3J0076940","engineNo":"W77990","registerDate":"2018-07-20","modelCode":null,"modelName":"丰田牌RV7202P","displacement":"1800ML","marketYear":"2018","passengerNumber":5,"purchasePrice":"2300000.00","tonnage":"18","wholeWeight":"1690kg","isTransfer":false,"transferDate":"2019-01-21","isCompanyCar":false},"carOwner":{"name":"邱庆文","certNo":"440182198804141553","mobile":"15989287032","address":"广州市花都区狮岭镇"}},"code": "1000","message":""}
+
+2019-06-26 16:11:58,190 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 3f1d39bb-427a-428d-b7d4-db6b86168bb7 - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: dc41dd47263f48d799d0d5930c91bfc2
+
+2019-06-26 16:11:58,194 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext 3f1d39bb-427a-428d-b7d4-db6b86168bb7 - 
+Url: /Api/InsCar/SearchCarInfo?PlateNo=%E7%B2%A4A8K96A
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: dc41dd47263f48d799d0d5930c91bfc2
+Response: {"result": 1,"data":{"carInfo":{"plateNo":"粤A8K96A","vin":"LFMB0ABB3J0076940","engineNo":"W77990","registerDate":"2018-07-20","modelCode":null,"modelName":"丰田牌RV7202P","displacement":"1800ML","marketYear":"2018","passengerNumber":5,"purchasePrice":"2300000.00","tonnage":"18","wholeWeight":"1690kg","isTransfer":false,"transferDate":"2019-01-21","isCompanyCar":false},"carOwner":{"name":"邱庆文","certNo":"440182198804141553","mobile":"15989287032","address":"广州市花都区狮岭镇"}},"code": "1000","message":""}
+

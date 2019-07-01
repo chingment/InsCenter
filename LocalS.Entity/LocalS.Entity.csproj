@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ins\InsCarCompanyRule.cs" />
+    <Compile Include="Ins\InsCarModelInfo.cs" />
     <Compile Include="Ins\InsCarPlateNoInfo.cs" />
     <Compile Include="Ins\InsCarPlateNoSearchHis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

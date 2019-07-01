@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.InsApp
 {
-    public class InsCustomerModel
+    public class InsCarCustomerModel
     {
         public string Name { get; set; }
         public string CertNo { get; set; }

@@ -14,7 +14,7 @@ namespace LocalS.Service.Api.InsApp
         {
             var result = new CustomJsonResult();
 
-            var ret = new RetGetIndexPageData();
+            var ret = new RetInsCarGetIndexPageData();
 
             var carPlateNoSearchHiss = CurrentDb.InsCarPlateNoSearchHis.OrderByDescending(m => m.CreateTime).ToList();
 
@@ -36,11 +36,11 @@ namespace LocalS.Service.Api.InsApp
             return result;
         }
 
-        public CustomJsonResult SearchCarInfo(RupSearchCarInfo rup)
+        public CustomJsonResult SearchPlateNoInfo(RupInsCarSearchPlateNoInfo rup)
         {
             var result = new CustomJsonResult();
 
-            var ret = new RetSearchCarInfo();
+            var ret = new RetInsCarSearchCarPlateNoInfo();
 
 
             var carPlateNoInfo = CurrentDb.InsCarPlateNoInfo.Where(m => rup.PlateNo != null && m.PlateNo == rup.PlateNo).FirstOrDefault();
@@ -56,12 +56,12 @@ namespace LocalS.Service.Api.InsApp
             ret.CarInfo.RegisterDate = carPlateNoInfo.RegisterDate.ToString("yyyy-MM-dd");
             ret.CarInfo.ModelCode = carPlateNoInfo.ModelCode;
             ret.CarInfo.ModelName = carPlateNoInfo.ModelName;
-            ret.CarInfo.Displacement = carPlateNoInfo.Displacement;
+            ret.CarInfo.Exhaust = carPlateNoInfo.Exhaust;
             ret.CarInfo.MarketYear = carPlateNoInfo.MarketYear;
-            ret.CarInfo.PassengerNumber = carPlateNoInfo.PassengerNumber;
+            ret.CarInfo.Seat = carPlateNoInfo.Seat;
             ret.CarInfo.PurchasePrice = carPlateNoInfo.PurchasePrice.ToString("F2");
-            ret.CarInfo.Tonnage = carPlateNoInfo.Tonnage;
-            ret.CarInfo.WholeWeight = carPlateNoInfo.WholeWeight;
+            ret.CarInfo.Quality = carPlateNoInfo.Quality;
+            ret.CarInfo.Weight = carPlateNoInfo.Weight;
             ret.CarInfo.IsTransfer = carPlateNoInfo.IsTransfer;
             ret.CarInfo.TransferDate = carPlateNoInfo.TransferDate.ToString("yyyy-MM-dd");
             ret.CarInfo.IsCompanyCar = carPlateNoInfo.IsCompanyCar;
@@ -77,5 +77,17 @@ namespace LocalS.Service.Api.InsApp
 
             return result;
         }
+
+
+        public CustomJsonResult SearchModelInfo(RupInsCarSearchModelInfo rup)
+        {
+            var result = new CustomJsonResult();
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", null);
+
+            return result;
+        }
+
+        
     }
 }

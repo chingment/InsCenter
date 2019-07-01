@@ -16,12 +16,12 @@ namespace LocalS.Entity
         public DateTime IssueDate { get; set; }
         public string ModelCode { get; set; }
         public string ModelName { get; set; }
-        public string Displacement { get; set; }
+        public string Exhaust { get; set; }
         public string MarketYear { get; set; }
-        public int PassengerNumber { get; set; }
+        public int Seat { get; set; }
         public decimal PurchasePrice { get; set; }
-        public string Tonnage { get; set; }
-        public string WholeWeight { get; set; }
+        public string Quality { get; set; }
+        public string Weight { get; set; }
         public bool IsTransfer { get; set; }
         public DateTime TransferDate { get; set; }
         public bool IsCompanyCar { get; set; }

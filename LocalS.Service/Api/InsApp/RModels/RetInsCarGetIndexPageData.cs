@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.InsApp
 {
-    public class RetGetIndexPageData
+    public class RetInsCarGetIndexPageData
     {
 
-        public RetGetIndexPageData()
+        public RetInsCarGetIndexPageData()
         {
             this.CompanyRules = new List<InsCarCompanyRuleModel>();
             this.Orders = new List<InsCarOrderModel>();
