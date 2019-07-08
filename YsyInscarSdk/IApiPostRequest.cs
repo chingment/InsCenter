@@ -8,7 +8,7 @@ namespace YsyInscarSdk
 {
     public interface IApiPostRequest<T>
     {
-        string ApiName { get; }
+        string ApiName { get; }                                                                                       
 
         IDictionary<string, string> GetUrlParameters();
 

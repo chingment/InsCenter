@@ -45,7 +45,10 @@ namespace Lumos.DbRelay
         public IDbSet<SysMerchantUser> SysMerchantUser { get; set; }
         public IDbSet<SysPosition> SysPosition { get; set; }
         public IDbSet<SysPositionRole> SysPositionRole { get; set; }
-      
+
+
+        public IDbSet<WxMsgPushLog>  WxMsgPushLog { get; set; }
+
         public AuthorizeRelayDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {

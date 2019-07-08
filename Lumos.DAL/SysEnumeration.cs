@@ -97,5 +97,14 @@ namespace Lumos.DbRelay
             MerchantRS = 203
         }
 
+
+        public enum WxAutoReplyType
+        {
+            Unknow = 0,
+            Subscribe = 1,
+            Keyword = 2,
+            MenuClick = 3,
+            NotKeyword = 4
+        }
     }
 }

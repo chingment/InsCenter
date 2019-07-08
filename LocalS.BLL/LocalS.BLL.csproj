@@ -37,8 +37,17 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\packages\StackExchange.Redis.1.2.6\lib\net45\StackExchange.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,15 +58,33 @@
   <ItemGroup>
     <Compile Include="BaseDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sdk\SdkFactory.cs" />
+    <Compile Include="Sdk\WxSdkProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LocalS.DAL\LocalS.DAL.csproj">
       <Project>{22abb57b-64ed-42fc-a64d-d603a90cb81b}</Project>
       <Name>LocalS.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LocalS.Entity\LocalS.Entity.csproj">
+      <Project>{85e1b9cd-3435-4591-bc66-29fbec2c67a3}</Project>
+      <Name>LocalS.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lumos.DAL\Lumos.DbRelay.csproj">
       <Project>{0e039414-2a2e-48b4-8db7-c4346106fa68}</Project>
       <Name>Lumos.DbRelay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lumos.Redis\Lumos.Redis.csproj">
+      <Project>{c165e6a0-dd43-4aa1-94b1-d4bf5420a80d}</Project>
+      <Name>Lumos.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lumos\Lumos.csproj">
+      <Project>{27883666-32aa-447f-aa1f-6128b76fbee8}</Project>
+      <Name>Lumos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeiXinSdk\WeiXinSdk.csproj">
+      <Project>{636311a8-0485-4953-841e-35ca27eea436}</Project>
+      <Name>WeiXinSdk</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

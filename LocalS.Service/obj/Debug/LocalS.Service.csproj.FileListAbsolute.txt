@@ -23,8 +23,6 @@ D:\github\Ins\LocalS.Service\bin\Debug\Lumos.DbRelay.pdb
 D:\github\Ins\LocalS.Service\bin\Debug\EntityFramework.xml
 D:\github\Ins\LocalS.Service\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\InsCenter\LocalS.Service\obj\Debug\LocalS.Service.csprojResolveAssemblyReference.cache
-D:\github\InsCenter\LocalS.Service\obj\Debug\LocalS.Service.dll
-D:\github\InsCenter\LocalS.Service\obj\Debug\LocalS.Service.pdb
 D:\github\InsCenter\LocalS.Service\bin\Debug\LocalS.Service.dll
 D:\github\InsCenter\LocalS.Service\bin\Debug\LocalS.Service.pdb
 D:\github\InsCenter\LocalS.Service\bin\Debug\EntityFramework.dll
@@ -46,3 +44,11 @@ D:\github\InsCenter\LocalS.Service\bin\Debug\EntityFramework.xml
 D:\github\InsCenter\LocalS.Service\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\InsCenter\LocalS.Service\bin\Debug\System.Web.Mvc.xml
 D:\github\InsCenter\LocalS.Service\bin\Debug\Newtonsoft.Json.xml
+D:\github\InsCenter\LocalS.Service\obj\Debug\LocalS.Service.dll
+D:\github\InsCenter\LocalS.Service\obj\Debug\LocalS.Service.pdb
+D:\github\InsCenter\LocalS.Service\bin\Debug\Lumos.WeiXinSdk.dll
+D:\github\InsCenter\LocalS.Service\bin\Debug\Lumos.Redis.dll
+D:\github\InsCenter\LocalS.Service\bin\Debug\StackExchange.Redis.dll
+D:\github\InsCenter\LocalS.Service\bin\Debug\Lumos.WeiXinSdk.pdb
+D:\github\InsCenter\LocalS.Service\bin\Debug\Lumos.Redis.pdb
+D:\github\InsCenter\LocalS.Service\bin\Debug\StackExchange.Redis.xml

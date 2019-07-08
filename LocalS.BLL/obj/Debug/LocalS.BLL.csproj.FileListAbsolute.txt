@@ -42,3 +42,9 @@ D:\github\InsCenter\LocalS.BLL\bin\Debug\Newtonsoft.Json.xml
 D:\github\InsCenter\LocalS.BLL\obj\Debug\LocalS.BLL.csprojResolveAssemblyReference.cache
 D:\github\InsCenter\LocalS.BLL\obj\Debug\LocalS.BLL.dll
 D:\github\InsCenter\LocalS.BLL\obj\Debug\LocalS.BLL.pdb
+D:\github\InsCenter\LocalS.BLL\bin\Debug\Lumos.Redis.dll
+D:\github\InsCenter\LocalS.BLL\bin\Debug\Lumos.WeiXinSdk.dll
+D:\github\InsCenter\LocalS.BLL\bin\Debug\StackExchange.Redis.dll
+D:\github\InsCenter\LocalS.BLL\bin\Debug\Lumos.Redis.pdb
+D:\github\InsCenter\LocalS.BLL\bin\Debug\Lumos.WeiXinSdk.pdb
+D:\github\InsCenter\LocalS.BLL\bin\Debug\StackExchange.Redis.xml

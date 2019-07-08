@@ -18,6 +18,7 @@ D:\github\Ins\LocalS.DAL\obj\Debug\LocalS.DAL.dll
 D:\github\Ins\LocalS.DAL\obj\Debug\LocalS.DAL.pdb
 D:\github\Ins\LocalS.DAL\bin\Debug\LocalS.Entity.dll
 D:\github\Ins\LocalS.DAL\bin\Debug\LocalS.Entity.pdb
+D:\github\InsCenter\LocalS.DAL\obj\Debug\LocalS.DAL.csprojResolveAssemblyReference.cache
 D:\github\InsCenter\LocalS.DAL\bin\Debug\LocalS.DAL.dll
 D:\github\InsCenter\LocalS.DAL\bin\Debug\LocalS.DAL.pdb
 D:\github\InsCenter\LocalS.DAL\bin\Debug\EntityFramework.dll
@@ -35,6 +36,5 @@ D:\github\InsCenter\LocalS.DAL\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\InsCenter\LocalS.DAL\bin\Debug\Lumos.pdb
 D:\github\InsCenter\LocalS.DAL\bin\Debug\System.Web.Mvc.xml
 D:\github\InsCenter\LocalS.DAL\bin\Debug\Newtonsoft.Json.xml
-D:\github\InsCenter\LocalS.DAL\obj\Debug\LocalS.DAL.csprojResolveAssemblyReference.cache
 D:\github\InsCenter\LocalS.DAL\obj\Debug\LocalS.DAL.dll
 D:\github\InsCenter\LocalS.DAL\obj\Debug\LocalS.DAL.pdb
