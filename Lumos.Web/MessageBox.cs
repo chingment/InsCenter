@@ -14,7 +14,7 @@ namespace Lumos.Web
 
     public class MessageBox
     {
-        public string Id { get; set; }
+        public string No { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public bool IsPopup { get; set; }

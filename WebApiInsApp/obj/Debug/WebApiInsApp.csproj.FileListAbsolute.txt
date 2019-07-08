@@ -94,7 +94,6 @@ D:\github\Ins\WebApiInsApp\bin\LocalS.BLL.pdb
 D:\github\Ins\WebApiInsApp\bin\LocalS.DAL.pdb
 D:\github\Ins\WebApiInsApp\bin\LocalS.Entity.pdb
 D:\github\Ins\WebApiInsApp\bin\Lumos.DbRelay.pdb
-D:\github\InsCenter\WebApiInsApp\obj\Debug\WebApiInsApp.csprojResolveAssemblyReference.cache
 D:\github\InsCenter\WebApiInsApp\bin\WebApiInsApp.dll.config
 D:\github\InsCenter\WebApiInsApp\bin\WebApiInsApp.dll
 D:\github\InsCenter\WebApiInsApp\bin\WebApiInsApp.pdb
@@ -123,6 +122,8 @@ D:\github\InsCenter\WebApiInsApp\bin\System.Web.WebPages.Deployment.dll
 D:\github\InsCenter\WebApiInsApp\bin\System.Web.WebPages.dll
 D:\github\InsCenter\WebApiInsApp\bin\System.Web.WebPages.Razor.dll
 D:\github\InsCenter\WebApiInsApp\bin\WebGrease.dll
+D:\github\InsCenter\WebApiInsApp\bin\Lumos.WeiXinSdk.dll
+D:\github\InsCenter\WebApiInsApp\bin\Lumos.Redis.dll
 D:\github\InsCenter\WebApiInsApp\bin\LocalS.BLL.pdb
 D:\github\InsCenter\WebApiInsApp\bin\LocalS.DAL.pdb
 D:\github\InsCenter\WebApiInsApp\bin\LocalS.Entity.pdb
@@ -145,9 +146,8 @@ D:\github\InsCenter\WebApiInsApp\bin\System.Web.WebPages.xml
 D:\github\InsCenter\WebApiInsApp\bin\System.Web.WebPages.Deployment.xml
 D:\github\InsCenter\WebApiInsApp\bin\System.Web.WebPages.Razor.xml
 D:\github\InsCenter\WebApiInsApp\bin\Antlr3.Runtime.pdb
-D:\github\InsCenter\WebApiInsApp\obj\Debug\WebApiInsApp.dll
-D:\github\InsCenter\WebApiInsApp\obj\Debug\WebApiInsApp.pdb
-D:\github\InsCenter\WebApiInsApp\bin\Lumos.WeiXinSdk.dll
-D:\github\InsCenter\WebApiInsApp\bin\Lumos.Redis.dll
 D:\github\InsCenter\WebApiInsApp\bin\Lumos.WeiXinSdk.pdb
 D:\github\InsCenter\WebApiInsApp\bin\Lumos.Redis.pdb
+D:\github\InsCenter\WebApiInsApp\obj\Debug\WebApiInsApp.csprojResolveAssemblyReference.cache
+D:\github\InsCenter\WebApiInsApp\obj\Debug\WebApiInsApp.dll
+D:\github\InsCenter\WebApiInsApp\obj\Debug\WebApiInsApp.pdb

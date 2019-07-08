@@ -1,35 +1,9 @@
 ﻿@model  Lumos.Web.MessageBox
 @{
-    ViewBag.Title = "MessageBox";
-
+    ViewBag.Title = "错误提示";
 }
 
-@section styles{
-    <link href="~/Content/app/header-nav.css" rel="stylesheet" />
-}
-
-<div class="header">
-    <div class="nav-left">
-
-    </div>
-    <div class="nav-middle">
-        <a href="/Store/Index" target="_self">
-            <span class="searc">
-                系统错误
-            </span>
-        </a>
-    </div>
-    <div class="nav-right">
-
-    </div>
-</div>
-<div class="divide-bar block-show"></div>
-<div class="body">
-
-</div>
-@section scripts
-{
-
+@section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
             $.lumos.messageBox({
@@ -42,5 +16,4 @@
             });
         });
     </script>
-
 }

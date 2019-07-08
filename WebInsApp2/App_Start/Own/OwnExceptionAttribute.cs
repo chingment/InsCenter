@@ -52,7 +52,7 @@ namespace WebInsApp2
             string action = (string)filterContext.RouteData.Values["action"];
 
             MessageBox messageBox = new MessageBox();
-            messageBox.Id = Guid.NewGuid().ToString();
+            messageBox.No = Guid.NewGuid().ToString();
             messageBox.Type = MessageBoxType.Exception;
             messageBox.Title = "抱歉,系统发生异常，如有需要请联系客服 020-82310186";
             messageBox.Content = "<a href=\"javascript:void(0)\" onclick=\"window.top.location.href='" + OwnWebSettingUtils.GetHomePage() + "'\">返回主页</a>";
@@ -83,7 +83,7 @@ namespace WebInsApp2
 
             filterContext.ExceptionHandled = true;
 
-            log.Error("发生异常错误[编号:" + messageBox.Id + "]", filterContext.Exception);
+            log.Error("发生异常错误[编号:" + messageBox.No + "]", filterContext.Exception);
 
 
         }

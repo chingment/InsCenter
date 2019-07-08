@@ -10,11 +10,16 @@ namespace WebInsApp2
     //     继承Authorize属性
     //     扩展Permission权限代码,用来控制用户是否拥有该类或方法的权限
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
-    public class OwnAuthorizeAttribute : AuthorizeAttribute
+    public class OwnAuthorizeAttribute : ActionFilterAttribute
     {
-        public override void OnAuthorization(AuthorizationContext filterContext)
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            base.OnAuthorization(filterContext);
+            LogUtil.SetTrackId();
+
+            base.OnActionExecuting(filterContext);
+
+            var request = filterContext.HttpContext.Request;
 
             bool skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true) || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
             if (skipAuthorization)
@@ -22,52 +27,67 @@ namespace WebInsApp2
                 return;
             }
 
-            #endregion
-        }
+            var userInfo = OwnRequest.GetUserInfo();
 
-        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
-        {
-            base.HandleUnauthorizedRequest(filterContext);
-
-            LogUtil.Info("当前未登录的URL:" + filterContext.HttpContext.Request.RawUrl);
+            bool isAjaxRequest = filterContext.RequestContext.HttpContext.Request.IsAjaxRequest();
 
             string userAgent = filterContext.HttpContext.Request.UserAgent;
-            string loginPage = OwnWebSettingUtils.GetLoginPage("");
 
-            if (userAgent.ToLower().Contains("micromessenger"))
+            string returnUrl = "";
+
+            if (isAjaxRequest)
             {
-                LogUtil.Info("去往微信浏览器授权验证");
-                loginPage = OwnWebSettingUtils.WxOauth2("");
+                returnUrl = request.UrlReferrer.PathAndQuery;
             }
             else
             {
-                LogUtil.Info("去往用户登录页面验证");
+                returnUrl = request.Url.PathAndQuery;
             }
 
-            if (!filterContext.HttpContext.Request.IsAuthenticated)
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                returnUrl = System.Web.HttpUtility.UrlEncode(returnUrl);
+            }
+
+            if (userInfo == null)
             {
                 LogUtil.Info("用户没有登录或登录超时");
 
-                bool isAjaxRequest = filterContext.RequestContext.HttpContext.Request.IsAjaxRequest();
+                string redirectUrl = OwnWebSettingUtils.GetLoginPage(returnUrl);
+
+                if (userAgent.ToLower().Contains("micromessenger"))
+                {
+                    LogUtil.Info("去往微信浏览器授权页面验证");
+                    redirectUrl = OwnWebSettingUtils.WxOauth2(returnUrl);
+                }
+                else
+                {
+                    LogUtil.Info("去往用户账号登录页面验证");
+                }
+
                 if (isAjaxRequest)
                 {
                     MessageBox messageBox = new MessageBox();
-                    messageBox.Id = Guid.NewGuid().ToString();
-                    messageBox.Type = MessageBoxType.Exception;
-                    messageBox.Title = "您没有权限访问,可能链接超时,请登录";
-                    messageBox.RedirectUrl = loginPage;
-                    CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Exception, ResultCode.Exception, "", messageBox);
+                    messageBox.No = Guid.NewGuid().ToString();
+                    messageBox.Type = MessageBoxType.Failure;
+                    messageBox.Title = "请登录";
+                    messageBox.RedirectUrl = redirectUrl;
+                    CustomJsonResult jsonResult = new CustomJsonResult(ResultType.NoLogin, ResultCode.Failure, "", messageBox);
                     filterContext.Result = jsonResult;
                     filterContext.Result.ExecuteResult(filterContext);
                     filterContext.HttpContext.Response.End();
                 }
                 else
                 {
-                    filterContext.Result = new RedirectResult(loginPage);
+                    filterContext.Result = new RedirectResult(redirectUrl);
                 }
+            }
+            else
+            {
+                LogUtil.Info("用户Id:" + userInfo.UserId);
             }
 
         }
     }
-
+    #endregion
 }

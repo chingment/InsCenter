@@ -14,7 +14,6 @@ D:\github\Ins\Lumos.DAL\bin\Debug\System.Web.Mvc.xml
 D:\github\Ins\Lumos.DAL\obj\Debug\Lumos.DbRelay.csprojResolveAssemblyReference.cache
 D:\github\Ins\Lumos.DAL\obj\Debug\Lumos.DbRelay.dll
 D:\github\Ins\Lumos.DAL\obj\Debug\Lumos.DbRelay.pdb
-D:\github\InsCenter\Lumos.DAL\obj\Debug\Lumos.DbRelay.csprojResolveAssemblyReference.cache
 D:\github\InsCenter\Lumos.DAL\bin\Debug\Lumos.DbRelay.dll
 D:\github\InsCenter\Lumos.DAL\bin\Debug\Lumos.DbRelay.pdb
 D:\github\InsCenter\Lumos.DAL\bin\Debug\EntityFramework.dll
@@ -28,5 +27,6 @@ D:\github\InsCenter\Lumos.DAL\bin\Debug\EntityFramework.xml
 D:\github\InsCenter\Lumos.DAL\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\InsCenter\Lumos.DAL\bin\Debug\Newtonsoft.Json.xml
 D:\github\InsCenter\Lumos.DAL\bin\Debug\System.Web.Mvc.xml
+D:\github\InsCenter\Lumos.DAL\obj\Debug\Lumos.DbRelay.csprojResolveAssemblyReference.cache
 D:\github\InsCenter\Lumos.DAL\obj\Debug\Lumos.DbRelay.dll
 D:\github\InsCenter\Lumos.DAL\obj\Debug\Lumos.DbRelay.pdb
