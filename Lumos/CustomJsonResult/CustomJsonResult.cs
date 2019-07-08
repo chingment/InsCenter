@@ -18,7 +18,7 @@ namespace Lumos
     public class CustomJsonResult<T> : ActionResult, IResult<T>
     {
         private ResultType _result = ResultType.Unknown;
-        private ResultCode _code = ResultCode.Unknown;
+        private string _code = "";
         private string _message = "";
         private T _data;
 
@@ -55,7 +55,7 @@ namespace Lumos
         /// <summary>
         /// 信息默认返回空字符串
         /// </summary>
-        public ResultCode Code
+        public string Code
         {
             get
             {
@@ -99,7 +99,7 @@ namespace Lumos
             this.JsonSerializerSettings = new JsonSerializerSettings();
         }
 
-        private void SetCustomJsonResult(string contenttype, ResultType type, ResultCode code, string message, T data, JsonSerializerSettings settings, params JsonConverter[] converters)
+        private void SetCustomJsonResult(string contenttype, ResultType type, string code, string message, T data, JsonSerializerSettings settings, params JsonConverter[] converters)
         {
             //this.ContentType = contenttype;
             this._result = type;
@@ -110,27 +110,27 @@ namespace Lumos
             this.JsonConverter = converters;
         }
 
-        public CustomJsonResult(string contenttype, ResultType type, ResultCode code, string message, T content, JsonSerializerSettings settings, params JsonConverter[] converters)
+        public CustomJsonResult(string contenttype, ResultType type, string code, string message, T content, JsonSerializerSettings settings, params JsonConverter[] converters)
         {
             SetCustomJsonResult(contenttype, type, code, message, content, settings, converters);
         }
 
         public CustomJsonResult(string contenttype, ResultType type, string message, T content, JsonSerializerSettings settings, params JsonConverter[] converters)
         {
-            SetCustomJsonResult(contenttype, type, ResultCode.Unknown, message, content, settings, converters);
+            SetCustomJsonResult(contenttype, type, "", message, content, settings, converters);
         }
 
         public CustomJsonResult(string contenttype, ResultType type, string message, T content, params JsonConverter[] converters)
         {
-            SetCustomJsonResult(contenttype, type, ResultCode.Unknown, message, content, null, converters);
+            SetCustomJsonResult(contenttype, type, "", message, content, null, converters);
         }
 
         public CustomJsonResult(string contenttype, ResultType type, string message, T content, JsonSerializerSettings settings)
         {
-            SetCustomJsonResult(contenttype, type, ResultCode.Unknown, message, content, settings);
+            SetCustomJsonResult(contenttype, type, "", message, content, settings);
         }
 
-        public CustomJsonResult(ResultType type, ResultCode code, string message, T content, params JsonConverter[] converters)
+        public CustomJsonResult(ResultType type, string code, string message, T content, params JsonConverter[] converters)
         {
             SetCustomJsonResult(null, type, code, message, content, null, converters);
         }
@@ -209,11 +209,7 @@ namespace Lumos
                     }
                 }
 
-                if (this._code != ResultCode.Unknown)
-                {
-                    json.Append("\"code\": \"" + ((int)this._code).ToString() + "\",");
-                }
-
+                json.Append("\"code\": \"" + this._code + "\",");
 
                 json.Append("\"message\":" + JsonConvert.SerializeObject(this._message) + "");
 
@@ -242,27 +238,27 @@ namespace Lumos
 
         }
 
-        public CustomJsonResult(ResultType type, string message) : base(type, ResultCode.Unknown, message, null, null)
+        public CustomJsonResult(ResultType type, string message) : base(type, "", message, null, null)
         {
 
         }
 
-        public CustomJsonResult(ResultType type, ResultCode code, string message) : base(type, code, message, null, null)
+        public CustomJsonResult(ResultType type, string code, string message) : base(type, code, message, null, null)
         {
 
         }
 
-        public CustomJsonResult(ResultType type, ResultCode code, string message, object content) : base(type, code, message, content, null)
+        public CustomJsonResult(ResultType type, string code, string message, object content) : base(type, code, message, content, null)
         {
 
         }
 
-        public CustomJsonResult(ResultType type, ResultCode code, string message, object content, params JsonConverter[] converters) : base(type, code, message, content, converters)
+        public CustomJsonResult(ResultType type, string code, string message, object content, params JsonConverter[] converters) : base(type, code, message, content, converters)
         {
 
         }
 
-        public CustomJsonResult(string contenttype, ResultType type, ResultCode code, string message, object content, JsonSerializerSettings settings, params JsonConverter[] converters) : base(contenttype, type, code, message, content, settings, converters)
+        public CustomJsonResult(string contenttype, ResultType type, string code, string message, object content, JsonSerializerSettings settings, params JsonConverter[] converters) : base(contenttype, type, code, message, content, settings, converters)
         {
 
         }

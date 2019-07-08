@@ -11,27 +11,14 @@ namespace Lumos
         Unknown = 0,
         Success = 1,
         Failure = 2,
-        Exception = 3,
-        NoLogin = 4
+        Exception = 3
     }
 
-    public enum ResultCode
+    public static class ResultCode
     {
-        Unknown = 0,
-        Success = 1000,
-        WithdrawConfirm = 1012,
-        Failure = 2000,
-        FailureSign = 2010,
-        FailureSignIn = 2020,
-        FailureNoData = 2030,
-        FailureValidCode = 2040,
-        FailureUserNameNotExists = 2050,
-        FailureNeedReplaceTips = 2060,
-        Exception = 3000,
-        AlreadyExist = 4001,
-        HasBind = 4002,
-        NoBind = 4003,
-        FormImperfect = 4004,
+        public readonly static string Success = "1000";
+        public readonly static string Failure = "2000";
+        public readonly static string Exception = "3000";
 
     }
 
@@ -39,7 +26,7 @@ namespace Lumos
     public interface IResult<T>
     {
         ResultType Result { get; set; }
-        ResultCode Code { get; set; }
+        string Code { get; set; }
         string Message { get; set; }
 
         T Data { get; set; }

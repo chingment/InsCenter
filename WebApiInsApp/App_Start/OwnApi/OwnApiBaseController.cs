@@ -32,7 +32,7 @@ namespace WebApiInsApp
             return new OwnApiHttpResponse(result);
         }
 
-        public OwnApiHttpResponse ResponseResult(ResultType resultType, ResultCode resultCode, string message = null, object data = null)
+        public OwnApiHttpResponse ResponseResult(ResultType resultType, string resultCode, string message = null, object data = null)
         {
             _result.Result = resultType;
             _result.Code = resultCode;

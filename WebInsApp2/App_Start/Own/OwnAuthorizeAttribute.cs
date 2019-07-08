@@ -72,7 +72,7 @@ namespace WebInsApp2
                     messageBox.Type = MessageBoxType.Failure;
                     messageBox.Title = "请登录";
                     messageBox.RedirectUrl = redirectUrl;
-                    CustomJsonResult jsonResult = new CustomJsonResult(ResultType.NoLogin, ResultCode.Failure, "", messageBox);
+                    CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "", messageBox);
                     filterContext.Result = jsonResult;
                     filterContext.Result.ExecuteResult(filterContext);
                     filterContext.HttpContext.Response.End();
