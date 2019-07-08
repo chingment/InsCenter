@@ -37,7 +37,7 @@
                 isPopup: @(Model.IsPopup==true? "true":"false"),
                 title: "@Model.Title",
                 content: "@Model.Content",
-                loginPage: "@Html.Raw(Model.LoginPage)",
+                redirectUrl: "@Html.Raw(Model.RedirectUrl)",
                 errorStackTrace: "@Html.Raw(Model.ErrorStackTrace)"
             });
         });
