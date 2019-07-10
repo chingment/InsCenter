@@ -8,7 +8,6 @@ namespace Lumos.DbRelay
     public class SysMerchantUser : SysUser
     {
         public string MerchantId { get; set; }
-
-        public Enumeration.SysPositionId PositionId { get; set; }
+        public string TppId { get; set; }
     }
 }

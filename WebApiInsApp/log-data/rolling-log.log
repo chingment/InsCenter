@@ -825,3 +825,186 @@ Header.CurrentUserId:
 Header.RequestGuid: 6f5d8c45fd27493685f7be39d7af7587
 Response: {"result": 1,"data":{"models":[{"modelName":"丰田TV7202B桥车：手自一体 先锋版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"212800.00"},{"modelName":"丰田TV7202S桥车：手自一体 时尚版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"242800.00"},{"modelName":"丰田TV7202P桥车：手自一体 运动版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"252800.00"},{"modelName":"丰田TV7202S桥车：手自一体 精英版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"272800.00"},{"modelName":"丰田TV7202Q桥车：手自一体 尊享版 国V","modelCode":null,"marketYear":"2017","seat":5,"exhaust":"1998","purchasePrice":"292800.00"}]},"code": "1000","message":""}
 
+2019-07-10 11:25:03,393 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-10 11:25:53,068 [5] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=asas&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: ab05171037cd4a12a35394b683017b18
+
+2019-07-10 11:26:06,075 [5] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=asas&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: ab05171037cd4a12a35394b683017b18
+
+2019-07-10 11:26:06,078 [5] ERROR WebApiInsApp.OwnApiExceptionAttribute f1c030f3-3c94-496c-935f-ddebab033b18 - API调用出现异常
+System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: 对象名 'dbo.Merchant' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   在 System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   在 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   在 System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__1.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.ApiController.<InvokeActionWithExceptionFilters>d__1.MoveNext()
+2019-07-10 11:29:28,230 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 89bedb50f59b44e28fa38d6e4ae32ba9
+
+2019-07-10 11:30:34,552 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-10 11:30:41,071 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: acd77a757b3e4f8bb00435471c6fe5a9
+
+2019-07-10 11:31:54,612 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-10 11:31:59,284 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: fc9661ff1fa34970a8781c67c503a315
+
+2019-07-10 11:32:37,049 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: fc9661ff1fa34970a8781c67c503a315
+Response: {"result": 1,"data":{"userId":"9107a1b0ed48447aabcc3a75b73f761a"},"code": "1000","message":"获取成功"}
+
+2019-07-10 11:34:30,607 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-10 11:34:37,419 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: d2266d6f66424c2fa55148763a71eaf3
+
+2019-07-10 11:34:50,361 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: d2266d6f66424c2fa55148763a71eaf3
+Response: {"result": 1,"data":{"userId":"2ea31180638a4371834ea183cc7bd6cb"},"code": "1000","message":"获取成功"}
+
+2019-07-10 11:34:52,378 [8] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 93c67a1728b849ca835875f6a6660690
+
+2019-07-10 11:35:15,317 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 93c67a1728b849ca835875f6a6660690
+Response: {"result": 1,"data":{"userId":"05c1d6c0b5574df1885f2cb63d2b29f7"},"code": "1000","message":"获取成功"}
+
+2019-07-10 11:35:33,732 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 17dbbd860fc2426488a214adb0f29cd4
+
+2019-07-10 11:36:06,434 [1] INFO  WebApiInsApp.WebApiApplication.Application_Start (null) - 
+应用程序开始
+2019-07-10 11:36:11,061 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 0dd1465891cf44cba3d07c8c7081ebbe
+
+2019-07-10 11:36:19,048 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 0dd1465891cf44cba3d07c8c7081ebbe
+Response: {"result": 1,"data":{"userId":"05c1d6c0b5574df1885f2cb63d2b29f7"},"code": "1000","message":"获取成功"}
+
+2019-07-10 11:36:21,563 [6] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 8ccd7095650e446da518d70a16eadaa2
+
+2019-07-10 11:36:22,980 [9] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 8ccd7095650e446da518d70a16eadaa2
+Response: {"result": 1,"data":{"userId":"05c1d6c0b5574df1885f2cb63d2b29f7"},"code": "1000","message":"获取成功"}
+
+2019-07-10 11:36:25,075 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 7dca0c8ba4414c0694061d111d8ce97e
+
+2019-07-10 11:36:26,103 [7] INFO  Lumos.Web.Http.MonitorLog+<LogAsync>d__2.MoveNext (null) - 
+Url: /Api/User/LoginByUrlParams?mId=00000000000000000000000000000001&uid=12122223232
+IP: ::1
+Method: GET
+ContentType: 
+Header.CurrentUserId: 
+Header.RequestGuid: 7dca0c8ba4414c0694061d111d8ce97e
+Response: {"result": 1,"data":{"userId":"05c1d6c0b5574df1885f2cb63d2b29f7"},"code": "1000","message":"获取成功"}
+

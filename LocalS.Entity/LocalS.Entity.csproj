@@ -48,6 +48,7 @@
     <Compile Include="Ins\InsCarModelInfo.cs" />
     <Compile Include="Ins\InsCarPlateNoInfo.cs" />
     <Compile Include="Ins\InsCarPlateNoSearchHis.cs" />
+    <Compile Include="Merchant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

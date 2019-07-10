@@ -15,5 +15,13 @@ namespace LocalS.Service.Api.InsApp
                 return new InsCarService();
             }
         }
+
+        public static UserService User
+        {
+            get
+            {
+                return new UserService();
+            }
+        }
     }
 }

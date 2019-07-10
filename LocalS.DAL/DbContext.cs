@@ -21,7 +21,9 @@ namespace LocalS.DAL
 
         public IDbSet<InsCarPlateNoInfo> InsCarPlateNoInfo { get; set; }
         public IDbSet<InsCarModelInfo> InsCarModelInfo { get; set; }
-        
+
+        public IDbSet<Merchant> Merchant { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
