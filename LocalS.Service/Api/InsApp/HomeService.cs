@@ -1,0 +1,38 @@
+﻿using LocalS.BLL;
+using Lumos;
+using Lumos.DbRelay;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LocalS.Service.Api.InsApp
+{
+    public class HomeService : BaseDbContext
+    {
+        public CustomJsonResult GetIndexPageData(string mId, string uId)
+        {
+            var result = new CustomJsonResult();
+
+
+            var ret = new RetHomeGetIndexPageData();
+
+            var lNavGridByInsCar = new LNavGridModel();
+
+            lNavGridByInsCar.Title = "车险服务";
+
+            lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "车险报价", OpType = "HURL", OpContent = string.Format("http://weixin.implus100.com/agent-new/channel_redirect.jsp?channelAccount=ff8080816be268a8016be3f449d10076&userId={0}&type=insure", uId) });
+            lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "理赔服务", OpType = "PURL", OpContent = "#" });
+            lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "车辆定损", OpType = "PURL", OpContent = "#" });
+
+            ret.LNavGrids.Add(lNavGridByInsCar);
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
+
+            return result;
+        }
+
+
+    }
+}

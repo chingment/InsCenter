@@ -11,19 +11,31 @@ namespace LocalS.Service.Api.InsApp
 {
     public class UserService : BaseDbContext
     {
-        public CustomJsonResult LoginByUrlParams(string mId, string uId)
+        public CustomJsonResult LoginByUrlParams(string mId, string tppId)
         {
             var result = new CustomJsonResult();
             var ret = new RetUserLoginByUrlParams();
+
+
+            if (string.IsNullOrEmpty(mId))
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "您好，应用无法访问，造成的原因：商户标识参数为空");
+            }
+
+            if (string.IsNullOrEmpty(tppId))
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "您好，应用无法访问，造成的原因：用户标识参数为空");
+            }
 
             var merchant = CurrentDb.Merchant.Where(m => m.Id == mId).FirstOrDefault();
 
             if (merchant == null)
             {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该商户不存在");
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "您好，应用无法访问，造成的原因：商户信息无法解释");
             }
 
-            var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.MerchantId == mId && m.TppId == uId).FirstOrDefault();
+       
+            var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.MerchantId == mId && m.TppId == tppId).FirstOrDefault();
             if (merchantUser == null)
             {
                 merchantUser = new SysMerchantUser();
@@ -38,12 +50,13 @@ namespace LocalS.Service.Api.InsApp
                 merchantUser.CreateTime = DateTime.Now;
                 merchantUser.Creator = merchantUser.Id;
                 merchantUser.MerchantId = merchant.Id;
-                merchantUser.TppId = uId;
+                merchantUser.TppId = tppId;
                 CurrentDb.SysMerchantUser.Add(merchantUser);
                 CurrentDb.SaveChanges();
             }
 
-            ret.UserId = merchantUser.Id;
+            ret.MId = merchantUser.MerchantId;
+            ret.UId = merchantUser.Id;
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 

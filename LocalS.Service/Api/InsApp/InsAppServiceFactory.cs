@@ -8,6 +8,14 @@ namespace LocalS.Service.Api.InsApp
 {
     public static class InsAppServiceFactory
     {
+        public static HomeService Home
+        {
+            get
+            {
+                return new HomeService();
+            }
+        }
+
         public static InsCarService InsCar
         {
             get

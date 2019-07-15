@@ -12,9 +12,9 @@ namespace WebApiInsApp.Controllers
     public class UserController : ApiController
     {
         [HttpGet]
-        public OwnApiHttpResponse LoginByUrlParams([FromUri]string mId, [FromUri]string uId)
+        public OwnApiHttpResponse LoginByUrlParams([FromUri]string mId = "", [FromUri]string tppId = "")
         {
-            IResult result = InsAppServiceFactory.User.LoginByUrlParams(mId, uId);
+            IResult result = InsAppServiceFactory.User.LoginByUrlParams(mId, tppId);
 
             return new OwnApiHttpResponse(result);
         }

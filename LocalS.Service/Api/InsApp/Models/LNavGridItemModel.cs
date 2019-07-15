@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.InsApp
 {
-    public class RetUserLoginByUrlParams
+    public class LNavGridItemModel
     {
-        public string UId { get; set; }
+        public string Title { get; set; }
 
-        public string MId { get; set; }
+        public string OpType { get; set; }
+
+        public string OpContent { get; set; }
     }
 }
