@@ -1,5 +1,0 @@
-D:\InsCenter\WebApiInsApp\bin\LocalS.Service.dll
-D:\InsCenter\WebApiInsApp\bin\LocalS.Service.pdb
-D:\github\InsCenter\LocalS.Service\obj\Release\LocalS.Service.csprojResolveAssemblyReference.cache
-D:\github\InsCenter\LocalS.Service\obj\Release\LocalS.Service.dll
-D:\github\InsCenter\LocalS.Service\obj\Release\LocalS.Service.pdb

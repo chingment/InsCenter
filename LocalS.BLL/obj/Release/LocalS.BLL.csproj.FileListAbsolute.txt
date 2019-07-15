@@ -1,5 +1,0 @@
-D:\InsCenter\WebApiInsApp\bin\LocalS.BLL.dll
-D:\InsCenter\WebApiInsApp\bin\LocalS.BLL.pdb
-D:\github\InsCenter\LocalS.BLL\obj\Release\LocalS.BLL.csprojResolveAssemblyReference.cache
-D:\github\InsCenter\LocalS.BLL\obj\Release\LocalS.BLL.dll
-D:\github\InsCenter\LocalS.BLL\obj\Release\LocalS.BLL.pdb

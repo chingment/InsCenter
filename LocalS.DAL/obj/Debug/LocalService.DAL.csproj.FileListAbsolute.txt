@@ -1,5 +1,0 @@
-D:\github\Ins\LocalService.DAL\bin\Debug\LocalService.DAL.dll
-D:\github\Ins\LocalService.DAL\bin\Debug\LocalService.DAL.pdb
-D:\github\Ins\LocalService.DAL\obj\Debug\LocalService.DAL.csprojResolveAssemblyReference.cache
-D:\github\Ins\LocalService.DAL\obj\Debug\LocalService.DAL.dll
-D:\github\Ins\LocalService.DAL\obj\Debug\LocalService.DAL.pdb
