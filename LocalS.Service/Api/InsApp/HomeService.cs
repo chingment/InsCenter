@@ -20,11 +20,12 @@ namespace LocalS.Service.Api.InsApp
 
             var lNavGridByInsCar = new LNavGridModel();
 
-            lNavGridByInsCar.Title = "车险服务";
+            lNavGridByInsCar.Title = "车务服务";
 
             lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "车险报价", OpType = "HURL", OpContent = string.Format("http://weixin.implus100.com/agent-new/channel_redirect.jsp?channelAccount=ff8080816be268a8016be3f449d10076&userId={0}&type=insure", uId) });
-            lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "理赔服务", OpType = "PURL", OpContent = "#" });
-            lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "车辆定损", OpType = "PURL", OpContent = "#" });
+            lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "车险订单", OpType = "HURL", OpContent = string.Format("http://weixin.implus100.com/agent-new/channel_redirect.jsp?channelAccount=ff8080816be268a8016be3f449d10076&userId={0}&type=order", uId) });
+            lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "理赔服务", OpType = "PURL", OpContent = "/Error/NonOpen" });
+            lNavGridByInsCar.Items.Add(new LNavGridItemModel { Title = "车辆定损", OpType = "PURL", OpContent = "/Error/NonOpen" });
 
             ret.LNavGrids.Add(lNavGridByInsCar);
 
