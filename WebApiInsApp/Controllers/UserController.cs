@@ -18,5 +18,13 @@ namespace WebApiInsApp.Controllers
 
             return new OwnApiHttpResponse(result);
         }
+
+        [HttpPost]
+        public OwnApiHttpResponse LoginByAccount(RopUserLoginByAccount rop)
+        {
+            IResult result = InsAppServiceFactory.User.LoginByAccount(rop);
+
+            return new OwnApiHttpResponse(result);
+        }
     }
 }

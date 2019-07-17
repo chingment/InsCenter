@@ -64,10 +64,12 @@
     <Compile Include="Api\InsApp\Models\LNavGridItemModel.cs" />
     <Compile Include="Api\InsApp\Models\LNavGridModel.cs" />
     <Compile Include="Api\InsApp\RModels\RetHomeGetIndexPageData.cs" />
+    <Compile Include="Api\InsApp\RModels\RetUserLoginByAccount.cs" />
     <Compile Include="Api\InsApp\RModels\RetUserLoginByUrlParams.cs" />
     <Compile Include="Api\InsApp\RModels\RetInsCarGetIndexPageData.cs" />
     <Compile Include="Api\InsApp\RModels\RetInsCarSearchModelInfo.cs" />
     <Compile Include="Api\InsApp\RModels\RetInsCarSearchPlateNoInfo.cs" />
+    <Compile Include="Api\InsApp\RModels\RopUserLoginByAccount.cs" />
     <Compile Include="Api\InsApp\RModels\RupInsCarSearchPlateNoInfo.cs" />
     <Compile Include="Api\InsApp\RModels\RupInsCarSearchModelInfo.cs" />
     <Compile Include="Api\InsApp\UserService.cs" />
