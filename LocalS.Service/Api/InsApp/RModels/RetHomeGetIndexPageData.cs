@@ -11,8 +11,11 @@ namespace LocalS.Service.Api.InsApp
         public RetHomeGetIndexPageData()
         {
             this.LNavGrids = new List<LNavGridModel>();
+            this.Swiper = new SwiperModel();
         }
 
         public List<LNavGridModel> LNavGrids { get; set; }
+
+        public SwiperModel Swiper { get; set; }
     }
 }

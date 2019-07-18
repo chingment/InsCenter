@@ -61,8 +61,10 @@
     <Compile Include="Api\InsApp\Models\InsCarSearchPlateNoRecordModel.cs" />
     <Compile Include="Api\InsApp\Models\InsCarCompanyRuleModel.cs" />
     <Compile Include="Api\InsApp\Models\InsCarCustomerModel.cs" />
-    <Compile Include="Api\InsApp\Models\LNavGridItemModel.cs" />
-    <Compile Include="Api\InsApp\Models\LNavGridModel.cs" />
+    <Compile Include="Api\InsApp\Models\UI\ImgModel.cs" />
+    <Compile Include="Api\InsApp\Models\UI\LNavGridItemModel.cs" />
+    <Compile Include="Api\InsApp\Models\UI\LNavGridModel.cs" />
+    <Compile Include="Api\InsApp\Models\UI\SwiperModel.cs" />
     <Compile Include="Api\InsApp\RModels\RetHomeGetIndexPageData.cs" />
     <Compile Include="Api\InsApp\RModels\RetUserLoginByAccount.cs" />
     <Compile Include="Api\InsApp\RModels\RetUserLoginByUrlParams.cs" />

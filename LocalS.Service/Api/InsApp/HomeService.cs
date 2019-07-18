@@ -18,6 +18,11 @@ namespace LocalS.Service.Api.InsApp
 
             var ret = new RetHomeGetIndexPageData();
 
+
+            ret.Swiper.Imgs.Add(new ImgModel { Src = "http://file.17fanju.com/Upload/Banner/1.png" });
+            ret.Swiper.Imgs.Add(new ImgModel { Src = "http://file.17fanju.com/Upload/Banner/2.png" });
+
+
             var lNavGridByInsCar = new LNavGridModel();
 
             lNavGridByInsCar.Title = "车务服务";
