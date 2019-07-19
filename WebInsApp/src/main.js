@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import http from "./utils/http";
+import commonUtil from "./utils/commonUtil";
 
 import Calendar from 'vue2-datepick'; //日期控件
 
@@ -29,16 +30,16 @@ Vue.use(Calendar);//日期控件
 
 import lumoslib from './lib/index'
 
-var lumoslib_components=lumoslib.components;
+var lumoslib_components = lumoslib.components;
 
 Object.keys(lumoslib_components).forEach((key) => {
-	Vue.component(lumoslib_components[key].name, lumoslib_components[key])
+  Vue.component(lumoslib_components[key].name, lumoslib_components[key])
 });
 
-var lumoslib_uses=lumoslib.uses;
+var lumoslib_uses = lumoslib.uses;
 
 Object.keys(lumoslib_uses).forEach((key) => {
-	Vue.use(lumoslib_uses[key]);
+  Vue.use(lumoslib_uses[key]);
 });
 
 
@@ -49,7 +50,7 @@ Object.keys(lumoslib_uses).forEach((key) => {
 
 
 Vue.prototype.$http = http;
-
+Vue.prototype.$commonUtil = commonUtil;
 
 // //方法挂靠全局
 // Object.keys(global).forEach((key) => {
@@ -58,23 +59,76 @@ Vue.prototype.$http = http;
 
 
 router.beforeEach((to, from, next) => {
-  
-  // if (to.matched.some(record => record.meta.requireAuth)){  // 判断该路由是否需要登录权限
-  // next({
-  //   path: '/My',
-  //   query: { redirect: to.fullPath }
-  // })
-  // }
-  // else {
-  //   next();
-  // }
 
-   next();
+  if (to.matched.length === 0) {
+
+    store.dispatch('setMessageBox', {
+      title: '温馨提示',
+      content: "您好，您访问的页面不存在"
+    })
+
+    next({
+      name: 'ErrorIndex',
+      path: '/Error'
+    })
+
+  }
+  else {
+
+    if (to.matched.some(record => record.meta.requireAuth)) {  // 判断该路由是否需要登录权限
+
+      if (store.getters.getUserInfo.uId == '') {
+
+        var mId = to.query.mId == "undefined" ? "" : to.query.mId
+        var tppId = to.query.tppId == "undefined" ? "" : to.query.tppId
+
+        
+        http.get("/User/LoginByUrlParams", { mId: mId, tppId: tppId }).then(res => {
+          if (res.result == 1) {
+
+            store.dispatch('setUserInfo', res.data)
+
+            next()
+          }
+          else {
+
+            
+            // store.dispatch('setMessageBox', {
+            //   title: '温馨提示',
+            //   content: res.message
+            // })
+
+            next({
+              name: 'LoginIndex',
+              path: '/Login',
+              query: { return: to.fullPath }
+            })
+
+          }
+        });
+
+
+      }
+      else {
+        next();
+      }
+
+      // next({
+      //   path: '/My',
+      //   query: { redirect: to.fullPath }
+      // })
+    }
+    else {
+      next();
+    }
+  }
+
+  //next();
 })
 
 
 
-Vue.prototype.getNowFormatDate = function() {
+Vue.prototype.getNowFormatDate = function () {
   var date = new Date();
   var seperator1 = "-";
   var year = date.getFullYear();
@@ -92,13 +146,25 @@ Vue.prototype.getNowFormatDate = function() {
 
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
+Vue.config.productionTip = false
+
+/* eslint-disable no-new */
+let app = new Vue({
   router,
   store,
   components: { App },
   template: '<App/>'
 })
 
+window.mountApp = () => {
+  app.$mount('#app')
+}
+if (process.env.NODE_ENV === 'production') {
+  if (window.STYLE_READY) {
+    window.mountApp()
+  }
+} else {
+  window.mountApp()
+}
 
 

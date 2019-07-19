@@ -21,6 +21,8 @@ Thumbs.db
 *.log
 [Bb]in
 [Dd]ebug*/
+dist*/
+node_modules*/
 *.lib
 *.sbr
 obj/

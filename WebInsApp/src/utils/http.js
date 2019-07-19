@@ -7,7 +7,6 @@ import qs from "qs";
 //添加请求拦截器
 axios.interceptors.request.use(
   config => {
-    console.log("请求响应前")
     Vue.prototype.$loading.show()
     return config;
   },
@@ -28,7 +27,7 @@ axios.interceptors.response.use(
   }
 );
 
-axios.defaults.baseURL = "http://demo.ins.api.17fanju.com/api";
+axios.defaults.baseURL = "http://api.m.ins-uplink.com/api";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.timeout = 10000;
@@ -41,6 +40,7 @@ function checkStatus(response) {
         response.status === 304 ||
         response.status === 400)
     ) {
+      console.log(response.data)
       resolve(response.data);
     } else {
       Vue.prototype.$toast('网络异常');

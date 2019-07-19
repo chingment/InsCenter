@@ -27,7 +27,6 @@ Toast.install = (Vue, options) => { //Vue的install方法，用于定义vue插�
     document.body.appendChild(tpl);
 
     Vue.prototype.$toast = function (text) {
-        console.log('dsda')
         $vm.isShow = true;
         $vm.text=text;
         setTimeout(() => { $vm.isShow = false },1500);

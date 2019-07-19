@@ -31,7 +31,7 @@
   </div>
 </template>
  
-<style>
+<style lang="less" scoped>
 .lumos-header {
   background: #006dee;
   height: 2.6rem;

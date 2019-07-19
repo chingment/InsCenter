@@ -1,76 +1,98 @@
 <template>
-  <div class="lumos-page">
-    <!-- <button @click="clickParent">点击</button> -->
-    <div class="lumos-tabbody">
-    <router-view/>
+  <div id="app_wrapper">
+    <lumos-swiper></lumos-swiper>
+  
+   <template v-for="(lNavGrid,pIndex) in this.lNavGrids">
+
+    <div class="lnavgrid pd"  :key="pIndex" >
+      <div class="title">
+        <div class="title-left">
+          <span class="icon">
+            
+          </span>
+          <span class="title">{{ lNavGrid.title }}</span>
+        </div>
+        <div class="title-right"></div>
+      </div>
+
+      <div class="field" >
+
+
+   <template v-for="(item,cIndex) in lNavGrid.items">
+
+     <div class="item"  :key="cIndex"  @click="lNavGridItemClick(item)" >
+      <div class="item-lefticon hid"></div>
+      <div class="item-content" >  
+      <div class="title" > {{ item.title}} </div>
+      <div class="note lumos-hid" ></div>
+      </div>  
+      <div class="item-righticon" >
+           <img  src="@/assets/images/icon_right.png" alt="">
+      </div>      
+     </div>
+
+   </template>
+
+      </div>
+     
     </div>
-     <lumos-tabbar :tabs="tabs" ref="mychild"  ></lumos-tabbar> 
+
+
+   </template>
+
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      tabs: [
-        {
-          name: "InsCar",
-          text: "车险",
-          pagePath: "/InsCar",
-          iconPath: require("@/assets/images/home/tabbar_icon_insCar.png"),
-          selectedIconPath: require("@/assets/images/home/tabbar_icon_insCar_fill.png"),
-          vonBadge: {
-            type: "circle",
-            text: ""
-          },
-          selected: false
-        },
-        {
-          name: "InsMarket",
-          text: "意外险",
-          pagePath: "/InsMarket",
-          iconPath: require("@/assets/images/home/tabbar_icon_insMarket.png"),
-          selectedIconPath: require("@/assets/images/home/tabbar_icon_insMarket_fill.png"),
-          vonBadge: {
-            type: "circle",
-            text: ""
-          },
-          selected: false
-        },
-        {
-          name: "InsClaim",
-          text: "理赔",
-          pagePath: "/InsClaim",
-          iconPath: require("@/assets/images/home/tabbar_icon_insClaim.png"),
-          selectedIconPath: require("@/assets/images/home/tabbar_icon_insClaim_fill.png"),
-          vonBadge: {
-            type: "number",
-            text: ""
-          },
-          selected: false
-        },
-        {
-          name: "My",
-          text: "我的",
-          pagePath: "/My",
-          iconPath: require("@/assets/images/home/tabbar_icon_my.png"),
-          selectedIconPath: require("@/assets/images/home/tabbar_icon_my_fill.png"),
-          vonBadge: {
-            type: "circle",
-            text: ""
-          },
-          selected: false
-        }
-      ]
+      lNavGrids: []
     };
   },
   methods: {
-    clickParent() {
-      this.$refs.mychild.setVonbadgeText(1, "嘿嘿嘿");
+    getData() {
+      var mId = this.$store.getters.getUserInfo.mId;
+      var uId = this.$store.getters.getUserInfo.uId;
+      this.$http
+        .get("/Home/GetIndexPageData", { mId: mId, uId: uId })
+        .then(res => {
+          var d = res.data;
+
+          this.lNavGrids = d.lNavGrids;
+        });
+    },
+    lNavGridItemClick(item) {
+      switch (item.opType) {
+        case "HURL":
+          window.location.href = item.opContent;
+          break;
+        case "PURL":
+          this.$router.push({ path: item.opContent });
+          break;
+      }
     }
+  },
+  mounted: function() {
+    let _this = this;
+    _this.getData();
   }
-  
 };
 </script>
 
+<style  lang="less" scoped>
+.lnavgrid {
+  > .title {
+    padding: 0.2rem 0;
 
+    .title-left {
+      .icon {
+        height: 1.3rem;
+      }
 
+      .title {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+</style>

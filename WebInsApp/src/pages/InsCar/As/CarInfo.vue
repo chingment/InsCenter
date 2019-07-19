@@ -1,6 +1,6 @@
 <template>
-  <div class="mb5">
-    <div class="frmgrid">
+  <div id="app_wrapper" class="mb5">
+    <div class="frmgrid pd">
       <div class="title">
         <div class="title-left">
           <span class="icon">
@@ -50,7 +50,7 @@
             <button @click="carModelSelectOpen" class="lumos-button lumos-button-private">选择车型</button>
           </div>
         </div>
-        <div class="item" id="item_carmodel">
+        <div class="item" id="item_carmodel" v-show="(carPlateNoInfo.carInfo.modelCode!='')">
           <div class="item-left">
             <span class="title">&nbsp;</span>
           </div>
@@ -80,7 +80,7 @@
     </div>
     <div class="space"></div>
 
-    <div class="frmgrid">
+    <div class="frmgrid pd">
       <div class="title">
         <div class="title-left">
           <span class="icon">
@@ -117,7 +117,7 @@
 
     <div class="space"></div>
 
-    <div class="frmgrid">
+    <div class="frmgrid pd">
       <div class="title">
         <div class="title-left">
           <span class="icon">
