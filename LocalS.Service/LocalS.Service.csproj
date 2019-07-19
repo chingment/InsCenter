@@ -75,6 +75,10 @@
     <Compile Include="Api\InsApp\RModels\RupInsCarSearchPlateNoInfo.cs" />
     <Compile Include="Api\InsApp\RModels\RupInsCarSearchModelInfo.cs" />
     <Compile Include="Api\InsApp\UserService.cs" />
+    <Compile Include="Api\Merch\MerchServiceFactory.cs" />
+    <Compile Include="Api\Merch\RModels\RetUserLoginByAccount.cs" />
+    <Compile Include="Api\Merch\RModels\RopUserLoginByAccount.cs" />
+    <Compile Include="Api\Merch\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
