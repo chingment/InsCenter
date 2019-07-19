@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E1173D8D-CD59-4230-9D51-D87F0187D7B7}</ProjectGuid>
+    <ProjectGuid>{267D89D9-E18D-401E-885C-27DB42D257F3}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApiInsApp</RootNamespace>
-    <AssemblyName>WebApiInsApp</AssemblyName>
+    <RootNamespace>WebApiMerch</RootNamespace>
+    <AssemblyName>WebApiMerch</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -142,10 +142,7 @@
     <Compile Include="App_Start\OwnApi\OwnStatisticsTrackerAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\InsCarController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
