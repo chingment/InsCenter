@@ -188,6 +188,16 @@ $light_gray:#eee;
     overflow: hidden;
     position: relative;
     z-index: 3;
+
+    .wrapper{
+      padding: 0 50px;
+    }
+
+    .it-left{
+      .title{
+        color: #409EFF;
+      }
+    }
   }
 
   .login-form {
@@ -195,7 +205,7 @@ $light_gray:#eee;
     min-width: 150px;
     max-width: 450px;
     padding: 35px;
-    margin: 200px auto;
+    margin: 160px auto 0 auto;
     overflow: hidden;
     border: 1px solid transparent;
     background: rgba(0,0,0,.6);
