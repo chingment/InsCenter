@@ -268,10 +268,12 @@ $light_gray:#eee;
     -webkit-background-size: cover;
     -o-background-size: cover;
     zoom: 1;
+    background-image: url('/assets/login_images/bg_login1.jpg');
     /*background-position: 0px bottom;*/
 
     img{
       width: 100%;
+      height: 100%;
     }
 }
 </style>
