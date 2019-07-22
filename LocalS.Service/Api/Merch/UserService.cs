@@ -57,15 +57,8 @@ namespace LocalS.Service.Api.Merch
         public CustomJsonResult Logout(string userId)
         {
             var result = new CustomJsonResult();
-            var ret = new RetUserGetInfo();
 
-            var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.Id == userId).FirstOrDefault();
-
-            ret.Name = merchantUser.Nickname;
-            ret.Avatar = merchantUser.Avatar;
-            ret.Introduction = merchantUser.Introduction;
-
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", ret);
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "退出成功");
 
             return result;
         }

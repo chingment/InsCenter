@@ -15,5 +15,13 @@ namespace LocalS.Service.Api.Merch
                 return new UserService();
             }
         }
+
+        public static MsUserService MsUser
+        {
+            get
+            {
+                return new MsUserService();
+            }
+        }
     }
 }

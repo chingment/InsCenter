@@ -56,6 +56,27 @@ export const constantRoutes = [
   },
 
   {
+    path: '/msuser',
+    component: Layout,
+    redirect: '/msuser/list',
+    name: 'Msuser',
+    meta: { title: '用户管理', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/msuser/list'),
+        meta: { title: '用户列表', icon: 'table' }
+      },
+      {
+        path: 'tree',
+        name: 'Tree',
+        component: () => import('@/views/tree/index'),
+        meta: { title: 'Tree', icon: 'tree' }
+      }
+    ]
+  },
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',

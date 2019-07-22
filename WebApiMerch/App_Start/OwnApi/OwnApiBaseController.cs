@@ -54,5 +54,20 @@ namespace WebApiMerch
             }
 
         }
+
+        public string CurrentMerchantId
+        {
+            get
+            {
+                //var request = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request;
+                //var token = request.QueryString["token"];
+                //var tokenInfo = SSOUtil.GetTokenInfo(token);
+
+                //return tokenInfo.MerchantId;
+
+                return "00000000000000000000000000000001";
+            }
+
+        }
     }
 }

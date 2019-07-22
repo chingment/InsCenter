@@ -76,9 +76,12 @@
     <Compile Include="Api\InsApp\RModels\RupInsCarSearchModelInfo.cs" />
     <Compile Include="Api\InsApp\UserService.cs" />
     <Compile Include="Api\Merch\MerchServiceFactory.cs" />
+    <Compile Include="Api\Merch\MsUserService.cs" />
     <Compile Include="Api\Merch\RModels\RetUserGetInfo.cs" />
     <Compile Include="Api\Merch\RModels\RetUserLoginByAccount.cs" />
     <Compile Include="Api\Merch\RModels\RopUserLoginByAccount.cs" />
+    <Compile Include="Api\Merch\RModels\RupBaseGetList.cs" />
+    <Compile Include="Api\Merch\RModels\RupMsUserGetList.cs" />
     <Compile Include="Api\Merch\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
