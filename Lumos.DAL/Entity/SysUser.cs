@@ -25,10 +25,12 @@ namespace Lumos.DbRelay
         [MaxLength(128)]
         public string Email { get; set; }
         [MaxLength(256)]
-        public string HeadImgUrl { get; set; }
+        public string Avatar { get; set; }
         public string Nickname { get; set; }
         [MaxLength(128)]
         public string Sex { get; set; }
+        [MaxLength(512)]
+        public string Introduction { get; set; }
         [MaxLength(128)]
         public string Province { get; set; }
         [MaxLength(128)]

@@ -76,6 +76,7 @@
     <Compile Include="Api\InsApp\RModels\RupInsCarSearchModelInfo.cs" />
     <Compile Include="Api\InsApp\UserService.cs" />
     <Compile Include="Api\Merch\MerchServiceFactory.cs" />
+    <Compile Include="Api\Merch\RModels\RetUserGetInfo.cs" />
     <Compile Include="Api\Merch\RModels\RetUserLoginByAccount.cs" />
     <Compile Include="Api\Merch\RModels\RopUserLoginByAccount.cs" />
     <Compile Include="Api\Merch\UserService.cs" />
@@ -98,6 +99,14 @@
     <ProjectReference Include="..\Lumos.DAL\Lumos.DbRelay.csproj">
       <Project>{0e039414-2a2e-48b4-8db7-c4346106fa68}</Project>
       <Name>Lumos.DbRelay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lumos.Redis\Lumos.Redis.csproj">
+      <Project>{c165e6a0-dd43-4aa1-94b1-d4bf5420a80d}</Project>
+      <Name>Lumos.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lumos.Session\Lumos.Session.csproj">
+      <Project>{d2f78ae2-3125-44b8-8629-ec3c5bc6c46b}</Project>
+      <Name>Lumos.Session</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lumos\Lumos.csproj">
       <Project>{27883666-32aa-447f-aa1f-6128b76fbee8}</Project>

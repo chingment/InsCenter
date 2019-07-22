@@ -209,7 +209,7 @@ namespace Lumos
                     }
                 }
 
-                json.Append("\"code\": \"" + this._code + "\",");
+                json.Append("\"code\": " + this._code + ",");
 
                 json.Append("\"message\":" + JsonConvert.SerializeObject(this._message) + "");
 
@@ -219,6 +219,7 @@ namespace Lumos
             {
 
                 json.Append("\"result\": " + (int)ResultType.Exception + ",");
+                json.Append("\"code\":3000,");
                 json.Append("\"message\":\"" + string.Format("CustomJsonResult转换发生异常:{0}", ex.Message) + "\"");
                 //转换失败记录日志
             }

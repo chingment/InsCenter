@@ -2,6 +2,7 @@
 using System.Web;
 using System.Configuration;
 using Lumos.Web.Http;
+using Lumos.Session;
 
 namespace WebApiMerch
 {
@@ -39,6 +40,19 @@ namespace WebApiMerch
             _result.Message = message;
             _result.Data = data;
             return new OwnApiHttpResponse(_result);
+        }
+
+        public string CurrentUserId
+        {
+            get
+            {
+                var request = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request;
+                var token = request.QueryString["token"];
+                var tokenInfo = SSOUtil.GetTokenInfo(token);
+
+                return tokenInfo.UserId;
+            }
+
         }
     }
 }

@@ -8,8 +8,6 @@ namespace LocalS.Service.Api.Merch
 {
     public class RetUserLoginByAccount
     {
-        public string UId { get; set; }
-
-        public string MId { get; set; }
+        public string Token { get; set; }
     }
 }

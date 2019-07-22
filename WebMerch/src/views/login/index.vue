@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <div class="header"><div class="wrapper"><div class="it-left"><span class="title">云呼中心-登录</span></div></div></div>
+    <div class="header"><div class="wrapper"><div class="it-left"><span class="title">登录中心</span></div></div></div>
     <div class="login-bg"><img id="bg_page_login_img" src="@/assets/login_images/bg_login1.jpg" alt=""></div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
@@ -47,13 +47,12 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      if (value.length <= 0) {
         callback(new Error('账号不能为空'))
       } else {
         callback()
@@ -68,8 +67,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: 'test2',
+        password: '123456'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -103,7 +102,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          this.$store.dispatch('user/loginByAccount', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {

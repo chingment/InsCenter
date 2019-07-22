@@ -62,6 +62,7 @@
     <Compile Include="ImgSet.cs" />
     <Compile Include="CustomJsonResult\IResult.cs" />
     <Compile Include="JsonConverter\NullToEmptyStringResolver.cs" />
+    <Compile Include="Utils\HttpUtil.cs" />
     <Compile Include="Utils\LogUtil.cs" />
     <Compile Include="PageEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
