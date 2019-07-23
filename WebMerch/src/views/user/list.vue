@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.userName" placeholder="用户名" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.userName" placeholder="用户名" va style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button v-waves class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
@@ -9,7 +9,6 @@
         新建
       </el-button>
     </div>
-
     <el-table
       :key="tableKey"
       v-loading="listLoading"
@@ -19,7 +18,7 @@
       highlight-current-row
       style="width: 100%;"
     >
-      <el-table-column label="序号" prop="id" align="left" width="80">
+      <el-table-column v-if="isMobileHidden" label="序号" prop="id" align="left" width="80">
         <template slot-scope="scope">
           <span>{{ scope.$index+1 }}</span>
         </template>
@@ -34,12 +33,12 @@
           <span>{{ scope.row.fullName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="手机号码" prop="phoneNumber" align="left" min-width="10%">
+      <el-table-column v-if="isMobileHidden" label="手机号码" prop="phoneNumber" align="left" min-width="10%">
         <template slot-scope="scope">
           <span>{{ scope.row.phoneNumber }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="邮箱" prop="email" align="left" min-width="20%">
+      <el-table-column v-if="isMobileHidden" label="邮箱" prop="email" align="left" min-width="20%">
         <template slot-scope="scope">
           <span>{{ scope.row.email }}</span>
         </template>
@@ -49,7 +48,7 @@
           <span :class="'enable-status enable-status-'+scope.row.status.value">{{ scope.row.status.text }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" prop="createTime" align="left" min-width="20%">
+      <el-table-column v-if="isMobileHidden" label="创建时间" prop="createTime" align="left" min-width="20%">
         <template slot-scope="scope">
           <span>{{ scope.row.createTime }}</span>
         </template>
@@ -187,7 +186,8 @@ export default {
         timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
         title: [{ required: true, message: 'title is required', trigger: 'blur' }]
       },
-      downloadLoading: false
+      downloadLoading: false,
+      isMobileHidden: this.$store.state.app.device !== 'mobile'
     }
   },
   created() {
