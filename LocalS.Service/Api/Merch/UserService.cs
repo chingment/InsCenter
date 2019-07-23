@@ -12,7 +12,7 @@ namespace LocalS.Service.Api.Merch
 {
     public class UserService : BaseDbContext
     {
-        public CustomJsonResult GetList(string merchantId, RupMsUserGetList rup)
+        public CustomJsonResult GetList(string merchantId, RupUserGetList rup)
         {
             var result = new CustomJsonResult();
 
@@ -54,6 +54,15 @@ namespace LocalS.Service.Api.Merch
             PageEntity pageEntity = new PageEntity { PageSize = pageSize, Total = total, Items = olist };
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", pageEntity);
+
+            return result;
+        }
+
+        public CustomJsonResult Add(string merchantId, RopUserAdd rop)
+        {
+            var result = new CustomJsonResult();
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "");
 
             return result;
         }

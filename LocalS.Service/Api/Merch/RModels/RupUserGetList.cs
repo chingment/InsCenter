@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Merch
 {
-    public class RupMsUserGetList: RupBaseGetList
+    public class RupUserGetList: RupBaseGetList
     {
-        public string MerchantId { get; set; }
 
         public string UserName { get; set; }
 
