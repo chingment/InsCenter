@@ -22,14 +22,14 @@ namespace WebApiMerch.Controllers
         [HttpGet]
         public OwnApiHttpResponse GetInfo()
         {
-            IResult result = MerchServiceFactory.Own.GetInfo(this.CurrentUserId);
+            IResult result = MerchServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpPost]
         public OwnApiHttpResponse Logout()
         {
-            IResult result = MerchServiceFactory.Own.Logout(this.CurrentUserId);
+            IResult result = MerchServiceFactory.Own.Logout(this.CurrentUserId, this.CurrentUserId);
             return new OwnApiHttpResponse(result);
         }
 

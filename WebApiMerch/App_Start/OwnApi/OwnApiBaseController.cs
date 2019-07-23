@@ -42,31 +42,37 @@ namespace WebApiMerch
             return new OwnApiHttpResponse(_result);
         }
 
+        private TokenInfo Token
+        {
+            get
+            {
+                var request = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request;
+                var token = request.QueryString["token"];
+                var tokenInfo = SSOUtil.GetTokenInfo(token);
+
+                if (tokenInfo == null)
+                {
+                    tokenInfo = new TokenInfo();
+                    tokenInfo.UserId = "";
+                    tokenInfo.MerchantId = "";
+                }
+                return tokenInfo;
+            }
+        }
+
         public string CurrentUserId
         {
             get
             {
-                //var request = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request;
-                //var token = request.QueryString["token"];
-                //var tokenInfo = SSOUtil.GetTokenInfo(token);
-
-                //return tokenInfo.UserId;
-                return "00000000000000000000000000000001";
+                return this.Token.UserId;
             }
-
         }
 
         public string CurrentMerchantId
         {
             get
             {
-                //var request = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request;
-                //var token = request.QueryString["token"];
-                //var tokenInfo = SSOUtil.GetTokenInfo(token);
-
-                //return tokenInfo.MerchantId;
-
-                return "00000000000000000000000000000001";
+                return this.Token.MerchantId;
             }
 
         }

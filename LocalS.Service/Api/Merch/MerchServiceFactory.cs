@@ -8,6 +8,14 @@ namespace LocalS.Service.Api.Merch
 {
     public class MerchServiceFactory
     {
+        public static HomeService Home
+        {
+            get
+            {
+                return new HomeService();
+            }
+        }
+
         public static OwnService Own
         {
             get

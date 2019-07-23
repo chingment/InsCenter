@@ -39,7 +39,7 @@ namespace LocalS.Service.Api.Merch
             return result;
         }
 
-        public CustomJsonResult GetInfo(string userId)
+        public CustomJsonResult GetInfo(string operater, string userId)
         {
             var result = new CustomJsonResult();
             var ret = new RetOwnGetInfo();
@@ -70,7 +70,7 @@ namespace LocalS.Service.Api.Merch
             return result;
         }
 
-        public CustomJsonResult Logout(string userId)
+        public CustomJsonResult Logout(string operater, string userId)
         {
             var result = new CustomJsonResult();
 

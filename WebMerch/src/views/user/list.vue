@@ -19,7 +19,6 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @sort-change="sortChange"
     >
       <el-table-column label="序号" prop="id" align="left" width="80">
         <template slot-scope="scope">

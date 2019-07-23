@@ -1,4 +1,4 @@
-﻿using LocalS.Service.Api.InsApp;
+﻿using LocalS.Service.Api.Merch;
 using Lumos;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace WebApiMerch.Controllers
         [HttpGet]
         public OwnApiHttpResponse GetIndexPageData([FromUri]string mId, [FromUri]string uId)
         {
-            IResult result = InsAppServiceFactory.Home.GetIndexPageData(mId, uId);
+            IResult result = MerchServiceFactory.Home.GetIndexPageData(this.CurrentUserId, mId, uId);
 
             return new OwnApiHttpResponse(result);
         }
