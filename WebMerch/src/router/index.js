@@ -56,16 +56,16 @@ export const constantRoutes = [
   },
 
   {
-    path: '/msuser',
+    path: '/user',
     component: Layout,
-    redirect: '/msuser/list',
-    name: 'Msuser',
+    redirect: '/user/list',
+    name: 'User',
     meta: { title: '用户管理', icon: 'example' },
     children: [
       {
         path: 'list',
         name: 'List',
-        component: () => import('@/views/msuser/list'),
+        component: () => import('@/views/user/list'),
         meta: { title: '用户列表', icon: 'table' }
       },
       {

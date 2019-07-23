@@ -1,25 +1,9 @@
 import request from '@/utils/request'
 
-export function loginByAccount(data) {
+export function fetchList(params) {
   return request({
-    url: '/user/loginByAccount',
-    method: 'post',
-    data
-  })
-}
-
-export function getInfo(token) {
-  return request({
-    url: '/user/getInfo',
+    url: '/user/getlist',
     method: 'get',
-    params: { token }
-  })
-}
-
-export function logout(token) {
-  return request({
-    url: '/user/logout',
-    method: 'post',
-    params: { token }
+    params
   })
 }

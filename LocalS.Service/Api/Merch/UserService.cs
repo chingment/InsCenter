@@ -45,7 +45,7 @@ namespace LocalS.Service.Api.Merch
                     FullName = item.FullName,
                     Email = item.Email,
                     PhoneNumber = item.PhoneNumber,
-                    StatusName = item.Status,
+                    Status = new { text = item.Status, value = item.Status },
                     CreateTime = item.CreateTime.ToUnifiedFormatDateTime()
                 });
             }
