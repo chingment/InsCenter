@@ -86,6 +86,9 @@
     <Compile Include="Api\Merch\RModels\RupUserGetList.cs" />
     <Compile Include="Api\Merch\OwnService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Menu.cs" />
+    <Compile Include="UI\MenuChild.cs" />
+    <Compile Include="UI\MenuMeta.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -231,12 +231,15 @@ export default {
       }
     },
     handleCreate() {
-      this.resetTemp()
-      this.dialogStatus = 'create'
-      this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
+      this.$router.push({
+        path: '/user/add?redirect=/user/list'
       })
+      // this.resetTemp()
+      // this.dialogStatus = 'create'
+      // this.dialogFormVisible = true
+      // this.$nextTick(() => {
+      //  this.$refs['dataForm'].clearValidate()
+      // })
     },
     createData() {
       this.$refs['dataForm'].validate((valid) => {
@@ -257,13 +260,16 @@ export default {
       })
     },
     handleUpdate(row) {
-      this.temp = Object.assign({}, row) // copy obj
-      this.temp.timestamp = new Date(this.temp.timestamp)
-      this.dialogStatus = 'update'
-      this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
+      this.$router.push({
+        path: '/user/edit'
       })
+      // this.temp = Object.assign({}, row) // copy obj
+      // this.temp.timestamp = new Date(this.temp.timestamp)
+      // this.dialogStatus = 'update'
+      // this.dialogFormVisible = true
+      // this.$nextTick(() => {
+      //   this.$refs['dataForm'].clearValidate()
+      // })
     },
     updateData() {
       this.$refs['dataForm'].validate((valid) => {

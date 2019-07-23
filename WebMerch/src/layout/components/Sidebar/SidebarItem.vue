@@ -16,7 +16,7 @@
         v-for="child in item.children"
         :key="child.path"
         :is-nest="true"
-        :item="child"
+        :item="resolveChild(child)"
         :base-path="resolvePath(child.path)"
         class="nest-menu"
       />
@@ -89,6 +89,9 @@ export default {
         return this.basePath
       }
       return path.resolve(this.basePath, routePath)
+    },
+    resolveChild(child) {
+      return child
     }
   }
 }

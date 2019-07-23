@@ -69,10 +69,16 @@ export const constantRoutes = [
         meta: { title: '用户列表', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'add',
+        name: 'Add',
+        component: () => import('@/views/user/add'),
+        meta: { title: '新建用户', icon: 'tree' }
+      },
+      {
+        path: 'edit',
+        name: 'Edit',
+        component: () => import('@/views/user/edit'),
+        meta: { title: '编辑用户', icon: 'tree', hidden: true }
       }
     ]
   },

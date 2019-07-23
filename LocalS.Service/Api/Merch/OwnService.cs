@@ -1,4 +1,5 @@
 ﻿using LocalS.BLL;
+using LocalS.Service.UI;
 using Lumos;
 using Lumos.DbRelay;
 using Lumos.Session;
@@ -48,6 +49,21 @@ namespace LocalS.Service.Api.Merch
             ret.Name = merchantUser.Nickname;
             ret.Avatar = merchantUser.Avatar;
             ret.Introduction = merchantUser.Introduction;
+
+
+
+            var menus = new List<Menu>();
+
+            var menu1 = new Menu();
+            menu1.Name = "User";
+            menu1.Path = "/user";
+            menu1.Meta = new MenuMeta { Title = "用户管理", Icon = "example" };
+            menu1.Children.Add(new MenuChild { Name = "List", Path = "list", Meta = new MenuMeta { Title = "用户列表", Icon = "table" } });
+            menu1.Children.Add(new MenuChild { Name = "Add", Path = "add", Meta = new MenuMeta { Title = "新建用户", Icon = "table" } });
+
+            menus.Add(menu1);
+
+            ret.Menus = menus;
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", ret);
 

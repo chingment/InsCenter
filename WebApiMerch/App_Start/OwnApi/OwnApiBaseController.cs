@@ -46,11 +46,12 @@ namespace WebApiMerch
         {
             get
             {
-                var request = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request;
-                var token = request.QueryString["token"];
-                var tokenInfo = SSOUtil.GetTokenInfo(token);
+                //var request = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request;
+                //var token = request.QueryString["token"];
+                //var tokenInfo = SSOUtil.GetTokenInfo(token);
 
-                return tokenInfo.UserId;
+                //return tokenInfo.UserId;
+                return "00000000000000000000000000000001";
             }
 
         }
