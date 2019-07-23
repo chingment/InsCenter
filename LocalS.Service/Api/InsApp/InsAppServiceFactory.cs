@@ -24,11 +24,11 @@ namespace LocalS.Service.Api.InsApp
             }
         }
 
-        public static UserService User
+        public static OwnService Own
         {
             get
             {
-                return new UserService();
+                return new OwnService();
             }
         }
     }

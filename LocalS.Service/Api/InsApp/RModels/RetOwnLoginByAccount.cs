@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.InsApp
 {
-    public class RetUserLoginByUrlParams
+    public class RetOwnLoginByAccount
     {
         public string UId { get; set; }
 

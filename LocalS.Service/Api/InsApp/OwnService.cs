@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.InsApp
 {
-    public class UserService : BaseDbContext
+    public class OwnService : BaseDbContext
     {
         public CustomJsonResult LoginByUrlParams(string mId, string tppId)
         {
             var result = new CustomJsonResult();
-            var ret = new RetUserLoginByUrlParams();
+            var ret = new RetOwnLoginByUrlParams();
 
 
             if (string.IsNullOrEmpty(mId))
@@ -63,10 +63,10 @@ namespace LocalS.Service.Api.InsApp
             return result;
         }
 
-        public CustomJsonResult LoginByAccount(RopUserLoginByAccount rop)
+        public CustomJsonResult LoginByAccount(RopOwnLoginByAccount rop)
         {
             var result = new CustomJsonResult();
-            var ret = new RetUserLoginByUrlParams();
+            var ret = new RetOwnLoginByUrlParams();
 
             var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.UserName == rop.UserName).FirstOrDefault();
 

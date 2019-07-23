@@ -62,7 +62,7 @@ export default {
       }
 
       this.$http
-        .post("/User/LoginByAccount", {
+        .post("/Own/LoginByAccount", {
           username: _this.username,
           password: _this.password
         })

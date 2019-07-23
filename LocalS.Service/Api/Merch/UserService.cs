@@ -12,53 +12,48 @@ namespace LocalS.Service.Api.Merch
 {
     public class UserService : BaseDbContext
     {
-        public CustomJsonResult LoginByAccount(RopUserLoginByAccount rop)
+        public CustomJsonResult GetList(string merchantId, RupMsUserGetList rup)
         {
             var result = new CustomJsonResult();
-            var ret = new RetUserLoginByAccount();
 
-            var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.UserName == rop.UserName).FirstOrDefault();
+            var query = (from u in CurrentDb.SysMerchantUser
+                         where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
+                         (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
+                         u.IsDelete == false &&
+                         u.IsCanDelete == true &&
+                         u.MerchantId == merchantId
+                         select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.Status });
 
-            if (merchantUser == null)
+
+            int total = query.Count();
+
+            int pageIndex = rup.Page - 1;
+            int pageSize = 10;
+            query = query.OrderByDescending(r => r.CreateTime).Skip(pageSize * (pageIndex)).Take(pageSize);
+
+            var list = query.ToList();
+
+            List<object> olist = new List<object>();
+
+            foreach (var item in list)
             {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号不存在");
+
+                olist.Add(new
+                {
+                    Id = item.Id,
+                    UserName = item.UserName,
+                    FullName = item.FullName,
+                    Email = item.Email,
+                    PhoneNumber = item.PhoneNumber,
+                    StatusName = item.Status,
+                    CreateTime = item.CreateTime.ToUnifiedFormatDateTime()
+                });
             }
 
-            if (!PassWordHelper.VerifyHashedPassword(merchantUser.PasswordHash, rop.Password))
-            {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号密码不正确");
-            }
 
-            ret.Token = GuidUtil.New();
+            PageEntity pageEntity = new PageEntity { PageSize = pageSize, Total = total, Items = olist };
 
-            SSOUtil.SetTokenInfo(ret.Token, new TokenInfo { UserId = merchantUser.Id, MerchantId = merchantUser.MerchantId });
-
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "登录成功", ret);
-
-            return result;
-        }
-
-        public CustomJsonResult GetInfo(string userId)
-        {
-            var result = new CustomJsonResult();
-            var ret = new RetUserGetInfo();
-
-            var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.Id == userId).FirstOrDefault();
-
-            ret.Name = merchantUser.Nickname;
-            ret.Avatar = merchantUser.Avatar;
-            ret.Introduction = merchantUser.Introduction;
-
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", ret);
-
-            return result;
-        }
-
-        public CustomJsonResult Logout(string userId)
-        {
-            var result = new CustomJsonResult();
-
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "退出成功");
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", pageEntity);
 
             return result;
         }

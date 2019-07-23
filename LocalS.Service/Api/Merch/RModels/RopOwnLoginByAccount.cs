@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Merch
 {
-    public class RopUserLoginByAccount
+    public class RopOwnLoginByAccount
     {
         public string UserName { get; set; }
 

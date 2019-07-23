@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.InsApp
 {
-    public class RetUserLoginByAccount
+    public class RopOwnLoginByAccount
     {
-        public string UId { get; set; }
+        public string UserName { get; set; }
 
-        public string MId { get; set; }
+        public string Password { get; set; }
     }
 }

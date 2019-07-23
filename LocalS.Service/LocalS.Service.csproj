@@ -66,23 +66,23 @@
     <Compile Include="Api\InsApp\Models\UI\LNavGridModel.cs" />
     <Compile Include="Api\InsApp\Models\UI\SwiperModel.cs" />
     <Compile Include="Api\InsApp\RModels\RetHomeGetIndexPageData.cs" />
-    <Compile Include="Api\InsApp\RModels\RetUserLoginByAccount.cs" />
-    <Compile Include="Api\InsApp\RModels\RetUserLoginByUrlParams.cs" />
+    <Compile Include="Api\InsApp\RModels\RetOwnLoginByAccount.cs" />
+    <Compile Include="Api\InsApp\RModels\RetOwnLoginByUrlParams.cs" />
     <Compile Include="Api\InsApp\RModels\RetInsCarGetIndexPageData.cs" />
     <Compile Include="Api\InsApp\RModels\RetInsCarSearchModelInfo.cs" />
     <Compile Include="Api\InsApp\RModels\RetInsCarSearchPlateNoInfo.cs" />
-    <Compile Include="Api\InsApp\RModels\RopUserLoginByAccount.cs" />
+    <Compile Include="Api\InsApp\RModels\RopOwnLoginByAccount.cs" />
     <Compile Include="Api\InsApp\RModels\RupInsCarSearchPlateNoInfo.cs" />
     <Compile Include="Api\InsApp\RModels\RupInsCarSearchModelInfo.cs" />
-    <Compile Include="Api\InsApp\UserService.cs" />
+    <Compile Include="Api\InsApp\OwnService.cs" />
     <Compile Include="Api\Merch\MerchServiceFactory.cs" />
-    <Compile Include="Api\Merch\MsUserService.cs" />
-    <Compile Include="Api\Merch\RModels\RetUserGetInfo.cs" />
-    <Compile Include="Api\Merch\RModels\RetUserLoginByAccount.cs" />
-    <Compile Include="Api\Merch\RModels\RopUserLoginByAccount.cs" />
+    <Compile Include="Api\Merch\UserService.cs" />
+    <Compile Include="Api\Merch\RModels\RetOwnGetInfo.cs" />
+    <Compile Include="Api\Merch\RModels\RetOwnLoginByAccount.cs" />
+    <Compile Include="Api\Merch\RModels\RopOwnLoginByAccount.cs" />
     <Compile Include="Api\Merch\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Merch\RModels\RupMsUserGetList.cs" />
-    <Compile Include="Api\Merch\UserService.cs" />
+    <Compile Include="Api\Merch\OwnService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

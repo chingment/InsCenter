@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Merch
 {
-    public class RetUserGetInfo
+    public class RetOwnGetInfo
     {
-        public RetUserGetInfo()
+        public RetOwnGetInfo()
         {
             this.Roles = new List<string>();
         }

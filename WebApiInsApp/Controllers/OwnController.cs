@@ -9,20 +9,20 @@ using System.Web.Http;
 
 namespace WebApiInsApp.Controllers
 {
-    public class UserController : ApiController
+    public class OwnController : ApiController
     {
         [HttpGet]
         public OwnApiHttpResponse LoginByUrlParams([FromUri]string mId = "", [FromUri]string tppId = "")
         {
-            IResult result = InsAppServiceFactory.User.LoginByUrlParams(mId, tppId);
+            IResult result = InsAppServiceFactory.Own.LoginByUrlParams(mId, tppId);
 
             return new OwnApiHttpResponse(result);
         }
 
         [HttpPost]
-        public OwnApiHttpResponse LoginByAccount(RopUserLoginByAccount rop)
+        public OwnApiHttpResponse LoginByAccount(RopOwnLoginByAccount rop)
         {
-            IResult result = InsAppServiceFactory.User.LoginByAccount(rop);
+            IResult result = InsAppServiceFactory.Own.LoginByAccount(rop);
 
             return new OwnApiHttpResponse(result);
         }

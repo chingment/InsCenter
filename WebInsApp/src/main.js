@@ -83,7 +83,7 @@ router.beforeEach((to, from, next) => {
         var tppId = to.query.tppId == "undefined" ? "" : to.query.tppId
 
         
-        http.get("/User/LoginByUrlParams", { mId: mId, tppId: tppId }).then(res => {
+        http.get("/Own/LoginByUrlParams", { mId: mId, tppId: tppId }).then(res => {
           if (res.result == 1) {
 
             store.dispatch('setUserInfo', res.data)
