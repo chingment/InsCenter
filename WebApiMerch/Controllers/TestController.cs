@@ -85,7 +85,7 @@ namespace WebApiTerm.Controllers
         public ActionResult Index()
         {
 
-            MerchServiceFactory.User.GetList("00000000000000000000000000000001", new RupUserGetList { Page = 0, Limit = 10 });
+            MerchServiceFactory.User.GetList("31","00000000000000000000000000000001", new RupUserGetList { Page = 0, Limit = 10 });
             host = "http://localhost:16664/";
 
             model.Add("用户登录", UserLoginByAccount());

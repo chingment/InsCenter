@@ -7,12 +7,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace LocalS.Service.Api.Merch
 {
     public class UserService : BaseDbContext
     {
-        public CustomJsonResult GetList(string merchantId, RupUserGetList rup)
+        public string GetStatusText(Lumos.DbRelay.Enumeration.UserStatus status)
+        {
+            string text = "";
+            switch (status)
+            {
+                case Enumeration.UserStatus.Normal:
+                    text = "正常";
+                    break;
+                case Enumeration.UserStatus.Disable:
+                    text = "禁用";
+                    break;
+                default:
+                    text = "未知";
+                    break;
+            }
+
+            return text;
+        }
+
+
+        public CustomJsonResult GetList(string operater, string merchantId, RupUserGetList rup)
         {
             var result = new CustomJsonResult();
 
@@ -45,7 +66,7 @@ namespace LocalS.Service.Api.Merch
                     FullName = item.FullName,
                     Email = item.Email,
                     PhoneNumber = item.PhoneNumber,
-                    Status = new { text = item.Status, value = item.Status },
+                    Status = new { text = GetStatusText(item.Status), value = item.Status },
                     CreateTime = item.CreateTime.ToUnifiedFormatDateTime()
                 });
             }
@@ -58,11 +79,44 @@ namespace LocalS.Service.Api.Merch
             return result;
         }
 
-        public CustomJsonResult Add(string merchantId, RopUserAdd rop)
+        public CustomJsonResult Add(string operater, string merchantId, RopUserAdd rop)
         {
             var result = new CustomJsonResult();
 
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "");
+            var isExistUserName = CurrentDb.SysUser.Where(m => m.UserName == rop.UserName).FirstOrDefault();
+            if (isExistUserName != null)
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, string.Format("该用户名（{0}）已被使用", rop.UserName));
+            }
+
+            using (TransactionScope ts = new TransactionScope())
+            {
+                var user = new SysMerchantUser();
+                user.Id = GuidUtil.New();
+                user.UserName = rop.UserName;
+                user.FullName = rop.FullName;
+                user.PasswordHash = PassWordHelper.HashPassword(rop.Password);
+                user.Email = rop.Email;
+                user.PhoneNumber = rop.PhoneNumber;
+                user.BelongSite = Enumeration.BelongSite.Merchant;
+                user.IsDelete = false;
+                user.IsCanDelete = true;
+                user.Status = Enumeration.UserStatus.Normal;
+                user.MerchantId = merchantId;
+                user.Creator = operater;
+                user.CreateTime = DateTime.Now;
+                user.RegisterTime = DateTime.Now;
+                user.Status = Enumeration.UserStatus.Normal;
+                user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
+                CurrentDb.SysMerchantUser.Add(user);
+
+               
+                CurrentDb.SaveChanges();
+                ts.Complete();
+
+                result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "新建成功");
+
+            }
 
             return result;
         }

@@ -14,14 +14,14 @@ namespace WebApiMerch.Controllers
         [HttpGet]
         public OwnApiHttpResponse GetList([FromUri]RupUserGetList rup)
         {
-            IResult result = MerchServiceFactory.User.GetList(this.CurrentMerchantId, rup);
+            IResult result = MerchServiceFactory.User.GetList(this.CurrentUserId, this.CurrentMerchantId, rup);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpGet]
         public OwnApiHttpResponse Add([FromBody]RopUserAdd rop)
         {
-            IResult result = MerchServiceFactory.User.Add(this.CurrentMerchantId, rop);
+            IResult result = MerchServiceFactory.User.Add(this.CurrentUserId, this.CurrentMerchantId, rop);
             return new OwnApiHttpResponse(result);
         }
 

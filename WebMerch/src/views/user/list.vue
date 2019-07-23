@@ -48,7 +48,7 @@
       </el-table-column>
       <el-table-column label="状态" prop="status" align="left" min-width="10%">
         <template slot-scope="scope">
-          <span>{{ scope.row.status }}</span>
+          <span :class="'enable-status enable-status-'+scope.row.status.value">{{ scope.row.status.text }}</span>
         </template>
       </el-table-column>
       <el-table-column label="创建时间" prop="createTime" align="left" min-width="20%">
