@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container" id="useradd_container" >
+  <div id="useradd_container" class="app-container">
     <el-form ref="form" :model="form" label-width="120px">
       <el-form-item label="Activity name">
         <el-input v-model="form.name" />
@@ -81,8 +81,7 @@ export default {
 .line{
   text-align: center;
 }
-
-#useradd_container{
+#useradd_container {
   max-width: 600px;
 }
 

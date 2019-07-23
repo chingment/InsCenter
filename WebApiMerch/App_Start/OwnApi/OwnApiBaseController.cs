@@ -48,8 +48,16 @@ namespace WebApiMerch
             {
                 var request = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request;
                 var token = request.QueryString["token"];
-                var tokenInfo = SSOUtil.GetTokenInfo(token);
+                if (string.IsNullOrEmpty(token))
+                {
+                    token = request.Headers["X-Token"];
+                    if(token!=null)
+                    {
+                        token = request.Headers["X-Token"].ToString();
+                    }
+                }
 
+                var tokenInfo = SSOUtil.GetTokenInfo(token);
                 if (tokenInfo == null)
                 {
                     tokenInfo = new TokenInfo();
