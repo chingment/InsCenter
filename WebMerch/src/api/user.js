@@ -7,3 +7,11 @@ export function fetchList(params) {
     params
   })
 }
+
+export function addUser(data) {
+  return request({
+    url: '/user/add',
+    method: 'post',
+    data
+  })
+}

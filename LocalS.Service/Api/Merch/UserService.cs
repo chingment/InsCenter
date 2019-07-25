@@ -83,6 +83,16 @@ namespace LocalS.Service.Api.Merch
         {
             var result = new CustomJsonResult();
 
+            if (string.IsNullOrEmpty(rop.UserName))
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "用户名不能为空");
+            }
+
+            if (string.IsNullOrEmpty(rop.Password))
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "密码不能为空");
+            }
+
             var isExistUserName = CurrentDb.SysUser.Where(m => m.UserName == rop.UserName).FirstOrDefault();
             if (isExistUserName != null)
             {
@@ -110,7 +120,7 @@ namespace LocalS.Service.Api.Merch
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
                 CurrentDb.SysMerchantUser.Add(user);
 
-               
+
                 CurrentDb.SaveChanges();
                 ts.Complete();
 

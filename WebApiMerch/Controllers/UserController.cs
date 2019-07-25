@@ -18,7 +18,7 @@ namespace WebApiMerch.Controllers
             return new OwnApiHttpResponse(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         public OwnApiHttpResponse Add([FromBody]RopUserAdd rop)
         {
             IResult result = MerchServiceFactory.User.Add(this.CurrentUserId, this.CurrentMerchantId, rop);
