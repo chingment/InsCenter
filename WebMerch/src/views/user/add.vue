@@ -4,7 +4,7 @@
       <el-form-item label="用户名">
         <el-input v-model="form.userName" />
       </el-form-item>
-        <el-form-item label="密码">
+      <el-form-item label="密码">
         <el-input v-model="form.password" />
       </el-form-item>
       <el-form-item label="姓名">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { MessageBox, Message } from 'element-ui'
+import { MessageBox } from 'element-ui'
 import { addUser } from '@/api/user'
 export default {
   data() {
@@ -41,30 +41,23 @@ export default {
   },
   methods: {
     onSubmit() {
-
-        MessageBox.confirm('确定要保存', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          addUser(this.form).then((res) => {
-             this.$message(res.message)
-             if (res.result ==1){
-
-        MessageBox.confirm('是否进入用户列表？', '新建成功', {
-          confirmButtonText: '确定',
-          cancelButtonText: '继续新建',
-          type: 'warning'
-        }).then(() => {
-        
-     
+      MessageBox.confirm('确定要保存', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        addUser(this.form).then(res => {
+          this.$message(res.message)
+          if (res.result === 1) {
+            MessageBox.confirm('是否进入用户列表？', '新建成功', {
+              confirmButtonText: '确定',
+              cancelButtonText: '继续新建',
+              type: 'warning'
+            }).then(() => {})
+          }
         })
-
-             }
-          })
-     
-        })
-      //this.$message('submit!')
+      })
+      // this.$message('submit!')
     },
     onCancel() {
       this.$message({
@@ -77,12 +70,11 @@ export default {
 </script>
 
 <style scoped>
-.line{
+.line {
   text-align: center;
 }
 #useradd_container {
   max-width: 600px;
 }
-
 </style>
 
