@@ -13,32 +13,6 @@ namespace LocalS.Service.Api.Merch
 {
     public class OwnService : BaseDbContext
     {
-        public CustomJsonResult LoginByAccount(RopOwnLoginByAccount rop)
-        {
-            var result = new CustomJsonResult();
-            var ret = new RetOwnLoginByAccount();
-
-            var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.UserName == rop.UserName).FirstOrDefault();
-
-            if (merchantUser == null)
-            {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号不存在");
-            }
-
-            if (!PassWordHelper.VerifyHashedPassword(merchantUser.PasswordHash, rop.Password))
-            {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号密码不正确");
-            }
-
-            ret.Token = GuidUtil.New();
-
-            SSOUtil.SetTokenInfo(ret.Token, new TokenInfo { UserId = merchantUser.Id, MerchantId = merchantUser.MerchantId });
-
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "登录成功", ret);
-
-            return result;
-        }
-
         public CustomJsonResult GetInfo(string operater, string userId)
         {
             var result = new CustomJsonResult();
@@ -70,13 +44,5 @@ namespace LocalS.Service.Api.Merch
             return result;
         }
 
-        public CustomJsonResult Logout(string operater, string userId)
-        {
-            var result = new CustomJsonResult();
-
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "退出成功");
-
-            return result;
-        }
     }
 }

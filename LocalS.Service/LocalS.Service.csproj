@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Account\AccountServiceFactory.cs" />
+    <Compile Include="Api\Account\HomeService.cs" />
+    <Compile Include="Api\Account\OwnService.cs" />
+    <Compile Include="Api\Account\RModels\RetOwnGetInfo.cs" />
+    <Compile Include="Api\Account\RModels\RetOwnLoginByAccount.cs" />
+    <Compile Include="Api\Account\RModels\RopOwnLoginByAccount.cs" />
     <Compile Include="Api\InsApp\HomeService.cs" />
     <Compile Include="Api\InsApp\InsAppServiceFactory.cs" />
     <Compile Include="Api\InsApp\InsCarService.cs" />
@@ -81,8 +87,6 @@
     <Compile Include="Api\Merch\RModels\RopUserAdd.cs" />
     <Compile Include="Api\Merch\UserService.cs" />
     <Compile Include="Api\Merch\RModels\RetOwnGetInfo.cs" />
-    <Compile Include="Api\Merch\RModels\RetOwnLoginByAccount.cs" />
-    <Compile Include="Api\Merch\RModels\RopOwnLoginByAccount.cs" />
     <Compile Include="Api\Merch\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Merch\RModels\RupUserGetList.cs" />
     <Compile Include="Api\Merch\OwnService.cs" />

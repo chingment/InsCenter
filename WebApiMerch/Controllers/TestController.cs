@@ -8,7 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebApiTerm.Controllers
+namespace WebApiMerch.Controllers
 {
     public class TestController : Controller
     {
@@ -88,28 +88,8 @@ namespace WebApiTerm.Controllers
             MerchServiceFactory.User.GetList("31","00000000000000000000000000000001", new RupUserGetList { Page = 1, Limit = 10 });
             host = "http://localhost:16664/";
 
-            model.Add("用户登录", UserLoginByAccount());
-
             return View(model);
         }
-
-
-        public string UserLoginByAccount()
-        {
-
-            RopOwnLoginByAccount pms = new RopOwnLoginByAccount();
-            pms.UserName = "Dadada";
-            pms.Password = "Dadada";
-
-
-            HttpUtil http = new HttpUtil();
-            string respon_data4 = http.HttpPostJson("" + host + "/api/User/LoginByAccount",Newtonsoft.Json.JsonConvert.SerializeObject(pms), null);
-
-            return respon_data4;
-
-        }
-
-
        
     }
 }

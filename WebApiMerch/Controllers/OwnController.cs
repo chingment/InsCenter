@@ -11,27 +11,11 @@ namespace WebApiMerch.Controllers
 {
     public class OwnController : OwnApiBaseController
     {
-        [HttpPost]
-        [AllowAnonymous]
-        public OwnApiHttpResponse LoginByAccount(RopOwnLoginByAccount rop)
-        {
-            IResult result = MerchServiceFactory.Own.LoginByAccount(rop);
-            return new OwnApiHttpResponse(result);
-        }
-
         [HttpGet]
         public OwnApiHttpResponse GetInfo()
         {
             IResult result = MerchServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId);
             return new OwnApiHttpResponse(result);
         }
-
-        [HttpPost]
-        public OwnApiHttpResponse Logout()
-        {
-            IResult result = MerchServiceFactory.Own.Logout(this.CurrentUserId, this.CurrentUserId);
-            return new OwnApiHttpResponse(result);
-        }
-
     }
 }
