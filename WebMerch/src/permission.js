@@ -17,14 +17,14 @@ router.beforeEach(async(to, from, next) => {
   document.title = getPageTitle(to.meta.title)
 
   var urlToken = getUrlParam('token')
-  console.log('urlToken：' + urlToken)
+  // console.log('urlToken：' + urlToken)
   if (urlToken !== null) {
     setToken(urlToken)
     store.dispatch('own/setToken', urlToken)
   }
   // determine whether the user has logged in
   const hasToken = getToken()
-  console.log('getToken: ' + hasToken)
+  // console.log('getToken: ' + hasToken)
   var path = encodeURIComponent(window.location.href)
   if (hasToken) {
     const hasGetUserInfo = store.getters.name

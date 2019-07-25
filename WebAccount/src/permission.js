@@ -19,14 +19,14 @@ router.beforeEach(async(to, from, next) => {
   document.title = getPageTitle(to.meta.title)
 
   var islogout = getUrlParam('logout')
-  console.log('islogout：' + islogout)
+  // console.log('islogout：' + islogout)
   if (islogout !== null) {
     await store.dispatch('own/logout')
   }
 
   // determine whether the user has logged in
   const hasToken = getToken()
-  console.log('getToken: ' + hasToken)
+  // console.log('getToken: ' + hasToken)
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page

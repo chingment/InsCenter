@@ -9,9 +9,18 @@ namespace LocalS.Service.Api.Account
 {
     public class HomeService
     {
-        public CustomJsonResult GetIndexPageData(string operater, string mId, string uId)
+        public CustomJsonResult GetIndexPageData(string operater, string userId)
         {
             var result = new CustomJsonResult();
+
+            var ret = new RetHomeGetIndexPageData();
+
+
+
+            ret.Appcaltions.Add(new RetHomeGetIndexPageData._Appcaltion() { Name = "商户代理系统", Url = "http://merch.ins-uplink.com/", ImgUrl="http://file.17fanju.com/Upload/img_merch.png", Describe = "商家客户使用", });
+            ret.Appcaltions.Add(new RetHomeGetIndexPageData._Appcaltion() { Name = "后台管理系统", Url = "http://admin.ins-uplink.com/", ImgUrl = "http://file.17fanju.com/Upload/img_admin.png", Describe = "后端用户，公司内部使用", });
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }

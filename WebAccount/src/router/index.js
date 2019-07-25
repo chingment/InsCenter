@@ -54,6 +54,27 @@ export const constantRoutes = [
       meta: { title: '主页', icon: 'dashboard' }
     }]
   },
+  {
+    path: '/personalCenter',
+    component: Layout,
+    redirect: '/personalCenter/userInfo',
+    name: 'personalCenter',
+    meta: { title: '个人中心', icon: 'user' },
+    children: [
+      {
+        path: 'userInfo',
+        name: 'UserInfo',
+        component: () => import('@/views/personalCenter/userInfo'),
+        meta: { title: '基本信息', icon: 'form' }
+      },
+      {
+        path: 'loginLog',
+        name: 'LoginLog',
+        component: () => import('@/views/personalCenter/loginLog'),
+        meta: { title: '登录历史', icon: 'nested' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

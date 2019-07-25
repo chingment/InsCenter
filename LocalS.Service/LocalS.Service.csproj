@@ -55,6 +55,7 @@
     <Compile Include="Api\Account\AccountServiceFactory.cs" />
     <Compile Include="Api\Account\HomeService.cs" />
     <Compile Include="Api\Account\OwnService.cs" />
+    <Compile Include="Api\Account\RModels\RetHomeGetIndexPageData.cs" />
     <Compile Include="Api\Account\RModels\RetOwnGetInfo.cs" />
     <Compile Include="Api\Account\RModels\RetOwnLoginByAccount.cs" />
     <Compile Include="Api\Account\RModels\RopOwnLoginByAccount.cs" />
@@ -95,7 +96,9 @@
     <Compile Include="UI\MenuChild.cs" />
     <Compile Include="UI\MenuMeta.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Api\Account\Models\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LocalS.BLL\LocalS.BLL.csproj">
       <Project>{15d7ce8c-a100-4d87-a1c2-d76339e78ad6}</Project>
