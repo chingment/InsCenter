@@ -42,7 +42,7 @@ namespace WebApiAccount
             return new OwnApiHttpResponse(_result);
         }
 
-        private TokenInfo Token
+        public string Token
         {
             get
             {
@@ -51,13 +51,20 @@ namespace WebApiAccount
                 if (string.IsNullOrEmpty(token))
                 {
                     token = request.Headers["X-Token"];
-                    if(token!=null)
+                    if (token != null)
                     {
                         token = request.Headers["X-Token"].ToString();
                     }
                 }
 
-                var tokenInfo = SSOUtil.GetTokenInfo(token);
+                return token;
+            }
+        }
+        private TokenInfo TokenInfo
+        {
+            get
+            {
+                var tokenInfo = SSOUtil.GetTokenInfo(this.Token);
                 if (tokenInfo == null)
                 {
                     tokenInfo = new TokenInfo();
@@ -72,17 +79,8 @@ namespace WebApiAccount
         {
             get
             {
-                return this.Token.UserId;
+                return this.TokenInfo.UserId;
             }
-        }
-
-        public string CurrentMerchantId
-        {
-            get
-            {
-                return this.Token.MerchantId;
-            }
-
         }
     }
 }

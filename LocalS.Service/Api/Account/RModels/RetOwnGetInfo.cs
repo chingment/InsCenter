@@ -11,13 +11,10 @@ namespace LocalS.Service.Api.Account
     {
         public RetOwnGetInfo()
         {
-            this.Roles = new List<string>();
-            this.Menus = new List<Menu>();
+
         }
         public string Introduction { get; set; }
         public string Avatar { get; set; }
         public string Name { get; set; }
-        public List<string> Roles { get; set; }
-        public List<Menu> Menus { get; set; }
     }
 }

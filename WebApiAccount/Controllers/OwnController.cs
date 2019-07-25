@@ -29,7 +29,7 @@ namespace WebApiAccount.Controllers
         [HttpPost]
         public OwnApiHttpResponse Logout()
         {
-            IResult result = AccountServiceFactory.Own.Logout(this.CurrentUserId, this.CurrentUserId);
+            IResult result = AccountServiceFactory.Own.Logout(this.CurrentUserId, this.CurrentUserId,this.Token);
             return new OwnApiHttpResponse(result);
         }
 
