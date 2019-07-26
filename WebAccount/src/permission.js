@@ -28,26 +28,37 @@ router.beforeEach(async(to, from, next) => {
   const hasToken = getToken()
   // console.log('getToken: ' + hasToken)
   if (hasToken) {
-    if (to.path === '/login') {
-      // if is logged in, redirect to the home page
-      next({ path: '/' })
-      NProgress.done()
-    } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
-        next()
-      } else {
-        try {
-          // get user info
-          await store.dispatch('own/getInfo')
+    var hasRedirect = false
+    var redirectPath = getUrlParam('redirect')
+    if (redirectPath != null) {
+      if (redirectPath.toLowerCase().indexOf('http') > -1) {
+        hasRedirect = true
+      }
+    }
 
+    if (hasRedirect) {
+      window.location.href = decodeURIComponent(redirectPath)
+    } else {
+      if (to.path === '/login') {
+      // if is logged in, redirect to the home page
+        next({ path: '/' })
+        NProgress.done()
+      } else {
+        const hasGetUserInfo = store.getters.name
+        if (hasGetUserInfo) {
           next()
-        } catch (error) {
+        } else {
+          try {
+          // get user info
+            await store.dispatch('own/getInfo')
+            next()
+          } catch (error) {
           // remove token and go to login page to re-login
-          await store.dispatch('own/resetToken')
-          Message.error(error || 'Has Error')
-          next(`/login?redirect=${to.path}`)
-          NProgress.done()
+            await store.dispatch('own/resetToken')
+            Message.error(error || 'Has Error')
+            next(`/login?redirect=${to.path}`)
+            NProgress.done()
+          }
         }
       }
     }

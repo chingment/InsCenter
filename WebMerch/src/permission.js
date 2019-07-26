@@ -28,6 +28,8 @@ router.beforeEach(async(to, from, next) => {
   var path = encodeURIComponent(window.location.href)
   if (hasToken) {
     const hasGetUserInfo = store.getters.name
+    console.log('to.fullPath' + to.fullPath)
+    console.log('from.fullPath' + from.fullPath)
     if (hasGetUserInfo) {
       next()
     } else {
@@ -46,10 +48,10 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     /* has no token*/
-    console.log(store.state.settings.loginPath)
+    // console.log(store.state.settings.loginPath)
     // other pages that do not have permission to access are redirected to the login page.
     // next(`${store.state.settings.loginPath}?redirect=${to.path}`)
-    console.log(path)
+    // console.log(path)
     window.location.href = `${store.state.settings.loginPath}?redirect=${path}`
     NProgress.done()
   }

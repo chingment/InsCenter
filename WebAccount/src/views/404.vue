@@ -11,7 +11,7 @@
         <div class="bullshit__oops">温馨提示!</div>
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">您访问的链接不存在，请点击返回主页</div>
-        <a href="" class="bullshit__return-home">返回主页</a>
+        <a href="/Home" class="bullshit__return-home">返回主页</a>
       </div>
     </div>
   </div>
