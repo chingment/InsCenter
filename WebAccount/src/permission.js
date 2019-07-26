@@ -4,7 +4,7 @@ import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
-import { getUrlParam } from '@/utils/commonUtil'
+import { getUrlParam, changeURLArg } from '@/utils/commonUtil'
 import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
@@ -37,7 +37,20 @@ router.beforeEach(async(to, from, next) => {
     }
 
     if (hasRedirect) {
-      window.location.href = decodeURIComponent(redirectPath)
+      // window.location.href = decodeURIComponent(redirectPath)
+      store.dispatch('own/getInfo').then((res) => {
+        console.log('res ' + JSON.stringify(res))
+        console.log('res.result ' + res.result)
+        if (res.result === 1) {
+          console.log(' in 1')
+          var p1 = changeURLArg(decodeURIComponent(redirectPath), 'token', getToken())
+          window.location.href = p1
+        } else {
+          console.log(' in 2')
+          next(`/login?redirect=${to.path}`)
+        }
+      })
+      console.log('redirectPath:' + redirectPath)
     } else {
       if (to.path === '/login') {
       // if is logged in, redirect to the home page

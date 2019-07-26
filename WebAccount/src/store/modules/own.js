@@ -57,7 +57,7 @@ const actions = {
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         commit('SET_MENUS', menus)
-        resolve(data)
+        resolve(response)
       }).catch(error => {
         reject(error)
       })

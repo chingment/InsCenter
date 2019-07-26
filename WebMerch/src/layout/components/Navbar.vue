@@ -16,6 +16,11 @@
               主页
             </el-dropdown-item>
           </router-link>
+          <router-link to="/">
+            <el-dropdown-item>
+              个人中心
+            </el-dropdown-item>
+          </router-link>
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
