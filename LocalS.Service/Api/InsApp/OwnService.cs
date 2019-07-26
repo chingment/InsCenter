@@ -44,7 +44,7 @@ namespace LocalS.Service.Api.InsApp
                 merchantUser.PasswordHash = PassWordHelper.HashPassword("Caskujn");
                 merchantUser.SecurityStamp = GuidUtil.New();
                 merchantUser.RegisterTime = DateTime.Now;
-                merchantUser.Status = Enumeration.UserStatus.Normal;
+                merchantUser.IsDisable = false;
                 merchantUser.BelongSite = Enumeration.BelongSite.Merchant;
                 merchantUser.IsCanDelete = false;
                 merchantUser.CreateTime = DateTime.Now;

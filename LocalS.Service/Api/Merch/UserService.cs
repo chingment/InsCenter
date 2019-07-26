@@ -13,25 +13,35 @@ namespace LocalS.Service.Api.Merch
 {
     public class UserService : BaseDbContext
     {
-        public string GetStatusText(Lumos.DbRelay.Enumeration.UserStatus status)
+        public string GetStatusText(bool isDisable)
         {
             string text = "";
-            switch (status)
+            if (isDisable)
             {
-                case Enumeration.UserStatus.Normal:
-                    text = "正常";
-                    break;
-                case Enumeration.UserStatus.Disable:
-                    text = "禁用";
-                    break;
-                default:
-                    text = "未知";
-                    break;
+                text = "禁用";
+            }
+            else
+            {
+                text = "正常";
             }
 
             return text;
         }
 
+        public int GetStatusValue(bool isDisable)
+        {
+            int text = 0;
+            if (isDisable)
+            {
+                text = 2;
+            }
+            else
+            {
+                text = 1;
+            }
+
+            return text;
+        }
 
         public CustomJsonResult GetList(string operater, string merchantId, RupUserGetList rup)
         {
@@ -43,7 +53,7 @@ namespace LocalS.Service.Api.Merch
                          u.IsDelete == false &&
                          u.IsCanDelete == true &&
                          u.MerchantId == merchantId
-                         select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.Status });
+                         select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
 
             int total = query.Count();
@@ -66,7 +76,7 @@ namespace LocalS.Service.Api.Merch
                     FullName = item.FullName,
                     Email = item.Email,
                     PhoneNumber = item.PhoneNumber,
-                    Status = new { text = GetStatusText(item.Status), value = item.Status },
+                    Status = new { text = GetStatusText(item.IsDisable), value = GetStatusValue(item.IsDisable) },
                     CreateTime = item.CreateTime.ToUnifiedFormatDateTime()
                 });
             }
@@ -111,12 +121,11 @@ namespace LocalS.Service.Api.Merch
                 user.BelongSite = Enumeration.BelongSite.Merchant;
                 user.IsDelete = false;
                 user.IsCanDelete = true;
-                user.Status = Enumeration.UserStatus.Normal;
+                user.IsDisable = false;
                 user.MerchantId = merchantId;
                 user.Creator = operater;
                 user.CreateTime = DateTime.Now;
                 user.RegisterTime = DateTime.Now;
-                user.Status = Enumeration.UserStatus.Normal;
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
                 CurrentDb.SysMerchantUser.Add(user);
 
@@ -144,7 +153,7 @@ namespace LocalS.Service.Api.Merch
             ret.PhoneNumber = user.PhoneNumber;
             ret.Email = user.Email;
             ret.FullName = user.FullName;
-
+            ret.IsDisable = user.IsDisable;
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
@@ -168,6 +177,7 @@ namespace LocalS.Service.Api.Merch
                 user.FullName = rop.FullName;
                 user.Email = rop.Email;
                 user.PhoneNumber = rop.PhoneNumber;
+                user.IsDisable = rop.IsDisable;
                 user.MendTime = DateTime.Now;
                 user.Mender = operater;
 

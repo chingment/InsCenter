@@ -156,7 +156,7 @@ namespace Lumos.DbRelay
                 else
                 {
 
-                    if (user.Status == Enumeration.UserStatus.Disable)
+                    if (user.IsDisable)
                     {
                         result = new LoginResult(Enumeration.LoginResult.Failure, Enumeration.LoginResultTip.UserDisabled, loginUserInfo);
                     }

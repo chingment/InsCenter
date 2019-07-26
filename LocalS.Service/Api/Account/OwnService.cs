@@ -30,6 +30,11 @@ namespace LocalS.Service.Api.Account
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号密码不正确");
             }
 
+            if (sysUser.IsDisable)
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该账号已被禁用");
+            }
+
             ret.Token = GuidUtil.New();
 
             var tokenInfo = new TokenInfo();
@@ -70,7 +75,7 @@ namespace LocalS.Service.Api.Account
             return result;
         }
 
-        public CustomJsonResult Logout(string operater,string userId, string token)
+        public CustomJsonResult Logout(string operater, string userId, string token)
         {
             var result = new CustomJsonResult();
 

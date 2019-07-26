@@ -42,7 +42,7 @@ namespace Lumos.DbRelay
         [MaxLength(50)]
         public string LastLoginIp { get; set; }
         public bool IsDelete { get; set; }
-        public Enumeration.UserStatus Status { get; set; }
+        public bool IsDisable { get; set; }
         public string Creator { get; set; }
         public DateTime CreateTime { get; set; }
         public string Mender { get; set; }
