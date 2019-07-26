@@ -18,8 +18,16 @@ export function addUser(data) {
 
 export function initEdit(params) {
   return request({
-    url: '/user/intiEdit',
+    url: '/user/initEdit',
     method: 'get',
     params
+  })
+}
+
+export function editUser(data) {
+  return request({
+    url: '/user/edit',
+    method: 'post',
+    data
   })
 }

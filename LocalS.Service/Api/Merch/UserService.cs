@@ -49,7 +49,7 @@ namespace LocalS.Service.Api.Merch
             int total = query.Count();
 
             int pageIndex = rup.Page - 1;
-            int pageSize = 10;
+            int pageSize = rup.Limit;
             query = query.OrderByDescending(r => r.CreateTime).Skip(pageSize * (pageIndex)).Take(pageSize);
 
             var list = query.ToList();
@@ -139,14 +139,50 @@ namespace LocalS.Service.Api.Merch
 
             var user = CurrentDb.SysMerchantUser.Where(m => m.Id == userId).FirstOrDefault();
 
+            ret.UserId = user.Id;
             ret.UserName = user.UserName;
             ret.PhoneNumber = user.PhoneNumber;
             ret.Email = user.Email;
-            ret.FullName = user.UserName;
+            ret.FullName = user.FullName;
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
+        }
+
+        public CustomJsonResult Edit(string operater, string merchantId, RopUserEdit rop)
+        {
+
+            CustomJsonResult result = new CustomJsonResult();
+
+
+            using (TransactionScope ts = new TransactionScope())
+            {
+                var user = CurrentDb.SysMerchantUser.Where(m => m.MerchantId == merchantId && m.Id == rop.UserId).FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(rop.Password))
+                {
+                    user.PasswordHash = PassWordHelper.HashPassword(rop.Password);
+                }
+
+                user.FullName = rop.FullName;
+                user.Email = rop.Email;
+                user.PhoneNumber = rop.PhoneNumber;
+                user.MendTime = DateTime.Now;
+                user.Mender = operater;
+
+
+                CurrentDb.SaveChanges();
+                ts.Complete();
+
+                result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "保存成功");
+
+            }
+
+
+            return result;
+
+
         }
     }
 }

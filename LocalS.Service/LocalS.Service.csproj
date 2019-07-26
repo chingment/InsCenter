@@ -87,6 +87,7 @@
     <Compile Include="Api\Merch\MerchServiceFactory.cs" />
     <Compile Include="Api\Merch\RModels\RetUserInitEdit.cs" />
     <Compile Include="Api\Merch\RModels\RopUserAdd.cs" />
+    <Compile Include="Api\Merch\RModels\RopUserEdit.cs" />
     <Compile Include="Api\Merch\UserService.cs" />
     <Compile Include="Api\Merch\RModels\RetOwnGetInfo.cs" />
     <Compile Include="Api\Merch\RModels\RupBaseGetList.cs" />

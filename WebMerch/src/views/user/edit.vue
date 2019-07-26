@@ -2,7 +2,7 @@
   <div id="useradd_container" class="app-container">
     <el-form ref="form" :model="form" :rules="rules" label-width="120px">
       <el-form-item label="用户名" prop="userName">
-        
+        {{ form.userName }}
       </el-form-item>
       <el-form-item label="密码" prop="password">
         
@@ -25,13 +25,14 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { addUser, initEdit } from '@/api/user'
+import { editUser, initEdit } from '@/api/user'
 import  fromReg  from '@/utils/formReg'
 import { getUrlParam } from '@/utils/commonUtil'
 export default {
   data() {
     return {
       form: {
+        userId:'',
         userName: '',
         password: '',
         fullName: '',
@@ -39,7 +40,6 @@ export default {
         email: ''
       },
       rules: {
-        password: [{ required: true, message: '必填,且由6到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.password }],
         fullName: [{ required: true, message: '必填', trigger: 'change' }],
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
@@ -63,7 +63,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        addUser(this.form).then(res => {
+        editUser(this.form).then(res => {
           this.$message(res.message)
           if (res.result === 1) {
           }
