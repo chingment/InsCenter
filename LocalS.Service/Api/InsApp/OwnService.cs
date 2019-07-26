@@ -80,6 +80,11 @@ namespace LocalS.Service.Api.InsApp
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号密码不正确"); 
             }
 
+            if (merchantUser.IsDisable)
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该账号已被禁用");
+            }
+
             ret.MId = merchantUser.MerchantId;
             ret.UId = merchantUser.Id;
 
