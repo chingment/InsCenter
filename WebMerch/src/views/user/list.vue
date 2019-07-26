@@ -124,7 +124,7 @@ export default {
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/user/edit'
+        path: '/user/edit?userId=' + row.id
       })
       // this.temp = Object.assign({}, row) // copy obj
       // this.temp.timestamp = new Date(this.temp.timestamp)

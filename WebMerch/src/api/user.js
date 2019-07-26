@@ -15,3 +15,11 @@ export function addUser(data) {
     data
   })
 }
+
+export function initEdit(params) {
+  return request({
+    url: '/user/intiEdit',
+    method: 'get',
+    params
+  })
+}

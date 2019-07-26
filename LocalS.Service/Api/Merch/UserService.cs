@@ -130,5 +130,23 @@ namespace LocalS.Service.Api.Merch
 
             return result;
         }
+
+        public CustomJsonResult InitEdit(string operater, string merchantId, string userId)
+        {
+            var result = new CustomJsonResult();
+
+            var ret = new RetUserInitEdit();
+
+            var user = CurrentDb.SysMerchantUser.Where(m => m.Id == userId).FirstOrDefault();
+
+            ret.UserName = user.UserName;
+            ret.PhoneNumber = user.PhoneNumber;
+            ret.Email = user.Email;
+            ret.FullName = user.UserName;
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
+
+            return result;
+        }
     }
 }
