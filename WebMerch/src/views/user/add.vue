@@ -26,7 +26,7 @@
 <script>
 import { MessageBox } from 'element-ui'
 import { addUser } from '@/api/user'
-import  fromReg  from '@/utils/formReg'
+import fromReg from '@/utils/formReg'
 
 export default {
   data() {
@@ -58,23 +58,23 @@ export default {
       }
     },
     onSubmit() {
-     this.$refs['form'].validate((valid) => {
+      this.$refs['form'].validate((valid) => {
         if (valid) {
-      MessageBox.confirm('确定要保存', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        addUser(this.form).then(res => {
-          this.$message(res.message)
-          if (res.result === 1) {
-            this.resetForm()
-            this.$nextTick(() => {
-              this.$refs['form'].clearValidate()
+          MessageBox.confirm('确定要保存', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            addUser(this.form).then(res => {
+              this.$message(res.message)
+              if (res.result === 1) {
+                this.resetForm()
+                this.$nextTick(() => {
+                  this.$refs['form'].clearValidate()
+                })
+              }
             })
-          }
-        })
-      })
+          })
         }
       })
     }

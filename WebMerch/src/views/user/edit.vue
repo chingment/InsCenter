@@ -8,14 +8,14 @@
         <span>********</span>
         <span @click="openEditPassword()">修改</span>
       </el-form-item>
-       <el-form-item v-show="isOpenEditPassword" label="密码" prop="password">
+      <el-form-item v-show="isOpenEditPassword" label="密码" prop="password">
         <div style="display:flex">
-         <div style="flex:1">
-          <el-input v-model="form.password" type="password" />
-         </div>
-        <div style="width:50px;text-align: center;">
-          <span @click="openEditPassword()">取消</span>
-        </div>
+          <div style="flex:1">
+            <el-input v-model="form.password" type="password" />
+          </div>
+          <div style="width:50px;text-align: center;">
+            <span @click="openEditPassword()">取消</span>
+          </div>
         </div>
       </el-form-item>
       <el-form-item label="姓名" prop="fullName">
@@ -62,10 +62,13 @@ export default {
       }
     }
   },
+  created() {
+    this.init()
+  },
   methods: {
     init() {
       var userId = getUrlParam('userId')
-      console.log( 'userId:' + userId)
+      console.log('userId:' + userId)
       initEdit({ userId: userId }).then(res => {
         if (res.result === 1) {
           this.form = res.data
@@ -73,19 +76,19 @@ export default {
       })
     },
     onSubmit() {
-     this.$refs['form'].validate((valid) => {
-      if (valid) {
-         MessageBox.confirm('确定要保存', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          MessageBox.confirm('确定要保存', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
           }).then(() => {
-            editUser(this.form).then(res => { 
+            editUser(this.form).then(res => {
               this.$message(res.message)
-           })
-         })
-      }
-    })
+            })
+          })
+        }
+      })
     },
     openEditPassword() {
       if (this.isOpenEditPassword) {
@@ -97,9 +100,6 @@ export default {
         this.rules.password[0].required = true
       }
     }
-  },
-  created() {
-    this.init()
   }
 }
 </script>
