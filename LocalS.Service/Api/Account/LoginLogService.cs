@@ -8,15 +8,31 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Account
 {
-    public class LoginLogService: BaseDbContext
+    public class LoginLogService : BaseDbContext
     {
+        public string GetLoginWayText(Lumos.DbRelay.Enumeration.LoginWay loginWay)
+        {
+            string text = "";
+            switch (loginWay)
+            {
+                case Lumos.DbRelay.Enumeration.LoginWay.Website:
+                    text = "网站";
+                    break;
+            }
+            return text;
+        }
         public CustomJsonResult GetList(string operater, string userId, RupLoginLogGetList rup)
         {
             var result = new CustomJsonResult();
 
+            DateTime? startDate = CommonUtil.ConverToStartTime(rup.StartDate);
+            DateTime? endDate = CommonUtil.ConverToEndTime(rup.EndDate);
+
             var query = (from u in CurrentDb.SysUserLoginHis
-                          
-                         select new { u.Id, u.LoginTime, u.Ip, u.City });
+                         where u.UserId == userId&&
+                          (startDate == null || u.LoginTime >= startDate) &&
+                          (endDate == null || u.LoginTime <= endDate)
+                         select new { u.Id, u.LoginTime, u.Ip, u.City, u.LoginWay, u.Description });
 
 
             int total = query.Count();
@@ -36,8 +52,10 @@ namespace LocalS.Service.Api.Account
                 {
                     Id = item.Id,
                     LoginTime = item.LoginTime.ToUnifiedFormatDateTime(),
+                    LoginWay = GetLoginWayText(item.LoginWay),
                     Ip = item.Ip,
-                    Address = item.City
+                    Location = item.City,
+                    Description = item.Description
                 });
             }
 

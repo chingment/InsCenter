@@ -11,7 +11,7 @@ namespace Lumos.DbRelay
         [Key]
         public string Id { get; set; }
         public string UserId { get; set; }
-        public Enumeration.LoginType LoginType { get; set; }
+        public Enumeration.LoginWay LoginWay { get; set; }
         [MaxLength(128)]
         public string Ip { get; set; }
         [MaxLength(128)]
@@ -20,6 +20,7 @@ namespace Lumos.DbRelay
         public string Province { get; set; }
         [MaxLength(128)]
         public string City { get; set; }
+        public string Location { get; set; }
         public DateTime LoginTime { get; set; }
         public Enumeration.LoginResult Result { get; set; }
         [MaxLength(512)]

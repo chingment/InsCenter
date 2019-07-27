@@ -13,6 +13,24 @@ namespace LocalS.Service.Api.Account
 {
     public class OwnService : BaseDbContext
     {
+        private void LoginLog(string operater,string userId, Enumeration.LoginResult loginResult,Enumeration.LoginWay loginWay, string ip, string location,string description)
+        {
+            var userLoginHis = new SysUserLoginHis();
+
+            userLoginHis.Id = GuidUtil.New();
+            userLoginHis.Ip = ip;
+            userLoginHis.UserId = userId;
+            userLoginHis.LoginWay = loginWay;
+            userLoginHis.LoginTime = DateTime.Now;
+            userLoginHis.Location = location;
+            userLoginHis.Result = loginResult;
+            userLoginHis.Description = description;
+            userLoginHis.CreateTime = DateTime.Now;
+            userLoginHis.Creator = operater;
+
+            CurrentDb.SysUserLoginHis.Add(userLoginHis);
+            CurrentDb.SaveChanges();
+        }
         public CustomJsonResult LoginByAccount(RopOwnLoginByAccount rop)
         {
             var result = new CustomJsonResult();
@@ -22,17 +40,20 @@ namespace LocalS.Service.Api.Account
 
             if (sysUser == null)
             {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号不存在");
+                LoginLog("","",Enumeration.LoginResult.Failure, rop.LoginWay, rop.Ip, "", "登录失败，账号不存在");
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "登录失败，账号不存在");
             }
 
             if (!PassWordHelper.VerifyHashedPassword(sysUser.PasswordHash, rop.Password))
             {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号密码不正确");
+                LoginLog(sysUser.Id, sysUser.Id, Enumeration.LoginResult.Failure, rop.LoginWay, rop.Ip, "", "登录失败，密码不正确");
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "登录失败，密码不正确");
             }
 
             if (sysUser.IsDisable)
             {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该账号已被禁用");
+                LoginLog(sysUser.Id, sysUser.Id, Enumeration.LoginResult.Failure, rop.LoginWay, rop.Ip, "", "登录失败，账号已被禁用");
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "登录失败，账号已被禁用");
             }
 
             ret.Token = GuidUtil.New();
@@ -51,6 +72,9 @@ namespace LocalS.Service.Api.Account
                     }
                     break;
             }
+
+
+            LoginLog(sysUser.Id, sysUser.Id, Enumeration.LoginResult.Success, rop.LoginWay, rop.Ip, "", "登录成功");
 
             SSOUtil.SetTokenInfo(ret.Token, tokenInfo);
 

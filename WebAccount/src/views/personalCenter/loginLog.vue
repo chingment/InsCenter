@@ -22,19 +22,29 @@
           <span>{{ scope.$index+1 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="时间" prop="userName" align="left" min-width="20%">
+      <el-table-column label="方式" prop="loginWay" align="left" min-width="20%">
         <template slot-scope="scope">
-          <span>{{ scope.row.userName }}</span>
+          <span>{{ scope.row.loginWay }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="IP" prop="fullName" align="left" min-width="20%">
+      <el-table-column label="时间" prop="loginTime" align="left" min-width="20%">
         <template slot-scope="scope">
-          <span>{{ scope.row.fullName }}</span>
+          <span>{{ scope.row.loginTime }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="地点" prop="fullName" align="left" min-width="20%">
+      <el-table-column label="IP" prop="ip" align="left" min-width="20%">
         <template slot-scope="scope">
-          <span>{{ scope.row.fullName }}</span>
+          <span>{{ scope.row.location }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="地点" prop="location" align="left" min-width="20%">
+        <template slot-scope="scope">
+          <span>{{ scope.row.location }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="描述" prop="description" align="left" min-width="20%">
+        <template slot-scope="scope">
+          <span>{{ scope.row.location }}</span>
         </template>
       </el-table-column>
     </el-table>
