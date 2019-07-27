@@ -19,8 +19,12 @@ router.beforeEach(async(to, from, next) => {
     setToken(urlToken)
     store.dispatch('own/setToken', urlToken)
   }
-  
-  const hasToken = getToken()
+  var hasToken = getToken()
+  var islogout = getUrlParam('logout')
+  if (islogout !== null) {
+    hasToken = false
+  }
+
   console.log('getToken: ' + hasToken)
   var path = encodeURIComponent(window.location.href)
   if (hasToken) {
