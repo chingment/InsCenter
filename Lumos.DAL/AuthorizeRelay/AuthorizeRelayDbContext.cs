@@ -36,12 +36,12 @@ namespace Lumos.DbRelay
         public IDbSet<SysRoleMenu> SysRoleMenu { get; set; }
         public IDbSet<SysUserRole> SysUserRole { get; set; }
         public IDbSet<SysOrganization> SysOrganization { get; set; }
-        public IDbSet<SysUserLoginHistory> SysUserLoginHistory { get; set; }
+        public IDbSet<SysUserLoginHis> SysUserLoginHis { get; set; }
         public IDbSet<SysAdminUser> SysAdminUser { get; set; }
         public IDbSet<SysClientUser> SysClientUser { get; set; }
-        public IDbSet<SysOperateHistory> SysOperateHistory { get; set; }
-        public IDbSet<SysPageAccessHistory> SysPageAccessHistory { get; set; }
-        public IDbSet<SysSmsSendHistory> SysSmsSendHistory { get; set; }
+        public IDbSet<SysOperateHis> SysOperateHis { get; set; }
+        public IDbSet<SysPageAccessHis> SysPageAccessHis { get; set; }
+        public IDbSet<SysSmsSendHis> SysSmsSendHis { get; set; }
         public IDbSet<SysMerchantUser> SysMerchantUser { get; set; }
         public IDbSet<SysPosition> SysPosition { get; set; }
         public IDbSet<SysPositionRole> SysPositionRole { get; set; }

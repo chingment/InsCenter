@@ -23,5 +23,13 @@ namespace LocalS.Service.Api.Account
                 return new OwnService();
             }
         }
+
+        public static LoginLogService LoginLog
+        {
+            get
+            {
+                return new LoginLogService();
+            }
+        }
     }
 }

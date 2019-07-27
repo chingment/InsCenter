@@ -14,5 +14,6 @@ module.exports = {
    */
   sidebarLogo: false,
 
-  loginPath: ' http://passport.ins-uplink.com/login'
+  loginPath: 'ttp://passport.ins-uplink.com/login',
+  personalCenterPath: 'http://passport.ins-uplink.com/home'
 }

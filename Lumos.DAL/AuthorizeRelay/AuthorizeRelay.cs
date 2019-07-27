@@ -83,7 +83,7 @@ namespace Lumos.DbRelay
 
         private void AddOperateHistory(string operater, Enumeration.OperateType operateType, string referenceId, string content)
         {
-            SysOperateHistory operateHistory = new SysOperateHistory();
+            SysOperateHis operateHistory = new SysOperateHis();
             operateHistory.Id = GuidUtil.New();
             operateHistory.UserId = operater;
             operateHistory.ReferenceId = referenceId;
@@ -92,7 +92,7 @@ namespace Lumos.DbRelay
             operateHistory.Content = content;
             operateHistory.CreateTime = DateTime.Now;
             operateHistory.Creator = operater;
-            _db.SysOperateHistory.Add(operateHistory);
+            _db.SysOperateHis.Add(operateHistory);
             _db.SaveChanges();
         }
 
