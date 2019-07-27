@@ -44,7 +44,7 @@
       </el-table-column>
       <el-table-column label="描述" prop="description" align="left" min-width="20%">
         <template slot-scope="scope">
-          <span>{{ scope.row.location }}</span>
+          <span>{{ scope.row.description }}</span>
         </template>
       </el-table-column>
     </el-table>
