@@ -29,6 +29,10 @@ namespace WebApiMerch
                 }
 
                 var token = request.QueryString["token"];
+                if (token == null)
+                {
+                    token = request.Headers["X-Token"];
+                }
 
                 if (string.IsNullOrEmpty(token))
                 {
