@@ -1,6 +1,5 @@
 import router from './router'
 import store from './store'
-import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken, setToken } from '@/utils/auth' // get token from cookie
@@ -10,7 +9,6 @@ import getPageTitle from '@/utils/get-page-title'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 router.beforeEach(async(to, from, next) => {
-
   NProgress.start()
 
   document.title = getPageTitle(to.meta.title)
@@ -28,20 +26,8 @@ router.beforeEach(async(to, from, next) => {
   console.log('getToken: ' + hasToken)
   var path = encodeURIComponent(window.location.href)
   if (hasToken) {
-<<<<<<< HEAD
-    const hasGetUserInfo = store.getters.name
-    console.log('to.fullPath' + to.fullPath)
-    console.log('from.fullPath' + from.fullPath)
-    if (hasGetUserInfo) {
-      next()
-    } else {
-      try {
-        // get user info
-        await store.dispatch('own/getInfo')
-=======
     await store.dispatch('own/getInfo').then((res) => {
       if (res.result === 1) {
->>>>>>> 6bbd651b562f75673f720d48147303d797b7cdd8
         next()
       } else {
         window.location.href = `${store.state.settings.loginPath}?redirect=${path}`
