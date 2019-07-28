@@ -18,11 +18,6 @@ router.beforeEach(async(to, from, next) => {
     store.dispatch('own/setToken', urlToken)
   }
   var hasToken = getToken()
-  var islogout = getUrlParam('logout')
-  if (islogout !== null) {
-    hasToken = false
-  }
-
   console.log('getToken: ' + hasToken)
   var path = encodeURIComponent(window.location.href)
   if (hasToken) {
