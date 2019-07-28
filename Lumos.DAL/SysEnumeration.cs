@@ -32,7 +32,7 @@ namespace Lumos.DbRelay
             Client = 3,
         }
 
-        public enum LoginType
+        public enum LoginWay
         {
             Unknow = 0,
             Website = 1,

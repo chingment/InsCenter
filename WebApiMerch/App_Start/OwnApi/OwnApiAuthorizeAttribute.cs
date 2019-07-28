@@ -16,46 +16,50 @@ namespace WebApiMerch
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            //try
-            //{
-            //    DateTime requestTime = DateTime.Now;
-            //    var request = ((HttpContextWrapper)actionContext.Request.Properties["MS_HttpContext"]).Request;
-            //    var requestMethod = request.HttpMethod;
+            try
+            {
+                DateTime requestTime = DateTime.Now;
+                var request = ((HttpContextWrapper)actionContext.Request.Properties["MS_HttpContext"]).Request;
+                var requestMethod = request.HttpMethod;
 
-            //    bool skipAuthorization = actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any();
-            //    if (skipAuthorization)
-            //    {
-            //        return;
-            //    }
+                bool skipAuthorization = actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any();
+                if (skipAuthorization)
+                {
+                    return;
+                }
 
-            //    var token = request.QueryString["token"];
+                var token = request.QueryString["token"];
+                if (token == null)
+                {
+                    token = request.Headers["X-Token"];
+                }
 
-            //    if (string.IsNullOrEmpty(token))
-            //    {
-            //        OwnApiHttpResult result = new OwnApiHttpResult(ResultType.Failure, ResultCode.Failure, "token不能为空");
-            //        actionContext.Response = new OwnApiHttpResponse(result);
-            //        base.OnActionExecuting(actionContext);
-            //        return;
-            //    }
+                if (string.IsNullOrEmpty(token))
+                {
+                    OwnApiHttpResult result = new OwnApiHttpResult(ResultType.Failure, ResultCode.NeedLogin, "token不能为空");
+                    actionContext.Response = new OwnApiHttpResponse(result);
+                    base.OnActionExecuting(actionContext);
+                    return;
+                }
 
-            //    var tokenInfo = SSOUtil.GetTokenInfo(token);
+                var tokenInfo = SSOUtil.GetTokenInfo(token);
 
-            //    if (tokenInfo == null)
-            //    {
-            //        OwnApiHttpResult result = new OwnApiHttpResult(ResultType.Failure, ResultCode.Failure, "token 已经超时");
-            //        actionContext.Response = new OwnApiHttpResponse(result);
-            //        return;
-            //    }
+                if (tokenInfo == null)
+                {
+                    OwnApiHttpResult result = new OwnApiHttpResult(ResultType.Failure, ResultCode.NeedLogin, "token 已经超时");
+                    actionContext.Response = new OwnApiHttpResponse(result);
+                    return;
+                }
 
-            //    base.OnActionExecuting(actionContext);
-            //}
-            //catch (Exception ex)
-            //{
-            //    LogUtil.Error(string.Format("API错误:{0}", ex.Message), ex);
-            //    OwnApiHttpResult result = new OwnApiHttpResult(ResultType.Exception, ResultCode.Exception, "内部错误");
-            //    actionContext.Response = new OwnApiHttpResponse(result);
-            //    return;
-            //}
+                base.OnActionExecuting(actionContext);
+            }
+            catch (Exception ex)
+            {
+                LogUtil.Error(string.Format("API错误:{0}", ex.Message), ex);
+                OwnApiHttpResult result = new OwnApiHttpResult(ResultType.Exception, ResultCode.Exception, "内部错误");
+                actionContext.Response = new OwnApiHttpResponse(result);
+                return;
+            }
         }
     }
 }

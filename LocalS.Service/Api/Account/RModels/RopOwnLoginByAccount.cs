@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lumos.DbRelay;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,9 @@ namespace LocalS.Service.Api.Account
         public string UserName { get; set; }
 
         public string Password { get; set; }
+
+        public string Ip { get; set; }
+
+        public Enumeration.LoginWay LoginWay { get; set; }
     }
 }

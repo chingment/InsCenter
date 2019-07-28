@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lumos.DbRelay
 {
-   [Table("SysOperateHistory")]
-    public class SysOperateHistory
+   [Table("SysOperateHis")]
+    public class SysOperateHis
     {
 
         [Key]

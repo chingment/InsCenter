@@ -81,5 +81,74 @@ namespace Lumos
                 return false;
             }
         }
+
+        public static bool IsDateTime(string strDate)
+        {
+            if (strDate == null)
+            {
+                return false;
+            }
+            else
+            {
+                DateTime dtDate;
+                bool bValid = true;
+                try
+                {
+                    dtDate = DateTime.Parse(strDate);
+                }
+                catch (FormatException)
+                {
+                    // 如果解析方法失败则表示不是日期性数据
+                    bValid = false;
+                }
+                return bValid;
+            }
+        }
+
+        public static DateTime? ConverToStartTime(string strDate)
+        {
+            DateTime? d = null;
+            try
+            {
+                if (strDate.Trim() != "")
+                {
+                    if (CommonUtil.IsDateTime(strDate))
+                    {
+                        strDate = DateTime.Parse(strDate).ToShortDateString();
+                    }
+
+                    d = DateTime.Parse(strDate + " 00:00:00.000");
+                }
+            }
+            catch
+            {
+
+            }
+            return d;
+
+        }
+
+        public static DateTime? ConverToEndTime(string strDate)
+        {
+            DateTime? d = null;
+            try
+            {
+                if (strDate.Trim() != "")
+                {
+                    if (CommonUtil.IsDateTime(strDate))
+                    {
+                        strDate = DateTime.Parse(strDate).ToShortDateString();
+                    }
+
+                    d = DateTime.Parse(strDate + " 23:59:59");
+                }
+            }
+            catch
+            {
+
+            }
+            return d;
+
+        }
     }
 }

@@ -16,6 +16,7 @@
         v-for="child in item.children"
         :key="child.path"
         :is-nest="true"
+        :collapse="true"
         :item="resolveChild(child)"
         :base-path="resolvePath(child.path)"
         class="nest-menu"

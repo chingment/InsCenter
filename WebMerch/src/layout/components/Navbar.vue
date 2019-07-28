@@ -16,11 +16,9 @@
               主页
             </el-dropdown-item>
           </router-link>
-          <router-link to="/">
-            <el-dropdown-item>
-              个人中心
-            </el-dropdown-item>
-          </router-link>
+          <el-dropdown-item >
+            <span style="display:block;" @click="goPersonalCenter">个人中心</span>
+          </el-dropdown-item>
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
@@ -35,7 +33,7 @@ import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import { removeToken } from '@/utils/auth'
-
+import { getToken } from '@/utils/auth'
 export default {
   components: {
     Breadcrumb,
@@ -48,6 +46,10 @@ export default {
     ])
   },
   methods: {
+    goPersonalCenter() {
+      console.log(this.$store.state.settings.personalCenterPath)
+      window.location.href = `${this.$store.state.settings.personalCenterPath}?token=${getToken()}` 
+    },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },

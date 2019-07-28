@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lumos.DbRelay
 {
-    [Table("SysPageAccessHistory")]
-    public class SysPageAccessHistory
+    [Table("SysPageAccessHis")]
+    public class SysPageAccessHis
     {
 
         [Key]

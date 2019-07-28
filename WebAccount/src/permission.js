@@ -19,15 +19,17 @@ router.beforeEach(async(to, from, next) => {
   document.title = getPageTitle(to.meta.title)
 
   var islogout = getUrlParam('logout')
+  var hasToken = getToken()
   // console.log('islogout：' + islogout)
   if (islogout !== null) {
+    hasToken = false
     await store.dispatch('own/logout')
   }
 
   // determine whether the user has logged in
-  const hasToken = getToken()
-  // console.log('getToken: ' + hasToken)
+  console.log('getToken: ' + hasToken)
   if (hasToken) {
+    
     var hasRedirect = false
     var redirectPath = getUrlParam('redirect')
     if (redirectPath != null) {
@@ -36,45 +38,24 @@ router.beforeEach(async(to, from, next) => {
       }
     }
 
-    if (hasRedirect) {
-      // window.location.href = decodeURIComponent(redirectPath)
-      store.dispatch('own/getInfo').then((res) => {
-        console.log('res ' + JSON.stringify(res))
-        console.log('res.result ' + res.result)
-        if (res.result === 1) {
-          console.log(' in 1')
-          var p1 = changeURLArg(decodeURIComponent(redirectPath), 'token', getToken())
-          window.location.href = p1
+    await store.dispatch('own/getInfo').then((res) => {
+      if (res.result === 1) {
+        if (hasRedirect) {
+          var url = changeURLArg(decodeURIComponent(redirectPath), 'token', getToken())
+          window.location.href = url
         } else {
-          console.log(' in 2')
-          next(`/login?redirect=${to.path}`)
-        }
-      })
-      console.log('redirectPath:' + redirectPath)
-    } else {
-      if (to.path === '/login') {
-      // if is logged in, redirect to the home page
-        next({ path: '/' })
-        NProgress.done()
-      } else {
-        const hasGetUserInfo = store.getters.name
-        if (hasGetUserInfo) {
-          next()
-        } else {
-          try {
-          // get user info
-            await store.dispatch('own/getInfo')
-            next()
-          } catch (error) {
-          // remove token and go to login page to re-login
-            await store.dispatch('own/resetToken')
-            Message.error(error || 'Has Error')
-            next(`/login?redirect=${to.path}`)
+          if (to.path === '/login') {
+            // if is logged in, redirect to the home page
+            next({ path: '/' })
             NProgress.done()
+          } else {
+            next()
           }
         }
+      } else {
+        next(`/login?redirect=${to.path}`)
       }
-    }
+    })
   } else {
     /* has no token*/
 
