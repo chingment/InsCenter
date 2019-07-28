@@ -63,7 +63,7 @@ service.interceptors.response.use(
         }).then(() => {
           store.dispatch('own/resetToken').then(() => {
             var path = encodeURIComponent(window.location.href)
-            window.location.href = `${store.state.settings.loginPath}?logout=true&redirect=${path}`
+            window.location.href = `${store.state.settings.loginPath}?logout=2&redirect=${path}`
           })
         })
       }

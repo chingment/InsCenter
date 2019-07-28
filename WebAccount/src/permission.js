@@ -18,12 +18,14 @@ router.beforeEach(async(to, from, next) => {
   // set page title
   document.title = getPageTitle(to.meta.title)
 
-  var islogout = getUrlParam('logout')
+  var logout = getUrlParam('logout')
   var hasToken = getToken()
   // console.log('islogout：' + islogout)
-  if (islogout !== null) {
+  if (logout !== null) {
     hasToken = false
-    await store.dispatch('own/logout')
+    if(logout === '1') {
+     await store.dispatch('own/logout')
+    }
   }
 
   // determine whether the user has logged in

@@ -16,7 +16,7 @@
               主页
             </el-dropdown-item>
           </router-link>
-          <el-dropdown-item >
+          <el-dropdown-item>
             <span style="display:block;" @click="goPersonalCenter">个人中心</span>
           </el-dropdown-item>
           <el-dropdown-item divided>
@@ -48,16 +48,16 @@ export default {
   methods: {
     goPersonalCenter() {
       console.log(this.$store.state.settings.personalCenterPath)
-      window.location.href = `${this.$store.state.settings.personalCenterPath}?token=${getToken()}` 
+      window.location.href = `${this.$store.state.settings.personalCenterPath}?token=${getToken()}`
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      //await this.$store.dispatch('own/logout')
+      // await this.$store.dispatch('own/logout')
       removeToken()
       var path = encodeURIComponent(window.location.href)
-      window.location.href = `${this.$store.state.settings.loginPath}?logout=true&redirect=${path}`
+      window.location.href = `${this.$store.state.settings.loginPath}?logout=1&redirect=${path}`
       // this.$router.push(`${this.$store.state.settings.loginPath}?redirect=${this.$route.fullPath}`)
     }
   }
