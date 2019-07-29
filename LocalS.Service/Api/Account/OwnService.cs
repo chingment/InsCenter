@@ -83,7 +83,7 @@ namespace LocalS.Service.Api.Account
             return result;
         }
 
-        public CustomJsonResult GetInfo(string operater, string userId)
+        public CustomJsonResult GetInfo(string operater, string userId, RupOwnGetInfo rup)
         {
             var result = new CustomJsonResult();
             var ret = new RetOwnGetInfo();
@@ -94,6 +94,25 @@ namespace LocalS.Service.Api.Account
             ret.Avatar = sysUser.Avatar;
             ret.Introduction = sysUser.Introduction;
 
+            switch(rup.WebSite)
+            {
+                case "admin":
+                    break;
+                case "merch":
+                    var menus = new List<Menu>();
+
+                    var menu1 = new Menu();
+                    menu1.Name = "User";
+                    menu1.Path = "/user";
+                    menu1.Meta = new MenuMeta { Title = "用户管理", Icon = "example" };
+                    menu1.Children.Add(new MenuChild { Name = "List", Path = "list", Meta = new MenuMeta { Title = "用户列表", Icon = "table" } });
+                    menu1.Children.Add(new MenuChild { Name = "Add", Path = "add", Meta = new MenuMeta { Title = "新建用户", Icon = "table" } });
+
+                    menus.Add(menu1);
+
+                    ret.Menus = menus;
+                    break;
+            }
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", ret);
 
             return result;
@@ -111,7 +130,7 @@ namespace LocalS.Service.Api.Account
             return result;
         }
 
-        public CustomJsonResult CheckPermission(string operater, string userId, RopOwnCheckPermission rop)
+        public CustomJsonResult CheckPermission(string operater, string userId, RupOwnCheckPermission rop)
         {
             var result = new CustomJsonResult();
 

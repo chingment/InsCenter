@@ -12,14 +12,14 @@ namespace WebApiMerch.Controllers
     public class OwnController : OwnApiBaseController
     {
         [HttpGet]
-        public OwnApiHttpResponse GetInfo()
+        public OwnApiHttpResponse GetInfo([FromUri]LocalS.Service.Api.Account.RupOwnGetInfo rup)
         {
-            IResult result = MerchServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId);
+            IResult result = LocalS.Service.Api.Account.AccountServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpPost]
-        public OwnApiHttpResponse CheckPermission(LocalS.Service.Api.Account.RopOwnCheckPermission rop)
+        public OwnApiHttpResponse CheckPermission([FromUri]LocalS.Service.Api.Account.RupOwnCheckPermission rop)
         {
             IResult result = LocalS.Service.Api.Account.AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rop);
             return new OwnApiHttpResponse(result);

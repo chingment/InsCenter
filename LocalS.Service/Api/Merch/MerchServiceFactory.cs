@@ -16,14 +16,6 @@ namespace LocalS.Service.Api.Merch
             }
         }
 
-        public static OwnService Own
-        {
-            get
-            {
-                return new OwnService();
-            }
-        }
-
         public static UserService User
         {
             get

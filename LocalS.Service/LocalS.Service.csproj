@@ -59,10 +59,11 @@
     <Compile Include="Api\Account\RModels\RetHomeGetIndexPageData.cs" />
     <Compile Include="Api\Account\RModels\RetOwnGetInfo.cs" />
     <Compile Include="Api\Account\RModels\RetOwnLoginByAccount.cs" />
-    <Compile Include="Api\Account\RModels\RopOwnCheckPermission.cs" />
+    <Compile Include="Api\Account\RModels\RupOwnCheckPermission.cs" />
     <Compile Include="Api\Account\RModels\RopOwnLoginByAccount.cs" />
     <Compile Include="Api\Account\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Account\RModels\RupLoginLogGetList.cs" />
+    <Compile Include="Api\Account\RModels\RupOwnGetInfo.cs" />
     <Compile Include="Api\InsApp\HomeService.cs" />
     <Compile Include="Api\InsApp\InsAppServiceFactory.cs" />
     <Compile Include="Api\InsApp\InsCarService.cs" />
@@ -93,10 +94,8 @@
     <Compile Include="Api\Merch\RModels\RopUserAdd.cs" />
     <Compile Include="Api\Merch\RModels\RopUserEdit.cs" />
     <Compile Include="Api\Merch\UserService.cs" />
-    <Compile Include="Api\Merch\RModels\RetOwnGetInfo.cs" />
     <Compile Include="Api\Merch\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Merch\RModels\RupUserGetList.cs" />
-    <Compile Include="Api\Merch\OwnService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\MenuChild.cs" />

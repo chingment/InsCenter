@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Account
 {
-    public class RopOwnCheckPermission
+    public class RupOwnCheckPermission
     {
         public string Code { get; set; }
     }

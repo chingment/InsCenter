@@ -20,9 +20,9 @@ namespace WebApiAccount.Controllers
         }
 
         [HttpGet]
-        public OwnApiHttpResponse GetInfo()
+        public OwnApiHttpResponse GetInfo(RupOwnGetInfo rup)
         {
-            IResult result = AccountServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId);
+            IResult result = AccountServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);
         }
 
@@ -33,10 +33,10 @@ namespace WebApiAccount.Controllers
             return new OwnApiHttpResponse(result);
         }
 
-        [HttpPost]
-        public OwnApiHttpResponse CheckPermission(RopOwnCheckPermission rop)
+        [HttpGet]
+        public OwnApiHttpResponse CheckPermission(RupOwnCheckPermission rup)
         {
-            IResult result = AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rop);
+            IResult result = AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);
         }
 
