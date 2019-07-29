@@ -17,5 +17,12 @@ namespace WebApiMerch.Controllers
             IResult result = MerchServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId);
             return new OwnApiHttpResponse(result);
         }
+
+        [HttpPost]
+        public OwnApiHttpResponse CheckPermission(LocalS.Service.Api.Account.RopOwnCheckPermission rop)
+        {
+            IResult result = LocalS.Service.Api.Account.AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rop);
+            return new OwnApiHttpResponse(result);
+        }
     }
 }

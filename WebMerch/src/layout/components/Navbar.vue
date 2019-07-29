@@ -54,11 +54,9 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      // await this.$store.dispatch('own/logout')
       removeToken()
       var path = encodeURIComponent(window.location.href)
       window.location.href = `${this.$store.state.settings.loginPath}?logout=1&redirect=${path}`
-      // this.$router.push(`${this.$store.state.settings.loginPath}?redirect=${this.$route.fullPath}`)
     }
   }
 }

@@ -33,5 +33,12 @@ namespace WebApiAccount.Controllers
             return new OwnApiHttpResponse(result);
         }
 
+        [HttpPost]
+        public OwnApiHttpResponse CheckPermission(RopOwnCheckPermission rop)
+        {
+            IResult result = AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rop);
+            return new OwnApiHttpResponse(result);
+        }
+
     }
 }

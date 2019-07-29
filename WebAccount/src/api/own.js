@@ -23,3 +23,11 @@ export function logout(token) {
     params: { token }
   })
 }
+
+export function checkPermission(data) {
+  return request({
+    url: '/own/checkPermission',
+    method: 'post',
+    data
+  })
+}

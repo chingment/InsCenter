@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: '后台管理系统',
 
   /**
    * @type {boolean} true | false
@@ -12,5 +12,8 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
+  sidebarLogo: false,
+
+  loginPath: 'http://passport.ins-uplink.com/login',
+  personalCenterPath: 'http://passport.ins-uplink.com/home'
 }

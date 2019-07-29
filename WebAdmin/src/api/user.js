@@ -1,24 +1,33 @@
 import request from '@/utils/request'
 
-export function login(data) {
+export function fetchList(params) {
   return request({
-    url: '/user/login',
+    url: '/user/getlist',
+    method: 'get',
+    params
+  })
+}
+
+export function addUser(data) {
+  return request({
+    url: '/user/add',
     method: 'post',
     data
   })
 }
 
-export function getInfo(token) {
+export function initEdit(params) {
   return request({
-    url: '/user/info',
+    url: '/user/initEdit',
     method: 'get',
-    params: { token }
+    params
   })
 }
 
-export function logout() {
+export function editUser(data) {
   return request({
-    url: '/user/logout',
-    method: 'post'
+    url: '/user/edit',
+    method: 'post',
+    data
   })
 }

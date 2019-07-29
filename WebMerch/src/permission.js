@@ -2,7 +2,7 @@ import router from './router'
 import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken, setToken } from '@/utils/auth' // get token from cookie
+import { getToken } from '@/utils/auth' // get token from cookie
 import { getUrlParam } from '@/utils/commonUtil'
 import getPageTitle from '@/utils/get-page-title'
 
@@ -12,25 +12,24 @@ router.beforeEach(async(to, from, next) => {
   NProgress.start()
 
   document.title = getPageTitle(to.meta.title)
-  var urlToken = getUrlParam('token')
-  if (urlToken !== null) {
-    setToken(urlToken)
-    store.dispatch('own/setToken', urlToken)
+  var token = getUrlParam('token')
+  if (token !== null) {
+    store.dispatch('own/setToken', token)
   }
-  var hasToken = getToken()
-  console.log('getToken: ' + hasToken)
+  token = getToken()
+  console.log('token: ' + token)
   var path = encodeURIComponent(window.location.href)
-  if (hasToken) {
+  if (token) {
     await store.dispatch('own/getInfo').then((res) => {
       if (res.result === 1) {
         next()
       } else {
-        window.location.href = `${store.state.settings.loginPath}?redirect=${path}`
+        window.location.href = `${store.state.settings.loginPath}?logout=2&redirect=${path}`
       }
     })
     NProgress.done()
   } else {
-    window.location.href = `${store.state.settings.loginPath}?redirect=${path}`
+    window.location.href = `${store.state.settings.loginPath}?logout=2&redirect=${path}`
     NProgress.done()
   }
 })

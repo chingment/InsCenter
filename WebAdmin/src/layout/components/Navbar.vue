@@ -16,12 +16,9 @@
               主页
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
+          <el-dropdown-item>
+            <span style="display:block;" @click="goPersonalCenter">个人中心</span>
+          </el-dropdown-item>
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
@@ -35,7 +32,8 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import { removeToken } from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 export default {
   components: {
     Breadcrumb,
@@ -48,12 +46,19 @@ export default {
     ])
   },
   methods: {
+    goPersonalCenter() {
+      console.log(this.$store.state.settings.personalCenterPath)
+      window.location.href = `${this.$store.state.settings.personalCenterPath}?token=${getToken()}`
+    },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      // await this.$store.dispatch('own/logout')
+      removeToken()
+      var path = encodeURIComponent(window.location.href)
+      window.location.href = `${this.$store.state.settings.loginPath}?logout=1&redirect=${path}`
+      // this.$router.push(`${this.$store.state.settings.loginPath}?redirect=${this.$route.fullPath}`)
     }
   }
 }

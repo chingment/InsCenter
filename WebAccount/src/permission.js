@@ -1,6 +1,5 @@
 import router from './router'
 import store from './store'
-import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
@@ -12,60 +11,51 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
-  // start progress bar
   NProgress.start()
-
-  // set page title
   document.title = getPageTitle(to.meta.title)
-
   var logout = getUrlParam('logout')
-  var hasToken = getToken()
-  // console.log('islogout：' + islogout)
+  var redirect = getUrlParam('redirect')
+  var token = getToken()
+  console.log('logout：' + logout)
+  console.log('redirect：' + redirect)
+  console.log('token befefore: ' + token)
   if (logout !== null) {
-    hasToken = false
-    if(logout === '1') {
-     await store.dispatch('own/logout')
+    token = undefined
+    if (logout === '1') {
+      await store.dispatch('own/logout')
     }
   }
-
-  // determine whether the user has logged in
-  console.log('getToken: ' + hasToken)
-  if (hasToken) {
-    
+  console.log('token after: ' + token)
+  if (token) {
     var hasRedirect = false
-    var redirectPath = getUrlParam('redirect')
-    if (redirectPath != null) {
-      if (redirectPath.toLowerCase().indexOf('http') > -1) {
+    if (redirect != null) {
+      if (redirect.toLowerCase().indexOf('http') > -1) {
         hasRedirect = true
       }
     }
+    console.log('store.getters.userInfo：' + store.getters.userInfo)
+    if (store.getters.userInfo == null) {
+      await store.dispatch('own/getInfo')
+    }
 
-    await store.dispatch('own/getInfo').then((res) => {
-      if (res.result === 1) {
-        if (hasRedirect) {
-          var url = changeURLArg(decodeURIComponent(redirectPath), 'token', getToken())
-          window.location.href = url
-        } else {
-          if (to.path === '/login') {
-            // if is logged in, redirect to the home page
-            next({ path: '/' })
-            NProgress.done()
-          } else {
-            next()
-          }
-        }
+    await store.dispatch('own/checkPermission', '10001').then((res) => {
+      if (hasRedirect) {
+        var url = changeURLArg(decodeURIComponent(redirect), 'token', getToken())
+        window.location.href = url
       } else {
-        next(`/login?redirect=${to.path}`)
+        if (to.path === '/login') {
+          next({ path: '/' })
+          NProgress.done()
+        } else {
+          next()
+        }
       }
     })
+    
   } else {
-    /* has no token*/
-
     if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
       next()
     } else {
-      // other pages that do not have permission to access are redirected to the login page.
       next(`/login?redirect=${to.path}`)
       NProgress.done()
     }

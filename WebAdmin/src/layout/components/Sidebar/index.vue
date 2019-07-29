@@ -31,11 +31,21 @@ export default {
       'sidebar'
     ]),
     routes() {
-      for (let index = 0; index < this.$router.options.routes.length; index++) {
-        const element = this.$router.options.routes[index]
-        console.log(element)
-      }
-      return this.$router.options.routes
+      // 记载菜单所在位置
+      // for (let index = 0; index < this.$router.options.routes.length; index++) {
+      //  const element = this.$router.options.routes[index]
+        // console.log(element)
+      // }
+      // var s = [{
+      //   path: '/user',
+      //   meta: { title: '用户管理', icon: 'example', name: 'User' },
+      //   children: [{ path: 'list', meta: { title: '用户列表', icon: 'table' }
+      //   }, { path: 'add', meta: { title: '用户列表', icon: 'table' }
+      //   }]
+      // }]
+      // console.log(JSON.stringify(this.$router.options.routes))
+      // console.log(JSON.stringify(this.$store.getters.menus))
+      return this.$store.getters.menus
     },
     activeMenu() {
       const route = this.$route

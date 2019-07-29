@@ -13,7 +13,7 @@ namespace LocalS.Service.Api.Account
 {
     public class OwnService : BaseDbContext
     {
-        private void LoginLog(string operater,string userId, Enumeration.LoginResult loginResult,Enumeration.LoginWay loginWay, string ip, string location,string description)
+        private void LoginLog(string operater, string userId, Enumeration.LoginResult loginResult, Enumeration.LoginWay loginWay, string ip, string location, string description)
         {
             var userLoginHis = new SysUserLoginHis();
 
@@ -40,7 +40,7 @@ namespace LocalS.Service.Api.Account
 
             if (sysUser == null)
             {
-                LoginLog("","",Enumeration.LoginResult.Failure, rop.LoginWay, rop.Ip, "", "登录失败，账号不存在");
+                LoginLog("", "", Enumeration.LoginResult.Failure, rop.LoginWay, rop.Ip, "", "登录失败，账号不存在");
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "登录失败，账号不存在");
             }
 
@@ -107,6 +107,17 @@ namespace LocalS.Service.Api.Account
             SSOUtil.Quit(token);
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "退出成功");
+
+            return result;
+        }
+
+        public CustomJsonResult CheckPermission(string operater, string userId, RopOwnCheckPermission rop)
+        {
+            var result = new CustomJsonResult();
+
+
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "检查成功");
 
             return result;
         }

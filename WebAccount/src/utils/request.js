@@ -64,7 +64,8 @@ service.interceptors.response.use(
           type: 'warning'
         }).then(() => {
           store.dispatch('own/resetToken').then(() => {
-            location.reload()
+            var redirect = encodeURIComponent(window.location.href)
+            window.location.href = '/login?logout=2&redirect=' + redirect
           })
         })
       }

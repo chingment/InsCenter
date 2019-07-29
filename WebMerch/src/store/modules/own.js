@@ -27,6 +27,7 @@ const mutations = {
 const actions = {
   setToken({ commit }, token) {
     commit('SET_TOKEN', token)
+    setToken(token)
   },
   // user login
   loginByAccount({ commit }, userInfo) {

@@ -1,11 +1,12 @@
 <template>
   <div class="login-container">
+    <div class="header"><div class="wrapper"><div class="it-left"><span class="title">登录中心</span></div></div></div>
+    <div class="login-bg"><img id="bg_page_login_img" src="@/assets/login_images/bg_login1.jpg" alt=""></div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
         <h3 class="title">登录</h3>
       </div>
-
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
@@ -40,23 +41,18 @@
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
-
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登 录</el-button>
-
-
-
     </el-form>
   </div>
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      if (value.length <= 0) {
         callback(new Error('账号不能为空'))
       } else {
         callback()
@@ -71,8 +67,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: 'test2',
+        password: '123456'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -106,7 +102,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          this.$store.dispatch('own/loginByAccount', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
@@ -162,11 +158,12 @@ $cursor: #fff;
 
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 5px;
     color: #454545;
   }
 }
+
 </style>
 
 <style lang="scss" scoped>
@@ -180,13 +177,37 @@ $light_gray:#eee;
   background-color: $bg;
   overflow: hidden;
 
+  .header{
+    height: 30px;
+    background-color: #333;
+    height: 32px;
+    line-height: 32px;
+    font-size: 12px;
+    border-bottom: 1px solid #3f3f3f;
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+
+    .wrapper{
+      padding: 0 50px;
+    }
+
+    .it-left{
+      .title{
+        color: #409EFF;
+      }
+    }
+  }
+
   .login-form {
     position: relative;
-    width: 520px;
-    max-width: 100%;
-    padding: 160px 35px 0;
-    margin: 0 auto;
+    min-width: 150px;
+    max-width: 450px;
+    padding: 35px;
+    margin: 160px auto 0 auto;
     overflow: hidden;
+    border: 1px solid transparent;
+    background: rgba(0,0,0,.6);
   }
 
   .tips {
@@ -230,5 +251,29 @@ $light_gray:#eee;
     cursor: pointer;
     user-select: none;
   }
+}
+
+.login-bg {
+    position: fixed;
+    _position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    min-width: 1000px;
+    z-index: 0;
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    zoom: 1;
+    background-image: url('/assets/login_images/bg_login1.jpg');
+    /*background-position: 0px bottom;*/
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
 }
 </style>

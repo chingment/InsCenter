@@ -194,7 +194,7 @@ $light_gray:#eee;
     z-index: 3;
 
     .wrapper{
-      padding: 0 50px;
+      padding: 0 35px;
     }
 
     .it-left{

@@ -1,25 +1,17 @@
-import { loginByAccount, logout, getInfo } from '@/api/own'
+import { loginByAccount, logout, getInfo, checkPermission } from '@/api/own'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 const state = {
   token: getToken(),
-  name: '',
-  avatar: '',
-  menus: []
+  userInfo: null
 }
 
 const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token
   },
-  SET_NAME: (state, name) => {
-    state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
-  },
-  SET_MENUS: (state, menus) => {
-    state.menus = menus
+  SET_USERINFO: (state, userInfo) => {
+    state.userInfo = userInfo
   }
 }
 
@@ -52,11 +44,7 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { name, avatar, menus } = data
-
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        commit('SET_MENUS', menus)
+        commit('SET_USERINFO', data)
         resolve(response)
       }).catch(error => {
         reject(error)
@@ -85,7 +73,19 @@ const actions = {
       removeToken()
       resolve()
     })
+  },
+
+  // checkperminssion
+  checkPermission({ commit }, code) {
+    return new Promise((resolve, reject) => {
+      checkPermission({ code: code }).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
   }
+
 }
 
 export default {
