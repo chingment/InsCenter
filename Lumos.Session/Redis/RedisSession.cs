@@ -11,7 +11,7 @@ namespace Lumos.Session.Redis
     {
 
         private const string SessionSign = "SessionName";
-        private const int TimeOut = 10080;
+        private const int TimeOut = 2;
         private string _sessionId = "";
         private string _sessionKey = "";
 
