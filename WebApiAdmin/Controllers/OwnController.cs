@@ -18,10 +18,10 @@ namespace WebApiAdmin.Controllers
             return new OwnApiHttpResponse(result);
         }
 
-        [HttpPost]
+        [HttpGet]
         public OwnApiHttpResponse CheckPermission([FromUri]LocalS.Service.Api.Account.RupOwnCheckPermission rup)
         {
-            IResult result = LocalS.Service.Api.Account.AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rup);
+            IResult result = LocalS.Service.Api.Account.AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId,this.Token, rup);
             return new OwnApiHttpResponse(result);
         }
     }

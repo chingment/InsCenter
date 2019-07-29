@@ -36,7 +36,7 @@ namespace WebApiAccount.Controllers
         [HttpGet]
         public OwnApiHttpResponse CheckPermission([FromUri]RupOwnCheckPermission rup)
         {
-            IResult result = AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rup);
+            IResult result = AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId,this.Token, rup);
             return new OwnApiHttpResponse(result);
         }
 

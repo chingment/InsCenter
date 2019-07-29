@@ -76,7 +76,7 @@ namespace LocalS.Service.Api.Account
 
             LoginLog(sysUser.Id, sysUser.Id, Enumeration.LoginResult.Success, rop.LoginWay, rop.Ip, "", "登录成功");
 
-            SSOUtil.SetTokenInfo(ret.Token, tokenInfo);
+            SSOUtil.SetTokenInfo(ret.Token, tokenInfo, new TimeSpan(1, 0, 0));
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "登录成功", ret);
 
@@ -130,11 +130,11 @@ namespace LocalS.Service.Api.Account
             return result;
         }
 
-        public CustomJsonResult CheckPermission(string operater, string userId, RupOwnCheckPermission rop)
+        public CustomJsonResult CheckPermission(string operater, string userId,string token, RupOwnCheckPermission rop)
         {
             var result = new CustomJsonResult();
 
-
+            SSOUtil.Postpone(token);
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "检查成功");
 

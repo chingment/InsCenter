@@ -20,12 +20,11 @@ router.beforeEach(async(to, from, next) => {
   console.log('token: ' + token)
   var path = encodeURIComponent(window.location.href)
   if (token) {
-    await store.dispatch('own/getInfo').then((res) => {
-      if (res.result === 1) {
-        next()
-      } else {
-        window.location.href = `${store.state.settings.loginPath}?logout=2&redirect=${path}`
-      }
+    if (store.getters.userInfo == null) {
+      await store.dispatch('own/getInfo')
+    }
+    await store.dispatch('own/checkPermission', '10001').then((res) => {
+      next()
     })
     NProgress.done()
   } else {
