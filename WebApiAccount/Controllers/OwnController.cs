@@ -13,14 +13,14 @@ namespace WebApiAccount.Controllers
     {
         [HttpPost]
         [AllowAnonymous]
-        public OwnApiHttpResponse LoginByAccount(RopOwnLoginByAccount rop)
+        public OwnApiHttpResponse LoginByAccount([FromBody]RopOwnLoginByAccount rop)
         {
             IResult result = AccountServiceFactory.Own.LoginByAccount(rop);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpGet]
-        public OwnApiHttpResponse GetInfo(RupOwnGetInfo rup)
+        public OwnApiHttpResponse GetInfo([FromUri]RupOwnGetInfo rup)
         {
             IResult result = AccountServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);
@@ -34,7 +34,7 @@ namespace WebApiAccount.Controllers
         }
 
         [HttpGet]
-        public OwnApiHttpResponse CheckPermission(RupOwnCheckPermission rup)
+        public OwnApiHttpResponse CheckPermission([FromUri]RupOwnCheckPermission rup)
         {
             IResult result = AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);

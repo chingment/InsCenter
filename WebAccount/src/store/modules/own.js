@@ -37,7 +37,7 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+      getInfo(state.token, 'account').then(response => {
         const { data } = response
 
         if (!data) {
@@ -78,7 +78,7 @@ const actions = {
   // checkperminssion
   checkPermission({ commit }, code) {
     return new Promise((resolve, reject) => {
-      checkPermission({ code: code }).then(response => {
+      checkPermission(code).then(response => {
         resolve(response)
       }).catch(error => {
         reject(error)

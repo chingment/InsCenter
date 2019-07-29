@@ -8,11 +8,11 @@ export function loginByAccount(data) {
   })
 }
 
-export function getInfo(token) {
+export function getInfo(token, website) {
   return request({
     url: '/own/getInfo',
     method: 'get',
-    params: { token }
+    params: { token, website }
   })
 }
 
@@ -24,10 +24,10 @@ export function logout(token) {
   })
 }
 
-export function checkPermission(data) {
+export function checkPermission(code) {
   return request({
     url: '/own/checkPermission',
-    method: 'post',
-    data
+    method: 'get',
+    params: { code }
   })
 }

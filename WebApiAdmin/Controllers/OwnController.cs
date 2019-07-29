@@ -12,14 +12,14 @@ namespace WebApiAdmin.Controllers
     public class OwnController : OwnApiBaseController
     {
         [HttpGet]
-        public OwnApiHttpResponse GetInfo(LocalS.Service.Api.Account.RupOwnGetInfo rup)
+        public OwnApiHttpResponse GetInfo([FromUri]LocalS.Service.Api.Account.RupOwnGetInfo rup)
         {
             IResult result = LocalS.Service.Api.Account.AccountServiceFactory.Own.GetInfo(this.CurrentUserId, this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpPost]
-        public OwnApiHttpResponse CheckPermission(LocalS.Service.Api.Account.RupOwnCheckPermission rup)
+        public OwnApiHttpResponse CheckPermission([FromUri]LocalS.Service.Api.Account.RupOwnCheckPermission rup)
         {
             IResult result = LocalS.Service.Api.Account.AccountServiceFactory.Own.CheckPermission(this.CurrentUserId, this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);
