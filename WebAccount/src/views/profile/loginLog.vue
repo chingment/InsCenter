@@ -17,7 +17,7 @@
       highlight-current-row
       style="width: 100%;"
     >
-      <el-table-column label="序号" prop="id" align="left" width="80">
+      <el-table-column v-if="isMobileHidden" label="序号" prop="id" align="left" width="80">
         <template slot-scope="scope">
           <span>{{ scope.$index+1 }}</span>
         </template>
@@ -73,6 +73,7 @@ export default {
         startDate: undefined,
         endDate: undefined
       },
+      isMobileHidden: this.$store.state.app.device !== 'mobile'
     }
   },
   created() {

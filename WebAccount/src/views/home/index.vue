@@ -2,7 +2,7 @@
   <div class="home-container">
     <el-row :gutter="20">
      
-      <el-col :span="8" v-for="appcaltion in appcaltions"  :key="appcaltion.url" >
+      <el-col :span="6" :xs="24" style="margin-bottom:20px" v-for="appcaltion in appcaltions"  :key="appcaltion.url" >
          <el-card class="box-card">
           <div class="header-item clearfix" slot="header">
             <span>{{ appcaltion.name }}</span>
