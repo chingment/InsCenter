@@ -55,22 +55,22 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/personalCenter',
+    path: '/profile',
     component: Layout,
-    redirect: '/personalCenter/userInfo',
-    name: 'personalCenter',
+    redirect: '/profile/userInfo',
+    name: 'Profile',
     meta: { title: '个人中心', icon: 'user' },
     children: [
       {
         path: 'userInfo',
         name: 'UserInfo',
-        component: () => import('@/views/personalCenter/userInfo'),
+        component: () => import('@/views/profile/userInfo'),
         meta: { title: '基本信息', icon: 'form' }
       },
       {
         path: 'loginLog',
         name: 'LoginLog',
-        component: () => import('@/views/personalCenter/loginLog'),
+        component: () => import('@/views/profile/loginLog'),
         meta: { title: '登录历史', icon: 'nested' }
       }
     ]

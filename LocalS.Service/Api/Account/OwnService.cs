@@ -90,11 +90,14 @@ namespace LocalS.Service.Api.Account
 
             var sysUser = CurrentDb.SysUser.Where(m => m.Id == userId).FirstOrDefault();
 
-            ret.Name = sysUser.Nickname;
+            ret.UserName = sysUser.UserName;
+            ret.FullName = sysUser.Nickname;
             ret.Avatar = sysUser.Avatar;
             ret.Introduction = sysUser.Introduction;
+            ret.Email = sysUser.Email;
+            ret.PhoneNumber = sysUser.PhoneNumber;
 
-            switch(rup.WebSite)
+            switch (rup.WebSite)
             {
                 case "admin":
                     break;
@@ -130,7 +133,7 @@ namespace LocalS.Service.Api.Account
             return result;
         }
 
-        public CustomJsonResult CheckPermission(string operater, string userId,string token, RupOwnCheckPermission rop)
+        public CustomJsonResult CheckPermission(string operater, string userId, string token, RupOwnCheckPermission rop)
         {
             var result = new CustomJsonResult();
 
