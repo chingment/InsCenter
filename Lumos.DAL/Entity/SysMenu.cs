@@ -17,7 +17,14 @@ namespace Lumos.DbRelay
         public string PId { get; set; }
 
         [MaxLength(256)]
-        public string Url { get; set; }
+        public string Path { get; set; }
+
+
+        [MaxLength(256)]
+        public string Title { get; set; }
+
+        [MaxLength(256)]
+        public string Icon { get; set; }
 
         [MaxLength(512)]
         public string Description { get; set; }

@@ -64,7 +64,7 @@ namespace LocalS.Service.Api.Account
 
             switch (sysUser.BelongSite)
             {
-                case Enumeration.BelongSite.Merchant:
+                case Enumeration.BelongSite.Merch:
                     var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.Id == sysUser.Id).FirstOrDefault();
                     if (merchantUser != null)
                     {
@@ -83,6 +83,33 @@ namespace LocalS.Service.Api.Account
             return result;
         }
 
+        private List<Menu> GetMenus(Enumeration.BelongSite belongSite)
+        {
+            var menus = new List<Menu>();
+
+            var sysMenus = (from menu in CurrentDb.SysMenu where (from rolemenu in CurrentDb.SysRoleMenu where (from sysPositionRole in CurrentDb.SysPositionRole select sysPositionRole.RoleId).Contains(rolemenu.RoleId) select rolemenu.MenuId).Contains(menu.Id) && menu.BelongSite == belongSite select menu).OrderBy(m => m.Priority).ToList();
+
+            var sysMenusDept1 = from c in sysMenus where c.Dept == 1 select c;
+
+            foreach (var sysMenuDept1 in sysMenusDept1)
+            {
+                var menu1 = new Menu();
+                menu1.Name = sysMenuDept1.Name;
+                menu1.Path = sysMenuDept1.Path;
+                menu1.Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon };
+
+                var sysMenusDept2 = from c in sysMenus where c.PId == sysMenuDept1.Id select c;
+
+                foreach (var sysMenuDept2 in sysMenusDept2)
+                {
+                    menu1.Children.Add(new MenuChild { Name = sysMenuDept2.Name, Path = sysMenuDept2.Path, Meta = new MenuMeta { Title = sysMenuDept2.Title, Icon = sysMenuDept2.Icon } });
+                }
+
+                menus.Add(menu1);
+            }
+
+            return menus;
+        }
         public CustomJsonResult GetInfo(string operater, string userId, RupOwnGetInfo rup)
         {
             var result = new CustomJsonResult();
@@ -100,20 +127,10 @@ namespace LocalS.Service.Api.Account
             switch (rup.WebSite)
             {
                 case "admin":
+                    ret.Menus = GetMenus(Enumeration.BelongSite.Admin);
                     break;
                 case "merch":
-                    var menus = new List<Menu>();
-
-                    var menu1 = new Menu();
-                    menu1.Name = "User";
-                    menu1.Path = "/user";
-                    menu1.Meta = new MenuMeta { Title = "用户管理", Icon = "example" };
-                    menu1.Children.Add(new MenuChild { Name = "List", Path = "list", Meta = new MenuMeta { Title = "用户列表", Icon = "table" } });
-                    menu1.Children.Add(new MenuChild { Name = "Add", Path = "add", Meta = new MenuMeta { Title = "新建用户", Icon = "table" } });
-
-                    menus.Add(menu1);
-
-                    ret.Menus = menus;
+                    ret.Menus = GetMenus(Enumeration.BelongSite.Merch);
                     break;
             }
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", ret);

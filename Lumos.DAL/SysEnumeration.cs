@@ -28,7 +28,7 @@ namespace Lumos.DbRelay
         {
             Unknow = 0,
             Admin = 1,
-            Merchant = 2,
+            Merch = 2,
             Client = 3,
         }
 

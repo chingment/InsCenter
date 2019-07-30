@@ -34,7 +34,7 @@ namespace LocalS.Service.Api.InsApp
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "您好，应用无法访问，造成的原因：商户信息无法解释");
             }
 
-       
+
             var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.MerchantId == mId && m.TppId == tppId).FirstOrDefault();
             if (merchantUser == null)
             {
@@ -45,7 +45,7 @@ namespace LocalS.Service.Api.InsApp
                 merchantUser.SecurityStamp = GuidUtil.New();
                 merchantUser.RegisterTime = DateTime.Now;
                 merchantUser.IsDisable = false;
-                merchantUser.BelongSite = Enumeration.BelongSite.Merchant;
+                merchantUser.BelongSite = Enumeration.BelongSite.Merch;
                 merchantUser.IsCanDelete = false;
                 merchantUser.CreateTime = DateTime.Now;
                 merchantUser.Creator = merchantUser.Id;
@@ -70,14 +70,14 @@ namespace LocalS.Service.Api.InsApp
 
             var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.UserName == rop.UserName).FirstOrDefault();
 
-            if (merchantUser==null)
+            if (merchantUser == null)
             {
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号不存在");
             }
 
             if (!PassWordHelper.VerifyHashedPassword(merchantUser.PasswordHash, rop.Password))
             {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号密码不正确"); 
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号密码不正确");
             }
 
             if (merchantUser.IsDisable)

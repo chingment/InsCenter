@@ -118,7 +118,7 @@ namespace LocalS.Service.Api.Merch
                 user.PasswordHash = PassWordHelper.HashPassword(rop.Password);
                 user.Email = rop.Email;
                 user.PhoneNumber = rop.PhoneNumber;
-                user.BelongSite = Enumeration.BelongSite.Merchant;
+                user.BelongSite = Enumeration.BelongSite.Merch;
                 user.IsDelete = false;
                 user.IsCanDelete = true;
                 user.IsDisable = false;

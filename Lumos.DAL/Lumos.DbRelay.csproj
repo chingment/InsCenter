@@ -58,7 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorizeRelay\AuthorizeRelay.cs" />
     <Compile Include="AuthorizeRelay\AuthorizeRelayDbContext.cs" />
     <Compile Include="AuthorizeRelay\DbContextDatabaseExtensions.cs" />
     <Compile Include="AuthorizeRelay\PassWordHelper.cs" />
