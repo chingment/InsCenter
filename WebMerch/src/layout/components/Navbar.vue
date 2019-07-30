@@ -47,8 +47,8 @@ export default {
   },
   methods: {
     goPersonalCenter() {
-      console.log(this.$store.state.settings.personalCenterPath)
-      window.location.href = `${this.$store.state.settings.personalCenterPath}?token=${getToken()}`
+      console.log(process.env.VUE_APP_PERSONALCENTER_URL)
+      window.location.href = `${process.env.VUE_APP_PERSONALCENTER_URL}?token=${getToken()}`
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
@@ -56,7 +56,7 @@ export default {
     async logout() {
       removeToken()
       var path = encodeURIComponent(window.location.href)
-      window.location.href = `${this.$store.state.settings.loginPath}?logout=1&redirect=${path}`
+      window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=1&redirect=${path}`
     }
   }
 }

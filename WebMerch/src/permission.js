@@ -28,7 +28,7 @@ router.beforeEach(async(to, from, next) => {
     })
     NProgress.done()
   } else {
-    window.location.href = `${store.state.settings.loginPath}?logout=2&redirect=${path}`
+    window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=2&redirect=${path}`
     NProgress.done()
   }
 })

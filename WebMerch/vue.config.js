@@ -1,12 +1,11 @@
 'use strict'
 const path = require('path')
-const defaultSettings = require('./src/settings.js')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'vue Admin Template' // page title
+const name = process.env.VUE_APP_WEBSITE_NAME
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.

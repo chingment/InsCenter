@@ -2,7 +2,7 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-import commonUtil from '@/utils/commonUtil'
+
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -63,7 +63,7 @@ service.interceptors.response.use(
         }).then(() => {
           store.dispatch('own/resetToken').then(() => {
             var path = encodeURIComponent(window.location.href)
-            window.location.href = `${store.state.settings.loginPath}?logout=2&redirect=${path}`
+            window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=2&redirect=${path}`
           })
         })
       }
