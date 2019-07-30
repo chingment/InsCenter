@@ -91,7 +91,7 @@ namespace LocalS.Service.Api.Account
             var sysUser = CurrentDb.SysUser.Where(m => m.Id == userId).FirstOrDefault();
 
             ret.UserName = sysUser.UserName;
-            ret.FullName = sysUser.Nickname;
+            ret.FullName = sysUser.FullName;
             ret.Avatar = sysUser.Avatar;
             ret.Introduction = sysUser.Introduction;
             ret.Email = sysUser.Email;
