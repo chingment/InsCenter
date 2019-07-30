@@ -7,7 +7,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img :src="userInfo.avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -42,23 +42,21 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'userInfo'
     ])
   },
   methods: {
     goPersonalCenter() {
-      console.log(this.$store.state.settings.personalCenterPath)
-      window.location.href = `${this.$store.state.settings.personalCenterPath}?token=${getToken()}`
+      console.log(process.env.VUE_APP_PERSONALCENTER_URL)
+      window.location.href = `${process.env.VUE_APP_PERSONALCENTER_URL}?token=${getToken()}`
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      // await this.$store.dispatch('own/logout')
       removeToken()
       var path = encodeURIComponent(window.location.href)
-      window.location.href = `${this.$store.state.settings.loginPath}?logout=1&redirect=${path}`
-      // this.$router.push(`${this.$store.state.settings.loginPath}?redirect=${this.$route.fullPath}`)
+      window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=1&redirect=${path}`
     }
   }
 }

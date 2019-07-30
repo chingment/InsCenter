@@ -1,25 +1,17 @@
 import request from '@/utils/request'
 
-export function loginByAccount(data) {
-  return request({
-    url: '/own/loginByAccount',
-    method: 'post',
-    data
-  })
-}
-
-export function getInfo(token) {
+export function getInfo(token, website) {
   return request({
     url: '/own/getInfo',
     method: 'get',
-    params: { token }
+    params: { token, website }
   })
 }
 
-export function logout(token) {
+export function checkPermission(code) {
   return request({
-    url: '/own/logout',
-    method: 'post',
-    params: { token }
+    url: '/own/checkPermission',
+    method: 'get',
+    params: { code }
   })
 }
