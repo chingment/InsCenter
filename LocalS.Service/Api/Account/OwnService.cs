@@ -87,7 +87,7 @@ namespace LocalS.Service.Api.Account
         {
             var menus = new List<Menu>();
 
-            var sysMenus = (from menu in CurrentDb.SysMenu where (from rolemenu in CurrentDb.SysRoleMenu where (from sysPositionRole in CurrentDb.SysPositionRole select sysPositionRole.RoleId).Contains(rolemenu.RoleId) select rolemenu.MenuId).Contains(menu.Id) && menu.BelongSite == belongSite select menu).OrderBy(m => m.Priority).ToList();
+            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite).ToList();
 
             var sysMenusDept1 = from c in sysMenus where c.Dept == 1 select c;
 
