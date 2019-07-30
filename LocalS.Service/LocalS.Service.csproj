@@ -59,11 +59,13 @@
     <Compile Include="Api\Account\RModels\RetHomeGetIndexPageData.cs" />
     <Compile Include="Api\Account\RModels\RetOwnGetInfo.cs" />
     <Compile Include="Api\Account\RModels\RetOwnLoginByAccount.cs" />
+    <Compile Include="Api\Account\RModels\RopUserInfoSave.cs" />
     <Compile Include="Api\Account\RModels\RupOwnCheckPermission.cs" />
     <Compile Include="Api\Account\RModels\RopOwnLoginByAccount.cs" />
     <Compile Include="Api\Account\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Account\RModels\RupLoginLogGetList.cs" />
     <Compile Include="Api\Account\RModels\RupOwnGetInfo.cs" />
+    <Compile Include="Api\Account\UserInfoService.cs" />
     <Compile Include="Api\InsApp\HomeService.cs" />
     <Compile Include="Api\InsApp\InsAppServiceFactory.cs" />
     <Compile Include="Api\InsApp\InsCarService.cs" />

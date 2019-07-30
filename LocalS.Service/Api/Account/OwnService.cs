@@ -76,7 +76,7 @@ namespace LocalS.Service.Api.Account
 
             LoginLog(sysUser.Id, sysUser.Id, Enumeration.LoginResult.Success, rop.LoginWay, rop.Ip, "", "登录成功");
 
-            SSOUtil.SetTokenInfo(ret.Token, tokenInfo, new TimeSpan(0, 1, 0));
+            SSOUtil.SetTokenInfo(ret.Token, tokenInfo, new TimeSpan(1, 0, 0));
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "登录成功", ret);
 

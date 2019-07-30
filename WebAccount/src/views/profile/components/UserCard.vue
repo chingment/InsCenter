@@ -6,22 +6,21 @@
 
     <div class="user-profile">
       <div class="box-center">
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="true">
-          <div>Hello</div>
-          {{ user.role }}
+        <pan-thumb :image="userInfo.avatar" :height="'100px'" :width="'100px'" :hoverable="true">
+          <div></div>
         </pan-thumb>
       </div>
       <div class="box-center">
-        <div class="user-name text-center">{{ user.name }}</div>
+        <div class="user-name text-center">{{ userInfo.fullName }}</div>
       </div>
     </div>
 
     <div class="user-bio">
       <div class="user-education user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>介绍</span></div>
+        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>备注</span></div>
         <div class="user-bio-section-body">
           <div class="text-muted">
-            JS in Computer Science from the University of Technology
+            {{ userInfo.introduction }}
           </div>
         </div>
       </div>
@@ -35,14 +34,16 @@ import PanThumb from '@/components/PanThumb'
 export default {
   components: { PanThumb },
   props: {
-    user: {
+    userInfo: {
       type: Object,
       default: () => {
         return {
-          name: '',
+          fullName: '',
+          userName: '',
+          phoneNumber: '',
           email: '',
           avatar: '',
-          roles: ''
+          introduction: ''
         }
       }
     }

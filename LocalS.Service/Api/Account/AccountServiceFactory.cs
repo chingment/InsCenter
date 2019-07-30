@@ -31,5 +31,13 @@ namespace LocalS.Service.Api.Account
                 return new LoginLogService();
             }
         }
+
+        public static UserInfoService UserInfo
+        {
+            get
+            {
+                return new UserInfoService();
+            }
+        }
     }
 }
