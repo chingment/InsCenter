@@ -94,15 +94,25 @@ namespace LocalS.Service.Api.Account
             foreach (var sysMenuDept1 in sysMenusDept1)
             {
                 var menu1 = new Menu();
-                menu1.Name = sysMenuDept1.Name;
+               
                 menu1.Path = sysMenuDept1.Path;
+                menu1.Component = null;
                 menu1.Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon };
 
-                var sysMenusDept2 = from c in sysMenus where c.PId == sysMenuDept1.Id select c;
+                var sysMenusDept2 = (from c in sysMenus where c.PId == sysMenuDept1.Id select c).ToList();
 
-                foreach (var sysMenuDept2 in sysMenusDept2)
+                if (sysMenusDept2.Count == 0)
                 {
-                    menu1.Children.Add(new MenuChild { Name = sysMenuDept2.Name, Path = sysMenuDept2.Path, Meta = new MenuMeta { Title = sysMenuDept2.Title, Icon = sysMenuDept2.Icon } });
+                    menu1.Name = null;
+                    menu1.Children.Add(new MenuChild { Name = sysMenuDept1.Name, Path = sysMenuDept1.Path, Component = sysMenuDept1.Component, Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon } });
+                }
+                else
+                {
+                    menu1.Name = sysMenuDept1.Name;
+                    foreach (var sysMenuDept2 in sysMenusDept2)
+                    {
+                        menu1.Children.Add(new MenuChild { Name = sysMenuDept2.Name, Path = sysMenuDept2.Path, Component = sysMenuDept2.Component, Meta = new MenuMeta { Title = sysMenuDept2.Title, Icon = sysMenuDept2.Icon } });
+                    }
                 }
 
                 menus.Add(menu1);

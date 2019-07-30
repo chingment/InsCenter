@@ -25,6 +25,8 @@ namespace Lumos.DbRelay
 
         [MaxLength(256)]
         public string Icon { get; set; }
+        [MaxLength(256)]
+        public string Component { get; set; }
 
         [MaxLength(512)]
         public string Description { get; set; }

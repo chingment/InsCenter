@@ -15,5 +15,6 @@ namespace LocalS.Service.UI
         public string Name { get; set; }
         public string Path { get; set; }
         public MenuMeta Meta { get; set; }
+        public string Component { get; set; }
     }
 }

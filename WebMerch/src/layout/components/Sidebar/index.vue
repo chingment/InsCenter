@@ -43,7 +43,8 @@ export default {
       //   }, { path: 'add', meta: { title: '用户列表', icon: 'table' }
       //   }]
       // }]
-      // console.log(JSON.stringify(this.$router.options.routes))
+      // this.$store.getters.userInfo.menus
+      console.log('this.$router.options.routes' + JSON.stringify(this.$router.options.routes))
       // console.log(JSON.stringify(this.$store.getters.menus))
       return this.$store.getters.userInfo.menus
     },

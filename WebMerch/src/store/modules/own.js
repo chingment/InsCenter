@@ -1,6 +1,37 @@
 import { getInfo, checkPermission } from '@/api/own'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { resetRouter } from '@/router'
+import { constantRoutes } from '@/router'
+import router from '@/router'
+import Layout from '@/layout'
+
+function generaMenu(routers, data) {
+  data.forEach((item) => {
+    const menu = {
+      path: item.path,
+      component: item.component == null ? Layout : () => import(`@/views${item.component}`),
+      hidden: true,
+      children: [],
+      name: item.name,
+      meta: { title: item.title, icon: item.icon }
+    }
+    if (item.children) {
+      generaMenu(menu.children, item.children)
+    }
+    routers.push(menu)
+  })
+  // const menu = {
+  //   path: '/',
+  //   component: () => import(`@/views/home/index`),
+  //   hidden: true,
+  //   children: [],
+  //   name: 'Home',
+  //   meta: { title: '用户礼拜二', icon: '' }
+  // }
+  // if (item.children) {
+  //   generaMenu(menu.children, item.children)
+  // }
+  // routers.push(menu)
+}
 
 const state = {
   token: getToken(),
@@ -32,6 +63,10 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
+        // console.log(JSON.stringify(constantRoutes))
+        generaMenu(constantRoutes, data.menus)
+        router.addRoutes(constantRoutes)
+        // console.log(JSON.stringify(constantRoutes))
         commit('SET_USERINFO', data)
         resolve(response)
       }).catch(error => {
@@ -45,7 +80,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit('SET_TOKEN', '')
       removeToken()
-      resetRouter()
+      router.resetRouter()
       resolve()
     })
   },

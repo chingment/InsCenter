@@ -21,7 +21,9 @@ router.beforeEach(async(to, from, next) => {
   var path = encodeURIComponent(window.location.href)
   if (token) {
     if (store.getters.userInfo == null) {
-      await store.dispatch('own/getInfo')
+      await store.dispatch('own/getInfo').then((res) => {
+        next({ ...to, replace: true })
+      })
     }
     await store.dispatch('own/checkPermission', '10001').then((res) => {
       next()
