@@ -11,13 +11,8 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/">
-            <el-dropdown-item>
-              主页
-            </el-dropdown-item>
-          </router-link>
-          <el-dropdown-item>
-            <span style="display:block;" @click="goPersonalCenter">个人中心</span>
+          <el-dropdown-item  v-for="child in dropdownItems" :key="child.path"  @click="itemClick(child)">
+              <span style="display:block;" @click="itemClick(child)"> {{ child.meta.title }}</span>
           </el-dropdown-item>
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">退出</span>
@@ -34,21 +29,43 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import { removeToken } from '@/utils/auth'
 import { getToken } from '@/utils/auth'
+import { isExternal } from '@/utils/validate'
+
+function generaNavbars(navbars, data) {
+  data.forEach((item) => {
+    
+    if (item.children) {
+      generaNavbars(navbars, item.children)
+    }
+    if(item.navbar){
+      navbars.push(item)
+    }
+  })
+}
+
 export default {
   components: {
     Breadcrumb,
     Hamburger
   },
+  data() {
+    var navbars=[]
+    generaNavbars(navbars,this.$store.getters.userInfo.menus)
+    return { dropdownItems:navbars }
+  },
   computed: {
     ...mapGetters([
       'sidebar',
       'userInfo'
-    ])
+    ]),
   },
   methods: {
-    goPersonalCenter() {
-      console.log(process.env.VUE_APP_PERSONALCENTER_URL)
-      window.location.href = `${process.env.VUE_APP_PERSONALCENTER_URL}?token=${getToken()}`
+    itemClick(item) {
+     if (isExternal(item.path)) {
+       window.location.href = `${item.path}?token=${getToken()}`
+     } else {
+       this.$router.push({ path:item.path })
+     }
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')

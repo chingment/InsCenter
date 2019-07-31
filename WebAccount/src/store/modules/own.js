@@ -12,7 +12,8 @@ function _generateRoutes(routers, data) {
       children: undefined,
       hidden: item.hidden,
       name: item.name,
-      meta: item.meta
+      meta: item.meta,
+      redirect: item.redirect
     }
     if (item.children) {
       if (menu.children === undefined) {

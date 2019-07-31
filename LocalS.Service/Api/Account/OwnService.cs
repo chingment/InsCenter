@@ -107,6 +107,8 @@ namespace LocalS.Service.Api.Account
                     menu1.Name = null;
                     menu1.Meta = null;
                     menu1.Navbar = false;
+                    menu1.Redirect = sysMenuDept1.Path;
+
                     menu1.Children.Add(new MenuChild { Navbar = sysMenuDept1.IsNavbar, Hidden = !sysMenuDept1.IsSidebar, Name = sysMenuDept1.Name, Path = sysMenuDept1.Path, Component = sysMenuDept1.Component, Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon } });
                 }
                 else
