@@ -4,7 +4,7 @@ import { constantRoutes } from '@/router'
 import router from '@/router'
 import Layout from '@/layout'
 
-function generaMenu(routers, data) {
+function _generateRoutes(routers, data) {
   data.forEach((item) => {
     const menu = {
       path: item.path,
@@ -18,21 +18,22 @@ function generaMenu(routers, data) {
       if (menu.children === undefined) {
         menu.children = []
       }
-      generaMenu(menu.children, item.children)
+      _generateRoutes(menu.children, item.children)
     }
     routers.push(menu)
   })
 }
 
-function generateRoutes(menus) {
-  generaMenu(constantRoutes, menus)
+function generateRoutes(data) {
+  _generateRoutes(constantRoutes, data)
   constantRoutes.push({ path: '*', redirect: '/404', hidden: true })
   router.addRoutes(constantRoutes)
 }
 
 const state = {
   token: getToken(),
-  userInfo: null
+  userInfo: null,
+  navBar: []
 }
 
 const mutations = {
@@ -41,6 +42,9 @@ const mutations = {
   },
   SET_USERINFO: (state, userInfo) => {
     state.userInfo = userInfo
+  },
+  SET_NAVBAR: (state, navBar) => {
+    state.navBar = navBar
   }
 }
 
@@ -58,9 +62,7 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-
         generateRoutes(data.menus)
-
         commit('SET_USERINFO', data)
         resolve(data)
       }).catch(error => {

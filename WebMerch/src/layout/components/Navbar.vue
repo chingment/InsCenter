@@ -11,15 +11,17 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          
-          <router-link to="/">
+          <el-dropdown-item  v-for="child in dropdownItems" :key="child.path"  @click="itemClick(child)">
+              <span style="display:block;" @click="itemClick(child)"> {{ child.meta.title }}</span>
+          </el-dropdown-item>
+          <!-- <router-link to="/">
             <el-dropdown-item>
               主页
             </el-dropdown-item>
           </router-link>
           <el-dropdown-item>
             <span style="display:block;" @click="goPersonalCenter">个人中心</span>
-          </el-dropdown-item>
+          </el-dropdown-item> -->
 
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">退出</span>
@@ -36,15 +38,16 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import { removeToken } from '@/utils/auth'
 import { getToken } from '@/utils/auth'
+import { isExternal } from '@/utils/validate'
 
 function generaNavbars(navbars, data) {
   data.forEach((item) => {
     
     if (item.children) {
-      generaMenu(menu.children, item.children)
+      generaNavbars(navbars, item.children)
     }
-    if(item.isNavbar){
-      navbars.push(menu)
+    if(item.navbar){
+      navbars.push(item)
     }
   })
 }
@@ -54,25 +57,33 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  data() {
+    var _dropdownItems= this.getDropdownItems()
+    return { dropdownItems:_dropdownItems }
+  },
   computed: {
     ...mapGetters([
       'sidebar',
       'userInfo'
     ]),
-    dropdownItems(){
-
-var navbars=[]
-generaNavbars(navbars,this.$store.getters.menus)
-
-console.log('navbars:'+JSON.stringify(navbars))
-
-      return path
-    }
   },
   methods: {
+    getDropdownItems(){
+       var navbars=[]
+      generaNavbars(navbars,this.$store.getters.userInfo.menus)
+      return navbars
+    },
     goPersonalCenter() {
       console.log(process.env.VUE_APP_PERSONALCENTER_URL)
       window.location.href = `${process.env.VUE_APP_PERSONALCENTER_URL}?token=${getToken()}`
+    },
+    itemClick(item) {
+     if (isExternal(item.path)) {
+       window.location.href = `${item.path}?token=${getToken()}`
+     } else {
+       this.$router.push({ path:item.path })
+     }
+     console.log("click")
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
