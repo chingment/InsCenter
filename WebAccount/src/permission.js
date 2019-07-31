@@ -35,22 +35,24 @@ router.beforeEach(async(to, from, next) => {
     }
     console.log('store.getters.userInfo：' + store.getters.userInfo)
     if (store.getters.userInfo == null) {
-      await store.dispatch('own/getInfo')
-    }
-
-    await store.dispatch('own/checkPermission', '10001').then((res) => {
-      if (hasRedirect) {
-        var url = changeURLArg(decodeURIComponent(redirect), 'token', getToken())
-        window.location.href = url
-      } else {
-        if (to.path === '/login') {
-          next({ path: '/' })
-          NProgress.done()
+      await store.dispatch('own/getInfo').then((res) => {
+        next({ ...to, replace: true })
+      })
+    } else {
+      await store.dispatch('own/checkPermission', '10001').then((res) => {
+        if (hasRedirect) {
+          var url = changeURLArg(decodeURIComponent(redirect), 'token', getToken())
+          window.location.href = url
         } else {
-          next()
+          if (to.path === '/login') {
+            next({ path: '/' })
+            NProgress.done()
+          } else {
+            next()
+          }
         }
-      }
-    })
+      })
+    }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
       next()

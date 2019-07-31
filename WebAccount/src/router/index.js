@@ -41,42 +41,7 @@ export const constantRoutes = [
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
-  },
-
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/home',
-    children: [{
-      path: 'home',
-      name: 'Home',
-      component: () => import('@/views/home/index'),
-      meta: { title: '主页', icon: 'dashboard' }
-    }]
-  },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/userInfo',
-    name: 'Profile',
-    meta: { title: '个人中心', icon: 'user' },
-    children: [
-      {
-        path: 'userInfo',
-        name: 'UserInfo',
-        component: () => import('@/views/profile/userInfo'),
-        meta: { title: '基本信息', icon: 'form' }
-      },
-      {
-        path: 'loginLog',
-        name: 'LoginLog',
-        component: () => import('@/views/profile/loginLog'),
-        meta: { title: '登录历史', icon: 'nested' }
-      }
-    ]
-  },
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  }
 ]
 
 const createRouter = () => new Router({

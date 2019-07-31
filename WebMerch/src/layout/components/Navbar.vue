@@ -14,15 +14,6 @@
           <el-dropdown-item  v-for="child in dropdownItems" :key="child.path"  @click="itemClick(child)">
               <span style="display:block;" @click="itemClick(child)"> {{ child.meta.title }}</span>
           </el-dropdown-item>
-          <!-- <router-link to="/">
-            <el-dropdown-item>
-              主页
-            </el-dropdown-item>
-          </router-link>
-          <el-dropdown-item>
-            <span style="display:block;" @click="goPersonalCenter">个人中心</span>
-          </el-dropdown-item> -->
-
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
@@ -58,8 +49,9 @@ export default {
     Hamburger
   },
   data() {
-    var _dropdownItems= this.getDropdownItems()
-    return { dropdownItems:_dropdownItems }
+    var navbars=[]
+    generaNavbars(navbars,this.$store.getters.userInfo.menus)
+    return { dropdownItems:navbars }
   },
   computed: {
     ...mapGetters([
@@ -68,22 +60,12 @@ export default {
     ]),
   },
   methods: {
-    getDropdownItems(){
-       var navbars=[]
-      generaNavbars(navbars,this.$store.getters.userInfo.menus)
-      return navbars
-    },
-    goPersonalCenter() {
-      console.log(process.env.VUE_APP_PERSONALCENTER_URL)
-      window.location.href = `${process.env.VUE_APP_PERSONALCENTER_URL}?token=${getToken()}`
-    },
     itemClick(item) {
      if (isExternal(item.path)) {
        window.location.href = `${item.path}?token=${getToken()}`
      } else {
        this.$router.push({ path:item.path })
      }
-     console.log("click")
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
