@@ -20,5 +20,6 @@ namespace LocalS.Service.UI
         public List<MenuChild> Children { get; set; }
         public bool Hidden { get; set; }
         public string Component { get; set; }
+        public bool Navbar { get; set; }
     }
 }

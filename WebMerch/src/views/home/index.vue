@@ -1,19 +1,14 @@
 <template>
   <div class="home-container">
-    <div class="home-text">name: {{ name }}</div>
+    <div class="home-text">name:</div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+
 
 export default {
-  name: 'Home',
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
-  }
+  name: 'Home'
 }
 </script>
 

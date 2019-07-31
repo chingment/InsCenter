@@ -17,5 +17,7 @@ namespace LocalS.Service.UI
         public bool Hidden { get; set; }
         public MenuMeta Meta { get; set; }
         public string Component { get; set; }
+
+        public bool Navbar { get; set; }
     }
 }

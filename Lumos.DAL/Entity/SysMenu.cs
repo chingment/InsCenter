@@ -44,6 +44,8 @@ namespace Lumos.DbRelay
         public Enumeration.BelongSite BelongSite { get; set; }
 
         public bool IsHidden { get; set; }
+
+        public bool IsNavbar { get; set; }
         public int Dept { get; set; }
     }
 }

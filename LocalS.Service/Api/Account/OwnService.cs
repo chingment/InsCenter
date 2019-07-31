@@ -105,14 +105,16 @@ namespace LocalS.Service.Api.Account
                 if (sysMenusDept2.Count == 0)
                 {
                     menu1.Name = null;
-                    menu1.Children.Add(new MenuChild { Hidden= sysMenuDept1.IsHidden, Name = sysMenuDept1.Name, Path = sysMenuDept1.Path, Component = sysMenuDept1.Component, Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon } });
+                    menu1.Meta = null;
+                    menu1.Navbar = false;
+                    menu1.Children.Add(new MenuChild { Navbar = sysMenuDept1.IsNavbar, Hidden = sysMenuDept1.IsHidden, Name = sysMenuDept1.Name, Path = sysMenuDept1.Path, Component = sysMenuDept1.Component, Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon } });
                 }
                 else
                 {
                     menu1.Name = sysMenuDept1.Name;
                     foreach (var sysMenuDept2 in sysMenusDept2)
                     {
-                        menu1.Children.Add(new MenuChild { Hidden = sysMenuDept2.IsHidden, Name = sysMenuDept2.Name, Path = sysMenuDept2.Path, Component = sysMenuDept2.Component, Meta = new MenuMeta { Title = sysMenuDept2.Title, Icon = sysMenuDept2.Icon } });
+                        menu1.Children.Add(new MenuChild { Navbar = sysMenuDept2.IsNavbar, Hidden = sysMenuDept2.IsHidden, Name = sysMenuDept2.Name, Path = sysMenuDept2.Path, Component = sysMenuDept2.Component, Meta = new MenuMeta { Title = sysMenuDept2.Title, Icon = sysMenuDept2.Icon } });
                     }
                 }
 

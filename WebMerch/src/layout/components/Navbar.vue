@@ -11,6 +11,7 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
+          
           <router-link to="/">
             <el-dropdown-item>
               主页
@@ -19,6 +20,7 @@
           <el-dropdown-item>
             <span style="display:block;" @click="goPersonalCenter">个人中心</span>
           </el-dropdown-item>
+
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
@@ -34,6 +36,19 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import { removeToken } from '@/utils/auth'
 import { getToken } from '@/utils/auth'
+
+function generaNavbars(navbars, data) {
+  data.forEach((item) => {
+    
+    if (item.children) {
+      generaMenu(menu.children, item.children)
+    }
+    if(item.isNavbar){
+      navbars.push(menu)
+    }
+  })
+}
+
 export default {
   components: {
     Breadcrumb,
@@ -43,7 +58,16 @@ export default {
     ...mapGetters([
       'sidebar',
       'userInfo'
-    ])
+    ]),
+    dropdownItems(){
+
+var navbars=[]
+generaNavbars(navbars,this.$store.getters.menus)
+
+console.log('navbars:'+JSON.stringify(navbars))
+
+      return path
+    }
   },
   methods: {
     goPersonalCenter() {

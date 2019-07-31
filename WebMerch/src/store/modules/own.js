@@ -9,12 +9,15 @@ function generaMenu(routers, data) {
     const menu = {
       path: item.path,
       component: item.component == null ? Layout : () => import(`@/views${item.component}`),
-      hidden: true,
-      children: [],
+      children: undefined,
+      hidden: item.hidden,
       name: item.name,
-      meta: { title: item.title, icon: item.icon }
+      meta: item.meta
     }
     if (item.children) {
+      if (menu.children === undefined) {
+        menu.children = []
+      }
       generaMenu(menu.children, item.children)
     }
     routers.push(menu)
@@ -56,7 +59,7 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        // generateRoutes(data.menus)
+        generateRoutes(data.menus)
 
         commit('SET_USERINFO', data)
         resolve(data)
