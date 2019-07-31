@@ -145,6 +145,9 @@ namespace LocalS.Service.Api.Account
                 case "merch":
                     ret.Menus = GetMenus(Enumeration.BelongSite.Merch);
                     break;
+                case "account":
+                    ret.Menus = GetMenus(Enumeration.BelongSite.Account);
+                    break;
             }
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", ret);
 

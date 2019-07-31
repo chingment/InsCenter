@@ -27,9 +27,9 @@ namespace Lumos.DbRelay
         public enum BelongSite
         {
             Unknow = 0,
-            Admin = 1,
-            Merch = 2,
-            Client = 3,
+            Account = 1,
+            Admin = 2,
+            Merch = 3
         }
 
         public enum LoginWay

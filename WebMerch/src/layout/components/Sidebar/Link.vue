@@ -21,7 +21,7 @@ export default {
       if (isExternal(url)) {
         return {
           is: 'a',
-          href: url+"?token=11",
+          href: url,
           target: '_blank',
           rel: 'noopener'
         }
