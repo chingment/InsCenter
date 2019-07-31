@@ -92,6 +92,9 @@ export default {
       return path.resolve(this.basePath, routePath)
     },
     resolveChild(child) {
+       if(child.hidden) {
+          return false
+       }
       return child
     }
   }

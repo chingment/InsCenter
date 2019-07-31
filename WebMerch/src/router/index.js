@@ -36,45 +36,46 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-  // {
-  //   path: '/',
-  //   component: Layout,
-  //   redirect: '/home',
-  //   children: [{
-  //     path: 'home',
-  //     name: 'Home',
-  //     component: () => import('@/views/home/index'),
-  //     meta: { title: '主页', icon: 'dashboard' }
-  //   }]
-  // },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/home',
+    children: [{
+      path: 'home',
+      name: 'Home',
+      component: () => import('@/views/home/index'),
+      meta: { title: '主页', icon: 'dashboard' }
+    }]
+  },
 
-  // {
-  //   path: '/user',
-  //   component: Layout,
-  //   redirect: '/user/list',
-  //   name: 'User',
-  //   meta: { title: '用户管理', icon: 'example' },
-  //   children: [
-  //     {
-  //       path: 'list',
-  //       name: 'List',
-  //       component: () => import('@/views/user/list'),
-  //       meta: { title: '用户列表', icon: 'table' }
-  //     },
-  //     {
-  //       path: 'add',
-  //       name: 'Add',
-  //       component: () => import('@/views/user/add'),
-  //       meta: { title: '新建用户', icon: 'tree' }
-  //     },
-  //     {
-  //       path: 'edit',
-  //       name: 'Edit',
-  //       component: () => import('@/views/user/edit'),
-  //       meta: { title: '编辑用户', icon: 'tree', hidden: true }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/list',
+    name: 'User',
+    meta: { title: '用户管理', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/user/list'),
+        meta: { title: '用户列表', icon: 'table' }
+      },
+      {
+        path: 'add',
+        name: 'Add',
+        component: () => import('@/views/user/add'),
+        meta: { title: '新建用户', icon: 'tree' }
+      },
+      {
+        path: 'edit',
+        name: 'Edit',
+        hidden: true,
+        component: () => import('@/views/user/edit'),
+        meta: { title: '编辑用户', icon: 'tree' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

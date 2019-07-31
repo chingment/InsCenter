@@ -19,18 +19,12 @@ function generaMenu(routers, data) {
     }
     routers.push(menu)
   })
-  // const menu = {
-  //   path: '/',
-  //   component: () => import(`@/views/home/index`),
-  //   hidden: true,
-  //   children: [],
-  //   name: 'Home',
-  //   meta: { title: '用户礼拜二', icon: '' }
-  // }
-  // if (item.children) {
-  //   generaMenu(menu.children, item.children)
-  // }
-  // routers.push(menu)
+}
+
+function generateRoutes(menus) {
+  generaMenu(constantRoutes, menus)
+  constantRoutes.push({ path: '*', redirect: '/404', hidden: true })
+  router.addRoutes(constantRoutes)
 }
 
 const state = {
@@ -58,17 +52,14 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo(state.token, 'merch').then(response => {
         const { data } = response
-
         if (!data) {
           reject('Verification failed, please Login again.')
         }
 
-        // console.log(JSON.stringify(constantRoutes))
-        generaMenu(constantRoutes, data.menus)
-        router.addRoutes(constantRoutes)
-        // console.log(JSON.stringify(constantRoutes))
+        // generateRoutes(data.menus)
+
         commit('SET_USERINFO', data)
-        resolve(response)
+        resolve(data)
       }).catch(error => {
         reject(error)
       })

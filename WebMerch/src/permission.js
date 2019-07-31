@@ -24,10 +24,11 @@ router.beforeEach(async(to, from, next) => {
       await store.dispatch('own/getInfo').then((res) => {
         next({ ...to, replace: true })
       })
+    } else {
+      await store.dispatch('own/checkPermission', '10001').then((res) => {
+        next()
+      })
     }
-    await store.dispatch('own/checkPermission', '10001').then((res) => {
-      next()
-    })
     NProgress.done()
   } else {
     window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=2&redirect=${path}`

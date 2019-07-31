@@ -44,9 +44,9 @@ export default {
       //   }]
       // }]
       // this.$store.getters.userInfo.menus
-      console.log('this.$router.options.routes' + JSON.stringify(this.$router.options.routes))
+      // console.log('this.$router.options.routes' + JSON.stringify(this.$router.options.routes))
       // console.log(JSON.stringify(this.$store.getters.menus))
-      return this.$store.getters.userInfo.menus
+      return this.$router.options.routes
     },
     activeMenu() {
       const route = this.$route
