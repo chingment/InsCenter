@@ -54,11 +54,11 @@ namespace LocalS.Service.Api.Admin
             return result;
         }
 
-        public List<TreeNode> GetTree(string id)
+        private List<TreeNode> GetTree(string id, List<SysMenu> sysMenu)
         {
             List<TreeNode> cmbTreeList = new List<TreeNode>();
 
-            var parentList = CurrentDb.SysMenu.Where(t => t.PId == id).ToList();
+            var parentList = sysMenu.Where(t => t.PId == id).ToList();
 
             foreach (var item in parentList)
             {
@@ -66,11 +66,20 @@ namespace LocalS.Service.Api.Admin
                 treeModel.Id = item.Id;
                 treeModel.PId = item.PId;
                 treeModel.Label = item.Title;
-                treeModel.Children.AddRange(GetTree(treeModel.Id));
+                treeModel.Children.AddRange(GetTree(treeModel.Id, sysMenu));
                 cmbTreeList.Add(treeModel);
             }
 
             return cmbTreeList;
+        }
+
+        public List<TreeNode> GetTree()
+        {
+            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).ToList();
+
+            var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
+
+            return GetTree(topMenu.Id, sysMenus);
         }
 
         public CustomJsonResult InitAdd(string operater)
@@ -79,7 +88,11 @@ namespace LocalS.Service.Api.Admin
 
             var ret = new RetAdminRoleInitAdd();
 
-            ret.Menus = GetTree("10000000000000000000000000000001");
+            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).ToList();
+
+            var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
+
+            ret.Menus = GetTree();
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
@@ -136,6 +149,16 @@ namespace LocalS.Service.Api.Admin
             ret.RoleId = role.Id;
             ret.Name = role.Name;
             ret.Description = role.Description;
+            ret.Menus = GetTree();
+
+            var roleMenus = from c in CurrentDb.SysMenu
+                            where
+                                (from o in CurrentDb.SysRoleMenu where o.RoleId == roleId select o.MenuId).Contains(c.Id)
+                            select c;
+
+
+            ret.CheckedMenuIds = (from p in roleMenus select p.Id).ToList();
+
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 

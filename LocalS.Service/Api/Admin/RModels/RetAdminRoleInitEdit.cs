@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocalS.Service.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,9 @@ namespace LocalS.Service.Api.Admin
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public List<TreeNode> Menus { get; set; }
+
+        public List<string> CheckedMenuIds { get; set; }
     }
 }

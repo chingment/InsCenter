@@ -7,6 +7,18 @@
         <el-form-item label="描述">
         <el-input v-model="form.description" type="textarea" />
       </el-form-item>
+      <el-form-item label="菜单">
+            <el-tree
+      ref="treemenus"
+      :data="treeData"
+      :props="defaultProps"
+      :default-checked-keys="treeDataDefaultChecked"
+      node-key="id"
+      class="filter-tree"
+      show-checkbox
+      default-expand-all
+    />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
       </el-form-item>
@@ -29,7 +41,9 @@ export default {
         description: ''
       },
       rules: {
-      }
+      },
+      treeData: [],
+      treeDataDefaultChecked: []
     }
   },
   created() {
@@ -40,7 +54,12 @@ export default {
       var roleId = getUrlParam('roleId')
       initEditRole({ roleId: roleId }).then(res => {
         if (res.result === 1) {
-          this.form = res.data
+          var d = res.data
+          this.form.roleId = d.roleId
+          this.form.name = d.name
+          this.form.description = d.description
+          this.treeData = d.menus
+          this.treeDataDefaultChecked = d.CheckedMenuIds
         }
       })
     },
