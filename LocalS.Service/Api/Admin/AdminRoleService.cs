@@ -170,19 +170,41 @@ namespace LocalS.Service.Api.Admin
 
             CustomJsonResult result = new CustomJsonResult();
 
-            var sysRole = CurrentDb.SysRole.Where(m => m.Id == rop.RoleId).FirstOrDefault();
-            if (sysRole == null)
+
+            using (TransactionScope ts = new TransactionScope())
             {
-                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "数据为空");
+                var sysRole = CurrentDb.SysRole.Where(m => m.Id == rop.RoleId).FirstOrDefault();
+                if (sysRole == null)
+                {
+                    return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "数据为空");
+                }
+
+                sysRole.Description = rop.Description;
+                sysRole.MendTime = DateTime.Now;
+                sysRole.Mender = operater;
+
+                List<SysRoleMenu> roleMenuList = CurrentDb.SysRoleMenu.Where(r => r.RoleId == rop.RoleId).ToList();
+
+                foreach (var roleMenu in roleMenuList)
+                {
+                    CurrentDb.SysRoleMenu.Remove(roleMenu);
+                }
+
+
+                if (rop.MenuIds != null)
+                {
+                    foreach (var menuId in rop.MenuIds)
+                    {
+                        CurrentDb.SysRoleMenu.Add(new SysRoleMenu { Id = GuidUtil.New(), RoleId = rop.RoleId, MenuId = menuId, Creator = operater, CreateTime = DateTime.Now });
+                    }
+                }
+
+                CurrentDb.SaveChanges();
+
+                result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "保存成功");
             }
 
-            sysRole.Description = rop.Description;
-            sysRole.MendTime = DateTime.Now;
-            sysRole.Mender = operater;
-
-            CurrentDb.SaveChanges();
-
-            return new CustomJsonResult(ResultType.Success, ResultCode.Success, "保存成功");
+            return result;
 
         }
     }

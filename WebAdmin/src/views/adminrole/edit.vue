@@ -12,11 +12,11 @@
       ref="treemenus"
       :data="treeData"
       :props="defaultProps"
-      :default-checked-keys="treeDataDefaultChecked"
       node-key="id"
       class="filter-tree"
       show-checkbox
       default-expand-all
+      :default-checked-keys="treeDataDefaultChecked"
     />
       </el-form-item>
       <el-form-item>
@@ -43,7 +43,11 @@ export default {
       rules: {
       },
       treeData: [],
-      treeDataDefaultChecked: []
+      treeDataDefaultChecked: [],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
+      }
     }
   },
   created() {
@@ -59,7 +63,7 @@ export default {
           this.form.name = d.name
           this.form.description = d.description
           this.treeData = d.menus
-          this.treeDataDefaultChecked = d.CheckedMenuIds
+          this.treeDataDefaultChecked = d.checkedMenuIds
         }
       })
     },
