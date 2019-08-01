@@ -12,7 +12,6 @@
       ref="treemenus"
       :data="treeData"
       :props="defaultProps"
-      :default-checked-keys='resourceCheckedKey'
       node-key="id"
       class="filter-tree"
       show-checkbox
@@ -36,7 +35,8 @@ export default {
     return {
       form: {
         name: '',
-        description: ''
+        description: '',
+        menuIds: null
       },
       treeData:[],
       rules: {
@@ -62,24 +62,26 @@ export default {
     resetForm() {
       this.form = {
         name: '',
-        description: ''
+        description: '',
+        menuIds:null
       }
     },
     onSubmit() {
+    
         var rad=''
         var ridsa = this.$refs.treemenus.getCheckedKeys().join(',')// 获取当前的选中的数据[数组] -id, 把数组转换成字符串
         var ridsb = this.$refs.treemenus.getCheckedNodes()// 获取当前的选中的数据{对象}
         ridsb.forEach(ids=>{//获取选中的所有的父级id
-          rad+=','+ids.pid
+          rad+=','+ids.pId
         })
         rad=rad.substr(1) // 删除字符串前面的','
         var rids=rad+','+ridsa
         var arr=rids.split(',')//  把字符串转换成数组
         arr=[...new Set(arr)]; // 数组去重
 
-      console.log(arr)
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          this.form.menuIds=arr
           MessageBox.confirm('确定要保存', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',

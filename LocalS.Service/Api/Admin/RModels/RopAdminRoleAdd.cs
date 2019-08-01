@@ -11,5 +11,7 @@ namespace LocalS.Service.Api.Admin
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public List<string> MenuIds { get; set; }
     }
 }

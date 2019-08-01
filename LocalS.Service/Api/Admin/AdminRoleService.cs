@@ -89,25 +89,40 @@ namespace LocalS.Service.Api.Admin
         {
             var result = new CustomJsonResult();
 
-            var isExists = CurrentDb.SysRole.Where(m => m.Name == rop.Name && m.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Admin).FirstOrDefault();
-            if (isExists != null)
+            using (TransactionScope ts = new TransactionScope())
             {
-                return new CustomJsonResult(ResultType.Failure, "该名称已经存在");
+                var isExists = CurrentDb.SysRole.Where(m => m.Name == rop.Name && m.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Admin).FirstOrDefault();
+                if (isExists != null)
+                {
+                    return new CustomJsonResult(ResultType.Failure, "该名称已经存在");
+                }
+
+                var sysRole = new SysRole();
+                sysRole.Id = GuidUtil.New();
+                sysRole.Name = rop.Name;
+                sysRole.Description = rop.Description;
+                sysRole.PId = GuidUtil.Empty();
+                sysRole.BelongSite = Enumeration.BelongSite.Admin;
+                sysRole.Dept = 0;
+                sysRole.CreateTime = DateTime.Now;
+                sysRole.Creator = operater;
+                CurrentDb.SysRole.Add(sysRole);
+
+                if (rop.MenuIds != null)
+                {
+                    foreach (var menuId in rop.MenuIds)
+                    {
+                        CurrentDb.SysRoleMenu.Add(new SysRoleMenu { Id = GuidUtil.New(), RoleId = sysRole.Id, MenuId = menuId, Creator = operater, CreateTime = DateTime.Now });
+                    }
+                }
+
+                CurrentDb.SaveChanges();
+                ts.Complete();
+
+                result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "保存成功");
             }
 
-            var sysRole = new SysRole();
-            sysRole.Id = GuidUtil.New();
-            sysRole.Name = rop.Name;
-            sysRole.Description = rop.Description;
-            sysRole.PId = GuidUtil.Empty();
-            sysRole.BelongSite = Enumeration.BelongSite.Admin;
-            sysRole.Dept = 0;
-            sysRole.CreateTime = DateTime.Now;
-            sysRole.Creator = operater;
-            CurrentDb.SysRole.Add(sysRole);
-            CurrentDb.SaveChanges();
-
-            return new CustomJsonResult(ResultType.Success, ResultCode.Success, "保存成功");
+            return result;
 
         }
 
