@@ -18,4 +18,19 @@ export function changeURLArg(url,arg,arg_val) {
       } 
   } 
   return url+'\n'+arg+'\n'+arg_val; 
-} 
+}
+
+export function getCheckedKeys(tree) {
+    var rad=''
+    var ridsa = tree.getCheckedKeys().join(',')// 获取当前的选中的数据[数组] -id, 把数组转换成字符串
+    var ridsb = tree.getCheckedNodes()// 获取当前的选中的数据{对象}
+    ridsb.forEach(ids=>{//获取选中的所有的父级id
+      rad+=',' + ids.pId
+    })
+    rad=rad.substr(1) // 删除字符串前面的','
+    var rids=rad+','+ridsa
+    var arr=rids.split(',')//  把字符串转换成数组
+    arr=[...new Set(arr)] // 数组去重
+
+    return arr
+}

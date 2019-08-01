@@ -4,7 +4,7 @@
       <el-form-item label="角色名称" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item label="描述">
+      <el-form-item label="描述" prop="description">
         <el-input v-model="form.description" type="textarea" />
       </el-form-item>
       <el-form-item label="菜单">
@@ -29,19 +29,20 @@
 import { MessageBox } from 'element-ui'
 import { addRole, initAddRole } from '@/api/adminrole'
 import fromReg from '@/utils/formReg'
-
+import { getCheckedKeys } from '@/utils/commonUtil'
 export default {
   data() {
     return {
       form: {
         name: '',
         description: '',
-        menuIds: null
+        menuIds: []
+      },
+      rules: {
+        name: [{ required: true,min: 1, max: 20, message: '必填,且不能超过20个字符', trigger: 'change' }],
+        description: [{ required: false,min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
       },
       treeData:[],
-      rules: {
-        name: [{ required: true,min: 1, max: 20, message: '必填,且不能超过20个字符', trigger: 'change' }]
-      },
       defaultProps: {
         children: 'children',
         label: 'label'
@@ -55,7 +56,8 @@ export default {
     init() {
       initAddRole().then(res => {
         if (res.result === 1) {
-          this.treeData = res.data.menus
+          var d = res.data
+          this.treeData = d.menus
         }
       })
     },
@@ -67,27 +69,14 @@ export default {
       }
     },
     onSubmit() {
-    
-        var rad=''
-        var ridsa = this.$refs.treemenus.getCheckedKeys().join(',')// 获取当前的选中的数据[数组] -id, 把数组转换成字符串
-        var ridsb = this.$refs.treemenus.getCheckedNodes()// 获取当前的选中的数据{对象}
-        ridsb.forEach(ids=>{//获取选中的所有的父级id
-          rad+=','+ids.pId
-        })
-        rad=rad.substr(1) // 删除字符串前面的','
-        var rids=rad+','+ridsa
-        var arr=rids.split(',')//  把字符串转换成数组
-        arr=[...new Set(arr)]; // 数组去重
-
-   
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          this.form.menuIds=arr
           MessageBox.confirm('确定要保存', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
+            this.form.menuIds = getCheckedKeys(this.$refs.treemenus)
             addRole(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {

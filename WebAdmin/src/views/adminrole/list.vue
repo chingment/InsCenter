@@ -83,8 +83,6 @@ export default {
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
-
-        // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
         }, 1.5 * 1000)
@@ -98,24 +96,11 @@ export default {
       this.$router.push({
         path: '/adminrole/add?redirect=/adminuser/list'
       })
-      // this.resetTemp()
-      // this.dialogStatus = 'create'
-      // this.dialogFormVisible = true
-      // this.$nextTick(() => {
-      //  this.$refs['dataForm'].clearValidate()
-      // })
     },
     handleUpdate(row) {
       this.$router.push({
         path: '/adminrole/edit?roleId=' + row.id
       })
-      // this.temp = Object.assign({}, row) // copy obj
-      // this.temp.timestamp = new Date(this.temp.timestamp)
-      // this.dialogStatus = 'update'
-      // this.dialogFormVisible = true
-      // this.$nextTick(() => {
-      //   this.$refs['dataForm'].clearValidate()
-      // })
     }
   }
 }

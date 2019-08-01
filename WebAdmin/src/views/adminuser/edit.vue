@@ -68,7 +68,6 @@ export default {
   methods: {
     init() {
       var userId = getUrlParam('userId')
-      console.log('userId:' + userId)
       initEditUser({ userId: userId }).then(res => {
         if (res.result === 1) {
           this.form = res.data

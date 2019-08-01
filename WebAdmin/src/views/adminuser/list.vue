@@ -72,7 +72,7 @@ import { fetchList } from '@/api/adminuser'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
 export default {
-  name: 'ComplexTable',
+  name: 'AdminUserList',
   components: { Pagination },
   data() {
     return {
@@ -83,11 +83,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        importance: undefined,
-        userName: undefined,
-        type: undefined
+        userName: undefined
       },
-      pvData: [],
       isMobileHidden: this.$store.state.app.device !== 'mobile'
     }
   },
@@ -101,7 +98,6 @@ export default {
         this.list = response.data.items
         this.total = response.data.total
 
-        // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
         }, 1.5 * 1000)
@@ -115,24 +111,11 @@ export default {
       this.$router.push({
         path: '/adminuser/add?redirect=/adminuser/list'
       })
-      // this.resetTemp()
-      // this.dialogStatus = 'create'
-      // this.dialogFormVisible = true
-      // this.$nextTick(() => {
-      //  this.$refs['dataForm'].clearValidate()
-      // })
     },
     handleUpdate(row) {
       this.$router.push({
         path: '/adminuser/edit?userId=' + row.id
       })
-      // this.temp = Object.assign({}, row) // copy obj
-      // this.temp.timestamp = new Date(this.temp.timestamp)
-      // this.dialogStatus = 'update'
-      // this.dialogFormVisible = true
-      // this.$nextTick(() => {
-      //   this.$refs['dataForm'].clearValidate()
-      // })
     }
   }
 }
