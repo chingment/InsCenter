@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <div class="home-text">name:</div>
+  
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
+.home-container {
   &-container {
     margin: 30px;
   }

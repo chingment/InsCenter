@@ -239,11 +239,6 @@ namespace Lumos
 
         }
 
-        public CustomJsonResult(ResultType type, string message) : base(type, "", message, null, null)
-        {
-
-        }
-
         public CustomJsonResult(ResultType type, string code, string message) : base(type, code, message, null, null)
         {
 

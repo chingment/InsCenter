@@ -107,7 +107,7 @@ namespace LocalS.Service.Api.Admin
                 var isExists = CurrentDb.SysRole.Where(m => m.Name == rop.Name && m.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Admin).FirstOrDefault();
                 if (isExists != null)
                 {
-                    return new CustomJsonResult(ResultType.Failure, "该名称已经存在");
+                    return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该名称已经存在");
                 }
 
                 var sysRole = new SysRole();
