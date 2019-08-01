@@ -64,6 +64,7 @@ namespace LocalS.Service.Api.Admin
             {
                 TreeNode treeModel = new TreeNode();
                 treeModel.Id = item.Id;
+                treeModel.PId = item.PId;
                 treeModel.Label = item.Title;
                 treeModel.Children.AddRange(GetTree(treeModel.Id));
                 cmbTreeList.Add(treeModel);

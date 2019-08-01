@@ -9,8 +9,8 @@
       </el-form-item>
       <el-form-item label="菜单">
             <el-tree
-      ref="tree2"
-      :data="data2"
+      ref="treemenus"
+      :data="treeData"
       :props="defaultProps"
       :default-checked-keys='resourceCheckedKey'
       node-key="id"
@@ -28,7 +28,7 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { addRole } from '@/api/adminrole'
+import { addRole, initAddRole } from '@/api/adminrole'
 import fromReg from '@/utils/formReg'
 
 export default {
@@ -38,56 +38,27 @@ export default {
         name: '',
         description: ''
       },
+      treeData:[],
       rules: {
         name: [{ required: true,min: 1, max: 20, message: '必填,且不能超过20个字符', trigger: 'change' }]
       },
-            filterText: '',
-            resourceCheckedKey:[1],
-      data2: [{
-        id: 1,
-        label: 'Level one 1',
-        checked:true,
-        checkbox:true,
-        selected:true,
-        children: [{
-          id: 4,
-          label: 'Level two 1-1',
-          children: [{
-            id: 9,
-            label: 'Level three 1-1-1'
-          }, {
-            id: 10,
-            label: 'Level three 1-1-2'
-          }]
-        }]
-      }, {
-        id: 2,
-        label: 'Level one 2',
-        children: [{
-          id: 5,
-          label: 'Level two 2-1'
-        }, {
-          id: 6,
-          label: 'Level two 2-2'
-        }]
-      }, {
-        id: 3,
-        label: 'Level one 3',
-        children: [{
-          id: 7,
-          label: 'Level two 3-1'
-        }, {
-          id: 8,
-          label: 'Level two 3-2'
-        }]
-      }],
       defaultProps: {
         children: 'children',
         label: 'label'
       }
     }
   },
+  created() {
+    this.init()
+  },
   methods: {
+    init() {
+      initAddRole().then(res => {
+        if (res.result === 1) {
+          this.treeData = res.data.menus
+        }
+      })
+    },
     resetForm() {
       this.form = {
         name: '',
@@ -95,6 +66,18 @@ export default {
       }
     },
     onSubmit() {
+        var rad=''
+        var ridsa = this.$refs.treemenus.getCheckedKeys().join(',')// 获取当前的选中的数据[数组] -id, 把数组转换成字符串
+        var ridsb = this.$refs.treemenus.getCheckedNodes()// 获取当前的选中的数据{对象}
+        ridsb.forEach(ids=>{//获取选中的所有的父级id
+          rad+=','+ids.pid
+        })
+        rad=rad.substr(1) // 删除字符串前面的','
+        var rids=rad+','+ridsa
+        var arr=rids.split(',')//  把字符串转换成数组
+        arr=[...new Set(arr)]; // 数组去重
+
+      console.log(arr)
       this.$refs['form'].validate((valid) => {
         if (valid) {
           MessageBox.confirm('确定要保存', '提示', {
