@@ -8,6 +8,7 @@ namespace LocalS.Service.Api.Admin
 {
     public class RopAdminRoleEdit
     {
-
+        public string RoleId { get; set; }
+        public string Description { get; set; }
     }
 }

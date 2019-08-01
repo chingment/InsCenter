@@ -82,7 +82,7 @@ namespace LocalS.Service.Api.Admin
             CurrentDb.SysRole.Add(sysRole);
             CurrentDb.SaveChanges();
 
-            return new CustomJsonResult(ResultType.Success, ResultCode.Success, "操作成功");
+            return new CustomJsonResult(ResultType.Success, ResultCode.Success, "保存成功");
 
         }
 
@@ -107,8 +107,19 @@ namespace LocalS.Service.Api.Admin
 
             CustomJsonResult result = new CustomJsonResult();
 
-            return result;
+            var sysRole = CurrentDb.SysRole.Where(m => m.Id == rop.RoleId).FirstOrDefault();
+            if (sysRole == null)
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "数据为空");
+            }
 
+            sysRole.Description = rop.Description;
+            sysRole.MendTime = DateTime.Now;
+            sysRole.Mender = operater;
+
+            CurrentDb.SaveChanges();
+
+            return new CustomJsonResult(ResultType.Success, ResultCode.Success, "保存成功");
 
         }
     }
