@@ -12,8 +12,10 @@
       ref="tree2"
       :data="data2"
       :props="defaultProps"
-      :filter-node-method="filterNode"
+      :default-checked-keys='resourceCheckedKey'
+      node-key="id"
       class="filter-tree"
+      show-checkbox
       default-expand-all
     />
       </el-form-item>
@@ -40,9 +42,13 @@ export default {
         name: [{ required: true,min: 1, max: 20, message: '必填,且不能超过20个字符', trigger: 'change' }]
       },
             filterText: '',
+            resourceCheckedKey:[1],
       data2: [{
         id: 1,
         label: 'Level one 1',
+        checked:true,
+        checkbox:true,
+        selected:true,
         children: [{
           id: 4,
           label: 'Level two 1-1',

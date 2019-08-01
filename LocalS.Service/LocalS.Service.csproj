@@ -69,6 +69,7 @@
     <Compile Include="Api\Admin\AdminRoleService.cs" />
     <Compile Include="Api\Admin\AdminServiceFactory.cs" />
     <Compile Include="Api\Admin\AdminUserService.cs" />
+    <Compile Include="Api\Admin\RModels\RetAdminRoleInitAdd.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminRoleInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminUserInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RopAdminRoleAdd.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\MenuChild.cs" />
     <Compile Include="UI\MenuMeta.cs" />
+    <Compile Include="UI\TreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\Account\Models\" />

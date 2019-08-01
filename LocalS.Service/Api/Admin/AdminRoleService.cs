@@ -1,4 +1,5 @@
 ﻿using LocalS.BLL;
+using LocalS.Service.UI;
 using Lumos;
 using Lumos.DbRelay;
 using System;
@@ -53,9 +54,32 @@ namespace LocalS.Service.Api.Admin
             return result;
         }
 
+        public List<TreeNode> GetTree(string id)
+        {
+            List<TreeNode> cmbTreeList = new List<TreeNode>();
+
+            var parentList = CurrentDb.SysMenu.Where(t => t.PId == id).ToList();
+
+            foreach (var item in parentList)
+            {
+                TreeNode treeModel = new TreeNode();
+                treeModel.Id = item.Id;
+                treeModel.Label = item.Title;
+                treeModel.Children.AddRange(GetTree(treeModel.Id));
+                cmbTreeList.Add(treeModel);
+            }
+
+            return cmbTreeList;
+        }
+
         public CustomJsonResult InitAdd(string operater)
         {
             var result = new CustomJsonResult();
+
+            var ret = new RetAdminRoleInitAdd();
+
+            ret.Menus = GetTree("10000000000000000000000000000001");
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }
