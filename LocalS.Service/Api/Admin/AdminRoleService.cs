@@ -183,9 +183,9 @@ namespace LocalS.Service.Api.Admin
                 sysRole.MendTime = DateTime.Now;
                 sysRole.Mender = operater;
 
-                List<SysRoleMenu> roleMenuList = CurrentDb.SysRoleMenu.Where(r => r.RoleId == rop.RoleId).ToList();
+                var roleMenus = CurrentDb.SysRoleMenu.Where(r => r.RoleId == rop.RoleId).ToList();
 
-                foreach (var roleMenu in roleMenuList)
+                foreach (var roleMenu in roleMenus)
                 {
                     CurrentDb.SysRoleMenu.Remove(roleMenu);
                 }

@@ -63,7 +63,7 @@ export default {
       this.form = {
         name: '',
         description: '',
-        menuIds:null
+        menuIds:[]
       }
     },
     onSubmit() {
@@ -79,6 +79,7 @@ export default {
         var arr=rids.split(',')//  把字符串转换成数组
         arr=[...new Set(arr)]; // 数组去重
 
+   
       this.$refs['form'].validate((valid) => {
         if (valid) {
           this.form.menuIds=arr

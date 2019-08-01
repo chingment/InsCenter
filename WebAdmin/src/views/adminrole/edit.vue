@@ -38,7 +38,8 @@ export default {
       form: {
         roleId:'',
         name: '',
-        description: ''
+        description: '',
+        menuIds: []
       },
       rules: {
       },
@@ -68,8 +69,22 @@ export default {
       })
     },
     onSubmit() {
+        var rad=''
+        var ridsa = this.$refs.treemenus.getCheckedKeys().join(',')// 获取当前的选中的数据[数组] -id, 把数组转换成字符串
+        var ridsb = this.$refs.treemenus.getCheckedNodes()// 获取当前的选中的数据{对象}
+        ridsb.forEach(ids=>{//获取选中的所有的父级id
+          rad+=','+ids.pId
+        })
+        rad=rad.substr(1) // 删除字符串前面的','
+        var rids=rad+','+ridsa
+        var arr=rids.split(',')//  把字符串转换成数组
+        arr=[...new Set(arr)]; // 数组去重
+
+   console.log('dadad:' + JSON.stringify(arr))
+   
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          this.form.menuIds=arr
           MessageBox.confirm('确定要保存', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
