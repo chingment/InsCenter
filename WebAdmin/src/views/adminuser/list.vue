@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/user'
+import { fetchList } from '@/api/adminuser'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
 export default {
@@ -113,7 +113,7 @@ export default {
     },
     handleCreate() {
       this.$router.push({
-        path: '/user/add?redirect=/user/list'
+        path: '/adminuser/add?redirect=/adminuser/list'
       })
       // this.resetTemp()
       // this.dialogStatus = 'create'
@@ -124,7 +124,7 @@ export default {
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/user/edit?userId=' + row.id
+        path: '/adminuser/edit?userId=' + row.id
       })
       // this.temp = Object.assign({}, row) // copy obj
       // this.temp.timestamp = new Date(this.temp.timestamp)

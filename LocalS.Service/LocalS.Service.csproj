@@ -66,6 +66,18 @@
     <Compile Include="Api\Account\RModels\RupLoginLogGetList.cs" />
     <Compile Include="Api\Account\RModels\RupOwnGetInfo.cs" />
     <Compile Include="Api\Account\UserInfoService.cs" />
+    <Compile Include="Api\Admin\AdminRoleService.cs" />
+    <Compile Include="Api\Admin\AdminServiceFactory.cs" />
+    <Compile Include="Api\Admin\AdminUserService.cs" />
+    <Compile Include="Api\Admin\RModels\RetAdminRoleInitEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RetAdminUserInitEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RopAdminRoleAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RopAdminRoleEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RopAdminUserAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RopAdminUserEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RupAdminRoleGetList.cs" />
+    <Compile Include="Api\Admin\RModels\RupBaseGetList.cs" />
+    <Compile Include="Api\Admin\RModels\RupAdminUserGetList.cs" />
     <Compile Include="Api\InsApp\HomeService.cs" />
     <Compile Include="Api\InsApp\InsAppServiceFactory.cs" />
     <Compile Include="Api\InsApp\InsCarService.cs" />
@@ -105,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\Account\Models\" />
+    <Folder Include="Api\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LocalS.BLL\LocalS.BLL.csproj">

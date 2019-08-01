@@ -82,14 +82,5 @@ namespace WebApiAdmin
                 return this.TokenInfo.UserId;
             }
         }
-
-        public string CurrentMerchantId
-        {
-            get
-            {
-                return this.TokenInfo.MerchantId;
-            }
-
-        }
     }
 }

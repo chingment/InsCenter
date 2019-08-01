@@ -2,7 +2,15 @@ import request from '@/utils/request'
 
 export function fetchList(params) {
   return request({
-    url: '/user/getlist',
+    url: '/adminuser/getlist',
+    method: 'get',
+    params
+  })
+}
+
+export function initAddUser(params) {
+  return request({
+    url: '/adminuser/initEdit',
     method: 'get',
     params
   })
@@ -10,15 +18,15 @@ export function fetchList(params) {
 
 export function addUser(data) {
   return request({
-    url: '/user/add',
+    url: '/adminuser/add',
     method: 'post',
     data
   })
 }
 
-export function initEdit(params) {
+export function initEditUser(params) {
   return request({
-    url: '/user/initEdit',
+    url: '/adminuser/initEdit',
     method: 'get',
     params
   })
@@ -26,7 +34,7 @@ export function initEdit(params) {
 
 export function editUser(data) {
   return request({
-    url: '/user/edit',
+    url: '/adminuser/edit',
     method: 'post',
     data
   })

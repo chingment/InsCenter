@@ -1,34 +1,11 @@
 <template>
   <div id="useradd_container" class="app-container">
-    <el-form ref="form" :model="form" :rules="rules" label-width="75px">
-      <el-form-item label="用户名" prop="userName">
-        {{ form.userName }}
+    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form-item label="角色名称" prop="userName">
+        {{ form.name }}
       </el-form-item>
-      <el-form-item v-show="!isOpenEditPassword" label="密码">
-        <span>********</span>
-        <span @click="openEditPassword()">修改</span>
-      </el-form-item>
-      <el-form-item v-show="isOpenEditPassword" label="密码" prop="password">
-        <div style="display:flex">
-          <div style="flex:1">
-            <el-input v-model="form.password" type="password" />
-          </div>
-          <div style="width:50px;text-align: center;">
-            <span @click="openEditPassword()">取消</span>
-          </div>
-        </div>
-      </el-form-item>
-      <el-form-item label="姓名" prop="fullName">
-        <el-input v-model="form.fullName" />
-      </el-form-item>
-      <el-form-item label="手机号码" prop="phoneNumber">
-        <el-input v-model="form.phoneNumber" />
-      </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input v-model="form.email" />
-      </el-form-item>
-      <el-form-item label="禁用">
-        <el-switch v-model="form.isDisable" />
+        <el-form-item label="描述">
+        <el-input v-model="form.description" type="textarea" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -39,7 +16,7 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { editUser, initEdit } from '@/api/user'
+import { editRole, initEditRole } from '@/api/adminrole'
 import fromReg from '@/utils/formReg'
 import { getUrlParam } from '@/utils/commonUtil'
 export default {
@@ -67,9 +44,8 @@ export default {
   },
   methods: {
     init() {
-      var userId = getUrlParam('userId')
-      console.log('userId:' + userId)
-      initEdit({ userId: userId }).then(res => {
+      var roleId = getUrlParam('roleId')
+      initEditRole({ roleId: roleId }).then(res => {
         if (res.result === 1) {
           this.form = res.data
         }
@@ -83,7 +59,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            editUser(this.form).then(res => {
+            editRole(this.form).then(res => {
               this.$message(res.message)
             })
           })
