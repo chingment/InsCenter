@@ -4,21 +4,21 @@
       <el-form-item label="角色名称" prop="userName">
         {{ form.name }}
       </el-form-item>
-        <el-form-item label="描述">
+      <el-form-item label="描述">
         <el-input v-model="form.description" type="textarea" />
       </el-form-item>
       <el-form-item label="菜单">
-            <el-tree
-      ref="treemenus"
-      :check-strictly="true"
-      :data="treeData"
-      :props="defaultProps"
-      node-key="id"
-      class="filter-tree"
-      show-checkbox
-      default-expand-all
-      :default-checked-keys="treeDataDefaultChecked"
-    />
+        <el-tree
+          ref="treemenus"
+          :check-strictly="true"
+          :data="treeData"
+          :props="defaultProps"
+          node-key="id"
+          class="filter-tree"
+          show-checkbox
+          default-expand-all
+          :default-checked-keys="treeDataDefaultChecked"
+        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -30,19 +30,18 @@
 <script>
 import { MessageBox } from 'element-ui'
 import { editRole, initEditRole } from '@/api/adminrole'
-import fromReg from '@/utils/formReg'
 import { getUrlParam, getCheckedKeys } from '@/utils/commonUtil'
 export default {
   data() {
     return {
       form: {
-        roleId:'',
+        roleId: '',
         name: '',
         description: '',
         menuIds: []
       },
       rules: {
-        description: [{ required: false,min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
+        description: [{ required: false, min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
       },
       treeData: [],
       treeDataDefaultChecked: [],

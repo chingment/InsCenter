@@ -1,11 +1,8 @@
 <template>
-  <div class="home-container">
-  
-  </div>
+  <div class="home-container" />
 </template>
 
 <script>
-
 
 export default {
   name: 'Home'

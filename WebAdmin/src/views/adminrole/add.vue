@@ -8,15 +8,15 @@
         <el-input v-model="form.description" type="textarea" />
       </el-form-item>
       <el-form-item label="菜单">
-            <el-tree
-      ref="treemenus"
-      :data="treeData"
-      :props="defaultProps"
-      node-key="id"
-      class="filter-tree"
-      show-checkbox
-      default-expand-all
-    />
+        <el-tree
+          ref="treemenus"
+          :data="treeData"
+          :props="defaultProps"
+          node-key="id"
+          class="filter-tree"
+          show-checkbox
+          default-expand-all
+        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -28,7 +28,6 @@
 <script>
 import { MessageBox } from 'element-ui'
 import { addRole, initAddRole } from '@/api/adminrole'
-import fromReg from '@/utils/formReg'
 import { getCheckedKeys } from '@/utils/commonUtil'
 export default {
   data() {
@@ -39,10 +38,10 @@ export default {
         menuIds: []
       },
       rules: {
-        name: [{ required: true,min: 1, max: 20, message: '必填,且不能超过20个字符', trigger: 'change' }],
-        description: [{ required: false,min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
+        name: [{ required: true, min: 1, max: 20, message: '必填,且不能超过20个字符', trigger: 'change' }],
+        description: [{ required: false, min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
       },
-      treeData:[],
+      treeData: [],
       defaultProps: {
         children: 'children',
         label: 'label'
@@ -65,7 +64,7 @@ export default {
       this.form = {
         name: '',
         description: '',
-        menuIds:[]
+        menuIds: []
       }
     },
     onSubmit() {

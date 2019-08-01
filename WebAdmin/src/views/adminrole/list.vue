@@ -84,7 +84,6 @@ export default {
         this.list = response.data.items
         this.total = response.data.total
         this.listLoading = false
-
       })
     },
     handleFilter() {
