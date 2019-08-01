@@ -200,6 +200,7 @@ namespace LocalS.Service.Api.Admin
                 }
 
                 CurrentDb.SaveChanges();
+                ts.Complete();
 
                 result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "保存成功");
             }
