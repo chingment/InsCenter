@@ -112,7 +112,7 @@ export default {
     },
     handleCreate() {
       this.$router.push({
-        path: '/adminuser/add?redirect=/adminuser/list'
+        path: '/adminuser/add'
       })
     },
     handleUpdate(row) {

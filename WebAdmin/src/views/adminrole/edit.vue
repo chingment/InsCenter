@@ -30,7 +30,7 @@
 <script>
 import { MessageBox } from 'element-ui'
 import { editRole, initEditRole } from '@/api/adminrole'
-import { getUrlParam, getCheckedKeys } from '@/utils/commonUtil'
+import { getUrlParam, getCheckedKeys, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -79,6 +79,9 @@ export default {
             this.form.menuIds = getCheckedKeys(this.$refs.treemenus)
             editRole(this.form).then(res => {
               this.$message(res.message)
+              if (res.result === 1) {
+                goBack(this)
+              }
             })
           })
         }

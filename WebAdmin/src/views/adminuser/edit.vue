@@ -41,7 +41,7 @@
 import { MessageBox } from 'element-ui'
 import { editUser, initEditUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
-import { getUrlParam } from '@/utils/commonUtil'
+import { getUrlParam, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -84,7 +84,7 @@ export default {
           }).then(() => {
             editUser(this.form).then(res => {
               this.$message(res.message)
-              this.$router.back()
+              goBack(this)
             })
           })
         }

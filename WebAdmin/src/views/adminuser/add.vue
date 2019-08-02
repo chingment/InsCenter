@@ -27,7 +27,7 @@
 import { MessageBox } from 'element-ui'
 import { addUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
-
+import { goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -68,7 +68,7 @@ export default {
             addUser(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
-                this.$router.back()
+                goBack(this)
               }
             })
           })

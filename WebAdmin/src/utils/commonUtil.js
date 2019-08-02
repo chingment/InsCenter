@@ -34,3 +34,12 @@ export function getCheckedKeys(tree) {
 
   return arr
 }
+
+export function goBack(_this) {
+  if (window.history.length <= 1) {
+    _this.$router.push({ path: '/' })
+    return false
+  } else {
+    _this.$router.go(-1)
+  }
+}
