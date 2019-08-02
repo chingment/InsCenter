@@ -71,6 +71,7 @@
     <Compile Include="Api\Admin\AdminServiceFactory.cs" />
     <Compile Include="Api\Admin\AdminUserService.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminOrgInitAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RetAdminOrgInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminRoleInitAdd.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminRoleInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminUserInitEdit.cs" />

@@ -2,10 +2,10 @@
   <div id="useradd_container" class="app-container">
     <el-form ref="form" :model="form" :rules="rules" label-width="85px">
       <el-form-item label="上级机构">
-        {{ form.pName }}
+        {{ form.pOrgName }}
       </el-form-item>
       <el-form-item label="名称" prop="name">
-        <el-input v-model="form.userName" />
+        <el-input v-model="form.name" />
       </el-form-item>
       <el-form-item label="描述" prop="description">
         <el-input v-model="form.description" type="textarea" />
@@ -19,9 +19,9 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { addUser } from '@/api/adminuser'
+import { addOrg,initAddOrg } from '@/api/adminorg'
 import fromReg from '@/utils/formReg'
-import { goBack } from '@/utils/commonUtil'
+import { getUrlParam, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
   methods: {
     init() {
       var pOrgId = getUrlParam('pOrgId')
-      initEditUser({ pOrgId: pOrgId }).then(res => {
+      initAddOrg({ pOrgId: pOrgId }).then(res => {
         if (res.result === 1) {
           var d = res.data;
           this.form.pOrgId = d.pOrgId
@@ -65,7 +65,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            addUser(this.form).then(res => {
+            addOrg(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
                 goBack(this)

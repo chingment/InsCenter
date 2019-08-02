@@ -58,7 +58,7 @@ namespace LocalS.Service.Api.Admin
 
         }
 
-        public CustomJsonResult InitAdd(string operater,string pOrgId)
+        public CustomJsonResult InitAdd(string operater, string pOrgId)
         {
             var result = new CustomJsonResult();
 
@@ -66,8 +66,11 @@ namespace LocalS.Service.Api.Admin
 
             var sysOrg = CurrentDb.SysOrg.Where(m => m.Id == pOrgId).FirstOrDefault();
 
-            ret.POrgId = sysOrg.Id;
-            ret.POrgName = sysOrg.Name;
+            if (sysOrg != null)
+            {
+                ret.POrgId = sysOrg.Id;
+                ret.POrgName = sysOrg.Name;
+            }
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
@@ -90,7 +93,7 @@ namespace LocalS.Service.Api.Admin
                 sysOrg.Id = GuidUtil.New();
                 sysOrg.Name = rop.Name;
                 sysOrg.Description = rop.Description;
-                sysOrg.PId = rop.PId;
+                sysOrg.PId = rop.POrgId;
                 sysOrg.Dept = 0;
                 sysOrg.CreateTime = DateTime.Now;
                 sysOrg.Creator = operater;
@@ -106,10 +109,32 @@ namespace LocalS.Service.Api.Admin
 
         }
 
-        public CustomJsonResult InitEdit(string operater, string roleId)
+        public CustomJsonResult InitEdit(string operater, string orgId)
         {
             var result = new CustomJsonResult();
 
+            var ret = new RetAdminOrgInitEdit();
+
+            var sysOrg = CurrentDb.SysOrg.Where(m => m.Id == orgId).FirstOrDefault();
+
+            if (sysOrg != null)
+            {
+                ret.OrgId = sysOrg.Id;
+                ret.Name = sysOrg.Name;
+                ret.Description = sysOrg.Description;
+
+                var p_sysOrg = CurrentDb.SysOrg.Where(m => m.Id == sysOrg.PId).FirstOrDefault();
+
+                if (p_sysOrg != null)
+                {
+                    ret.POrgId = p_sysOrg.Id;
+                    ret.POrgName = p_sysOrg.Name;
+                }
+            }
+
+
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }

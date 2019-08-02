@@ -71,7 +71,7 @@
     },
     handleCreate(row) {
       this.$router.push({
-        path: '/adminorg/add?pOrgId=' + row.pId
+        path: '/adminorg/add?pOrgId=' + row.id
       })
     },
     handleUpdate(row) {

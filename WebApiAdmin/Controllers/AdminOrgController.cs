@@ -32,9 +32,9 @@ namespace WebApiAdmin.Controllers
         }
 
         [HttpGet]
-        public OwnApiHttpResponse InitEdit([FromUri]string roleId)
+        public OwnApiHttpResponse InitEdit([FromUri]string orgId)
         {
-            IResult result = AdminServiceFactory.AdminOrg.InitEdit(this.CurrentUserId, roleId);
+            IResult result = AdminServiceFactory.AdminOrg.InitEdit(this.CurrentUserId, orgId);
             return new OwnApiHttpResponse(result);
         }
 
