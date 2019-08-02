@@ -54,23 +54,23 @@ namespace LocalS.Service.Api.Admin
             return result;
         }
 
-        private List<TreeNode> GetMenuTree(string id, List<SysMenu> sysMenu)
+        private List<TreeNode> GetMenuTree(string id, List<SysMenu> sysMenus)
         {
-            List<TreeNode> cmbTreeList = new List<TreeNode>();
+            List<TreeNode> treeNodes = new List<TreeNode>();
 
-            var parentList = sysMenu.Where(t => t.PId == id).ToList();
+            var p_sysMenus = sysMenus.Where(t => t.PId == id).ToList();
 
-            foreach (var item in parentList)
+            foreach (var p_sysMenu in p_sysMenus)
             {
-                TreeNode treeModel = new TreeNode();
-                treeModel.Id = item.Id;
-                treeModel.PId = item.PId;
-                treeModel.Label = item.Title;
-                treeModel.Children.AddRange(GetMenuTree(treeModel.Id, sysMenu));
-                cmbTreeList.Add(treeModel);
+                TreeNode treeNode = new TreeNode();
+                treeNode.Id = p_sysMenu.Id;
+                treeNode.PId = p_sysMenu.PId;
+                treeNode.Label = p_sysMenu.Title;
+                treeNode.Children.AddRange(GetMenuTree(treeNode.Id, sysMenus));
+                treeNodes.Add(treeNode);
             }
 
-            return cmbTreeList;
+            return treeNodes;
         }
 
         public List<TreeNode> GetMenuTree()

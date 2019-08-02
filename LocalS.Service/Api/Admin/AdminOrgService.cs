@@ -13,36 +13,46 @@ namespace LocalS.Service.Api.Admin
 {
     public class AdminOrgService : BaseDbContext
     {
-        private List<TreeNode> GetOrgTree(string id, List<SysOrganization> sysOrganizations)
+        private List<TreeNode> GetOrgTree(string id, List<SysOrg> sysOrgs)
         {
-            List<TreeNode> cmbTreeList = new List<TreeNode>();
+            List<TreeNode> treeNodes = new List<TreeNode>();
 
-            var parentList = sysOrganizations.Where(t => t.PId == id).ToList();
+            var p_sysOrgs = sysOrgs.Where(t => t.PId == id).ToList();
 
-            foreach (var item in parentList)
+            foreach (var p_sysOrg in p_sysOrgs)
             {
-                TreeNode treeModel = new TreeNode();
-                treeModel.Id = item.Id;
-                treeModel.PId = item.PId;
-                treeModel.Label = item.Name;
-                treeModel.Children.AddRange(GetOrgTree(treeModel.Id, sysOrganizations));
-                cmbTreeList.Add(treeModel);
+                TreeNode treeNode = new TreeNode();
+                treeNode.Id = p_sysOrg.Id;
+                treeNode.PId = p_sysOrg.PId;
+                treeNode.Label = p_sysOrg.Name;
+                treeNode.Description = p_sysOrg.Description;
+                if (p_sysOrg.Dept == 0)
+                {
+                    treeNode.ExtAttr = new { CanDelete = false };
+                }
+                else
+                {
+                    treeNode.ExtAttr = new { CanDelete = true };
+                }
+
+                treeNode.Children.AddRange(GetOrgTree(p_sysOrg.Id, sysOrgs));
+                treeNodes.Add(treeNode);
             }
 
-            return cmbTreeList;
+            return treeNodes;
         }
 
         public CustomJsonResult GetList(string operater, RupAdminOrgGetList rup)
         {
             var result = new CustomJsonResult();
 
-            var sysOrgs = CurrentDb.SysOrganization.ToList();
+            var sysOrgs = CurrentDb.SysOrg.ToList();
 
             var topOrg = sysOrgs.Where(m => m.Dept == 0).FirstOrDefault();
 
-            var tree = GetOrgTree(topOrg.Id, sysOrgs);
+            var orgTree = GetOrgTree(topOrg.PId, sysOrgs);
 
-            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", tree);
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", orgTree);
 
             return result;
 
@@ -61,21 +71,21 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var isExists = CurrentDb.SysOrganization.Where(m => m.Name == rop.Name).FirstOrDefault();
+                var isExists = CurrentDb.SysOrg.Where(m => m.Name == rop.Name).FirstOrDefault();
                 if (isExists != null)
                 {
                     return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该名称已经存在");
                 }
 
-                var sysOrganization = new SysOrganization();
-                sysOrganization.Id = GuidUtil.New();
-                sysOrganization.Name = rop.Name;
-                sysOrganization.Description = rop.Description;
-                sysOrganization.PId = rop.PId;
-                sysOrganization.Dept = 0;
-                sysOrganization.CreateTime = DateTime.Now;
-                sysOrganization.Creator = operater;
-                CurrentDb.SysOrganization.Add(sysOrganization);
+                var sysOrg = new SysOrg();
+                sysOrg.Id = GuidUtil.New();
+                sysOrg.Name = rop.Name;
+                sysOrg.Description = rop.Description;
+                sysOrg.PId = rop.PId;
+                sysOrg.Dept = 0;
+                sysOrg.CreateTime = DateTime.Now;
+                sysOrg.Creator = operater;
+                CurrentDb.SysOrg.Add(sysOrg);
 
                 CurrentDb.SaveChanges();
                 ts.Complete();
@@ -91,7 +101,7 @@ namespace LocalS.Service.Api.Admin
         {
             var result = new CustomJsonResult();
 
- 
+
             return result;
         }
 
@@ -103,15 +113,15 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var sysOrganization = CurrentDb.SysOrganization.Where(m => m.Id == rop.OrganizationId).FirstOrDefault();
-                if (sysOrganization == null)
+                var sysOrg = CurrentDb.SysOrg.Where(m => m.Id == rop.OrgId).FirstOrDefault();
+                if (sysOrg == null)
                 {
                     return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "数据为空");
                 }
 
-                sysOrganization.Description = rop.Description;
-                sysOrganization.MendTime = DateTime.Now;
-                sysOrganization.Mender = operater;
+                sysOrg.Description = rop.Description;
+                sysOrg.MendTime = DateTime.Now;
+                sysOrg.Mender = operater;
 
 
                 CurrentDb.SaveChanges();

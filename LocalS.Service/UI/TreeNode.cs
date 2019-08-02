@@ -18,6 +18,8 @@ namespace LocalS.Service.UI
         public string PId { get; set; }
         public string Label { get; set; }
 
+        public string Description { get; set; }
+        public object ExtAttr { get; set; }
         public List<TreeNode> Children { get; set; }
     }
 }

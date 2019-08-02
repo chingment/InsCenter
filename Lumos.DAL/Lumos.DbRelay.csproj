@@ -76,7 +76,7 @@
     <Compile Include="Entity\SysMenuPermission.cs" />
     <Compile Include="Entity\SysMerchatUser.cs" />
     <Compile Include="Entity\SysOperateHis.cs" />
-    <Compile Include="Entity\SysOrganization.cs" />
+    <Compile Include="Entity\SysOrg.cs" />
     <Compile Include="Entity\SysPageAccessHis.cs" />
     <Compile Include="Entity\SysPermission.cs" />
     <Compile Include="Entity\SysPosition.cs" />

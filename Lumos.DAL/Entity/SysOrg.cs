@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lumos.DbRelay
 {
-    [Table("SysOrganization")]
-    public class SysOrganization
+    [Table("SysOrg")]
+    public class SysOrg
     {
         [Key]
         public string Id { get; set; }
