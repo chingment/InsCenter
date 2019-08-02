@@ -68,10 +68,7 @@ export default {
             addUser(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
-                this.resetForm()
-                this.$nextTick(() => {
-                  this.$refs['form'].clearValidate()
-                })
+                this.$router.back()
               }
             })
           })

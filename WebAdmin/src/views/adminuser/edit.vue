@@ -84,6 +84,7 @@ export default {
           }).then(() => {
             editUser(this.form).then(res => {
               this.$message(res.message)
+              this.$router.back()
             })
           })
         }
