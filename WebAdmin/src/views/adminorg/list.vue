@@ -1,98 +1,114 @@
 <template>
-  <div class="hello">
-    <tree-grid :columns="columns" :tree-structure="true" :data-source="dataSource" />
-  </div>
+<div class="app-container">
+  <el-table
+    :data="tableData"
+    style="width: 100%;margin-bottom: 20px;"
+    row-key="id"
+    border
+    default-expand-all
+    :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
+    >
+    <el-table-column
+      prop="date"
+      label="机构名称"
+      min-width="50">
+    </el-table-column>
+    <el-table-column
+      prop="name"
+      label="负责人"
+      min-width="50">
+    </el-table-column>
+    <el-table-column label="操作" align="center" width="280">
+      <template>
+        <button type="button" class="el-button el-button--default el-button--small">
+            编辑
+        </button>
+        <el-button
+          size="small"
+          type="danger"
+        >
+        删除
+        </el-button>
+        <button type="button" class="el-button el-button--success el-button--small">
+            添加子机构
+        </button>
+      </template>
+    </el-table-column>
+  </el-table>
+</div>
 </template>
-
 <script>
-import { TreeGrid } from '@/components/TreeTable'
-export default {
-  name: 'Hello',
-  components: {
-    TreeGrid
-  },
-  data() {
-    return {
-      columns: [
-        {
-          text: '姓名',
-          dataIndex: 'name'
-        },
-        {
-          text: '年龄',
-          dataIndex: 'age'
-        },
-        {
-          text: '性别',
-          dataIndex: 'sex'
-        }
-      ],
-      dataSource: [
-        {
+  export default {
+    data() {
+      return {
+        tableData: [{
           id: 1,
-          parentId: 0,
-          name: '测试1',
-          age: 18,
-          sex: '男',
-          children: [
-            {
-              id: 2,
-              parentId: 1,
-              name: '测试2',
-              age: 22,
-              sex: '男'
-            }
-          ]
-        },
-        {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          id: 2,
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
           id: 3,
-          parentId: 0,
-          name: '测试3',
-          age: 23,
-          sex: '女',
-          children: [
-            {
-              id: 4,
-              parentId: 3,
-              name: '测试4',
-              age: 22,
-              sex: '男'
-            },
-            {
-              id: 5,
-              parentId: 3,
-              name: '测试5',
-              age: 25,
-              sex: '男'
-            },
-            {
-              id: 6,
-              parentId: 3,
-              name: '测试6',
-              age: 26,
-              sex: '女',
-              children: [
-                {
-                  id: 7,
-                  parentId: 6,
-                  name: '测试7',
-                  age: 27,
-                  sex: '男'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 18,
-          parentId: 0,
-          name: '测试8',
-          age: 18,
-          sex: '男'
-        }
-      ]
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄',
+          children: [{
+              id: 31,
+              date: '2016-05-01',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1519 弄'
+            }, {
+              id: 32,
+              date: '2016-05-01',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1519 弄'
+          }]
+        }, {
+          id: 4,
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }],
+        tableData1: [{
+          id: 1,
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          id: 2,
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          id: 3,
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄',
+          hasChildren: true
+        }, {
+          id: 4,
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }]
+      }
+    },
+    created(){
+      this. expandAll()
+    },
+    methods: {
+    expandAll () {
+         this.$nextTick(() => {
+      var els = document.getElementsByClassName('el-table__expand-icon')  //获取点击的箭头元素
+      for (let i = 0; i < els.length; i++) {
+        els[i].click()
+      }
+         })
+    }
     }
   }
-}
 </script>
-

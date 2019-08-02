@@ -23,5 +23,13 @@ namespace LocalS.Service.Api.Admin
                 return new AdminRoleService();
             }
         }
+
+        public static AdminOrgService AdminOrg
+        {
+            get
+            {
+                return new AdminOrgService();
+            }
+        }
     }
 }

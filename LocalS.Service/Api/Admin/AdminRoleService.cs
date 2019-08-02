@@ -54,7 +54,7 @@ namespace LocalS.Service.Api.Admin
             return result;
         }
 
-        private List<TreeNode> GetTree(string id, List<SysMenu> sysMenu)
+        private List<TreeNode> GetMenuTree(string id, List<SysMenu> sysMenu)
         {
             List<TreeNode> cmbTreeList = new List<TreeNode>();
 
@@ -66,20 +66,20 @@ namespace LocalS.Service.Api.Admin
                 treeModel.Id = item.Id;
                 treeModel.PId = item.PId;
                 treeModel.Label = item.Title;
-                treeModel.Children.AddRange(GetTree(treeModel.Id, sysMenu));
+                treeModel.Children.AddRange(GetMenuTree(treeModel.Id, sysMenu));
                 cmbTreeList.Add(treeModel);
             }
 
             return cmbTreeList;
         }
 
-        public List<TreeNode> GetTree()
+        public List<TreeNode> GetMenuTree()
         {
             var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).ToList();
 
             var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
 
-            return GetTree(topMenu.Id, sysMenus);
+            return GetMenuTree(topMenu.Id, sysMenus);
         }
 
         public CustomJsonResult InitAdd(string operater)
@@ -92,7 +92,7 @@ namespace LocalS.Service.Api.Admin
 
             var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
 
-            ret.Menus = GetTree();
+            ret.Menus = GetMenuTree();
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
@@ -149,7 +149,7 @@ namespace LocalS.Service.Api.Admin
             ret.RoleId = role.Id;
             ret.Name = role.Name;
             ret.Description = role.Description;
-            ret.Menus = GetTree();
+            ret.Menus = GetMenuTree();
 
             var roleMenus = from c in CurrentDb.SysMenu
                             where
