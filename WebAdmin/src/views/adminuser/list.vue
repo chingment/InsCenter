@@ -10,9 +10,9 @@
       </el-button>
     </div>
     <el-table
-      :key="tableKey"
+      :key="listKey"
       v-loading="listLoading"
-      :data="list"
+      :data="listData"
       border
       fit
       highlight-current-row
@@ -62,7 +62,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="listTotal>0" :total="listTotal" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
   </div>
 </template>
@@ -76,9 +76,9 @@ export default {
   components: { Pagination },
   data() {
     return {
-      tableKey: 0,
-      list: null,
-      total: 0,
+      listKey: 0,
+      listData: null,
+      listTotal: 0,
       listLoading: true,
       listQuery: {
         page: 1,
@@ -95,8 +95,8 @@ export default {
     getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
+        this.listData = response.data.items
+        this.listTotal = response.data.total
         this.listLoading = false
       })
     },

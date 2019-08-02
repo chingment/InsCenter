@@ -1,11 +1,12 @@
 <template>
 <div class="app-container">
   <el-table
-    :data="list"
+    :data="listData"
     style="width: 100%;margin-bottom: 20px;"
     row-key="id"
     border
     default-expand-all
+    v-loading="listLoading"
     :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
     >
     <el-table-column
@@ -19,7 +20,7 @@
       min-width="50">
     </el-table-column>
     <el-table-column label="操作" align="center" width="280">
-      <template>
+      <template slot-scope="scope">
         <button type="button" class="el-button el-button--default el-button--small">
             编辑
         </button>
@@ -43,7 +44,8 @@
   export default {
     data() {
       return {
-        list: []
+        listLoading: true,
+        listData: []
       }
     },
     created(){
@@ -54,7 +56,8 @@
           getList() {
 
       fetchList().then(res => {
-        this.list = res.data
+        this.listLoading = false
+        this.listData = res.data
              this. expandAll()
       })
     },
