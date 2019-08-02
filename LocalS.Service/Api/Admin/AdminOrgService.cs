@@ -130,6 +130,10 @@ namespace LocalS.Service.Api.Admin
                     ret.POrgId = p_sysOrg.Id;
                     ret.POrgName = p_sysOrg.Name;
                 }
+                else
+                {
+                    ret.POrgName = "/";
+                }
             }
 
 

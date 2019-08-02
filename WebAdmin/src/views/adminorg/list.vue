@@ -15,12 +15,16 @@
       min-width="50">
     </el-table-column>
     <el-table-column
+      v-if="isDesktop"
       prop="description"
       label="描述"
       min-width="50">
     </el-table-column>
     <el-table-column label="操作" align="center" width="280">
       <template slot-scope="{row}">
+        <button type="button" class="el-button el-button--success el-button--small" @click="handleCreate(row)" >
+            添加子机构
+        </button>
         <button type="button" class="el-button el-button--default el-button--small" @click="handleUpdate(row)" >
             编辑
         </button>
@@ -32,9 +36,6 @@
         >
         删除
         </el-button>
-        <button type="button" class="el-button el-button--success el-button--small" @click="handleCreate(row)" >
-            添加子机构
-        </button>
       </template>
     </el-table-column>
   </el-table>
@@ -46,7 +47,8 @@
     data() {
       return {
         listLoading: true,
-        listData: []
+        listData: [],
+        isDesktop: this.$store.getters.isDesktop 
       }
     },
     created(){

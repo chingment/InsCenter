@@ -1,34 +1,14 @@
 <template>
   <div id="useradd_container" class="app-container">
-    <el-form ref="form" :model="form" :rules="rules" label-width="75px">
-      <el-form-item label="用户名" prop="userName">
-        {{ form.userName }}
+    <el-form ref="form" :model="form" :rules="rules" label-width="85px">
+      <el-form-item label="上级机构">
+        {{ form.pOrgName }}
       </el-form-item>
-      <el-form-item v-show="!isOpenEditPassword" label="密码">
-        <span>********</span>
-        <span @click="openEditPassword()">修改</span>
+      <el-form-item label="名称">
+        {{ form.name }}
       </el-form-item>
-      <el-form-item v-show="isOpenEditPassword" label="密码" prop="password">
-        <div style="display:flex">
-          <div style="flex:1">
-            <el-input v-model="form.password" type="password" />
-          </div>
-          <div style="width:50px;text-align: center;">
-            <span @click="openEditPassword()">取消</span>
-          </div>
-        </div>
-      </el-form-item>
-      <el-form-item label="姓名" prop="fullName">
-        <el-input v-model="form.fullName" />
-      </el-form-item>
-      <el-form-item label="手机号码" prop="phoneNumber">
-        <el-input v-model="form.phoneNumber" />
-      </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input v-model="form.email" />
-      </el-form-item>
-      <el-form-item label="禁用">
-        <el-switch v-model="form.isDisable" />
+      <el-form-item label="描述" prop="description">
+        <el-input v-model="form.description" type="textarea" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -39,7 +19,7 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { editUser, initEditUser } from '@/api/adminuser'
+import { editOrg, initEditOrg } from '@/api/adminorg'
 import fromReg from '@/utils/formReg'
 import { getUrlParam, goBack } from '@/utils/commonUtil'
 export default {
@@ -47,18 +27,13 @@ export default {
     return {
       isOpenEditPassword: false,
       form: {
-        userId: '',
-        userName: '',
-        password: '',
-        fullName: '',
-        phoneNumber: '',
-        email: ''
+        pOrgName: '',
+        orgId: '',
+        name: '',
+        description: ''
       },
       rules: {
-        password: [{ required: false, message: '必填,且由6到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.password }],
-        fullName: [{ required: true, message: '必填', trigger: 'change' }],
-        phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
-        email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
+        description: [{ required: false, min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
       }
     }
   },
@@ -67,8 +42,8 @@ export default {
   },
   methods: {
     init() {
-      var userId = getUrlParam('userId')
-      initEditUser({ userId: userId }).then(res => {
+      var orgId = getUrlParam('orgId')
+      initEditOrg({ orgId: orgId }).then(res => {
         if (res.result === 1) {
           this.form = res.data
         }
@@ -82,23 +57,15 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            editUser(this.form).then(res => {
-              this.$message(res.message)
-              goBack(this)
+            editOrg(this.form).then(res => {
+                     this.$message(res.message)
+              if (res.result === 1) {
+                goBack(this)
+              }
             })
           })
         }
       })
-    },
-    openEditPassword() {
-      if (this.isOpenEditPassword) {
-        this.isOpenEditPassword = false
-        this.form.password = ''
-        this.rules.password[0].required = false
-      } else {
-        this.isOpenEditPassword = true
-        this.rules.password[0].required = true
-      }
     }
   }
 }
