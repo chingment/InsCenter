@@ -20,18 +20,19 @@
       min-width="50">
     </el-table-column>
     <el-table-column label="操作" align="center" width="280">
-      <template slot-scope="scope">
-        <button type="button" class="el-button el-button--default el-button--small">
+      <template slot-scope="{row}">
+        <button type="button" class="el-button el-button--default el-button--small" @click="handleUpdate(row)" >
             编辑
         </button>
-        <el-button
-        v-if="scope.row.extAttr.canDelete"
+        <el-button 
+        v-if="row.extAttr.canDelete"
           size="small"
           type="danger"
+          @click="handleDelete(row)"
         >
         删除
         </el-button>
-        <button type="button" class="el-button el-button--success el-button--small">
+        <button type="button" class="el-button el-button--success el-button--small" @click="handleCreate(row)" >
             添加子机构
         </button>
       </template>
@@ -49,16 +50,15 @@
       }
     },
     created(){
-      this.getList()
- 
+      this.getListData()
     },
     methods: {
-          getList() {
+      getListData() {
 
       fetchList().then(res => {
         this.listLoading = false
         this.listData = res.data
-             this. expandAll()
+             this.expandAll()
       })
     },
     expandAll () {
@@ -68,6 +68,16 @@
         els[i].click()
       }
          })
+    },
+    handleCreate(row) {
+      this.$router.push({
+        path: '/adminorg/add?pOrgId=' + row.pId
+      })
+    },
+    handleUpdate(row) {
+      this.$router.push({
+        path: '/adminorg/edit?orgId=' + row.id
+      })
     }
     }
   }

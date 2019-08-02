@@ -18,9 +18,9 @@ namespace WebApiAdmin.Controllers
             return new OwnApiHttpResponse(result);
         }
         [HttpGet]
-        public OwnApiHttpResponse InitAdd()
+        public OwnApiHttpResponse InitAdd([FromUri]string pOrgId)
         {
-            IResult result = AdminServiceFactory.AdminOrg.InitAdd(this.CurrentUserId);
+            IResult result = AdminServiceFactory.AdminOrg.InitAdd(this.CurrentUserId, pOrgId);
             return new OwnApiHttpResponse(result);
         }
 

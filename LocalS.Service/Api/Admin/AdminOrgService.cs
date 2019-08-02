@@ -58,9 +58,18 @@ namespace LocalS.Service.Api.Admin
 
         }
 
-        public CustomJsonResult InitAdd(string operater)
+        public CustomJsonResult InitAdd(string operater,string pOrgId)
         {
             var result = new CustomJsonResult();
+
+            var ret = new RetAdminOrgInitAdd();
+
+            var sysOrg = CurrentDb.SysOrg.Where(m => m.Id == pOrgId).FirstOrDefault();
+
+            ret.POrgId = sysOrg.Id;
+            ret.POrgName = sysOrg.Name;
+
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }
