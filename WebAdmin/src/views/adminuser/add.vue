@@ -10,11 +10,24 @@
       <el-form-item label="姓名" prop="fullName">
         <el-input v-model="form.fullName" />
       </el-form-item>
-      <el-form-item label="所属机构" prop="fullName">
+      <el-form-item label="所属机构" prop="orgId">
         <el-cascader
-          :options="cascader_options"
-          :props="{ multiple: true, checkStrictly: true }"
+          v-model="form.orgId"
+          :options="cascader_org_options"
+          :props="{ multiple: false, checkStrictly: true }"
+          placeholder="请选择"
           clearable
+          @change="cascader_org_change"
+        />
+      </el-form-item>
+      <el-form-item label="职位" prop="positionId">
+        <el-cascader
+          v-model="form.orgId"
+          :options="cascader_org_options"
+          :props="{ multiple: false, checkStrictly: true }"
+          placeholder="请选择"
+          clearable
+          @change="cascader_org_change"
         />
       </el-form-item>
       <el-form-item label="手机号码" prop="phoneNumber">
@@ -44,17 +57,19 @@ export default {
         password: '',
         fullName: '',
         phoneNumber: '',
-        email: ''
+        email: '',
+        orgId: ''
       },
       rules: {
         userName: [{ required: true, message: '必填,且由3到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.userName }],
         password: [{ required: true, message: '必填,且由6到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.password }],
         fullName: [{ required: true, message: '必填', trigger: 'change' }],
+        orgId: [{ required: true, message: '必填' }],
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
-      cascader_props: { multiple: true, checkStrictly: true },
-      cascader_options: [{
+      cascader_org_props: { multiple: true, checkStrictly: true },
+      cascader_org_options: [{
         value: 1,
         label: '东南',
         children: [{
@@ -80,24 +95,6 @@ export default {
             { value: 13, label: '杭州' },
             { value: 14, label: '宁波' },
             { value: 15, label: '嘉兴' }
-          ]
-        }]
-      }, {
-        value: 17,
-        label: '西北',
-        children: [{
-          value: 18,
-          label: '陕西',
-          children: [
-            { value: 19, label: '西安' },
-            { value: 20, label: '延安' }
-          ]
-        }, {
-          value: 21,
-          label: '新疆维吾尔族自治区',
-          children: [
-            { value: 22, label: '乌鲁木齐' },
-            { value: 23, label: '克拉玛依' }
           ]
         }]
       }]
@@ -130,6 +127,9 @@ export default {
           })
         }
       })
+    },
+    cascader_org_change() {
+      console.log('dasd')
     }
   }
 }
