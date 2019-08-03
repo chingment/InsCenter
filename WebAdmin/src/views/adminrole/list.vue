@@ -70,19 +70,19 @@ export default {
         limit: 10,
         name: undefined
       },
-      isDesktop: this.$store.getters.isDesktop 
+      isDesktop: this.$store.getters.isDesktop
     }
   },
   created() {
-    if(this.$store.getters.listPageQuery.has(this.$route.path)) {
-      this.listQuery=this.$store.getters.listPageQuery.get(this.$route.path);
+    if (this.$store.getters.listPageQuery.has(this.$route.path)) {
+      this.listQuery = this.$store.getters.listPageQuery.get(this.$route.path)
     }
     this.getListData()
   },
   methods: {
     getListData() {
       this.listLoading = true
-      this.$store.dispatch('app/saveListPageQuery',{ path:this.$route.path,query:this.listQuery});
+      this.$store.dispatch('app/saveListPageQuery', { path: this.$route.path, query: this.listQuery })
       fetchList(this.listQuery).then(res => {
         var d = res.data
         this.listData = d.items

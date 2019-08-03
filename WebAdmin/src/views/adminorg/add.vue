@@ -19,7 +19,7 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { addOrg,initAddOrg } from '@/api/adminorg'
+import { addOrg, initAddOrg } from '@/api/adminorg'
 import fromReg from '@/utils/formReg'
 import { getUrlParam, goBack } from '@/utils/commonUtil'
 export default {
@@ -27,7 +27,7 @@ export default {
     return {
       form: {
         pOrgId: '',
-        pOrgName:'',
+        pOrgName: '',
         name: '',
         description: ''
       },
@@ -45,7 +45,7 @@ export default {
       var pOrgId = getUrlParam('pOrgId')
       initAddOrg({ pOrgId: pOrgId }).then(res => {
         if (res.result === 1) {
-          var d = res.data;
+          var d = res.data
           this.form.pOrgId = d.pOrgId
           this.form.pOrgName = d.pOrgName
         }
