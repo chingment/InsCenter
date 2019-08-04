@@ -73,6 +73,19 @@ export default {
       }
     }
   },
+  created() {
+    var elpagerShow = false
+    if (this.$store.getters.isDesktop) {
+      elpagerShow = true
+    }
+
+    this.$nextTick(() => {
+      var els = document.getElementsByClassName('el-pager') // 获取点击的箭头元素
+      for (let i = 0; i < els.length; i++) {
+        els[i].style.display = elpagerShow === true ? 'inline-block' : 'none'
+      }
+    })
+  },
   methods: {
     handleSizeChange(val) {
       this.$emit('pagination', { page: this.currentPage, limit: val })

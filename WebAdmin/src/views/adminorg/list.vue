@@ -6,7 +6,7 @@
       style="width: 100%;margin-bottom: 20px;"
       row-key="id"
       border
-      default-expand-all
+      :default-expand-all="true"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
     >
       <el-table-column
@@ -64,9 +64,9 @@ export default {
     },
     expandAll() {
       this.$nextTick(() => {
-        var els = document.getElementsByClassName('el-table__expand-icon') // 获取点击的箭头元素
+        var els = document.getElementsByClassName('el-table__row') // 获取点击的箭头元素
         for (let i = 0; i < els.length; i++) {
-          els[i].click()
+          els[i].style.display = 'table-row'
         }
       })
     },
