@@ -18,5 +18,7 @@ namespace LocalS.Service.Api.Admin
         public string Email { get; set; }
 
         public bool IsDisable { get; set; }
+
+        public List<string> OrgIds { get; set; }
     }
 }

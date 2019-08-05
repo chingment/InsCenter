@@ -28,7 +28,7 @@
 <script>
 import { MessageBox } from 'element-ui'
 import { addRole, initAddRole } from '@/api/adminrole'
-import { getCheckedKeys } from '@/utils/commonUtil'
+import { getCheckedKeys, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -79,10 +79,7 @@ export default {
             addRole(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
-                this.resetForm()
-                this.$nextTick(() => {
-                  this.$refs['form'].clearValidate()
-                })
+                goBack(this)
               }
             })
           })

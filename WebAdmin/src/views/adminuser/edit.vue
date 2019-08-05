@@ -83,8 +83,9 @@ export default {
             type: 'warning'
           }).then(() => {
             editUser(this.form).then(res => {
-              this.$message(res.message)
-              goBack(this)
+              if (res.result === 1) {
+                goBack(this)
+              }
             })
           })
         }

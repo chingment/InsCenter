@@ -17,6 +17,12 @@ namespace WebApiAdmin.Controllers
             IResult result = AdminServiceFactory.AdminUser.GetList(this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);
         }
+        [HttpGet]
+        public OwnApiHttpResponse InitAdd()
+        {
+            IResult result = AdminServiceFactory.AdminUser.InitAdd(this.CurrentUserId);
+            return new OwnApiHttpResponse(result);
+        }
 
         [HttpPost]
         public OwnApiHttpResponse Add([FromBody]RopAdminUserAdd rop)

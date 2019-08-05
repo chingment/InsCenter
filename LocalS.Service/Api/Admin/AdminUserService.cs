@@ -1,4 +1,5 @@
 ﻿using LocalS.BLL;
+using LocalS.Service.UI;
 using Lumos;
 using Lumos.DbRelay;
 using System;
@@ -42,7 +43,7 @@ namespace LocalS.Service.Api.Admin
             return text;
         }
 
-        public CustomJsonResult GetList(string operater,  RupAdminUserGetList rup)
+        public CustomJsonResult GetList(string operater, RupAdminUserGetList rup)
         {
             var result = new CustomJsonResult();
 
@@ -50,7 +51,7 @@ namespace LocalS.Service.Api.Admin
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
                          u.IsDelete == false &&
-                         u.IsCanDelete == true 
+                         u.IsCanDelete == true
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
 
@@ -83,6 +84,43 @@ namespace LocalS.Service.Api.Admin
             PageEntity pageEntity = new PageEntity { PageSize = pageSize, Total = total, Items = olist };
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", pageEntity);
+
+            return result;
+        }
+
+
+        private List<TreeNode> GetOrgTree(string id, List<SysOrg> sysOrgs)
+        {
+            List<TreeNode> treeNodes = new List<TreeNode>();
+
+            var p_sysOrgs = sysOrgs.Where(t => t.PId == id).ToList();
+
+            foreach (var p_sysOrg in p_sysOrgs)
+            {
+                TreeNode treeNode = new TreeNode();
+                treeNode.Id = p_sysOrg.Id;
+                treeNode.PId = p_sysOrg.PId;
+                treeNode.Value = p_sysOrg.Id;
+                treeNode.Label = p_sysOrg.Name;
+                treeNode.Children.AddRange(GetOrgTree(treeNode.Id, sysOrgs));
+                treeNodes.Add(treeNode);
+            }
+
+            return treeNodes;
+        }
+
+        public List<TreeNode> GetOrgTree()
+        {
+            var sysOrgs = CurrentDb.SysOrg.ToList();
+            return GetOrgTree(GuidUtil.Empty(), sysOrgs);
+        }
+
+        public CustomJsonResult InitAdd(string operater)
+        {
+            var result = new CustomJsonResult();
+            var ret = new RetAdminUserInitAdd();
+            ret.Orgs = GetOrgTree();
+            result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }
@@ -126,6 +164,13 @@ namespace LocalS.Service.Api.Admin
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
                 CurrentDb.SysAdminUser.Add(user);
 
+                if (rop.OrgIds != null)
+                {
+                    foreach (var orgId in rop.OrgIds)
+                    {
+                        CurrentDb.SysUserOrg.Add(new SysUserOrg { Id = GuidUtil.New(), OrgId = orgId, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
+                    }
+                }
 
                 CurrentDb.SaveChanges();
                 ts.Complete();
@@ -137,11 +182,11 @@ namespace LocalS.Service.Api.Admin
             return result;
         }
 
-        public CustomJsonResult InitEdit(string operater,string userId)
+        public CustomJsonResult InitEdit(string operater, string userId)
         {
             var result = new CustomJsonResult();
 
-            var ret = new RetUserInitEdit();
+            var ret = new RetAdminUserInitEdit();
 
             var user = CurrentDb.SysAdminUser.Where(m => m.Id == userId).FirstOrDefault();
 
@@ -151,12 +196,15 @@ namespace LocalS.Service.Api.Admin
             ret.Email = user.Email;
             ret.FullName = user.FullName;
             ret.IsDisable = user.IsDisable;
+            ret.Orgs = GetOrgTree();
+            ret.OrgIds = (from m in CurrentDb.SysUserOrg where m.UserId == user.Id select m.OrgId).ToList();
+
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }
 
-        public CustomJsonResult Edit(string operater,RopAdminUserEdit rop)
+        public CustomJsonResult Edit(string operater, RopAdminUserEdit rop)
         {
 
             CustomJsonResult result = new CustomJsonResult();
@@ -178,6 +226,22 @@ namespace LocalS.Service.Api.Admin
                 user.MendTime = DateTime.Now;
                 user.Mender = operater;
 
+
+                var sysUserOrgs = CurrentDb.SysUserOrg.Where(r => r.UserId == rop.UserId).ToList();
+
+                foreach (var sysUserOrg in sysUserOrgs)
+                {
+                    CurrentDb.SysUserOrg.Remove(sysUserOrg);
+                }
+
+
+                if (rop.OrgIds != null)
+                {
+                    foreach (var orgId in rop.OrgIds)
+                    {
+                        CurrentDb.SysUserOrg.Add(new SysUserOrg { Id = GuidUtil.New(), OrgId = orgId, UserId = rop.UserId, Creator = operater, CreateTime = DateTime.Now });
+                    }
+                }
 
                 CurrentDb.SaveChanges();
                 ts.Complete();

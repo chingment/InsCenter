@@ -35,6 +35,7 @@ namespace Lumos.DbRelay
         public IDbSet<SysMenuPermission> SysMenuPermission { get; set; }
         public IDbSet<SysRoleMenu> SysRoleMenu { get; set; }
         public IDbSet<SysUserRole> SysUserRole { get; set; }
+        public IDbSet<SysUserOrg> SysUserOrg { get; set; }
         public IDbSet<SysOrg> SysOrg { get; set; }
         public IDbSet<SysUserLoginHis> SysUserLoginHis { get; set; }
         public IDbSet<SysAdminUser> SysAdminUser { get; set; }

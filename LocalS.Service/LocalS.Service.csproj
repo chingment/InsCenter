@@ -74,6 +74,7 @@
     <Compile Include="Api\Admin\RModels\RetAdminOrgInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminRoleInitAdd.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminRoleInitEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RetAdminUserInitAdd.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminUserInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RopAdminOrgAdd.cs" />
     <Compile Include="Api\Admin\RModels\RopAdminOrgEdit.cs" />
@@ -118,8 +119,7 @@
     <Compile Include="Api\Merch\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Merch\RModels\RupUserGetList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Menu.cs" />
-    <Compile Include="UI\MenuChild.cs" />
+    <Compile Include="UI\MenuNode.cs" />
     <Compile Include="UI\MenuMeta.cs" />
     <Compile Include="UI\TreeNode.cs" />
   </ItemGroup>

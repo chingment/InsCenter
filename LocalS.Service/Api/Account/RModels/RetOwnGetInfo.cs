@@ -11,7 +11,7 @@ namespace LocalS.Service.Api.Account
     {
         public RetOwnGetInfo()
         {
-            this.Menus = new List<Menu>();
+            this.Menus = new List<MenuNode>();
         }
         public string Introduction { get; set; }
         public string Avatar { get; set; }
@@ -19,6 +19,6 @@ namespace LocalS.Service.Api.Account
         public string UserName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public List<Menu> Menus { get; set; }
+        public List<MenuNode> Menus { get; set; }
     }
 }

@@ -15,6 +15,8 @@ namespace LocalS.Service.UI
 
         public string Id { get; set; }
 
+        public string Value { get; set; }
+
         public string PId { get; set; }
         public string Label { get; set; }
 

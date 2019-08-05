@@ -58,7 +58,7 @@ export default {
             type: 'warning'
           }).then(() => {
             editOrg(this.form).then(res => {
-              this.$message(res.message)
+               this.$message(res.message)
               if (res.result === 1) {
                 goBack(this)
               }

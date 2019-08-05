@@ -83,48 +83,126 @@ namespace LocalS.Service.Api.Account
             return result;
         }
 
-        private List<Menu> GetMenus(Enumeration.BelongSite belongSite)
-        {
-            var menus = new List<Menu>();
+        //private List<TreeNode> GetMenuTree(string id, List<SysMenu> sysMenus)
+        //{
+        //    List<TreeNode> treeNodes = new List<TreeNode>();
 
+        //    var p_sysMenus = sysMenus.Where(t => t.PId == id).ToList();
+
+        //    foreach (var p_sysMenu in p_sysMenus)
+        //    {
+        //        TreeNode treeNode = new TreeNode();
+        //        treeNode.Id = p_sysMenu.Id;
+        //        treeNode.PId = p_sysMenu.PId;
+        //        treeNode.Label = p_sysMenu.Title;
+        //        treeNode.Children.AddRange(GetMenuTree(treeNode.Id, sysMenus));
+        //        treeNodes.Add(treeNode);
+        //    }
+
+        //    return treeNodes;
+        //}
+
+        public List<MenuNode> GetMenus(Enumeration.BelongSite belongSite)
+        {
             var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite).ToList();
 
-            var sysMenusDept1 = from c in sysMenus where c.Dept == 1 select c;
+            var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
 
-            foreach (var sysMenuDept1 in sysMenusDept1)
+            return GetMenuTree(topMenu.Id, sysMenus);
+        }
+        private List<MenuNode> GetMenuTree(string id, List<SysMenu> sysMenus)
+        {
+            List<MenuNode> menuNodes = new List<MenuNode>();
+
+            var p_sysMenus = sysMenus.Where(t => t.PId == id).ToList();
+
+
+            foreach (var p_sysMenu in p_sysMenus)
             {
-                var menu1 = new Menu();
+                var menuNode = new MenuNode();
+                menuNode.Path = p_sysMenu.Path == "/home" ? "/" : p_sysMenu.Path;
+                menuNode.Component = null;
+                menuNode.Hidden = !p_sysMenu.IsSidebar;
+                menuNode.Meta = new MenuMeta { Title = p_sysMenu.Title, Icon = p_sysMenu.Icon };
+                menuNode.Navbar = p_sysMenu.IsNavbar;
 
-                menu1.Path = sysMenuDept1.Path == "/home" ? "/" : sysMenuDept1.Path;
-                menu1.Component = null;
-                menu1.Hidden = !sysMenuDept1.IsSidebar;
-                menu1.Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon };
-
-                var sysMenusDept2 = (from c in sysMenus where c.PId == sysMenuDept1.Id select c).ToList();
-
-                if (sysMenusDept2.Count == 0)
+                var children = (from c in sysMenus where c.PId == p_sysMenu.Id select c).ToList();
+                if (children.Count == 0)
                 {
-                    menu1.Name = null;
-                    menu1.Meta = null;
-                    menu1.Navbar = false;
-                    menu1.Redirect = sysMenuDept1.Path;
-
-                    menu1.Children.Add(new MenuChild { Navbar = sysMenuDept1.IsNavbar, Hidden = !sysMenuDept1.IsSidebar, Name = sysMenuDept1.Name, Path = sysMenuDept1.Path, Component = sysMenuDept1.Component, Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon } });
+                    if (p_sysMenu.Dept == 1)
+                    {
+                        menuNode.Name = null;
+                        menuNode.Meta = null;
+                        menuNode.Navbar = false;
+                        menuNode.Redirect = p_sysMenu.Path;
+                        menuNode.Children.Add(new MenuNode { Navbar = p_sysMenu.IsNavbar, Hidden = !p_sysMenu.IsSidebar, Name = p_sysMenu.Name, Path = p_sysMenu.Path, Component = p_sysMenu.Component, Children = null, Meta = new MenuMeta { Title = p_sysMenu.Title, Icon = p_sysMenu.Icon } });
+                    }
+                    else
+                    {
+                        menuNode.Children = null;
+                        menuNode.Component = p_sysMenu.Component;
+                    }
                 }
                 else
                 {
-                    menu1.Name = sysMenuDept1.Name;
-                    foreach (var sysMenuDept2 in sysMenusDept2)
-                    {
-                        menu1.Children.Add(new MenuChild { Navbar = sysMenuDept2.IsNavbar, Hidden = !sysMenuDept2.IsSidebar, Name = sysMenuDept2.Name, Path = sysMenuDept2.Path, Component = sysMenuDept2.Component, Meta = new MenuMeta { Title = sysMenuDept2.Title, Icon = sysMenuDept2.Icon } });
-                    }
+                    menuNode.Name = null;
+                    menuNode.Redirect = null;
+                    menuNode.Component = p_sysMenu.Component;
+                    menuNode.Children.AddRange(GetMenuTree(p_sysMenu.Id, sysMenus));
                 }
 
-                menus.Add(menu1);
+
+
+                menuNodes.Add(menuNode);
+
+
             }
 
-            return menus;
+            return menuNodes;
         }
+
+        //private List<MenuNode> GetMenus(Enumeration.BelongSite belongSite)
+        //{
+        //    var menus = new List<MenuNode>();
+
+        //    var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite).ToList();
+
+        //    var sysMenusDept1 = from c in sysMenus where c.Dept == 1 select c;
+
+        //    foreach (var sysMenuDept1 in sysMenusDept1)
+        //    {
+        //        var menu1 = new MenuNode();
+
+        //        menu1.Path = sysMenuDept1.Path == "/home" ? "/" : sysMenuDept1.Path;
+        //        menu1.Component = null;
+        //        menu1.Hidden = !sysMenuDept1.IsSidebar;
+        //        menu1.Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon };
+
+        //        var sysMenusDept2 = (from c in sysMenus where c.PId == sysMenuDept1.Id select c).ToList();
+
+        //        if (sysMenusDept2.Count == 0)
+        //        {
+        //            menu1.Name = null;
+        //            menu1.Meta = null;
+        //            menu1.Navbar = false;
+        //            menu1.Redirect = sysMenuDept1.Path;
+
+        //            menu1.Children.Add(new MenuChild { Navbar = sysMenuDept1.IsNavbar, Hidden = !sysMenuDept1.IsSidebar, Name = sysMenuDept1.Name, Path = sysMenuDept1.Path, Component = sysMenuDept1.Component, Meta = new MenuMeta { Title = sysMenuDept1.Title, Icon = sysMenuDept1.Icon } });
+        //        }
+        //        else
+        //        {
+        //            menu1.Name = sysMenuDept1.Name;
+        //            foreach (var sysMenuDept2 in sysMenusDept2)
+        //            {
+        //                menu1.Children.Add(new MenuChild { Navbar = sysMenuDept2.IsNavbar, Hidden = !sysMenuDept2.IsSidebar, Name = sysMenuDept2.Name, Path = sysMenuDept2.Path, Component = sysMenuDept2.Component, Meta = new MenuMeta { Title = sysMenuDept2.Title, Icon = sysMenuDept2.Icon } });
+        //            }
+        //        }
+
+        //        menus.Add(menu1);
+        //    }
+
+        //    return menus;
+        //}
         public CustomJsonResult GetInfo(string operater, string userId, RupOwnGetInfo rup)
         {
             var result = new CustomJsonResult();

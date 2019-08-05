@@ -10,7 +10,7 @@ export function fetchList(params) {
 
 export function initAddUser(params) {
   return request({
-    url: '/adminuser/initEdit',
+    url: '/adminuser/initAdd',
     method: 'get',
     params
   })

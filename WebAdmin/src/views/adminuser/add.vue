@@ -10,24 +10,15 @@
       <el-form-item label="姓名" prop="fullName">
         <el-input v-model="form.fullName" />
       </el-form-item>
-      <el-form-item label="所属机构" prop="orgId">
+      <el-form-item label="所属机构" prop="orgIds">
         <el-cascader
-          v-model="form.orgId"
+          v-model="form.orgIds"
           :options="cascader_org_options"
           :props="{ multiple: false, checkStrictly: true }"
           placeholder="请选择"
           clearable
           @change="cascader_org_change"
-        />
-      </el-form-item>
-      <el-form-item label="职位" prop="positionId">
-        <el-cascader
-          v-model="form.orgId"
-          :options="cascader_org_options"
-          :props="{ multiple: false, checkStrictly: true }"
-          placeholder="请选择"
-          clearable
-          @change="cascader_org_change"
+          style="width:100%"
         />
       </el-form-item>
       <el-form-item label="手机号码" prop="phoneNumber">
@@ -46,7 +37,7 @@
 <script>
 // https://element.eleme.cn/#/zh-CN/component/cascader
 import { MessageBox } from 'element-ui'
-import { addUser } from '@/api/adminuser'
+import { addUser, initAddUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
 import { goBack } from '@/utils/commonUtil'
 export default {
@@ -58,49 +49,32 @@ export default {
         fullName: '',
         phoneNumber: '',
         email: '',
-        orgId: ''
+        orgIds: []
       },
       rules: {
         userName: [{ required: true, message: '必填,且由3到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.userName }],
         password: [{ required: true, message: '必填,且由6到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.password }],
         fullName: [{ required: true, message: '必填', trigger: 'change' }],
-        orgId: [{ required: true, message: '必填' }],
+        orgIds: [{ required: true, message: '必填' }],
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
       cascader_org_props: { multiple: true, checkStrictly: true },
-      cascader_org_options: [{
-        value: 1,
-        label: '东南',
-        children: [{
-          value: 2,
-          label: '上海',
-          children: [
-            { value: 3, label: '普陀' },
-            { value: 4, label: '黄埔' },
-            { value: 5, label: '徐汇' }
-          ]
-        }, {
-          value: 7,
-          label: '江苏',
-          children: [
-            { value: 8, label: '南京' },
-            { value: 9, label: '苏州' },
-            { value: 10, label: '无锡' }
-          ]
-        }, {
-          value: 12,
-          label: '浙江',
-          children: [
-            { value: 13, label: '杭州' },
-            { value: 14, label: '宁波' },
-            { value: 15, label: '嘉兴' }
-          ]
-        }]
-      }]
+      cascader_org_options: []
     }
   },
+  created() {
+    this.init()
+  },
   methods: {
+    init() {
+      initAddUser().then(res => {
+        if (res.result === 1) {
+          var d = res.data
+          this.cascader_org_options= d.orgs
+        }
+      })
+    },
     resetForm() {
       this.form = {
         userName: '',
@@ -111,6 +85,7 @@ export default {
       }
     },
     onSubmit() {
+      console.log(JSON.stringify(this.form))
       this.$refs['form'].validate((valid) => {
         if (valid) {
           MessageBox.confirm('确定要保存', '提示', {
