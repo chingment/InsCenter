@@ -18,6 +18,7 @@ export default {
   },
   methods: {
     linkProps(url) {
+      console.log('ulr:'+url)
       if (isExternal(url)) {
         return {
           is: 'a',

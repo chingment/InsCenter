@@ -63,7 +63,7 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        generateRoutes(data.menus)
+        // generateRoutes(data.menus)
         commit('SET_USERINFO', data)
         resolve(data)
       }).catch(error => {
