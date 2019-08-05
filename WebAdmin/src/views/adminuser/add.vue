@@ -14,7 +14,7 @@
         <el-cascader
           v-model="form.orgIds"
           :options="cascader_org_options"
-          :props="{ multiple: false, checkStrictly: true }"
+          :props="cascader_org_props"
           placeholder="请选择"
           clearable
           @change="cascader_org_change"
@@ -55,11 +55,11 @@ export default {
         userName: [{ required: true, message: '必填,且由3到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.userName }],
         password: [{ required: true, message: '必填,且由6到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.password }],
         fullName: [{ required: true, message: '必填', trigger: 'change' }],
-        orgIds: [{ required: true, message: '必填' }],
+        orgIds: [{ required: true, message: '必选' }],
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
-      cascader_org_props: { multiple: true, checkStrictly: true },
+      cascader_org_props: { multiple: true, checkStrictly: true,emitPath:false },
       cascader_org_options: []
     }
   },
