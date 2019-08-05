@@ -35,28 +35,28 @@ export const constantRoutes = [
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
-  },
-  {
-    path:'/',
-    component: Layout,
-    children: [
-      {
-        path: '/adminuser/list',
-        component: () => import('@/views/adminuser/list'),
-        meta: { title: '用户设置', icon: 'table' }
-      },
-      {
-        path: '/adminuser/add',
-        component: () => import('@/views/adminuser/add'),
-        meta: { title: '用户新建', icon: 'table' }
-      },
-      {
-        path: '/adminuser/edit',
-        component: () => import('@/views/adminuser/edit'),
-        meta: { title: '用户新建', icon: 'table' }
-      }
-    ]
   }
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '/adminuser/list',
+  //       component: () => import('@/views/adminuser/list'),
+  //       meta: { title: '用户设置', icon: 'table' }
+  //     },
+  //     {
+  //       path: '/adminuser/add',
+  //       component: () => import('@/views/adminuser/add'),
+  //       meta: { title: '用户新建', icon: 'table' }
+  //     },
+  //     {
+  //       path: '/adminuser/edit',
+  //       component: () => import('@/views/adminuser/edit'),
+  //       meta: { title: '用户新建', icon: 'table' }
+  //     }
+  //   ]
+  // }
 ]
 
 const createRouter = () => new Router({

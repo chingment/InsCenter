@@ -59,60 +59,62 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-    //   var parentList = []
-    //   var matc = []
-    //   function buildParentList(arr) {
-    //     arr.forEach(g => {
-    //       if (g.parentId != undefined) {
-    //         const pid = g['parentId']
-    //        	const oid = g['orgId']
-    //         // /parentList[oid] = pid
-    //         parentList.push(g)
-    //       }
-    //       if (g.children != undefined) { buildParentList(g['children']) }
-    //     })
-    //   }
-    //   function findParent(idx) {
-  	// parentList.forEach(g => {
-    //       if (g.orgId == idx) {
-    //         matc.push(g)
-    //         console.log(g.parentId)
-    //         findParent(g.parentId)
-    //       }
-    //     })
+      var parentList = []
+      var matc = []
+      function buildParentList(arr) {
+        arr.forEach(g => {
+          if (g.parentId !== undefined) {
+            const pid = g['parentId']
+           	const oid = g['orgId']
+            // /parentList[oid] = pid
+            parentList.push(g)
+          }
+          if (g.children !== undefined) { buildParentList(g['children']) }
+        })
+      }
+      function findParent(idx) {
+  	parentList.forEach(g => {
+          if (g.orgId === idx) {
+            matc.push(g)
+            console.log(g.parentId)
+            findParent(g.parentId)
+          }
+        })
 
-      //     //   if (parentList[idx] != undefined){
-      //     //       let pid = parentList[idx]
-      //     //       matc.push()
-      //     //       console.log(pid)
-      //     //       findParent(pid)
-      //     // }
-      //   }
+        //   if (parentList[idx] != undefined){
+        //       let pid = parentList[idx]
+        //       matc.push()
+        //       console.log(pid)
+        //       findParent(pid)
+        // }
+      }
 
-      //   buildParentList(this.arouters)
+      buildParentList(this.arouters)
 
-      //   findParent(4) // 0 1 2
+      findParent(4) // 0 1 2
 
-      //   matc = matc.reverse()
+      matc = matc.reverse()
 
-      //   let matched = matc
-      //   const first = matched[0]
-
-      //   if (!this.isDashboard(first)) {
-      //     matched = [{ path: '/home', meta: { title: '主页' }}].concat(matched)
-      //   }
-
-      //   this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
-      //   console.log('levelList:' + JSON.stringify(this.levelList))
-      // only show routes with meta.title
-
-      let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
-
+      let matched = matc
       const first = matched[0]
+
       if (!this.isDashboard(first)) {
         matched = [{ path: '/home', meta: { title: '主页' }}].concat(matched)
       }
-      this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+
+      // this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+      // console.log('levelList:' + JSON.stringify(this.levelList))
+      // only show routes with meta.title
+      // console.log('matched:'+ JSON.stringify(this.$route.matched))
+    //   let matched = this.arouters.filter(item => item.meta && item.meta.title)
+    //    console.log('matched:'+JSON.stringify(matched))
+    //   const first = matched[0]
+    //   if (!this.isDashboard(first)) {
+    //     matched = [{ path: '/home', meta: { title: '主页' }}].concat(matched)
+    //   }
+    // console.log('matched2:'+JSON.stringify(matched))
+    //   this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+    //    console.log('levelList:'+JSON.stringify(this.levelList))
     },
     isDashboard(route) {
       const name = route && route.name

@@ -8,9 +8,12 @@
       </app-link>
     </template>
 
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body @open="handleOpen" @close="handleClose">
+    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body :collapse="true">
       <template slot="title">
-        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title+'das'" />
+        <app-link :to="resolvePath(item.path)">
+          <item :icon="item.meta && item.meta.icon" :title="item.meta.title" />
+          <span @click="myckick"> {{ item.meta.title }} </span>
+        </app-link>
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -94,11 +97,9 @@ export default {
     resolveChild(child) {
       return child
     },
-    handleOpen() {
-      console.log('handleOpen')
-    },
-    handleClose() {
-      console.log('handleClose')
+    myckick(e) {
+      e.currentTarget.parentElement.style.dispaly = 'none'
+      console.log('dad')
     }
   }
 }
