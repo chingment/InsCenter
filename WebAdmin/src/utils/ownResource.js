@@ -67,6 +67,8 @@ export function getSideBars() {
       }
       _generateRoutes(routers,data) 
       
+       console.log(JSON.stringify(routers))
+
       return routers
 
 }
