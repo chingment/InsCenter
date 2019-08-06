@@ -26,7 +26,7 @@
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="form.email" />
       </el-form-item>
-        <el-form-item label="角色">
+      <el-form-item label="角色">
         <el-tree
           ref="treerole"
           :data="tree_role_options"
@@ -60,7 +60,7 @@ export default {
         phoneNumber: '',
         email: '',
         orgIds: [],
-        roleIds:['地推活动','单纯品牌曝光']
+        roleIds: ['地推活动', '单纯品牌曝光']
       },
       rules: {
         userName: [{ required: true, message: '必填,且由3到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.userName }],
@@ -70,7 +70,7 @@ export default {
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
-      cascader_org_props: { multiple: true, checkStrictly: true,emitPath:false },
+      cascader_org_props: { multiple: true, checkStrictly: true, emitPath: false },
       cascader_org_options: [],
       tree_role_options: [],
       tree_role_props: {
@@ -87,7 +87,7 @@ export default {
       initAddUser().then(res => {
         if (res.result === 1) {
           var d = res.data
-          this.cascader_org_options= d.orgs
+          this.cascader_org_options = d.orgs
           this.tree_role_options = d.roles
         }
       })
@@ -110,7 +110,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-             this.form.roleIds = getCheckedKeys(this.$refs.treerole)
+            this.form.roleIds = getCheckedKeys(this.$refs.treerole)
             addUser(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
