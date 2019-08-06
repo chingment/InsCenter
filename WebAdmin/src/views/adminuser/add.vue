@@ -27,6 +27,14 @@
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="form.email" />
       </el-form-item>
+       <el-form-item label="角色">
+    <el-checkbox-group v-model="form.roleIds">
+      <el-checkbox label="美食/餐厅线上活动"  name="type"></el-checkbox>
+      <el-checkbox label="地推活动"  name="type"></el-checkbox>
+      <el-checkbox label="线下主题活动"  name="type"></el-checkbox>
+      <el-checkbox label="单纯品牌曝光"  name="type"></el-checkbox>
+    </el-checkbox-group>
+  </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
       </el-form-item>
@@ -49,7 +57,8 @@ export default {
         fullName: '',
         phoneNumber: '',
         email: '',
-        orgIds: []
+        orgIds: [],
+        roleIds:['地推活动','单纯品牌曝光']
       },
       rules: {
         userName: [{ required: true, message: '必填,且由3到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.userName }],

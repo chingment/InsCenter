@@ -115,11 +115,29 @@ namespace LocalS.Service.Api.Admin
             return GetOrgTree(GuidUtil.Empty(), sysOrgs);
         }
 
+        public List<TreeNode> GetRoleTree()
+        {
+            List<TreeNode> treeNodes = new List<TreeNode>();
+
+            var sysRoles = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).ToList();
+
+            foreach (var sysRole in sysRoles)
+            {
+                treeNodes.Add(new TreeNode { Id = sysRole.Id, PId = "0", Label = sysRole.Name });
+            }
+
+            return treeNodes;
+        }
+
         public CustomJsonResult InitAdd(string operater)
         {
             var result = new CustomJsonResult();
             var ret = new RetAdminUserInitAdd();
+
             ret.Orgs = GetOrgTree();
+            ret.Roles = GetRoleTree();
+
+
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
@@ -172,6 +190,14 @@ namespace LocalS.Service.Api.Admin
                     }
                 }
 
+                if (rop.RoleIds != null)
+                {
+                    foreach (var roleId in rop.RoleIds)
+                    {
+                        CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
+                    }
+                }
+
                 CurrentDb.SaveChanges();
                 ts.Complete();
 
@@ -198,6 +224,10 @@ namespace LocalS.Service.Api.Admin
             ret.IsDisable = user.IsDisable;
             ret.Orgs = GetOrgTree();
             ret.OrgIds = (from m in CurrentDb.SysUserOrg where m.UserId == user.Id select m.OrgId).ToList();
+
+
+            ret.Roles = GetRoleTree();
+            ret.RoleIds = (from m in CurrentDb.SysUserRole where m.UserId == user.Id select m.RoleId).ToList();
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
@@ -240,6 +270,23 @@ namespace LocalS.Service.Api.Admin
                     foreach (var orgId in rop.OrgIds)
                     {
                         CurrentDb.SysUserOrg.Add(new SysUserOrg { Id = GuidUtil.New(), OrgId = orgId, UserId = rop.UserId, Creator = operater, CreateTime = DateTime.Now });
+                    }
+                }
+
+
+                var sysUserRoles = CurrentDb.SysUserRole.Where(r => r.UserId == rop.UserId).ToList();
+
+                foreach (var sysUserRole in sysUserRoles)
+                {
+                    CurrentDb.SysUserRole.Remove(sysUserRole);
+                }
+
+
+                if (rop.RoleIds != null)
+                {
+                    foreach (var roleId in rop.RoleIds)
+                    {
+                        CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = rop.UserId, Creator = operater, CreateTime = DateTime.Now });
                     }
                 }
 

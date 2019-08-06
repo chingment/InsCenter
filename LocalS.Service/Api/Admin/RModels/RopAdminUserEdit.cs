@@ -20,5 +20,7 @@ namespace LocalS.Service.Api.Admin
         public bool IsDisable { get; set; }
 
         public List<string> OrgIds { get; set; }
+
+        public List<string> RoleIds { get; set; }
     }
 }

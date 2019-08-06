@@ -19,5 +19,9 @@ namespace LocalS.Service.Api.Admin
         public List<string> OrgIds { get; set; }
 
         public List<TreeNode> Orgs { get; set; }
+
+        public List<string> RoleIds { get; set; }
+
+        public List<TreeNode> Roles { get; set; }
     }
 }

@@ -127,7 +127,7 @@ export function generateRoutes(data){
   
     menus.filter(item => {
       if (item.isRouter) {
-        console.log('item.component:'+ item.component)
+        // console.log('item.component:'+ item.component)
         if(item.component!==null)
         {
         var _router = {
