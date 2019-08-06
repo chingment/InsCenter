@@ -10,18 +10,17 @@ namespace LocalS.Service.UI
     {
         public MenuNode()
         {
-            this.Meta = new MenuMeta();
             this.Children = new List<MenuNode>();
         }
 
         public string Name { get; set; }
+        public string Title { get; set; }
+        public string Icon { get; set; }
         public string Path { get; set; }
-        public MenuMeta Meta { get; set; }
-        public List<MenuNode> Children { get; set; }
-        public bool Hidden { get; set; }
+        public bool IsSidebar { get; set; }
+        public bool IsNavbar { get; set; }
         public string Component { get; set; }
-        public bool Navbar { get; set; }
-
         public string Redirect { get; set; }
+        public List<MenuNode> Children { get; set; }
     }
 }

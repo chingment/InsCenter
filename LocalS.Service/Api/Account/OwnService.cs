@@ -122,9 +122,8 @@ namespace LocalS.Service.Api.Account
                 var menuNode = new MenuNode();
                 menuNode.Path = p_sysMenu.Path == "/home" ? "/" : p_sysMenu.Path;
                 menuNode.Component = null;
-                menuNode.Hidden = !p_sysMenu.IsSidebar;
-                menuNode.Meta = new MenuMeta { Title = p_sysMenu.Title, Icon = p_sysMenu.Icon };
-                menuNode.Navbar = p_sysMenu.IsNavbar;
+                menuNode.IsSidebar = p_sysMenu.IsSidebar;
+                menuNode.IsNavbar = p_sysMenu.IsNavbar;
 
                 var children = (from c in sysMenus where c.PId == p_sysMenu.Id select c).ToList();
                 if (children.Count == 0)
@@ -132,10 +131,9 @@ namespace LocalS.Service.Api.Account
                     if (p_sysMenu.Dept == 1)
                     {
                         menuNode.Name = null;
-                        menuNode.Meta = null;
-                        menuNode.Navbar = false;
+                        menuNode.IsNavbar = false;
                         menuNode.Redirect = p_sysMenu.Path;
-                        menuNode.Children.Add(new MenuNode { Navbar = p_sysMenu.IsNavbar, Hidden = !p_sysMenu.IsSidebar, Name = p_sysMenu.Name, Path = p_sysMenu.Path, Component = p_sysMenu.Component, Children = null, Meta = new MenuMeta { Title = p_sysMenu.Title, Icon = p_sysMenu.Icon } });
+                        menuNode.Children.Add(new MenuNode { IsNavbar = p_sysMenu.IsNavbar, IsSidebar = p_sysMenu.IsSidebar, Name = p_sysMenu.Name, Path = p_sysMenu.Path, Component = p_sysMenu.Component, Children = null });
                     }
                     else
                     {
@@ -150,12 +148,7 @@ namespace LocalS.Service.Api.Account
                     menuNode.Component = p_sysMenu.Component;
                     menuNode.Children.AddRange(GetMenuTree(p_sysMenu.Id, sysMenus));
                 }
-
-
-
                 menuNodes.Add(menuNode);
-
-
             }
 
             return menuNodes;

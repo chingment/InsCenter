@@ -156,7 +156,7 @@ namespace LocalS.Service.Api.Admin
                 {
                     return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "数据为空");
                 }
-
+                sysOrg.Name = rop.Name;
                 sysOrg.Description = rop.Description;
                 sysOrg.MendTime = DateTime.Now;
                 sysOrg.Mender = operater;

@@ -10,6 +10,8 @@ namespace LocalS.Service.Api.Admin
     {
         public string OrgId { get; set; }
 
+        public string Name { get; set; }
+
         public string Description { get; set; }
     }
 }

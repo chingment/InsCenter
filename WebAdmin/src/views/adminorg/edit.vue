@@ -4,8 +4,8 @@
       <el-form-item label="上级机构">
         {{ form.pOrgName }}
       </el-form-item>
-      <el-form-item label="名称">
-        {{ form.name }}
+      <el-form-item label="名称" prop="name">
+        <el-input v-model="form.name" />
       </el-form-item>
       <el-form-item label="描述" prop="description">
         <el-input v-model="form.description" type="textarea" />
@@ -33,6 +33,7 @@ export default {
         description: ''
       },
       rules: {
+        name: [{ required: true, min: 1, max: 20, message: '必填,且不能超过20个字符', trigger: 'change' }],
         description: [{ required: false, min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
       }
     }
