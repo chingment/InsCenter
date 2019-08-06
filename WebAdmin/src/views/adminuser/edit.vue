@@ -41,6 +41,19 @@
       <el-form-item label="禁用">
         <el-switch v-model="form.isDisable" />
       </el-form-item>
+       <el-form-item label="角色">
+        <el-tree
+          ref="treerole"
+          :check-strictly="true"
+          :data="tree_role_options"
+          :props="tree_role_props"
+          node-key="id"
+          class="filter-tree"
+          show-checkbox
+          default-expand-all
+          :default-checked-keys="form.roleIds"
+        />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
       </el-form-item>
@@ -52,7 +65,7 @@
 import { MessageBox } from 'element-ui'
 import { editUser, initEditUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
-import { getUrlParam, goBack } from '@/utils/commonUtil'
+import { getCheckedKeys, getUrlParam, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -74,7 +87,12 @@ export default {
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
       cascader_org_props: { multiple: true, checkStrictly: true,emitPath:false },
-      cascader_org_options: []
+      cascader_org_options: [],
+      tree_role_options: [],
+      tree_role_props: {
+        children: 'children',
+        label: 'label'
+      }
     }
   },
   created() {
@@ -92,7 +110,9 @@ export default {
           this.form.phoneNumber= d.phoneNumber
           this.form.email= d.email
           this.form.orgIds=d.orgIds
+          this.form.roleIds = d.roleIds
           this.cascader_org_options= d.orgs
+          this.tree_role_options = d.roles
         }
       })
     },
@@ -105,6 +125,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
+            this.form.roleIds = getCheckedKeys(this.$refs.treerole)
             editUser(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
@@ -138,6 +159,10 @@ export default {
 }
 #useradd_container {
   max-width: 600px;
+}
+
+.el-tree-node__expand-icon.is-leaf{
+  display: none;
 }
 </style>
 

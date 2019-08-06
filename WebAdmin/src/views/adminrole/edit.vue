@@ -9,15 +9,15 @@
       </el-form-item>
       <el-form-item label="菜单">
         <el-tree
-          ref="treemenus"
+          ref="treemenu"
           :check-strictly="true"
-          :data="treeData"
-          :props="defaultProps"
+          :data="tree_menu_options"
+          :props="tree_menu_props"
           node-key="id"
           class="filter-tree"
           show-checkbox
           default-expand-all
-          :default-checked-keys="treeDataDefaultChecked"
+          :default-checked-keys="form.menuIds"
         />
       </el-form-item>
       <el-form-item>
@@ -31,6 +31,7 @@
 import { MessageBox } from 'element-ui'
 import { editRole, initEditRole } from '@/api/adminrole'
 import { getUrlParam, getCheckedKeys, goBack } from '@/utils/commonUtil'
+import { resolve } from 'url';
 export default {
   data() {
     return {
@@ -43,9 +44,8 @@ export default {
       rules: {
         description: [{ required: false, min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
       },
-      treeData: [],
-      treeDataDefaultChecked: [],
-      defaultProps: {
+      tree_menu_options: [],
+      tree_menu_props: {
         children: 'children',
         label: 'label'
       }
@@ -55,16 +55,17 @@ export default {
     this.init()
   },
   methods: {
-    init() {
+    init() {resolve
       var roleId = getUrlParam('roleId')
       initEditRole({ roleId: roleId }).then(res => {
         if (res.result === 1) {
+  
           var d = res.data
           this.form.roleId = d.roleId
           this.form.name = d.name
           this.form.description = d.description
-          this.treeData = d.menus
-          this.treeDataDefaultChecked = d.checkedMenuIds
+          this.form.menuIds = d.menuIds
+          this.tree_menu_options = d.menus
         }
       })
     },
@@ -76,7 +77,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.form.menuIds = getCheckedKeys(this.$refs.treemenus)
+            this.form.menuIds = getCheckedKeys(this.$refs.treemenu)
             editRole(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {

@@ -16,6 +16,6 @@ namespace LocalS.Service.Api.Admin
 
         public List<TreeNode> Menus { get; set; }
 
-        public List<string> CheckedMenuIds { get; set; }
+        public List<string> MenuIds { get; set; }
     }
 }

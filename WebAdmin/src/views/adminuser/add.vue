@@ -17,7 +17,6 @@
           :props="cascader_org_props"
           placeholder="请选择"
           clearable
-          @change="cascader_org_change"
           style="width:100%"
         />
       </el-form-item>
@@ -27,14 +26,17 @@
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="form.email" />
       </el-form-item>
-       <el-form-item label="角色">
-    <el-checkbox-group v-model="form.roleIds">
-      <el-checkbox label="美食/餐厅线上活动"  name="type"></el-checkbox>
-      <el-checkbox label="地推活动"  name="type"></el-checkbox>
-      <el-checkbox label="线下主题活动"  name="type"></el-checkbox>
-      <el-checkbox label="单纯品牌曝光"  name="type"></el-checkbox>
-    </el-checkbox-group>
-  </el-form-item>
+        <el-form-item label="角色">
+        <el-tree
+          ref="treerole"
+          :data="tree_role_options"
+          :props="tree_role_props"
+          node-key="id"
+          class="filter-tree"
+          show-checkbox
+          default-expand-all
+        />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
       </el-form-item>
@@ -47,7 +49,7 @@
 import { MessageBox } from 'element-ui'
 import { addUser, initAddUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
-import { goBack } from '@/utils/commonUtil'
+import { getCheckedKeys, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -69,7 +71,12 @@ export default {
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
       cascader_org_props: { multiple: true, checkStrictly: true,emitPath:false },
-      cascader_org_options: []
+      cascader_org_options: [],
+      tree_role_options: [],
+      tree_role_props: {
+        children: 'children',
+        label: 'label'
+      }
     }
   },
   created() {
@@ -81,6 +88,7 @@ export default {
         if (res.result === 1) {
           var d = res.data
           this.cascader_org_options= d.orgs
+          this.tree_role_options = d.roles
         }
       })
     },
@@ -102,6 +110,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
+             this.form.roleIds = getCheckedKeys(this.$refs.treerole)
             addUser(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
@@ -111,9 +120,6 @@ export default {
           })
         }
       })
-    },
-    cascader_org_change() {
-      console.log('dasd')
     }
   }
 }

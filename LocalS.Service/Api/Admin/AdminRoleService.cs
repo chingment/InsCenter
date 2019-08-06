@@ -157,7 +157,7 @@ namespace LocalS.Service.Api.Admin
                             select c;
 
 
-            ret.CheckedMenuIds = (from p in roleMenus select p.Id).ToList();
+            ret.MenuIds = (from p in roleMenus select p.Id).ToList();
 
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);

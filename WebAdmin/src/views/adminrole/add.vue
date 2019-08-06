@@ -9,9 +9,9 @@
       </el-form-item>
       <el-form-item label="菜单">
         <el-tree
-          ref="treemenus"
-          :data="treeData"
-          :props="defaultProps"
+          ref="treemenu"
+          :data="tree_menu_options"
+          :props="tree_menu_props"
           node-key="id"
           class="filter-tree"
           show-checkbox
@@ -41,8 +41,8 @@ export default {
         name: [{ required: true, min: 1, max: 20, message: '必填,且不能超过20个字符', trigger: 'change' }],
         description: [{ required: false, min: 0, max: 500, message: '不能超过500个字符', trigger: 'change' }]
       },
-      treeData: [],
-      defaultProps: {
+      tree_menu_options: [],
+      tree_menu_props: {
         children: 'children',
         label: 'label'
       }
@@ -56,7 +56,7 @@ export default {
       initAddRole().then(res => {
         if (res.result === 1) {
           var d = res.data
-          this.treeData = d.menus
+          this.tree_menu_options = d.menus
         }
       })
     },
@@ -75,7 +75,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.form.menuIds = getCheckedKeys(this.$refs.treemenus)
+            this.form.menuIds = getCheckedKeys(this.$refs.treemenu)
             addRole(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
@@ -96,6 +96,9 @@ export default {
 }
 #useradd_container {
   max-width: 600px;
+}
+.el-tree-node__expand-icon.is-leaf{
+  display: none;
 }
 </style>
 
