@@ -21,14 +21,14 @@ namespace LocalS.Service.Api.Admin
                          where (rup.Name == null || u.Name.Contains(rup.Name))
                          &&
                          u.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Admin
-                         select new { u.Id, u.Name, u.Description, u.CreateTime });
+                         select new { u.Id, u.Name, u.Description, u.CreateTime, u.Priority });
 
 
             int total = query.Count();
 
             int pageIndex = rup.Page - 1;
             int pageSize = rup.Limit;
-            query = query.OrderByDescending(r => r.CreateTime).Skip(pageSize * (pageIndex)).Take(pageSize);
+            query = query.OrderBy(r => r.Priority).Skip(pageSize * (pageIndex)).Take(pageSize);
 
             var list = query.ToList();
 
@@ -85,16 +85,9 @@ namespace LocalS.Service.Api.Admin
         public CustomJsonResult InitAdd(string operater)
         {
             var result = new CustomJsonResult();
-
             var ret = new RetAdminRoleInitAdd();
-
-            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).ToList();
-
-            var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
-
             ret.Menus = GetMenuTree();
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
-
             return result;
         }
 

@@ -87,7 +87,7 @@ namespace LocalS.Service.Api.Account
         {
             List<MenuNode> menuNodes = new List<MenuNode>();
 
-            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite && m.Dept != 0).OrderByDescending(m => m.Priority).ToList();
+            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite && m.Dept != 0).OrderBy(m => m.Priority).ToList();
 
             if (belongSite == Enumeration.BelongSite.Admin)
             {

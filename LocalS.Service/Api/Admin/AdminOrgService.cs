@@ -46,7 +46,7 @@ namespace LocalS.Service.Api.Admin
         {
             var result = new CustomJsonResult();
 
-            var sysOrgs = CurrentDb.SysOrg.ToList();
+            var sysOrgs = CurrentDb.SysOrg.OrderBy(m => m.Priority).ToList();
 
             var topOrg = sysOrgs.Where(m => m.Dept == 0).FirstOrDefault();
 
