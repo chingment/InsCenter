@@ -124,7 +124,8 @@ namespace LocalS.Service.Api.Account
                 menuNode.Component = null;
                 menuNode.IsSidebar = p_sysMenu.IsSidebar;
                 menuNode.IsNavbar = p_sysMenu.IsNavbar;
-
+                menuNode.Icon = p_sysMenu.Icon;
+                menuNode.Title = p_sysMenu.Title;
                 var children = (from c in sysMenus where c.PId == p_sysMenu.Id select c).ToList();
                 if (children.Count == 0)
                 {
@@ -132,8 +133,7 @@ namespace LocalS.Service.Api.Account
                     {
                         menuNode.Name = null;
                         menuNode.IsNavbar = false;
-                        menuNode.Redirect = p_sysMenu.Path;
-                        menuNode.Children.Add(new MenuNode { IsNavbar = p_sysMenu.IsNavbar, IsSidebar = p_sysMenu.IsSidebar, Name = p_sysMenu.Name, Path = p_sysMenu.Path, Component = p_sysMenu.Component, Children = null });
+                        menuNode.Children.Add(new MenuNode { IsNavbar = p_sysMenu.IsNavbar, IsSidebar = p_sysMenu.IsSidebar, Name = p_sysMenu.Name, Title = p_sysMenu.Title, Icon = p_sysMenu.Icon, Path = p_sysMenu.Path, Component = p_sysMenu.Component, Children = null });
                     }
                     else
                     {
@@ -144,7 +144,6 @@ namespace LocalS.Service.Api.Account
                 else
                 {
                     menuNode.Name = null;
-                    menuNode.Redirect = null;
                     menuNode.Component = p_sysMenu.Component;
                     menuNode.Children.AddRange(GetMenuTree(p_sysMenu.Id, sysMenus));
                 }

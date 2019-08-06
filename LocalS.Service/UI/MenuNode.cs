@@ -20,7 +20,6 @@ namespace LocalS.Service.UI
         public bool IsSidebar { get; set; }
         public bool IsNavbar { get; set; }
         public string Component { get; set; }
-        public string Redirect { get; set; }
         public List<MenuNode> Children { get; set; }
     }
 }
