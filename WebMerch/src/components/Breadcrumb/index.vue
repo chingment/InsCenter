@@ -11,7 +11,9 @@
 
 <script>
 import pathToRegexp from 'path-to-regexp'
-
+import { Tree } from 'element-ui'
+import { close } from 'fs'
+import { getBreadcrumb } from '@/utils/ownResource'
 export default {
   data() {
     return {
@@ -20,30 +22,38 @@ export default {
   },
   watch: {
     $route() {
-      this.getBreadcrumb()
+      this._getBreadcrumb()
     }
   },
   created() {
-    this.getBreadcrumb()
+    this._getBreadcrumb()
   },
   methods: {
-    getBreadcrumb() {
-      // only show routes with meta.title
-      let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
+    _getBreadcrumb() {
+
+      var  matched=getBreadcrumb(this.$route)
       const first = matched[0]
 
       if (!this.isDashboard(first)) {
         matched = [{ path: '/home', meta: { title: '主页' }}].concat(matched)
       }
 
-      this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+      this.levelList =matched
     },
     isDashboard(route) {
-      const name = route && route.name
-      if (!name) {
+      if(route=== undefined)
         return false
-      }
-      return name.trim().toLocaleLowerCase() === 'Home'.toLocaleLowerCase()
+      
+      var path=route.path
+      if(path=== undefined)
+      return false
+
+      path=path.trim().toLocaleLowerCase()
+
+      if(path==='/'|| path==='/home' )
+      return true
+  
+      return false
     },
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561

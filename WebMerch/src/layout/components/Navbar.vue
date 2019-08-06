@@ -11,8 +11,8 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <el-dropdown-item  v-for="child in dropdownItems" :key="child.path"  @click="itemClick(child)">
-              <span style="display:block;" @click="itemClick(child)"> {{ child.meta.title }}</span>
+          <el-dropdown-item v-for="child in dropdownItems" :key="child.path" @click="itemClick(child)">
+            <span style="display:block;" @click="itemClick(child)"> {{ child.title }}</span>
           </el-dropdown-item>
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">退出</span>
@@ -30,18 +30,7 @@ import Hamburger from '@/components/Hamburger'
 import { removeToken } from '@/utils/auth'
 import { getToken } from '@/utils/auth'
 import { isExternal } from '@/utils/validate'
-
-function generaNavbars(navbars, data) {
-  data.forEach((item) => {
-    
-    if (item.children) {
-      generaNavbars(navbars, item.children)
-    }
-    if(item.navbar){
-      navbars.push(item)
-    }
-  })
-}
+import { getNavbars } from '@/utils/ownResource'
 
 export default {
   components: {
@@ -49,23 +38,21 @@ export default {
     Hamburger
   },
   data() {
-    var navbars=[]
-    generaNavbars(navbars,this.$store.getters.userInfo.menus)
-    return { dropdownItems:navbars }
+    return { dropdownItems: getNavbars() }
   },
   computed: {
     ...mapGetters([
       'sidebar',
       'userInfo'
-    ]),
+    ])
   },
   methods: {
     itemClick(item) {
-     if (isExternal(item.path)) {
-       window.location.href = `${item.path}?token=${getToken()}`
-     } else {
-       this.$router.push({ path:item.path })
-     }
+      if (isExternal(item.path)) {
+        window.location.href = `${item.path}?token=${getToken()}`
+      } else {
+        this.$router.push({ path: item.path })
+      }
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')

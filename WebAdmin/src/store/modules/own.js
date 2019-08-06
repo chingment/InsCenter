@@ -32,11 +32,10 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        // console.log('data.menus:' + JSON.stringify(data.menus))
+        console.log('data.menus:' + JSON.stringify(data.menus))
         commit('SET_USERINFO', data)
 
         generateRoutes(data.menus)
-        
         resolve(data)
       }).catch(error => {
         reject(error)
