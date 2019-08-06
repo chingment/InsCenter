@@ -1,40 +1,11 @@
 import { getInfo, checkPermission } from '@/api/own'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { constantRoutes } from '@/router'
 import router from '@/router'
-import Layout from '@/layout'
-
-function _generateRoutes(routers, data) {
-  data.forEach((item) => {
-    const menu = {
-      path: item.path,
-      component: item.component == null ? Layout : () => import(`@/views${item.component}`),
-      children: undefined,
-      hidden: item.hidden,
-      name: item.name,
-      meta: item.meta,
-      redirect: item.redirect
-    }
-    if (item.children) {
-      if (menu.children === undefined) {
-        menu.children = []
-      }
-      _generateRoutes(menu.children, item.children)
-    }
-    routers.push(menu)
-  })
-}
-
-function generateRoutes(data) {
-  _generateRoutes(constantRoutes, data)
-  constantRoutes.push({ path: '*', redirect: '/404', hidden: true })
-  router.addRoutes(constantRoutes)
-}
+import { generateRoutes } from '@/utils/ownResource'
 
 const state = {
   token: getToken(),
-  userInfo: null,
-  navBar: []
+  userInfo: null
 }
 
 const mutations = {
@@ -43,9 +14,6 @@ const mutations = {
   },
   SET_USERINFO: (state, userInfo) => {
     state.userInfo = userInfo
-  },
-  SET_NAVBAR: (state, navBar) => {
-    state.navBar = navBar
   }
 }
 
@@ -63,8 +31,12 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        generateRoutes(data.menus)
+
+        // console.log('data.menus:' + JSON.stringify(data.menus))
         commit('SET_USERINFO', data)
+
+        generateRoutes(data.menus)
+        
         resolve(data)
       }).catch(error => {
         reject(error)

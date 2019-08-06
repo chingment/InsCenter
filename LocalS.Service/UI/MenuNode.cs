@@ -10,9 +10,10 @@ namespace LocalS.Service.UI
     {
         public MenuNode()
         {
-            this.Children = new List<MenuNode>();
+            // this.Children = new List<MenuNode>();
         }
-
+        public string Id { get; set; }
+        public string PId { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string Icon { get; set; }
@@ -20,6 +21,7 @@ namespace LocalS.Service.UI
         public bool IsSidebar { get; set; }
         public bool IsNavbar { get; set; }
         public string Component { get; set; }
-        public List<MenuNode> Children { get; set; }
+
+        public bool IsRouter { get; set; }
     }
 }

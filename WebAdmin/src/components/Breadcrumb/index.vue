@@ -13,106 +13,24 @@
 import pathToRegexp from 'path-to-regexp'
 import { Tree } from 'element-ui'
 import { close } from 'fs'
-
+import { getBreadcrumb } from '@/utils/ownResource'
 export default {
   data() {
     return {
-      levelList: null,
-      arouters: [
-        {
-          orgId: 1,
-          parentId: 0,
-          path: '/',
-          meta: { title: '系统设置', icon: 'table' },
-          breadcrumb: true
-        },
-        {
-          orgId: 3,
-          parentId: 1,
-          path: '/adminuser/list',
-          meta: { title: '用户设置', icon: 'table' },
-          breadcrumb: true, children: [{
-            orgId: 4,
-            parentId: 3,
-            path: '/adminuser/add',
-            meta: { title: '用户新建', icon: 'table' },
-            breadcrumb: true
-          },
-          {
-            orgId: 5,
-            parentId: 3,
-            path: '/adminuser/edit',
-            meta: { title: '用户编辑', icon: 'table' },
-            breadcrumb: true
-          }]
-        }
-      ]
+      levelList: null
     }
   },
   watch: {
     $route() {
-      this.getBreadcrumb()
+      this._getBreadcrumb()
     }
   },
   created() {
-    this.getBreadcrumb()
+    this._getBreadcrumb()
   },
   methods: {
-    getBreadcrumb() {
-    //   var parentList = []
-    //   var matc = []
-    //   function buildParentList(arr) {
-    //     arr.forEach(g => {
-    //       if (g.parentId != undefined) {
-    //         const pid = g['parentId']
-    //        	const oid = g['orgId']
-    //         // /parentList[oid] = pid
-    //         parentList.push(g)
-    //       }
-    //       if (g.children != undefined) { buildParentList(g['children']) }
-    //     })
-    //   }
-    //   function findParent(idx) {
-  	// parentList.forEach(g => {
-    //       if (g.orgId == idx) {
-    //         matc.push(g)
-    //         console.log(g.parentId)
-    //         findParent(g.parentId)
-    //       }
-    //     })
-
-      //     //   if (parentList[idx] != undefined){
-      //     //       let pid = parentList[idx]
-      //     //       matc.push()
-      //     //       console.log(pid)
-      //     //       findParent(pid)
-      //     // }
-      //   }
-
-      //   buildParentList(this.arouters)
-
-      //   findParent(4) // 0 1 2
-
-      //   matc = matc.reverse()
-
-      //   let matched = matc
-      //   const first = matched[0]
-
-      //   if (!this.isDashboard(first)) {
-      //     matched = [{ path: '/home', meta: { title: '主页' }}].concat(matched)
-      //   }
-
-      //   this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
-      //   console.log('levelList:' + JSON.stringify(this.levelList))
-      // only show routes with meta.title
-
-      let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
-
-      const first = matched[0]
-      if (!this.isDashboard(first)) {
-        matched = [{ path: '/home', meta: { title: '主页' }}].concat(matched)
-      }
-      this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+    _getBreadcrumb() {
+      this.levelList = getBreadcrumb(this.$route)
     },
     isDashboard(route) {
       const name = route && route.name

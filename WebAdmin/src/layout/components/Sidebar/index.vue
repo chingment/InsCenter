@@ -23,7 +23,7 @@ import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
-
+import { getSideBars } from '@/utils/ownResource'
 export default {
   components: { SidebarItem, Logo },
   computed: {
@@ -31,37 +31,7 @@ export default {
       'sidebar'
     ]),
     routes() {
-      // var arr = [{
-      //   path: '/',
-      //   meta: { title: '系统设置', icon: 'table' },
-      //   children: [
-      //     {
-      //       path: '/adminuser/list',
-      //       meta: { title: '用户设置', icon: 'table' },
-      //       children: [{
-      //         path: '/adminuser/add',
-      //         hidden: false,
-      //         meta: { title: '用户新建', icon: 'table' }
-      //       },
-      //       {
-      //         path: '/adminuser/edit',
-      //         hidden: false,
-      //         meta: { title: '用户修改', icon: 'table' }
-      //       }]
-      //     }
-      //   ]
-      // }]
-      // console.log(JSON.stringify(this.$router.options.routes))
-      // var s = [{
-      //   path: '/adminuser',
-      //   meta: { title: '用户管理', icon: 'example', name: 'User' },
-      //   children: [{ path: 'list', meta: { title: '用户列表', icon: 'table' }
-      //   }, { path: 'add', meta: { title: '用户列表', icon: 'table' }
-      //   }]
-      // }]
-      // return arr
-      // console.log( JSON.stringify(this.$router.options.routes))
-      return this.$router.options.routes
+      return getSideBars()
     },
     activeMenu() {
       const route = this.$route
