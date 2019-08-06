@@ -30,14 +30,30 @@ export default {
   },
   methods: {
     _getBreadcrumb() {
-      this.levelList = getBreadcrumb(this.$route)
+
+      var  matched=getBreadcrumb(this.$route)
+      const first = matched[0]
+
+      if (!this.isDashboard(first)) {
+        matched = [{ path: '/home', meta: { title: '主页' }}].concat(matched)
+      }
+
+      this.levelList =matched
     },
     isDashboard(route) {
-      const name = route && route.name
-      if (!name) {
+      if(route=== undefined)
         return false
-      }
-      return name.trim().toLocaleLowerCase() === 'Home'.toLocaleLowerCase()
+      
+      var path=route.path
+      if(path=== undefined)
+      return false
+
+      path=path.trim().toLocaleLowerCase()
+
+      if(path==='/'|| path==='/home' )
+      return true
+  
+      return false
     },
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
