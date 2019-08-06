@@ -33,6 +33,7 @@ const actions = {
         }
 
         console.log('data.menus:' + JSON.stringify(data.menus))
+
         commit('SET_USERINFO', data)
 
         generateRoutes(data.menus)

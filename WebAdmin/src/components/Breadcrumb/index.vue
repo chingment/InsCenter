@@ -1,7 +1,7 @@
 <template>
   <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
+      <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.name">
         <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
         <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
       </el-breadcrumb-item>
@@ -30,29 +30,25 @@ export default {
   },
   methods: {
     _getBreadcrumb() {
-
-      var  matched=getBreadcrumb(this.$route)
+      var matched = getBreadcrumb(this.$route)
       const first = matched[0]
 
       if (!this.isDashboard(first)) {
-        matched = [{ path: '/home', meta: { title: '主页' }}].concat(matched)
+        matched = [{ name: 'AdminHome', path: '/home', meta: { title: '主页' }}].concat(matched)
       }
 
-      this.levelList =matched
+      this.levelList = matched
     },
     isDashboard(route) {
-      if(route=== undefined)
-        return false
-      
-      var path=route.path
-      if(path=== undefined)
-      return false
+      if (route === undefined) { return false }
 
-      path=path.trim().toLocaleLowerCase()
+      var path = route.path
+      if (path === undefined) { return false }
 
-      if(path==='/'|| path==='/home' )
-      return true
-  
+      path = path.trim().toLocaleLowerCase()
+
+      if (path === '/' || path === '/home') { return true }
+
       return false
     },
     pathCompile(path) {

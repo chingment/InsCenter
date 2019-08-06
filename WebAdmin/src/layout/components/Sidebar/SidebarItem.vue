@@ -8,7 +8,7 @@
       </app-link>
     </template>
 
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body @open="handleOpen" @close="handleClose">
+    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
@@ -93,12 +93,6 @@ export default {
     },
     resolveChild(child) {
       return child
-    },
-    handleOpen() {
-      console.log('handleOpen')
-    },
-    handleClose() {
-      console.log('handleClose')
     }
   }
 }

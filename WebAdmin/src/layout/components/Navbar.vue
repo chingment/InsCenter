@@ -62,9 +62,8 @@ export default {
       var path = encodeURIComponent(window.location.href)
       window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=1&redirect=${path}`
     },
-    getAvatar(avatar){
-      if(avatar==null)
-       return 'http://file.17fanju.com/Upload/Avatar_default.png'
+    getAvatar(avatar) {
+      if (avatar == null) { return 'http://file.17fanju.com/Upload/Avatar_default.png' }
 
       return avatar
     }
