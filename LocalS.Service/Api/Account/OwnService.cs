@@ -261,8 +261,9 @@ namespace LocalS.Service.Api.Account
             }
 
             var hasMenu = ret.Menus.Where(m => m.Path == path).FirstOrDefault();
-            if (hasMenu == null){
-                result = new CustomJsonResult(ResultType.Failure, ResultCode.Failure2NoRight, "", ret);
+            if (hasMenu == null)
+            {
+                return new CustomJsonResult(ResultType.Failure, ResultCode.Failure2NoRight, "没有权限访问页面");
             }
 
 

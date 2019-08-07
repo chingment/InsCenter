@@ -12,6 +12,8 @@ router.beforeEach(async(to, from, next) => {
   NProgress.start()
 
   document.title = getPageTitle(to.meta.title)
+
+  if(to.meta.auth=== undefined) {
   var token = getUrlParam('token')
   if (token !== null) {
     store.dispatch('own/setToken', token)
@@ -23,6 +25,7 @@ router.beforeEach(async(to, from, next) => {
     if (store.getters.userInfo == null) {
       console.log('path:' + to.path)
       await store.dispatch('own/getInfo', to.path).then((res) => {
+        console.log('res:' + JSON.stringify(res))
         if (res.code === 2401) {
           next('/401')
         } else {
@@ -39,6 +42,10 @@ router.beforeEach(async(to, from, next) => {
     window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=2&redirect=${path}`
     NProgress.done()
   }
+  } else {
+    next()
+    NProgress.done()
+  } 
 })
 
 router.afterEach(() => {
