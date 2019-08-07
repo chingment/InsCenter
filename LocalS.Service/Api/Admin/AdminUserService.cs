@@ -123,7 +123,7 @@ namespace LocalS.Service.Api.Admin
 
             foreach (var sysRole in sysRoles)
             {
-                treeNodes.Add(new TreeNode { Id = sysRole.Id, PId = "0", Label = sysRole.Name });
+                treeNodes.Add(new TreeNode { Id = sysRole.Id, PId = "", Label = sysRole.Name });
             }
 
             return treeNodes;
@@ -194,7 +194,10 @@ namespace LocalS.Service.Api.Admin
                 {
                     foreach (var roleId in rop.RoleIds)
                     {
-                        CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
+                        if (string.IsNullOrEmpty(roleId))
+                        {
+                            CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
+                        }
                     }
                 }
 
@@ -286,7 +289,10 @@ namespace LocalS.Service.Api.Admin
                 {
                     foreach (var roleId in rop.RoleIds)
                     {
-                        CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = rop.UserId, Creator = operater, CreateTime = DateTime.Now });
+                        if (string.IsNullOrEmpty(roleId))
+                        {
+                            CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = rop.UserId, Creator = operater, CreateTime = DateTime.Now });
+                        }
                     }
                 }
 
