@@ -13,39 +13,39 @@ router.beforeEach(async(to, from, next) => {
 
   document.title = getPageTitle(to.meta.title)
 
-  if(to.meta.auth=== undefined) {
-  var token = getUrlParam('token')
-  if (token !== null) {
-    store.dispatch('own/setToken', token)
-  }
-  token = getToken()
-  console.log('token: ' + token)
-  var path = encodeURIComponent(window.location.href)
-  if (token) {
-    if (store.getters.userInfo == null) {
-      console.log('path:' + to.path)
-      await store.dispatch('own/getInfo', to.path).then((res) => {
-        console.log('res:' + JSON.stringify(res))
-        if (res.code === 2401) {
-          next('/401')
-        } else {
-          next({ ...to, replace: true })
-        }
-      })
-    } else {
-      await store.dispatch('own/checkPermission', '1', to.path).then((res) => {
-        next()
-      })
+  if (to.meta.auth === undefined) {
+    var token = getUrlParam('token')
+    if (token !== null) {
+      store.dispatch('own/setToken', token)
     }
-    NProgress.done()
-  } else {
-    window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=2&redirect=${path}`
-    NProgress.done()
-  }
+    token = getToken()
+    console.log('token: ' + token)
+    var path = encodeURIComponent(window.location.href)
+    if (token) {
+      if (store.getters.userInfo == null) {
+        console.log('path:' + to.path)
+        await store.dispatch('own/getInfo', to.path).then((res) => {
+          console.log('res:' + JSON.stringify(res))
+          if (res.code === 2401) {
+            next('/401')
+          } else {
+            next({ ...to, replace: true })
+          }
+        })
+      } else {
+        await store.dispatch('own/checkPermission', '1', to.path).then((res) => {
+          next()
+        })
+      }
+      NProgress.done()
+    } else {
+      window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=2&redirect=${path}`
+      NProgress.done()
+    }
   } else {
     next()
     NProgress.done()
-  } 
+  }
 })
 
 router.afterEach(() => {

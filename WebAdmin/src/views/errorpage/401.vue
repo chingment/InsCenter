@@ -48,7 +48,7 @@ export default {
     async logout() {
       removeToken()
       window.location.href = `${process.env.VUE_APP_LOGIN_URL}?logout=1`
-    },
+    }
   }
 }
 </script>
