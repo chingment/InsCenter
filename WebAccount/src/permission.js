@@ -35,11 +35,11 @@ router.beforeEach(async(to, from, next) => {
     }
     console.log('store.getters.userInfo：' + store.getters.userInfo)
     if (store.getters.userInfo == null) {
-      await store.dispatch('own/getInfo').then((res) => {
+      await store.dispatch('own/getInfo', to.path).then((res) => {
         next({ ...to, replace: true })
       })
     } else {
-      await store.dispatch('own/checkPermission', '10001').then((res) => {
+      await store.dispatch('own/checkPermission', '1', to.path).then((res) => {
         if (hasRedirect) {
           var url = changeURLArg(decodeURIComponent(redirect), 'token', getToken())
           window.location.href = url
