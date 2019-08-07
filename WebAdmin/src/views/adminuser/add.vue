@@ -28,7 +28,7 @@
       </el-form-item>
       <el-form-item label="角色">
         <el-checkbox-group v-model="form.roleIds">
-          <el-checkbox v-for="option in checkbox_group_role_options" :key="option.id" :label="option.id">{{ option.label }}</el-checkbox>
+          <el-checkbox v-for="option in checkbox_group_role_options" :key="option.id" style="display:block" :label="option.id">{{ option.label }}</el-checkbox>
         </el-checkbox-group>
       </el-form-item>
       <el-form-item>

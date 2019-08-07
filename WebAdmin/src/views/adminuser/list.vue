@@ -69,7 +69,6 @@
 <script>
 import { fetchList } from '@/api/adminuser'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
-import { parse } from 'path'
 
 export default {
   name: 'AdminUserList',

@@ -100,6 +100,7 @@ namespace LocalS.Service.Api.Admin
                 TreeNode treeNode = new TreeNode();
                 treeNode.Id = p_sysOrg.Id;
                 treeNode.PId = p_sysOrg.PId;
+                treeNode.Value= p_sysOrg.Id;
                 treeNode.Label = p_sysOrg.Name;
                 treeNode.Children.AddRange(GetOrgTree(treeNode.Id, sysOrgs));
                 treeNodes.Add(treeNode);
