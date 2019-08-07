@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lumos.DbRelay
 {
-    [Table("SysMerchantUser")]
-    public class SysMerchantUser : SysUser
+    [Table("SysAgentUser")]
+    public class SysAgentUser : SysUser
     {
-        public string MerchantId { get; set; }
+        public string AgentId { get; set; }
         public string TppId { get; set; }
     }
 }

@@ -74,7 +74,7 @@
     <Compile Include="Entity\SysClientUser.cs" />
     <Compile Include="Entity\SysMenu.cs" />
     <Compile Include="Entity\SysMenuPermission.cs" />
-    <Compile Include="Entity\SysMerchatUser.cs" />
+    <Compile Include="Entity\SysAgentUser.cs" />
     <Compile Include="Entity\SysOperateHis.cs" />
     <Compile Include="Entity\SysOrg.cs" />
     <Compile Include="Entity\SysPageAccessHis.cs" />

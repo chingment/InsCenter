@@ -43,7 +43,7 @@ namespace Lumos.DbRelay
         public IDbSet<SysOperateHis> SysOperateHis { get; set; }
         public IDbSet<SysPageAccessHis> SysPageAccessHis { get; set; }
         public IDbSet<SysSmsSendHis> SysSmsSendHis { get; set; }
-        public IDbSet<SysMerchantUser> SysMerchantUser { get; set; }
+        public IDbSet<SysAgentUser> SysAgentUser { get; set; }
         public IDbSet<SysPosition> SysPosition { get; set; }
         public IDbSet<SysPositionRole> SysPositionRole { get; set; }
 

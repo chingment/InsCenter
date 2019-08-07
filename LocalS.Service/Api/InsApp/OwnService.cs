@@ -27,36 +27,36 @@ namespace LocalS.Service.Api.InsApp
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "您好，应用无法访问，造成的原因：用户标识参数为空");
             }
 
-            var merchant = CurrentDb.Merchant.Where(m => m.Id == mId).FirstOrDefault();
+            var agent = CurrentDb.Agent.Where(m => m.Id == mId).FirstOrDefault();
 
-            if (merchant == null)
+            if (agent == null)
             {
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "您好，应用无法访问，造成的原因：商户信息无法解释");
             }
 
 
-            var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.MerchantId == mId && m.TppId == tppId).FirstOrDefault();
-            if (merchantUser == null)
+            var agentUser = CurrentDb.SysAgentUser.Where(m => m.AgentId == mId && m.TppId == tppId).FirstOrDefault();
+            if (agentUser == null)
             {
-                merchantUser = new SysMerchantUser();
-                merchantUser.Id = GuidUtil.New();
-                merchantUser.UserName = GuidUtil.New();
-                merchantUser.PasswordHash = PassWordHelper.HashPassword("Caskujn");
-                merchantUser.SecurityStamp = GuidUtil.New();
-                merchantUser.RegisterTime = DateTime.Now;
-                merchantUser.IsDisable = false;
-                merchantUser.BelongSite = Enumeration.BelongSite.Agent;
-                merchantUser.IsCanDelete = false;
-                merchantUser.CreateTime = DateTime.Now;
-                merchantUser.Creator = merchantUser.Id;
-                merchantUser.MerchantId = merchant.Id;
-                merchantUser.TppId = tppId;
-                CurrentDb.SysMerchantUser.Add(merchantUser);
+                agentUser = new SysAgentUser();
+                agentUser.Id = GuidUtil.New();
+                agentUser.UserName = GuidUtil.New();
+                agentUser.PasswordHash = PassWordHelper.HashPassword("Caskujn");
+                agentUser.SecurityStamp = GuidUtil.New();
+                agentUser.RegisterTime = DateTime.Now;
+                agentUser.IsDisable = false;
+                agentUser.BelongSite = Enumeration.BelongSite.Agent;
+                agentUser.IsCanDelete = false;
+                agentUser.CreateTime = DateTime.Now;
+                agentUser.Creator = agentUser.Id;
+                agentUser.AgentId = agent.Id;
+                agentUser.TppId = tppId;
+                CurrentDb.SysAgentUser.Add(agentUser);
                 CurrentDb.SaveChanges();
             }
 
-            ret.MId = merchantUser.MerchantId;
-            ret.UId = merchantUser.Id;
+            ret.MId = agentUser.AgentId;
+            ret.UId = agentUser.Id;
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
@@ -68,25 +68,25 @@ namespace LocalS.Service.Api.InsApp
             var result = new CustomJsonResult();
             var ret = new RetOwnLoginByUrlParams();
 
-            var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.UserName == rop.UserName).FirstOrDefault();
+            var agentUser = CurrentDb.SysAgentUser.Where(m => m.UserName == rop.UserName).FirstOrDefault();
 
-            if (merchantUser == null)
+            if (agentUser == null)
             {
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号不存在");
             }
 
-            if (!PassWordHelper.VerifyHashedPassword(merchantUser.PasswordHash, rop.Password))
+            if (!PassWordHelper.VerifyHashedPassword(agentUser.PasswordHash, rop.Password))
             {
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "账号密码不正确");
             }
 
-            if (merchantUser.IsDisable)
+            if (agentUser.IsDisable)
             {
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该账号已被禁用");
             }
 
-            ret.MId = merchantUser.MerchantId;
-            ret.UId = merchantUser.Id;
+            ret.MId = agentUser.AgentId;
+            ret.UId = agentUser.Id;
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 

@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LocalS.Entity
 {
-    [Table("Merchant")]
-    public class Merchant
+    [Table("Agent")]
+    public class Agent
     {
         [Key]
         public string Id { get; set; }

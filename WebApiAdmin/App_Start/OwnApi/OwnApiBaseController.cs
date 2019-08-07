@@ -69,7 +69,7 @@ namespace WebApiAdmin
                 {
                     tokenInfo = new TokenInfo();
                     tokenInfo.UserId = "";
-                    tokenInfo.MerchantId = "";
+                    tokenInfo.AgentId = "";
                 }
                 return tokenInfo;
             }

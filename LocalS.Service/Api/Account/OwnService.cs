@@ -65,10 +65,10 @@ namespace LocalS.Service.Api.Account
             switch (sysUser.BelongSite)
             {
                 case Enumeration.BelongSite.Agent:
-                    var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.Id == sysUser.Id).FirstOrDefault();
-                    if (merchantUser != null)
+                    var agentUser = CurrentDb.SysAgentUser.Where(m => m.Id == sysUser.Id).FirstOrDefault();
+                    if (agentUser != null)
                     {
-                        tokenInfo.MerchantId = merchantUser.MerchantId;
+                        tokenInfo.AgentId = agentUser.AgentId;
                     }
                     break;
             }

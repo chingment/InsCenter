@@ -43,16 +43,16 @@ namespace LocalS.Service.Api.Agent
             return text;
         }
 
-        public CustomJsonResult GetList(string operater, string merchantId, RupUserGetList rup)
+        public CustomJsonResult GetList(string operater, string agentId, RupUserGetList rup)
         {
             var result = new CustomJsonResult();
 
-            var query = (from u in CurrentDb.SysMerchantUser
+            var query = (from u in CurrentDb.SysAgentUser
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
                          u.IsDelete == false &&
                          u.IsCanDelete == true &&
-                         u.MerchantId == merchantId
+                         u.AgentId == agentId
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
 
@@ -89,7 +89,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult Add(string operater, string merchantId, RopUserAdd rop)
+        public CustomJsonResult Add(string operater, string agentId, RopUserAdd rop)
         {
             var result = new CustomJsonResult();
 
@@ -111,23 +111,23 @@ namespace LocalS.Service.Api.Agent
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var user = new SysMerchantUser();
-                user.Id = GuidUtil.New();
-                user.UserName = rop.UserName;
-                user.FullName = rop.FullName;
-                user.PasswordHash = PassWordHelper.HashPassword(rop.Password);
-                user.Email = rop.Email;
-                user.PhoneNumber = rop.PhoneNumber;
-                user.BelongSite = Enumeration.BelongSite.Agent;
-                user.IsDelete = false;
-                user.IsCanDelete = true;
-                user.IsDisable = false;
-                user.MerchantId = merchantId;
-                user.Creator = operater;
-                user.CreateTime = DateTime.Now;
-                user.RegisterTime = DateTime.Now;
-                user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
-                CurrentDb.SysMerchantUser.Add(user);
+                var agentUser = new SysAgentUser();
+                agentUser.Id = GuidUtil.New();
+                agentUser.UserName = rop.UserName;
+                agentUser.FullName = rop.FullName;
+                agentUser.PasswordHash = PassWordHelper.HashPassword(rop.Password);
+                agentUser.Email = rop.Email;
+                agentUser.PhoneNumber = rop.PhoneNumber;
+                agentUser.BelongSite = Enumeration.BelongSite.Agent;
+                agentUser.IsDelete = false;
+                agentUser.IsCanDelete = true;
+                agentUser.IsDisable = false;
+                agentUser.AgentId = agentId;
+                agentUser.Creator = operater;
+                agentUser.CreateTime = DateTime.Now;
+                agentUser.RegisterTime = DateTime.Now;
+                agentUser.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
+                CurrentDb.SysAgentUser.Add(agentUser);
 
 
                 CurrentDb.SaveChanges();
@@ -140,26 +140,26 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult InitEdit(string operater, string merchantId, string userId)
+        public CustomJsonResult InitEdit(string operater, string agentId, string userId)
         {
             var result = new CustomJsonResult();
 
             var ret = new RetUserInitEdit();
 
-            var user = CurrentDb.SysMerchantUser.Where(m => m.Id == userId).FirstOrDefault();
+            var agentUser = CurrentDb.SysAgentUser.Where(m => m.Id == userId).FirstOrDefault();
 
-            ret.UserId = user.Id;
-            ret.UserName = user.UserName;
-            ret.PhoneNumber = user.PhoneNumber;
-            ret.Email = user.Email;
-            ret.FullName = user.FullName;
-            ret.IsDisable = user.IsDisable;
+            ret.UserId = agentUser.Id;
+            ret.UserName = agentUser.UserName;
+            ret.PhoneNumber = agentUser.PhoneNumber;
+            ret.Email = agentUser.Email;
+            ret.FullName = agentUser.FullName;
+            ret.IsDisable = agentUser.IsDisable;
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }
 
-        public CustomJsonResult Edit(string operater, string merchantId, RopUserEdit rop)
+        public CustomJsonResult Edit(string operater, string agentId, RopUserEdit rop)
         {
 
             CustomJsonResult result = new CustomJsonResult();
@@ -167,19 +167,19 @@ namespace LocalS.Service.Api.Agent
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var user = CurrentDb.SysMerchantUser.Where(m => m.MerchantId == merchantId && m.Id == rop.UserId).FirstOrDefault();
+                var agentUser = CurrentDb.SysAgentUser.Where(m => m.AgentId == agentId && m.Id == rop.UserId).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(rop.Password))
                 {
-                    user.PasswordHash = PassWordHelper.HashPassword(rop.Password);
+                    agentUser.PasswordHash = PassWordHelper.HashPassword(rop.Password);
                 }
 
-                user.FullName = rop.FullName;
-                user.Email = rop.Email;
-                user.PhoneNumber = rop.PhoneNumber;
-                user.IsDisable = rop.IsDisable;
-                user.MendTime = DateTime.Now;
-                user.Mender = operater;
+                agentUser.FullName = rop.FullName;
+                agentUser.Email = rop.Email;
+                agentUser.PhoneNumber = rop.PhoneNumber;
+                agentUser.IsDisable = rop.IsDisable;
+                agentUser.MendTime = DateTime.Now;
+                agentUser.Mender = operater;
 
 
                 CurrentDb.SaveChanges();
