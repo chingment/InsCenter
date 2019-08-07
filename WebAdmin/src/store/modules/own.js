@@ -29,7 +29,6 @@ const actions = {
       getInfo(state.token, 'admin', path).then(res => {
         if (res.result === 1) {
           const d = res.data
-          console.log('data.menus:' + JSON.stringify(d.menus))
           commit('SET_USERINFO', d)
           generateRoutes(d.menus)
         }

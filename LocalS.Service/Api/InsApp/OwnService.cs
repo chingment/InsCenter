@@ -45,7 +45,7 @@ namespace LocalS.Service.Api.InsApp
                 merchantUser.SecurityStamp = GuidUtil.New();
                 merchantUser.RegisterTime = DateTime.Now;
                 merchantUser.IsDisable = false;
-                merchantUser.BelongSite = Enumeration.BelongSite.Merch;
+                merchantUser.BelongSite = Enumeration.BelongSite.Agent;
                 merchantUser.IsCanDelete = false;
                 merchantUser.CreateTime = DateTime.Now;
                 merchantUser.Creator = merchantUser.Id;

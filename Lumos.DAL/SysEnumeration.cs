@@ -29,7 +29,7 @@ namespace Lumos.DbRelay
             Unknow = 0,
             Account = 1,
             Admin = 2,
-            Merch = 3
+            Agent = 3
         }
 
         public enum LoginWay

@@ -23,9 +23,7 @@ router.beforeEach(async(to, from, next) => {
     var path = encodeURIComponent(window.location.href)
     if (token) {
       if (store.getters.userInfo == null) {
-        console.log('path:' + to.path)
         await store.dispatch('own/getInfo', to.path).then((res) => {
-          console.log('res:' + JSON.stringify(res))
           if (res.code === 2401) {
             next('/401')
           } else {

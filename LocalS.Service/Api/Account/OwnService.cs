@@ -64,7 +64,7 @@ namespace LocalS.Service.Api.Account
 
             switch (sysUser.BelongSite)
             {
-                case Enumeration.BelongSite.Merch:
+                case Enumeration.BelongSite.Agent:
                     var merchantUser = CurrentDb.SysMerchantUser.Where(m => m.Id == sysUser.Id).FirstOrDefault();
                     if (merchantUser != null)
                     {
@@ -247,8 +247,8 @@ namespace LocalS.Service.Api.Account
                 case "admin":
                     ret.Menus = GetMenus(Enumeration.BelongSite.Admin, userId);
                     break;
-                case "merch":
-                    ret.Menus = GetMenus(Enumeration.BelongSite.Merch, userId);
+                case "agent":
+                    ret.Menus = GetMenus(Enumeration.BelongSite.Agent, userId);
                     break;
                 case "account":
                     ret.Menus = GetMenus(Enumeration.BelongSite.Account, userId);
