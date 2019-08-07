@@ -9,5 +9,7 @@ namespace LocalS.Service.Api.Account
     public class RupOwnGetInfo
     {
         public string WebSite { get; set; }
+
+        public string Path { get; set; }
     }
 }

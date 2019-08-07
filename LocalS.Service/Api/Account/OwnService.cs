@@ -91,7 +91,7 @@ namespace LocalS.Service.Api.Account
 
             if (belongSite == Enumeration.BelongSite.Admin)
             {
-                 sysMenus = (from menu in CurrentDb.SysMenu where (from rolemenu in CurrentDb.SysRoleMenu where (from sysUserRole in CurrentDb.SysUserRole where sysUserRole.UserId == userId select sysUserRole.RoleId).Contains(rolemenu.RoleId) select rolemenu.MenuId).Contains(menu.Id) && menu.BelongSite == belongSite select menu).Where(m => m.Dept != 0).OrderBy(m => m.Priority).ToList();
+                sysMenus = (from menu in CurrentDb.SysMenu where (from rolemenu in CurrentDb.SysRoleMenu where (from sysUserRole in CurrentDb.SysUserRole where sysUserRole.UserId == userId select sysUserRole.RoleId).Contains(rolemenu.RoleId) select rolemenu.MenuId).Contains(menu.Id) && menu.BelongSite == belongSite select menu).Where(m => m.Dept != 0).OrderBy(m => m.Priority).ToList();
             }
 
             foreach (var sysMenu in sysMenus)
@@ -254,6 +254,18 @@ namespace LocalS.Service.Api.Account
                     ret.Menus = GetMenus(Enumeration.BelongSite.Account, userId);
                     break;
             }
+            string path = rup.Path;
+            if (rup.Path == "/")
+            {
+                path = "/home";
+            }
+
+            var hasMenu = ret.Menus.Where(m => m.Path == path).FirstOrDefault();
+            if (hasMenu == null){
+                result = new CustomJsonResult(ResultType.Failure, ResultCode.Failure2NoRight, "", ret);
+            }
+
+
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "", ret);
 
             return result;

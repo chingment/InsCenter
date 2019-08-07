@@ -33,7 +33,12 @@ import Layout from '@/layout'
 export const constantRoutes = [
   {
     path: '/404',
-    component: () => import('@/views/404'),
+    component: () => import('@/views/errorpage/404'),
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/errorpage/401'),
     hidden: true
   }
   // {

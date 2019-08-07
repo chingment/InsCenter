@@ -21,11 +21,16 @@ router.beforeEach(async(to, from, next) => {
   var path = encodeURIComponent(window.location.href)
   if (token) {
     if (store.getters.userInfo == null) {
-      await store.dispatch('own/getInfo').then((res) => {
-        next({ ...to, replace: true })
+      console.log('path:' + to.path)
+      await store.dispatch('own/getInfo', to.path).then((res) => {
+        if (res.code === 2401) {
+          next('/401')
+        } else {
+          next({ ...to, replace: true })
+        }
       })
     } else {
-      await store.dispatch('own/checkPermission', '10001').then((res) => {
+      await store.dispatch('own/checkPermission', '1', to.path).then((res) => {
         next()
       })
     }

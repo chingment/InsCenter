@@ -34,7 +34,6 @@
           node-key="id"
           class="filter-tree"
           show-checkbox
-          default-expand-all
         />
       </el-form-item>
       <el-form-item>
@@ -131,6 +130,11 @@ export default {
 }
 #useradd_container {
   max-width: 600px;
+}
+
+.is-leaf{
+  display: none !important;
+  width: 0px !important;
 }
 </style>
 
