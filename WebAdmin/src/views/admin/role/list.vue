@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.userName" placeholder="用户名" va style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.name" placeholder="名称" va style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
@@ -20,35 +20,20 @@
     >
       <el-table-column v-if="isDesktop" label="序号" prop="id" align="left" width="80">
         <template slot-scope="scope">
-          <span>{{ scope.$index+1 }} </span>
+          <span>{{ scope.$index+1 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="用户名" prop="userName" align="left" min-width="20%">
+      <el-table-column label="名称" prop="name" align="left" min-width="20%">
         <template slot-scope="scope">
-          <span>{{ scope.row.userName }}</span>
+          <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="姓名" prop="fullName" align="left" min-width="20%">
+      <el-table-column label="描述" prop="description" align="left" min-width="20%">
         <template slot-scope="scope">
-          <span>{{ scope.row.fullName }}</span>
+          <span>{{ scope.row.description }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="isDesktop" label="手机号码" prop="phoneNumber" align="left" min-width="10%">
-        <template slot-scope="scope">
-          <span>{{ scope.row.phoneNumber }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column v-if="isDesktop" label="邮箱" prop="email" align="left" min-width="20%">
-        <template slot-scope="scope">
-          <span>{{ scope.row.email }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="状态" prop="status" align="left" min-width="15%">
-        <template slot-scope="scope">
-          <span :class="'enable-status enable-status-'+scope.row.status.value">{{ scope.row.status.text }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column v-if="isDesktop" label="创建时间" prop="createTime" align="left" min-width="15%">
+      <el-table-column v-if="isDesktop" label="创建时间" prop="createTime" align="left" min-width="20%">
         <template slot-scope="scope">
           <span>{{ scope.row.createTime }}</span>
         </template>
@@ -63,15 +48,16 @@
     </el-table>
 
     <pagination v-show="listTotal>0" :total="listTotal" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getListData" />
+
   </div>
 </template>
 
 <script>
-import { fetchList } from '@/api/adminuser'
+import { fetchList } from '@/api/adminrole'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
 export default {
-  name: 'AdminUserList',
+  name: 'ComplexTable',
   components: { Pagination },
   data() {
     return {
@@ -82,7 +68,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        userName: undefined
+        name: undefined
       },
       isDesktop: this.$store.getters.isDesktop
     }
@@ -110,12 +96,12 @@ export default {
     },
     handleCreate() {
       this.$router.push({
-        path: '/adminuser/add'
+        path: '/admin/role/add'
       })
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/adminuser/edit?userId=' + row.id
+        path: '/admin/role/edit?roleId=' + row.id
       })
     }
   }

@@ -96,12 +96,12 @@ export default {
     },
     handleCreate() {
       this.$router.push({
-        path: '/adminrole/add'
+        path: '/admin/role/add'
       })
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/adminrole/edit?roleId=' + row.id
+        path: '/admin/role/edit?roleId=' + row.id
       })
     }
   }

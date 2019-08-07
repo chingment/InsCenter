@@ -72,12 +72,12 @@ export default {
     },
     handleCreate(row) {
       this.$router.push({
-        path: '/adminorg/add?pOrgId=' + row.id
+        path: '/admin/org/add?pOrgId=' + row.id
       })
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/adminorg/edit?orgId=' + row.id
+        path: '/admin/org/edit?orgId=' + row.id
       })
     }
   }

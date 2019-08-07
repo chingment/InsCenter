@@ -31,7 +31,7 @@
 import { MessageBox } from 'element-ui'
 import { editRole, initEditRole } from '@/api/adminrole'
 import { getUrlParam, getCheckedKeys, goBack } from '@/utils/commonUtil'
-import { resolve } from 'url';
+import { resolve } from 'url'
 export default {
   data() {
     return {
@@ -55,11 +55,10 @@ export default {
     this.init()
   },
   methods: {
-    init() {resolve
+    init() {
       var roleId = getUrlParam('roleId')
       initEditRole({ roleId: roleId }).then(res => {
         if (res.result === 1) {
-  
           var d = res.data
           this.form.roleId = d.roleId
           this.form.name = d.name
