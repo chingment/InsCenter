@@ -27,6 +27,7 @@ const actions = {
   getInfo({ commit, state }, path) {
     return new Promise((resolve, reject) => {
       getInfo(state.token, 'admin', path).then(res => {
+        console.log(JSON.stringify(res))
         if (res.result === 1) {
           const d = res.data
           commit('SET_USERINFO', d)

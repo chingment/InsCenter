@@ -27,14 +27,9 @@
         <el-input v-model="form.email" />
       </el-form-item>
       <el-form-item label="角色">
-        <el-tree
-          ref="treerole"
-          :data="tree_role_options"
-          :props="tree_role_props"
-          node-key="id"
-          class="filter-tree"
-          show-checkbox
-        />
+        <el-checkbox-group v-model="form.roleIds">
+          <el-checkbox v-for="option in checkbox_group_role_options" :key="option.id" :label="option.id">{{ option.label }}</el-checkbox>
+        </el-checkbox-group>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -48,7 +43,7 @@
 import { MessageBox } from 'element-ui'
 import { addUser, initAddUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
-import { getCheckedKeys, goBack } from '@/utils/commonUtil'
+import { goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -59,7 +54,7 @@ export default {
         phoneNumber: '',
         email: '',
         orgIds: [],
-        roleIds: ['地推活动', '单纯品牌曝光']
+        roleIds: []
       },
       rules: {
         userName: [{ required: true, message: '必填,且由3到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.userName }],
@@ -71,11 +66,7 @@ export default {
       },
       cascader_org_props: { multiple: true, checkStrictly: true, emitPath: false },
       cascader_org_options: [],
-      tree_role_options: [],
-      tree_role_props: {
-        children: 'children',
-        label: 'label'
-      }
+      checkbox_group_role_options: []
     }
   },
   created() {
@@ -87,7 +78,7 @@ export default {
         if (res.result === 1) {
           var d = res.data
           this.cascader_org_options = d.orgs
-          this.tree_role_options = d.roles
+          this.checkbox_group_role_options = d.roles
         }
       })
     },
@@ -101,7 +92,6 @@ export default {
       }
     },
     onSubmit() {
-      console.log(JSON.stringify(this.form))
       this.$refs['form'].validate((valid) => {
         if (valid) {
           MessageBox.confirm('确定要保存', '提示', {
@@ -109,7 +99,6 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.form.roleIds = getCheckedKeys(this.$refs.treerole)
             addUser(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {

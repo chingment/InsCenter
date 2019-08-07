@@ -100,7 +100,6 @@ namespace LocalS.Service.Api.Admin
                 TreeNode treeNode = new TreeNode();
                 treeNode.Id = p_sysOrg.Id;
                 treeNode.PId = p_sysOrg.PId;
-                treeNode.Value = p_sysOrg.Id;
                 treeNode.Label = p_sysOrg.Name;
                 treeNode.Children.AddRange(GetOrgTree(treeNode.Id, sysOrgs));
                 treeNodes.Add(treeNode);
@@ -111,7 +110,7 @@ namespace LocalS.Service.Api.Admin
 
         public List<TreeNode> GetOrgTree()
         {
-            var sysOrgs = CurrentDb.SysOrg.ToList();
+            var sysOrgs = CurrentDb.SysOrg.OrderBy(m => m.Priority).ToList();
             return GetOrgTree(GuidUtil.Empty(), sysOrgs);
         }
 
@@ -119,7 +118,7 @@ namespace LocalS.Service.Api.Admin
         {
             List<TreeNode> treeNodes = new List<TreeNode>();
 
-            var sysRoles = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).ToList();
+            var sysRoles = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).OrderBy(m => m.Priority).ToList();
 
             foreach (var sysRole in sysRoles)
             {
@@ -194,7 +193,7 @@ namespace LocalS.Service.Api.Admin
                 {
                     foreach (var roleId in rop.RoleIds)
                     {
-                        if (string.IsNullOrEmpty(roleId))
+                        if (!string.IsNullOrEmpty(roleId))
                         {
                             CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
                         }
@@ -289,7 +288,7 @@ namespace LocalS.Service.Api.Admin
                 {
                     foreach (var roleId in rop.RoleIds)
                     {
-                        if (string.IsNullOrEmpty(roleId))
+                        if (!string.IsNullOrEmpty(roleId))
                         {
                             CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = rop.UserId, Creator = operater, CreateTime = DateTime.Now });
                         }

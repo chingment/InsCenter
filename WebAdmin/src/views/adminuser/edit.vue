@@ -21,15 +21,15 @@
       <el-form-item label="姓名" prop="fullName">
         <el-input v-model="form.fullName" />
       </el-form-item>
-       <el-form-item label="所属机构" prop="orgIds">
+      <el-form-item label="所属机构" prop="orgIds">
         <el-cascader
           v-model="form.orgIds"
           :options="cascader_org_options"
           :props="cascader_org_props"
           placeholder="请选择"
           clearable
-          @change="cascader_org_change"
           style="width:100%"
+          @change="cascader_org_change"
         />
       </el-form-item>
       <el-form-item label="手机号码" prop="phoneNumber">
@@ -41,18 +41,10 @@
       <el-form-item label="禁用">
         <el-switch v-model="form.isDisable" />
       </el-form-item>
-       <el-form-item label="角色">
-        <el-tree
-          ref="treerole"
-          :check-strictly="true"
-          :data="tree_role_options"
-          :props="tree_role_props"
-          node-key="id"
-          class="filter-tree"
-          show-checkbox
-          default-expand-all
-          :default-checked-keys="form.roleIds"
-        />
+      <el-form-item label="角色">
+        <el-checkbox-group v-model="form.roleIds">
+          <el-checkbox v-for="option in checkbox_group_role_options" :key="option.id" :label="option.id">{{ option.label }}</el-checkbox>
+        </el-checkbox-group>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -65,7 +57,7 @@
 import { MessageBox } from 'element-ui'
 import { editUser, initEditUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
-import { getCheckedKeys, getUrlParam, goBack } from '@/utils/commonUtil'
+import { getUrlParam, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -77,7 +69,8 @@ export default {
         fullName: '',
         phoneNumber: '',
         email: '',
-        orgIds:[]
+        orgIds: [],
+        roleIds: []
       },
       rules: {
         password: [{ required: false, message: '必填,且由6到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.password }],
@@ -86,13 +79,9 @@ export default {
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
-      cascader_org_props: { multiple: true, checkStrictly: true,emitPath:false },
+      cascader_org_props: { multiple: true, checkStrictly: true, emitPath: false },
       cascader_org_options: [],
-      tree_role_options: [],
-      tree_role_props: {
-        children: 'children',
-        label: 'label'
-      }
+      checkbox_group_role_options: []
     }
   },
   created() {
@@ -104,20 +93,19 @@ export default {
       initEditUser({ userId: userId }).then(res => {
         if (res.result === 1) {
           var d = res.data
-          this.form.userId= d.userId
-          this.form.userName= d.userName
-          this.form.fullName= d.fullName
-          this.form.phoneNumber= d.phoneNumber
-          this.form.email= d.email
-          this.form.orgIds=d.orgIds
+          this.form.userId = d.userId
+          this.form.userName = d.userName
+          this.form.fullName = d.fullName
+          this.form.phoneNumber = d.phoneNumber
+          this.form.email = d.email
+          this.form.orgIds = d.orgIds
           this.form.roleIds = d.roleIds
-          this.cascader_org_options= d.orgs
-          this.tree_role_options = d.roles
+          this.cascader_org_options = d.orgs
+          this.checkbox_group_role_options = d.roles
         }
       })
     },
     onSubmit() {
-       console.log(JSON.stringify(this.form))
       this.$refs['form'].validate((valid) => {
         if (valid) {
           MessageBox.confirm('确定要保存', '提示', {
@@ -125,7 +113,6 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.form.roleIds = getCheckedKeys(this.$refs.treerole)
             editUser(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
