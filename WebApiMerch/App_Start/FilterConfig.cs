@@ -1,8 +1,8 @@
 ﻿using System.Web;
 using System.Web.Mvc;
-using WebApiAgent.Controllers;
+using WebApiMerch.Controllers;
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
     public class FilterConfig
     {

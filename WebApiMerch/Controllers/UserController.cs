@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace WebApiAgent.Controllers
+namespace WebApiMerch.Controllers
 {
     public class UserController : OwnApiBaseController
     {

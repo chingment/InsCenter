@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text;
 
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
     public class OwnApiHttpResponse : HttpResponseMessage
     {

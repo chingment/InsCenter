@@ -13,9 +13,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.Http;
-using WebApiAgent.Controllers;
+using WebApiMerch.Controllers;
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
     public class UploadMultipartMediaTypeFormatter : MediaTypeFormatter
     {

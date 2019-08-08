@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using System.Web.Http.Filters;
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
     public class OwnApiExceptionAttribute : ExceptionFilterAttribute, IExceptionFilter
     {

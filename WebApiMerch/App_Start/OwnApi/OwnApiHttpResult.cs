@@ -4,7 +4,7 @@ using Newtonsoft.Json.Serialization;
 using System.Text;
 
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
 
     public class OwnApiHttpResult : IResult

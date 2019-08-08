@@ -4,7 +4,7 @@ using System.Configuration;
 using Lumos.Web.Http;
 using Lumos.Session;
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
     [OwnApiAuthorize]
     public class OwnApiBaseController : BaseController

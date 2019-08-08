@@ -1,7 +1,7 @@
 ﻿using Lumos;
 using System.Web;
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
     public static class OwnApiRequest
     {

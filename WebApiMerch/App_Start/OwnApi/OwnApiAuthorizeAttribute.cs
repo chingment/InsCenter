@@ -8,7 +8,7 @@ using System.Web.Http;
 using Lumos.Web.Http;
 using Lumos.Session;
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
 
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]

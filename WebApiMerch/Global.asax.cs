@@ -9,9 +9,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebApiAgent.Controllers;
+using WebApiMerch.Controllers;
 
-namespace WebApiAgent
+namespace WebApiMerch
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
