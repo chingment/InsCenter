@@ -166,16 +166,15 @@ namespace LocalS.Service.Api.Admin
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
                 CurrentDb.SysMerchUser.Add(user);
 
-                if (rop.RoleIds != null)
+
+                var sysRole = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Merch && m.IsSuper == true).FirstOrDefault();
+                if (sysRole == null)
                 {
-                    foreach (var roleId in rop.RoleIds)
-                    {
-                        if (!string.IsNullOrEmpty(roleId))
-                        {
-                            CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
-                        }
-                    }
+                    return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "未配置系统管理角色");
                 }
+
+
+                CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = sysRole.Id, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
 
 
                 var merchOrg = new MerchOrg();
