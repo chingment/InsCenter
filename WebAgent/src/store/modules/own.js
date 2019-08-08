@@ -28,16 +28,16 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) {
+  getInfo({ commit, state }, path) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token, 'agent').then(response => {
-        const { data } = response
-        if (!data) {
-          reject('Verification failed, please Login again.')
+      getInfo(state.token, 'agent', path).then(res => {
+        console.log(JSON.stringify(res))
+        if (res.result === 1) {
+          const d = res.data
+          commit('SET_USERINFO', d)
+          generateRoutes(d.menus)
         }
-        commit('SET_USERINFO', data)
-        generateRoutes(data.menus)
-        resolve(data)
+        resolve(res)
       }).catch(error => {
         reject(error)
       })
@@ -63,9 +63,9 @@ const actions = {
     })
   },
   // checkperminssion
-  checkPermission({ commit }, code) {
+  checkPermission({ commit }, type, content) {
     return new Promise((resolve, reject) => {
-      checkPermission(code).then(response => {
+      checkPermission(type, content).then(response => {
         resolve(response)
       }).catch(error => {
         reject(error)

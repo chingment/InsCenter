@@ -98,6 +98,7 @@
     <Compile Include="Api\Admin\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Admin\RModels\RupAdminUserGetList.cs" />
     <Compile Include="Api\Admin\AgentRoleService.cs" />
+    <Compile Include="Api\Agent\RModels\RetUserInitAdd.cs" />
     <Compile Include="Api\InsApp\HomeService.cs" />
     <Compile Include="Api\InsApp\InsAppServiceFactory.cs" />
     <Compile Include="Api\InsApp\InsCarService.cs" />

@@ -10,17 +10,17 @@
       </el-button>
     </div>
     <el-table
-      :key="tableKey"
+      :key="listKey"
       v-loading="listLoading"
-      :data="list"
+      :data="listData"
       border
       fit
       highlight-current-row
       style="width: 100%;"
     >
-      <el-table-column v-if="isMobileHidden" label="序号" prop="id" align="left" width="80">
+      <el-table-column v-if="isDesktop" label="序号" prop="id" align="left" width="80">
         <template slot-scope="scope">
-          <span>{{ scope.$index+1 }}</span>
+          <span>{{ scope.$index+1 }} </span>
         </template>
       </el-table-column>
       <el-table-column label="用户名" prop="userName" align="left" min-width="20%">
@@ -33,22 +33,22 @@
           <span>{{ scope.row.fullName }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="isMobileHidden" label="手机号码" prop="phoneNumber" align="left" min-width="10%">
+      <el-table-column v-if="isDesktop" label="手机号码" prop="phoneNumber" align="left" min-width="10%">
         <template slot-scope="scope">
           <span>{{ scope.row.phoneNumber }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="isMobileHidden" label="邮箱" prop="email" align="left" min-width="20%">
+      <el-table-column v-if="isDesktop" label="邮箱" prop="email" align="left" min-width="20%">
         <template slot-scope="scope">
           <span>{{ scope.row.email }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="状态" prop="status" align="left" min-width="10%">
+      <el-table-column label="状态" prop="status" align="left" min-width="15%">
         <template slot-scope="scope">
           <span :class="'enable-status enable-status-'+scope.row.status.value">{{ scope.row.status.text }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="isMobileHidden" label="创建时间" prop="createTime" align="left" min-width="20%">
+      <el-table-column v-if="isDesktop" label="创建时间" prop="createTime" align="left" min-width="15%">
         <template slot-scope="scope">
           <span>{{ scope.row.createTime }}</span>
         </template>
@@ -62,8 +62,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
-
+    <pagination v-show="listTotal>0" :total="listTotal" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getListData" />
   </div>
 </template>
 
@@ -72,67 +71,52 @@ import { fetchList } from '@/api/user'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
 export default {
-  name: 'ComplexTable',
+  name: 'AdminUserList',
   components: { Pagination },
   data() {
     return {
-      tableKey: 0,
-      list: null,
-      total: 0,
+      listKey: 0,
+      listData: null,
+      listTotal: 0,
       listLoading: true,
       listQuery: {
         page: 1,
         limit: 10,
-        importance: undefined,
-        userName: undefined,
-        type: undefined
+        userName: undefined
       },
-      pvData: [],
-      isMobileHidden: this.$store.state.app.device !== 'mobile'
+      isDesktop: this.$store.getters.isDesktop
     }
   },
   created() {
-    this.getList()
+    if (this.$store.getters.listPageQuery.has(this.$route.path)) {
+      this.listQuery = this.$store.getters.listPageQuery.get(this.$route.path)
+    }
+    this.getListData()
   },
   methods: {
-    getList() {
+    getListData() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
-
-        // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 1000)
+      this.$store.dispatch('app/saveListPageQuery', { path: this.$route.path, query: this.listQuery })
+      fetchList(this.listQuery).then(res => {
+        var d = res.data
+        this.listData = d.items
+        this.listTotal = d.total
+        this.listLoading = false
       })
     },
     handleFilter() {
       this.listQuery.page = 1
-      this.getList()
+      this.getListData()
     },
     handleCreate() {
       this.$router.push({
-        path: '/user/add?redirect=/user/list'
+        path: '/admin/user/add'
       })
-      // this.resetTemp()
-      // this.dialogStatus = 'create'
-      // this.dialogFormVisible = true
-      // this.$nextTick(() => {
-      //  this.$refs['dataForm'].clearValidate()
-      // })
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/user/edit?userId=' + row.id
+        path: '/admin/user/edit?userId=' + row.id
       })
-      // this.temp = Object.assign({}, row) // copy obj
-      // this.temp.timestamp = new Date(this.temp.timestamp)
-      // this.dialogStatus = 'update'
-      // this.dialogFormVisible = true
-      // this.$nextTick(() => {
-      //   this.$refs['dataForm'].clearValidate()
-      // })
     }
   }
 }

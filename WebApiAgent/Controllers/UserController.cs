@@ -17,6 +17,12 @@ namespace WebApiAgent.Controllers
             IResult result = AgentServiceFactory.User.GetList(this.CurrentUserId, this.CurrentAgentId, rup);
             return new OwnApiHttpResponse(result);
         }
+        [HttpGet]
+        public OwnApiHttpResponse InitAdd()
+        {
+            IResult result = AgentServiceFactory.User.InitAdd(this.CurrentUserId, this.CurrentAgentId);
+            return new OwnApiHttpResponse(result);
+        }
 
         [HttpPost]
         public OwnApiHttpResponse Add([FromBody]RopUserAdd rop)

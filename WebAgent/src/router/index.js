@@ -33,8 +33,15 @@ Vue.use(Router)
 export const constantRoutes = [
   {
     path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
+    component: () => import('@/views/errorpage/404'),
+    hidden: true,
+    meta: { title: '页面不存在', icon: 'table', auth: false }
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/errorpage/401'),
+    hidden: true,
+    meta: { title: '页面权限', icon: 'table', auth: false }
   }
 ]
 

@@ -18,5 +18,7 @@ namespace LocalS.Service.Api.Agent
         public string Email { get; set; }
 
         public bool IsDisable { get; set; }
+
+        public List<string> RoleIds { get; set; }
     }
 }

@@ -5,7 +5,10 @@ const state = {
     opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
     withoutAnimation: false
   },
-  device: 'desktop'
+  listPageQuery: new Map(),
+  device: 'desktop',
+  isMobile: false,
+  isDesktop: true
 }
 
 const mutations = {
@@ -25,6 +28,16 @@ const mutations = {
   },
   TOGGLE_DEVICE: (state, device) => {
     state.device = device
+    if (device === 'mobile') {
+      state.isMobile = true
+      state.isDesktop = false
+    } else {
+      state.isMobile = false
+      state.isDesktop = true
+    }
+  },
+  SAVE_LIST_PAGE_QUERY: (state, { path, query }) => {
+    state.listPageQuery.set(path, query)
   }
 }
 
@@ -37,6 +50,9 @@ const actions = {
   },
   toggleDevice({ commit }, device) {
     commit('TOGGLE_DEVICE', device)
+  },
+  saveListPageQuery({ commit }, { path, query }) {
+    commit('SAVE_LIST_PAGE_QUERY', { path, query })
   }
 }
 

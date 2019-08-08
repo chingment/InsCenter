@@ -8,6 +8,14 @@ export function fetchList(params) {
   })
 }
 
+export function initAddUser(params) {
+  return request({
+    url: '/user/initAdd',
+    method: 'get',
+    params
+  })
+}
+
 export function addUser(data) {
   return request({
     url: '/user/add',
@@ -16,7 +24,7 @@ export function addUser(data) {
   })
 }
 
-export function initEdit(params) {
+export function initEditUser(params) {
   return request({
     url: '/user/initEdit',
     method: 'get',

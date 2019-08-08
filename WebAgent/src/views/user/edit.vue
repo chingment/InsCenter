@@ -1,6 +1,6 @@
 <template>
   <div id="useradd_container" class="app-container">
-    <el-form ref="form" :model="form" :rules="rules" label-width="75px">
+    <el-form ref="form" :model="form" :rules="rules" label-width="80px">
       <el-form-item label="用户名" prop="userName">
         {{ form.userName }}
       </el-form-item>
@@ -21,6 +21,17 @@
       <el-form-item label="姓名" prop="fullName">
         <el-input v-model="form.fullName" />
       </el-form-item>
+      <el-form-item label="所属机构" prop="orgIds">
+        <el-cascader
+          v-model="form.orgIds"
+          :options="cascader_org_options"
+          :props="cascader_org_props"
+          placeholder="请选择"
+          clearable
+          style="width:100%"
+          @change="cascader_org_change"
+        />
+      </el-form-item>
       <el-form-item label="手机号码" prop="phoneNumber">
         <el-input v-model="form.phoneNumber" />
       </el-form-item>
@@ -29,6 +40,11 @@
       </el-form-item>
       <el-form-item label="禁用">
         <el-switch v-model="form.isDisable" />
+      </el-form-item>
+      <el-form-item label="角色">
+        <el-checkbox-group v-model="form.roleIds">
+          <el-checkbox v-for="option in checkbox_group_role_options" :key="option.id" style="display:block" :label="option.id">{{ option.label }}</el-checkbox>
+        </el-checkbox-group>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -39,9 +55,9 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { editUser, initEdit } from '@/api/user'
+import { editUser, initEditUser } from '@/api/user'
 import fromReg from '@/utils/formReg'
-import { getUrlParam } from '@/utils/commonUtil'
+import { getUrlParam, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
@@ -52,14 +68,20 @@ export default {
         password: '',
         fullName: '',
         phoneNumber: '',
-        email: ''
+        email: '',
+        orgIds: [],
+        roleIds: []
       },
       rules: {
         password: [{ required: false, message: '必填,且由6到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.password }],
         fullName: [{ required: true, message: '必填', trigger: 'change' }],
+        orgIds: [{ required: true, message: '必选' }],
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
-      }
+      },
+      cascader_org_props: { multiple: true, checkStrictly: true, emitPath: false },
+      cascader_org_options: [],
+      checkbox_group_role_options: []
     }
   },
   created() {
@@ -68,10 +90,18 @@ export default {
   methods: {
     init() {
       var userId = getUrlParam('userId')
-      console.log('userId:' + userId)
-      initEdit({ userId: userId }).then(res => {
+      initEditUser({ userId: userId }).then(res => {
         if (res.result === 1) {
-          this.form = res.data
+          var d = res.data
+          this.form.userId = d.userId
+          this.form.userName = d.userName
+          this.form.fullName = d.fullName
+          this.form.phoneNumber = d.phoneNumber
+          this.form.email = d.email
+          this.form.orgIds = d.orgIds
+          this.form.roleIds = d.roleIds
+          this.cascader_org_options = d.orgs
+          this.checkbox_group_role_options = d.roles
         }
       })
     },
@@ -85,6 +115,9 @@ export default {
           }).then(() => {
             editUser(this.form).then(res => {
               this.$message(res.message)
+              if (res.result === 1) {
+                goBack(this)
+              }
             })
           })
         }
@@ -99,6 +132,9 @@ export default {
         this.isOpenEditPassword = true
         this.rules.password[0].required = true
       }
+    },
+    cascader_org_change() {
+      console.log('dasd')
     }
   }
 }
@@ -110,6 +146,10 @@ export default {
 }
 #useradd_container {
   max-width: 600px;
+}
+
+.el-tree-node__expand-icon.is-leaf{
+  display: none;
 }
 </style>
 
