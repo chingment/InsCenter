@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function fetchList(params) {
   return request({
-    url: '/agentmaster/getlist',
+    url: '/merchmaster/getlist',
     method: 'get',
     params
   })
@@ -10,7 +10,7 @@ export function fetchList(params) {
 
 export function initAddUser(params) {
   return request({
-    url: '/agentmaster/initAdd',
+    url: '/merchmaster/initAdd',
     method: 'get',
     params
   })
@@ -18,7 +18,7 @@ export function initAddUser(params) {
 
 export function addUser(data) {
   return request({
-    url: '/agentmaster/add',
+    url: '/merchmaster/add',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function addUser(data) {
 
 export function initEditUser(params) {
   return request({
-    url: '/agentmaster/initEdit',
+    url: '/merchmaster/initEdit',
     method: 'get',
     params
   })
@@ -34,7 +34,7 @@ export function initEditUser(params) {
 
 export function editUser(data) {
   return request({
-    url: '/agentmaster/edit',
+    url: '/merchmaster/edit',
     method: 'post',
     data
   })

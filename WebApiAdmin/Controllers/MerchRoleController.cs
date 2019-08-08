@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace WebApiAdmin.Controllers
 {
-    public class MerchRoleControllerr : OwnApiBaseController
+    public class MerchRoleController : OwnApiBaseController
     {
         [HttpGet]
         public OwnApiHttpResponse GetList([FromUri]RupMerchRoleGetList rup)

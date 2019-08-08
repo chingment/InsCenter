@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function fetchList(params) {
   return request({
-    url: '/agentrole/getlist',
+    url: '/merchrole/getlist',
     method: 'get',
     params
   })
@@ -10,7 +10,7 @@ export function fetchList(params) {
 
 export function initAddRole(params) {
   return request({
-    url: '/agentrole/initAdd',
+    url: '/merchrole/initAdd',
     method: 'get',
     params
   })
@@ -18,7 +18,7 @@ export function initAddRole(params) {
 
 export function addRole(data) {
   return request({
-    url: '/agentrole/add',
+    url: '/merchrole/add',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function addRole(data) {
 
 export function initEditRole(params) {
   return request({
-    url: '/agentrole/initEdit',
+    url: '/merchrole/initEdit',
     method: 'get',
     params
   })
@@ -34,7 +34,7 @@ export function initEditRole(params) {
 
 export function editRole(data) {
   return request({
-    url: '/agentrole/edit',
+    url: '/merchrole/edit',
     method: 'post',
     data
   })
