@@ -75,7 +75,7 @@ namespace LocalS.Service.Api.Agent
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
                          u.IsDelete == false &&
-                         u.IsMaster &&
+                         u.IsMaster == false &&
                          sonIds.Contains(u.Id)
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
