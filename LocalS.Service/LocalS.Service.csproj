@@ -71,6 +71,8 @@
     <Compile Include="Api\Admin\AdminServiceFactory.cs" />
     <Compile Include="Api\Admin\AdminUserService.cs" />
     <Compile Include="Api\Admin\AgentMasterService.cs" />
+    <Compile Include="Api\Admin\MerchMasterService.cs" />
+    <Compile Include="Api\Admin\MerchRoleService.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminOrgInitAdd.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminOrgInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RetAdminRoleInitAdd.cs" />
@@ -81,6 +83,10 @@
     <Compile Include="Api\Admin\RModels\RetAgentMasterInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RetAgentRoleInitAdd.cs" />
     <Compile Include="Api\Admin\RModels\RetAgentRoleInitEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RetMerchMasterInitAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RetMerchMasterInitEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RetMerchRoleInitAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RetMerchRoleInitEdit.cs" />
     <Compile Include="Api\Admin\RModels\RopAdminOrgAdd.cs" />
     <Compile Include="Api\Admin\RModels\RopAdminOrgEdit.cs" />
     <Compile Include="Api\Admin\RModels\RopAdminRoleAdd.cs" />
@@ -91,6 +97,10 @@
     <Compile Include="Api\Admin\RModels\RopAgentMasterEdit.cs" />
     <Compile Include="Api\Admin\RModels\RopAgentRoleAdd.cs" />
     <Compile Include="Api\Admin\RModels\RopAgentRoleEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RopMerchMasterAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RopMerchMasterEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RopMerchRoleAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RopMerchRoleEdit.cs" />
     <Compile Include="Api\Admin\RModels\RupAdminOrgGetList.cs" />
     <Compile Include="Api\Admin\RModels\RupAdminRoleGetList.cs" />
     <Compile Include="Api\Admin\RModels\RupAgentMasterGetList.cs" />
@@ -98,6 +108,8 @@
     <Compile Include="Api\Admin\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Admin\RModels\RupAdminUserGetList.cs" />
     <Compile Include="Api\Admin\AgentRoleService.cs" />
+    <Compile Include="Api\Admin\RModels\RupMerchMasterGetList.cs" />
+    <Compile Include="Api\Admin\RModels\RupMerchRoleGetList.cs" />
     <Compile Include="Api\Agent\RModels\RetUserInitAdd.cs" />
     <Compile Include="Api\InsApp\HomeService.cs" />
     <Compile Include="Api\InsApp\InsAppServiceFactory.cs" />

@@ -11,7 +11,7 @@ using System.Transactions;
 
 namespace LocalS.Service.Api.Admin
 {
-    public class AgentMasterService : BaseDbContext
+    public class MerchMasterService : BaseDbContext
     {
         public string GetStatusText(bool isDisable)
         {
@@ -43,15 +43,14 @@ namespace LocalS.Service.Api.Admin
             return text;
         }
 
-        public CustomJsonResult GetList(string operater, RupAgentMasterGetList rup)
+        public CustomJsonResult GetList(string operater, RupMerchMasterGetList rup)
         {
             var result = new CustomJsonResult();
 
-            var query = (from u in CurrentDb.SysAgentUser
+            var query = (from u in CurrentDb.SysAdminUser
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
-                         u.IsDelete == false &&
-                         u.IsMaster == true
+                         u.IsDelete == false
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
 
@@ -88,17 +87,62 @@ namespace LocalS.Service.Api.Admin
             return result;
         }
 
+
+        private List<TreeNode> GetOrgTree(string id, List<SysOrg> sysOrgs)
+        {
+            List<TreeNode> treeNodes = new List<TreeNode>();
+
+            var p_sysOrgs = sysOrgs.Where(t => t.PId == id).ToList();
+
+            foreach (var p_sysOrg in p_sysOrgs)
+            {
+                TreeNode treeNode = new TreeNode();
+                treeNode.Id = p_sysOrg.Id;
+                treeNode.PId = p_sysOrg.PId;
+                treeNode.Value = p_sysOrg.Id;
+                treeNode.Label = p_sysOrg.Name;
+                treeNode.Children.AddRange(GetOrgTree(treeNode.Id, sysOrgs));
+                treeNodes.Add(treeNode);
+            }
+
+            return treeNodes;
+        }
+
+        public List<TreeNode> GetOrgTree()
+        {
+            var sysOrgs = CurrentDb.SysOrg.OrderBy(m => m.Priority).ToList();
+            return GetOrgTree(GuidUtil.Empty(), sysOrgs);
+        }
+
+        public List<TreeNode> GetRoleTree()
+        {
+            List<TreeNode> treeNodes = new List<TreeNode>();
+
+            var sysRoles = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).OrderBy(m => m.Priority).ToList();
+
+            foreach (var sysRole in sysRoles)
+            {
+                treeNodes.Add(new TreeNode { Id = sysRole.Id, PId = "", Label = sysRole.Name });
+            }
+
+            return treeNodes;
+        }
+
         public CustomJsonResult InitAdd(string operater)
         {
             var result = new CustomJsonResult();
-            var ret = new RetAgentMasterInitAdd();
+            var ret = new RetAdminUserInitAdd();
+
+            ret.Orgs = GetOrgTree();
+            ret.Roles = GetRoleTree();
+
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }
 
-        public CustomJsonResult Add(string operater, RopAgentMasterAdd rop)
+        public CustomJsonResult Add(string operater, RopMerchMasterAdd rop)
         {
             var result = new CustomJsonResult();
 
@@ -120,34 +164,32 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-
-                var agent = new LocalS.Entity.Agent();
-
-                agent.Id = GuidUtil.New();
-                agent.Name = rop.FullName;
-                agent.CreateTime = DateTime.Now;
-                agent.Creator = operater;
-                CurrentDb.Agent.Add(agent);
-
-                var user = new SysAgentUser();
+                var user = new SysAdminUser();
                 user.Id = GuidUtil.New();
-                user.PId = GuidUtil.Empty();
                 user.UserName = rop.UserName;
                 user.FullName = rop.FullName;
                 user.PasswordHash = PassWordHelper.HashPassword(rop.Password);
                 user.Email = rop.Email;
                 user.PhoneNumber = rop.PhoneNumber;
-                user.BelongSite = Enumeration.BelongSite.Agent;
+                user.BelongSite = Enumeration.BelongSite.Admin;
                 user.IsDelete = false;
                 user.IsDisable = false;
-                user.IsMaster = true;
-                user.Depth = 0;
-                user.AgentId = agent.Id;
                 user.Creator = operater;
                 user.CreateTime = DateTime.Now;
                 user.RegisterTime = DateTime.Now;
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
-                CurrentDb.SysAgentUser.Add(user);
+                CurrentDb.SysAdminUser.Add(user);
+
+                if (rop.RoleIds != null)
+                {
+                    foreach (var roleId in rop.RoleIds)
+                    {
+                        if (!string.IsNullOrEmpty(roleId))
+                        {
+                            CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
+                        }
+                    }
+                }
 
                 CurrentDb.SaveChanges();
                 ts.Complete();
@@ -163,9 +205,9 @@ namespace LocalS.Service.Api.Admin
         {
             var result = new CustomJsonResult();
 
-            var ret = new RetAgentMasterInitEdit();
+            var ret = new RetMerchMasterInitEdit();
 
-            var user = CurrentDb.SysAgentUser.Where(m => m.Id == userId).FirstOrDefault();
+            var user = CurrentDb.SysAdminUser.Where(m => m.Id == userId).FirstOrDefault();
 
             ret.UserId = user.Id;
             ret.UserName = user.UserName;
@@ -173,14 +215,16 @@ namespace LocalS.Service.Api.Admin
             ret.Email = user.Email;
             ret.FullName = user.FullName;
             ret.IsDisable = user.IsDisable;
-
+          
+            ret.Roles = GetRoleTree();
+            ret.RoleIds = (from m in CurrentDb.SysUserRole where m.UserId == user.Id select m.RoleId).ToList();
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;
         }
 
-        public CustomJsonResult Edit(string operater, RopAgentMasterEdit rop)
+        public CustomJsonResult Edit(string operater, RopMerchMasterEdit rop)
         {
 
             CustomJsonResult result = new CustomJsonResult();
@@ -188,7 +232,7 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var user = CurrentDb.SysAgentUser.Where(m => m.Id == rop.UserId).FirstOrDefault();
+                var user = CurrentDb.SysAdminUser.Where(m => m.Id == rop.UserId).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(rop.Password))
                 {
@@ -201,6 +245,34 @@ namespace LocalS.Service.Api.Admin
                 user.IsDisable = rop.IsDisable;
                 user.MendTime = DateTime.Now;
                 user.Mender = operater;
+
+
+                var sysUserOrgs = CurrentDb.SysUserOrg.Where(r => r.UserId == rop.UserId).ToList();
+
+                foreach (var sysUserOrg in sysUserOrgs)
+                {
+                    CurrentDb.SysUserOrg.Remove(sysUserOrg);
+                }
+
+
+                var sysUserRoles = CurrentDb.SysUserRole.Where(r => r.UserId == rop.UserId).ToList();
+
+                foreach (var sysUserRole in sysUserRoles)
+                {
+                    CurrentDb.SysUserRole.Remove(sysUserRole);
+                }
+
+
+                if (rop.RoleIds != null)
+                {
+                    foreach (var roleId in rop.RoleIds)
+                    {
+                        if (!string.IsNullOrEmpty(roleId))
+                        {
+                            CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = rop.UserId, Creator = operater, CreateTime = DateTime.Now });
+                        }
+                    }
+                }
 
                 CurrentDb.SaveChanges();
                 ts.Complete();

@@ -47,5 +47,21 @@ namespace LocalS.Service.Api.Admin
                 return new AgentMasterService();
             }
         }
+
+        public static MerchRoleService MerchRole
+        {
+            get
+            {
+                return new MerchRoleService();
+            }
+        }
+
+        public static MerchMasterService MerchMaster
+        {
+            get
+            {
+                return new MerchMasterService();
+            }
+        }
     }
 }
