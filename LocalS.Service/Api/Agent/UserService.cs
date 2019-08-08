@@ -44,7 +44,7 @@ namespace LocalS.Service.Api.Agent
             return text;
         }
 
-        public CustomJsonResult GetList(string operater, RupUserGetList rup)
+        public CustomJsonResult GetList(string operater,string agentId, RupUserGetList rup)
         {
             var result = new CustomJsonResult();
 
@@ -89,7 +89,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult InitAdd(string operater)
+        public CustomJsonResult InitAdd(string operater,string agentId)
         {
             var result = new CustomJsonResult();
             var ret = new RetUserInitAdd();
@@ -99,7 +99,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult Add(string operater, RopUserAdd rop)
+        public CustomJsonResult Add(string operater, string agentId, RopUserAdd rop)
         {
             var result = new CustomJsonResult();
 
@@ -154,7 +154,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult InitEdit(string operater, string userId)
+        public CustomJsonResult InitEdit(string operater, string agentId, string userId)
         {
             var result = new CustomJsonResult();
 
@@ -175,7 +175,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult Edit(string operater, RopUserEdit rop)
+        public CustomJsonResult Edit(string operater, string agentId, RopUserEdit rop)
         {
 
             CustomJsonResult result = new CustomJsonResult();
@@ -196,25 +196,6 @@ namespace LocalS.Service.Api.Agent
                 agentUser.IsDisable = rop.IsDisable;
                 agentUser.MendTime = DateTime.Now;
                 agentUser.Mender = operater;
-
-
-                var sysUserRoles = CurrentDb.SysUserRole.Where(r => r.UserId == rop.UserId).ToList();
-
-                foreach (var sysUserRole in sysUserRoles)
-                {
-                    CurrentDb.SysUserRole.Remove(sysUserRole);
-                }
-
-                if (rop.RoleIds != null)
-                {
-                    foreach (var roleId in rop.RoleIds)
-                    {
-                        if (!string.IsNullOrEmpty(roleId))
-                        {
-                            CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = rop.UserId, Creator = operater, CreateTime = DateTime.Now });
-                        }
-                    }
-                }
 
                 CurrentDb.SaveChanges();
                 ts.Complete();
