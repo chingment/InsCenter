@@ -20,7 +20,7 @@ namespace LocalS.Service.Api.Admin
             var query = (from u in CurrentDb.SysRole
                          where (rup.Name == null || u.Name.Contains(rup.Name))
                          &&
-                         u.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Admin
+                         u.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Merch
                          select new { u.Id, u.Name, u.Description, u.CreateTime, u.Priority });
 
 
@@ -75,7 +75,7 @@ namespace LocalS.Service.Api.Admin
 
         public List<TreeNode> GetMenuTree()
         {
-            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).ToList();
+            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == Enumeration.BelongSite.Merch).ToList();
 
             var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
 
@@ -85,7 +85,7 @@ namespace LocalS.Service.Api.Admin
         public CustomJsonResult InitAdd(string operater)
         {
             var result = new CustomJsonResult();
-            var ret = new RetAdminRoleInitAdd();
+            var ret = new RetMerchRoleInitAdd();
             ret.Menus = GetMenuTree();
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
             return result;
@@ -97,7 +97,7 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var isExists = CurrentDb.SysRole.Where(m => m.Name == rop.Name && m.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Admin).FirstOrDefault();
+                var isExists = CurrentDb.SysRole.Where(m => m.Name == rop.Name && m.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Merch).FirstOrDefault();
                 if (isExists != null)
                 {
                     return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该名称已经存在");
@@ -108,7 +108,7 @@ namespace LocalS.Service.Api.Admin
                 sysRole.Name = rop.Name;
                 sysRole.Description = rop.Description;
                 sysRole.PId = GuidUtil.Empty();
-                sysRole.BelongSite = Enumeration.BelongSite.Admin;
+                sysRole.BelongSite = Enumeration.BelongSite.Merch;
                 sysRole.Dept = 0;
                 sysRole.CreateTime = DateTime.Now;
                 sysRole.Creator = operater;

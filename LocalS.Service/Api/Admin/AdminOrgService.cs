@@ -26,7 +26,7 @@ namespace LocalS.Service.Api.Admin
                 treeNode.PId = p_sysOrg.PId;
                 treeNode.Label = p_sysOrg.Name;
                 treeNode.Description = p_sysOrg.Description;
-                if (p_sysOrg.Dept == 0)
+                if (p_sysOrg.Depth == 0)
                 {
                     treeNode.ExtAttr = new { CanDelete = false };
                 }
@@ -48,7 +48,7 @@ namespace LocalS.Service.Api.Admin
 
             var sysOrgs = CurrentDb.SysOrg.OrderBy(m => m.Priority).ToList();
 
-            var topOrg = sysOrgs.Where(m => m.Dept == 0).FirstOrDefault();
+            var topOrg = sysOrgs.Where(m => m.Depth == 0).FirstOrDefault();
 
             var orgTree = GetOrgTree(topOrg.PId, sysOrgs);
 
@@ -94,7 +94,7 @@ namespace LocalS.Service.Api.Admin
                 sysOrg.Name = rop.Name;
                 sysOrg.Description = rop.Description;
                 sysOrg.PId = rop.POrgId;
-                sysOrg.Dept = 0;
+                sysOrg.Depth = 0;
                 sysOrg.CreateTime = DateTime.Now;
                 sysOrg.Creator = operater;
                 CurrentDb.SysOrg.Add(sysOrg);

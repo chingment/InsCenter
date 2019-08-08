@@ -40,6 +40,7 @@ namespace Lumos.DbRelay
         public IDbSet<SysUserLoginHis> SysUserLoginHis { get; set; }
         public IDbSet<SysAdminUser> SysAdminUser { get; set; }
         public IDbSet<SysClientUser> SysClientUser { get; set; }
+        public IDbSet<SysMerchUser> SysMerchUser { get; set; }
         public IDbSet<SysOperateHis> SysOperateHis { get; set; }
         public IDbSet<SysPageAccessHis> SysPageAccessHis { get; set; }
         public IDbSet<SysSmsSendHis> SysSmsSendHis { get; set; }

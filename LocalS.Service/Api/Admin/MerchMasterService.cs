@@ -1,4 +1,5 @@
 ﻿using LocalS.BLL;
+using LocalS.Entity;
 using LocalS.Service.UI;
 using Lumos;
 using Lumos.DbRelay;
@@ -47,10 +48,11 @@ namespace LocalS.Service.Api.Admin
         {
             var result = new CustomJsonResult();
 
-            var query = (from u in CurrentDb.SysAdminUser
+            var query = (from u in CurrentDb.SysMerchUser
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
-                         u.IsDelete == false
+                         u.IsDelete == false &&
+                         u.IsMaster == true
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
 
@@ -88,37 +90,11 @@ namespace LocalS.Service.Api.Admin
         }
 
 
-        private List<TreeNode> GetOrgTree(string id, List<SysOrg> sysOrgs)
-        {
-            List<TreeNode> treeNodes = new List<TreeNode>();
-
-            var p_sysOrgs = sysOrgs.Where(t => t.PId == id).ToList();
-
-            foreach (var p_sysOrg in p_sysOrgs)
-            {
-                TreeNode treeNode = new TreeNode();
-                treeNode.Id = p_sysOrg.Id;
-                treeNode.PId = p_sysOrg.PId;
-                treeNode.Value = p_sysOrg.Id;
-                treeNode.Label = p_sysOrg.Name;
-                treeNode.Children.AddRange(GetOrgTree(treeNode.Id, sysOrgs));
-                treeNodes.Add(treeNode);
-            }
-
-            return treeNodes;
-        }
-
-        public List<TreeNode> GetOrgTree()
-        {
-            var sysOrgs = CurrentDb.SysOrg.OrderBy(m => m.Priority).ToList();
-            return GetOrgTree(GuidUtil.Empty(), sysOrgs);
-        }
-
         public List<TreeNode> GetRoleTree()
         {
             List<TreeNode> treeNodes = new List<TreeNode>();
 
-            var sysRoles = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).OrderBy(m => m.Priority).ToList();
+            var sysRoles = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Merch).OrderBy(m => m.Priority).ToList();
 
             foreach (var sysRole in sysRoles)
             {
@@ -131,9 +107,8 @@ namespace LocalS.Service.Api.Admin
         public CustomJsonResult InitAdd(string operater)
         {
             var result = new CustomJsonResult();
-            var ret = new RetAdminUserInitAdd();
+            var ret = new RetMerchMasterInitAdd();
 
-            ret.Orgs = GetOrgTree();
             ret.Roles = GetRoleTree();
 
 
@@ -164,21 +139,32 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var user = new SysAdminUser();
+                var merch = new LocalS.Entity.Merch();
+                merch.Id = GuidUtil.New();
+                merch.Name = rop.FullName;
+                merch.CreateTime = DateTime.Now;
+                merch.Creator = operater;
+                CurrentDb.Merch.Add(merch);
+
+
+                var user = new SysMerchUser();
                 user.Id = GuidUtil.New();
+                user.MerchId = merch.Id;
+                user.PId = GuidUtil.Empty();
                 user.UserName = rop.UserName;
                 user.FullName = rop.FullName;
                 user.PasswordHash = PassWordHelper.HashPassword(rop.Password);
                 user.Email = rop.Email;
                 user.PhoneNumber = rop.PhoneNumber;
-                user.BelongSite = Enumeration.BelongSite.Admin;
+                user.BelongSite = Enumeration.BelongSite.Merch;
                 user.IsDelete = false;
                 user.IsDisable = false;
+                user.IsMaster = true;
                 user.Creator = operater;
                 user.CreateTime = DateTime.Now;
                 user.RegisterTime = DateTime.Now;
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
-                CurrentDb.SysAdminUser.Add(user);
+                CurrentDb.SysMerchUser.Add(user);
 
                 if (rop.RoleIds != null)
                 {
@@ -190,6 +176,27 @@ namespace LocalS.Service.Api.Admin
                         }
                     }
                 }
+
+
+                var merchOrg = new MerchOrg();
+                merchOrg.Id = GuidUtil.New();
+                merchOrg.MerchId = merch.Id;
+                merchOrg.Name = "根组织";
+                merchOrg.PId = GuidUtil.Empty();
+                merchOrg.IsDelete = false;
+                merchOrg.Priority = 0;
+                merchOrg.Depth = 0;
+                merchOrg.CreateTime = DateTime.Now;
+                merchOrg.Creator = operater;
+                CurrentDb.MerchOrg.Add(merchOrg);
+
+                var merchUserOrg = new MerchUserOrg();
+                merchUserOrg.Id = GuidUtil.New();
+                merchUserOrg.MerchOrgId = merchOrg.Id;
+                merchUserOrg.UserId = user.Id;
+                merchUserOrg.CreateTime = DateTime.Now;
+                merchUserOrg.Creator = operater;
+                CurrentDb.MerchUserOrg.Add(merchUserOrg);
 
                 CurrentDb.SaveChanges();
                 ts.Complete();
@@ -207,7 +214,7 @@ namespace LocalS.Service.Api.Admin
 
             var ret = new RetMerchMasterInitEdit();
 
-            var user = CurrentDb.SysAdminUser.Where(m => m.Id == userId).FirstOrDefault();
+            var user = CurrentDb.SysMerchUser.Where(m => m.Id == userId).FirstOrDefault();
 
             ret.UserId = user.Id;
             ret.UserName = user.UserName;
@@ -215,7 +222,7 @@ namespace LocalS.Service.Api.Admin
             ret.Email = user.Email;
             ret.FullName = user.FullName;
             ret.IsDisable = user.IsDisable;
-          
+
             ret.Roles = GetRoleTree();
             ret.RoleIds = (from m in CurrentDb.SysUserRole where m.UserId == user.Id select m.RoleId).ToList();
 
@@ -232,7 +239,7 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var user = CurrentDb.SysAdminUser.Where(m => m.Id == rop.UserId).FirstOrDefault();
+                var user = CurrentDb.SysMerchUser.Where(m => m.Id == rop.UserId).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(rop.Password))
                 {
@@ -245,14 +252,6 @@ namespace LocalS.Service.Api.Admin
                 user.IsDisable = rop.IsDisable;
                 user.MendTime = DateTime.Now;
                 user.Mender = operater;
-
-
-                var sysUserOrgs = CurrentDb.SysUserOrg.Where(r => r.UserId == rop.UserId).ToList();
-
-                foreach (var sysUserOrg in sysUserOrgs)
-                {
-                    CurrentDb.SysUserOrg.Remove(sysUserOrg);
-                }
 
 
                 var sysUserRoles = CurrentDb.SysUserRole.Where(r => r.UserId == rop.UserId).ToList();

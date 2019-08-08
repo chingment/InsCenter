@@ -2,14 +2,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lumos.DbRelay
+namespace LocalS.Entity
 {
-    [Table("SysOrg")]
-    public class SysOrg
+    [Table("MerchOrg")]
+    public class MerchOrg
     {
         [Key]
         public string Id { get; set; }
         public string PId { get; set; }
+
+        public string MerchId { get; set; }
         [MaxLength(128)]
         public string Name { get; set; }
 
@@ -18,7 +20,6 @@ namespace Lumos.DbRelay
         [MaxLength(512)]
         public string Description { get; set; }
         public bool IsDelete { get; set; }
-        public Enumeration.SysOrganizationStatus Status { get; set; }
         public int Priority { get; set; }
         public string Creator { get; set; }
         public DateTime CreateTime { get; set; }
