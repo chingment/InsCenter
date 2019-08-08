@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/adminrole'
+import { fetchList } from '@/api/agentrole'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
 export default {
@@ -96,12 +96,12 @@ export default {
     },
     handleCreate() {
       this.$router.push({
-        path: '/admin/role/add'
+        path: '/agent/role/add'
       })
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/admin/role/edit?roleId=' + row.id
+        path: '/agent/role/edit?roleId=' + row.id
       })
     }
   }

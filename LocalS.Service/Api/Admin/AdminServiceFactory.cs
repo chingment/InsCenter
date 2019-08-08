@@ -31,5 +31,13 @@ namespace LocalS.Service.Api.Admin
                 return new AdminOrgService();
             }
         }
+
+        public static AgentRoleService AgentRole
+        {
+            get
+            {
+                return new AgentRoleService();
+            }
+        }
     }
 }

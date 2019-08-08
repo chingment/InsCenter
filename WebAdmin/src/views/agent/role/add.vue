@@ -27,7 +27,7 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { addRole, initAddRole } from '@/api/adminrole'
+import { addRole, initAddRole } from '@/api/agentrole'
 import { getCheckedKeys, goBack } from '@/utils/commonUtil'
 export default {
   data() {
