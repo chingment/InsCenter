@@ -122,6 +122,7 @@ namespace LocalS.Service.Api.Admin
             {
                 var user = new SysAgentUser();
                 user.Id = GuidUtil.New();
+                user.PId = GuidUtil.Empty();
                 user.UserName = rop.UserName;
                 user.FullName = rop.FullName;
                 user.PasswordHash = PassWordHelper.HashPassword(rop.Password);
@@ -136,22 +137,6 @@ namespace LocalS.Service.Api.Admin
                 user.RegisterTime = DateTime.Now;
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
                 CurrentDb.SysAgentUser.Add(user);
-
-                var sysRole = CurrentDb.SysRole.Where(m => m.IsSuper == true).FirstOrDefault();
-                if (sysRole == null)
-                {
-                    return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "系统未找到默认角色");
-                }
-
-                var sysUserRole = new SysUserRole();
-
-                sysUserRole.Id = GuidUtil.New();
-                sysUserRole.UserId = user.Id;
-                sysUserRole.RoleId = sysRole.Id;
-                sysUserRole.CreateTime = DateTime.Now;
-                sysUserRole.Creator = operater;
-                CurrentDb.SysUserRole.Add(sysUserRole);
-
                 CurrentDb.SaveChanges();
                 ts.Complete();
 
