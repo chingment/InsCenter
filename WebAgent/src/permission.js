@@ -24,10 +24,12 @@ router.beforeEach(async(to, from, next) => {
     if (token) {
       if (store.getters.userInfo == null) {
         await store.dispatch('own/getInfo', to.path).then((res) => {
-          if (res.code === 2401) {
-            next('/401')
-          } else {
+          if (res.result === 1) {
             next({ ...to, replace: true })
+          } else {
+            if (res.code === 2401) {
+              next('/401')
+            }
           }
         })
       } else {

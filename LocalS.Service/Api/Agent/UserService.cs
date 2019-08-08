@@ -90,55 +90,10 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        private List<TreeNode> GetOrgTree(string id, List<SysOrg> sysOrgs)
-        {
-            List<TreeNode> treeNodes = new List<TreeNode>();
-
-            var p_sysOrgs = sysOrgs.Where(t => t.PId == id).ToList();
-
-            foreach (var p_sysOrg in p_sysOrgs)
-            {
-                TreeNode treeNode = new TreeNode();
-                treeNode.Id = p_sysOrg.Id;
-                treeNode.PId = p_sysOrg.PId;
-                treeNode.Value = p_sysOrg.Id;
-                treeNode.Label = p_sysOrg.Name;
-                treeNode.Children.AddRange(GetOrgTree(treeNode.Id, sysOrgs));
-                treeNodes.Add(treeNode);
-            }
-
-            return treeNodes;
-        }
-
-        public List<TreeNode> GetOrgTree()
-        {
-            var sysOrgs = CurrentDb.SysOrg.OrderBy(m => m.Priority).ToList();
-            return GetOrgTree(GuidUtil.Empty(), sysOrgs);
-        }
-
-        public List<TreeNode> GetRoleTree()
-        {
-            List<TreeNode> treeNodes = new List<TreeNode>();
-
-            var sysRoles = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Agent && m.IsSuper == false).OrderBy(m => m.Priority).ToList();
-
-            foreach (var sysRole in sysRoles)
-            {
-                treeNodes.Add(new TreeNode { Id = sysRole.Id, PId = "", Label = sysRole.Name });
-            }
-
-            return treeNodes;
-        }
-
-
         public CustomJsonResult InitAdd(string operater, string agentId)
         {
             var result = new CustomJsonResult();
             var ret = new RetUserInitAdd();
-
-            // ret.Orgs = GetOrgTree();
-            ret.Roles = GetRoleTree();
-
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
@@ -169,6 +124,7 @@ namespace LocalS.Service.Api.Agent
             {
                 var agentUser = new SysAgentUser();
                 agentUser.Id = GuidUtil.New();
+                agentUser.PId = operater;
                 agentUser.UserName = rop.UserName;
                 agentUser.FullName = rop.FullName;
                 agentUser.PasswordHash = PassWordHelper.HashPassword(rop.Password);
@@ -184,18 +140,6 @@ namespace LocalS.Service.Api.Agent
                 agentUser.RegisterTime = DateTime.Now;
                 agentUser.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
                 CurrentDb.SysAgentUser.Add(agentUser);
-
-                if (rop.RoleIds != null)
-                {
-                    foreach (var roleId in rop.RoleIds)
-                    {
-                        if (!string.IsNullOrEmpty(roleId))
-                        {
-                            CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = roleId, UserId = agentUser.Id, Creator = operater, CreateTime = DateTime.Now });
-                        }
-                    }
-                }
-
                 CurrentDb.SaveChanges();
                 ts.Complete();
 
@@ -221,9 +165,7 @@ namespace LocalS.Service.Api.Agent
             ret.FullName = agentUser.FullName;
             ret.IsDisable = agentUser.IsDisable;
 
-            ret.Roles = GetRoleTree();
-            ret.RoleIds = (from m in CurrentDb.SysUserRole where m.UserId == agentUser.Id select m.RoleId).ToList();
-
+   
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;

@@ -132,6 +132,7 @@ namespace LocalS.Service.Api.Admin
                 user.IsDelete = false;
                 user.IsDisable = false;
                 user.IsMaster = true;
+                user.Depth = 0;
                 user.Creator = operater;
                 user.CreateTime = DateTime.Now;
                 user.RegisterTime = DateTime.Now;

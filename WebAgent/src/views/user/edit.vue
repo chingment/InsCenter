@@ -30,11 +30,6 @@
       <el-form-item label="禁用">
         <el-switch v-model="form.isDisable" />
       </el-form-item>
-      <el-form-item label="角色">
-        <el-checkbox-group v-model="form.roleIds">
-          <el-checkbox v-for="option in checkbox_group_role_options" :key="option.id" style="display:block" :label="option.id">{{ option.label }}</el-checkbox>
-        </el-checkbox-group>
-      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
       </el-form-item>
@@ -57,20 +52,14 @@ export default {
         password: '',
         fullName: '',
         phoneNumber: '',
-        email: '',
-        orgIds: [],
-        roleIds: []
+        email: ''
       },
       rules: {
         password: [{ required: false, message: '必填,且由6到20个数字、英文字母或下划线组成', trigger: 'change', pattern: fromReg.password }],
         fullName: [{ required: true, message: '必填', trigger: 'change' }],
-        orgIds: [{ required: true, message: '必选' }],
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
-      },
-      cascader_org_props: { multiple: true, checkStrictly: true, emitPath: false },
-      cascader_org_options: [],
-      checkbox_group_role_options: []
+      }
     }
   },
   created() {
@@ -87,10 +76,6 @@ export default {
           this.form.fullName = d.fullName
           this.form.phoneNumber = d.phoneNumber
           this.form.email = d.email
-          this.form.orgIds = d.orgIds
-          this.form.roleIds = d.roleIds
-          this.cascader_org_options = d.orgs
-          this.checkbox_group_role_options = d.roles
         }
       })
     },
