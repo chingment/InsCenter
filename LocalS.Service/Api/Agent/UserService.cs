@@ -120,11 +120,15 @@ namespace LocalS.Service.Api.Agent
                 return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, string.Format("该用户名（{0}）已被使用", rop.UserName));
             }
 
+
+
             using (TransactionScope ts = new TransactionScope())
             {
+                var pAgentUser = CurrentDb.SysAgentUser.Where(m => m.Id == agentId).FirstOrDefault();
+
                 var agentUser = new SysAgentUser();
                 agentUser.Id = GuidUtil.New();
-                agentUser.PId = operater;
+                agentUser.PId = agentId;
                 agentUser.UserName = rop.UserName;
                 agentUser.FullName = rop.FullName;
                 agentUser.PasswordHash = PassWordHelper.HashPassword(rop.Password);
@@ -135,6 +139,7 @@ namespace LocalS.Service.Api.Agent
                 agentUser.IsDisable = false;
                 agentUser.IsMaster = false;
                 agentUser.AgentId = agentId;
+                agentUser.Depth = pAgentUser.Depth + 1;
                 agentUser.Creator = operater;
                 agentUser.CreateTime = DateTime.Now;
                 agentUser.RegisterTime = DateTime.Now;
@@ -165,7 +170,7 @@ namespace LocalS.Service.Api.Agent
             ret.FullName = agentUser.FullName;
             ret.IsDisable = agentUser.IsDisable;
 
-   
+
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
 
             return result;

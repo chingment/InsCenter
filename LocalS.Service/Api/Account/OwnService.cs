@@ -65,11 +65,6 @@ namespace LocalS.Service.Api.Account
             switch (sysUser.BelongSite)
             {
                 case Enumeration.BelongSite.Agent:
-                    var agentUser = CurrentDb.SysAgentUser.Where(m => m.Id == sysUser.Id).FirstOrDefault();
-                    if (agentUser != null)
-                    {
-                        tokenInfo.AgentId = agentUser.AgentId;
-                    }
                     break;
             }
 

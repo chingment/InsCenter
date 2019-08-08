@@ -69,7 +69,6 @@ namespace WebApiAgent
                 {
                     tokenInfo = new TokenInfo();
                     tokenInfo.UserId = "";
-                    tokenInfo.AgentId = "";
                 }
                 return tokenInfo;
             }
@@ -81,15 +80,6 @@ namespace WebApiAgent
             {
                 return this.TokenInfo.UserId;
             }
-        }
-
-        public string CurrentAgentId
-        {
-            get
-            {
-                return this.TokenInfo.AgentId;
-            }
-
         }
     }
 }

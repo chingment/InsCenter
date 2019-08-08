@@ -69,7 +69,6 @@ namespace WebApiMerch
                 {
                     tokenInfo = new TokenInfo();
                     tokenInfo.UserId = "";
-                    tokenInfo.AgentId = "";
                 }
                 return tokenInfo;
             }
@@ -87,7 +86,7 @@ namespace WebApiMerch
         {
             get
             {
-                return this.TokenInfo.AgentId;
+                return "";
             }
 
         }

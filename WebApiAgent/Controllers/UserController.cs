@@ -14,34 +14,34 @@ namespace WebApiAgent.Controllers
         [HttpGet]
         public OwnApiHttpResponse GetList([FromUri]RupUserGetList rup)
         {
-            IResult result = AgentServiceFactory.User.GetList(this.CurrentUserId, this.CurrentAgentId, rup);
+            IResult result = AgentServiceFactory.User.GetList(this.CurrentUserId, this.CurrentUserId, rup);
             return new OwnApiHttpResponse(result);
         }
         [HttpGet]
         public OwnApiHttpResponse InitAdd()
         {
-            IResult result = AgentServiceFactory.User.InitAdd(this.CurrentUserId, this.CurrentAgentId);
+            IResult result = AgentServiceFactory.User.InitAdd(this.CurrentUserId, this.CurrentUserId);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpPost]
         public OwnApiHttpResponse Add([FromBody]RopUserAdd rop)
         {
-            IResult result = AgentServiceFactory.User.Add(this.CurrentUserId, this.CurrentAgentId, rop);
+            IResult result = AgentServiceFactory.User.Add(this.CurrentUserId, this.CurrentUserId, rop);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpGet]
         public OwnApiHttpResponse InitEdit([FromUri]string userId)
         {
-            IResult result = AgentServiceFactory.User.InitEdit(this.CurrentUserId, this.CurrentAgentId, userId);
+            IResult result = AgentServiceFactory.User.InitEdit(this.CurrentUserId, this.CurrentUserId, userId);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpPost]
         public OwnApiHttpResponse Edit([FromBody]RopUserEdit rop)
         {
-            IResult result = AgentServiceFactory.User.Edit(this.CurrentUserId, this.CurrentAgentId, rop);
+            IResult result = AgentServiceFactory.User.Edit(this.CurrentUserId, this.CurrentUserId, rop);
             return new OwnApiHttpResponse(result);
         }
     }

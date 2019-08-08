@@ -69,7 +69,6 @@ namespace WebApiAccount
                 {
                     tokenInfo = new TokenInfo();
                     tokenInfo.UserId = "";
-                    tokenInfo.AgentId = "";
                 }
                 return tokenInfo;
             }
