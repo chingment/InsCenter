@@ -22,7 +22,7 @@ namespace LocalS.Service.Api.Account
             switch(sysUser.BelongSite)
             {
                 case Lumos.DbRelay.Enumeration.BelongSite.Agent:
-                    ret.Appcaltions.Add(new RetHomeGetIndexPageData._Appcaltion() { Name = "商户代理系统", Url = "http://merch.ins-uplink.com/", ImgUrl = "http://file.17fanju.com/Upload/img_merch.png", Describe = "商家客户使用", });
+                    ret.Appcaltions.Add(new RetHomeGetIndexPageData._Appcaltion() { Name = "商户代理系统", Url = "http://agent.ins-uplink.com/", ImgUrl = "http://file.17fanju.com/Upload/img_merch.png", Describe = "商家客户使用", });
                     break;
                 case Lumos.DbRelay.Enumeration.BelongSite.Admin:
                     ret.Appcaltions.Add(new RetHomeGetIndexPageData._Appcaltion() { Name = "后台管理系统", Url = "http://admin.ins-uplink.com/", ImgUrl = "http://file.17fanju.com/Upload/img_admin.png", Describe = "后端用户，公司内部使用", });
