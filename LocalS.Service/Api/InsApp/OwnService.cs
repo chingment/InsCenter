@@ -46,7 +46,6 @@ namespace LocalS.Service.Api.InsApp
                 agentUser.RegisterTime = DateTime.Now;
                 agentUser.IsDisable = false;
                 agentUser.BelongSite = Enumeration.BelongSite.Agent;
-                agentUser.IsCanDelete = false;
                 agentUser.CreateTime = DateTime.Now;
                 agentUser.Creator = agentUser.Id;
                 agentUser.AgentId = agent.Id;

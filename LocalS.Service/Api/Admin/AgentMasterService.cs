@@ -51,7 +51,6 @@ namespace LocalS.Service.Api.Admin
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
                          u.IsDelete == false &&
-                         u.IsCanDelete == true &&
                          u.IsMaster == true
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
@@ -130,7 +129,6 @@ namespace LocalS.Service.Api.Admin
                 user.PhoneNumber = rop.PhoneNumber;
                 user.BelongSite = Enumeration.BelongSite.Agent;
                 user.IsDelete = false;
-                user.IsCanDelete = true;
                 user.IsDisable = false;
                 user.IsMaster = true;
                 user.Creator = operater;

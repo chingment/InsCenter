@@ -52,7 +52,6 @@ namespace LocalS.Service.Api.Agent
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
                          u.IsDelete == false &&
-                         u.IsCanDelete == true &&
                          u.AgentId == agentId &&
                          u.IsMaster == false
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
@@ -177,7 +176,6 @@ namespace LocalS.Service.Api.Agent
                 agentUser.PhoneNumber = rop.PhoneNumber;
                 agentUser.BelongSite = Enumeration.BelongSite.Agent;
                 agentUser.IsDelete = false;
-                agentUser.IsCanDelete = true;
                 agentUser.IsDisable = false;
                 agentUser.IsMaster = false;
                 agentUser.AgentId = agentId;

@@ -110,12 +110,12 @@ export default {
     },
     handleCreate() {
       this.$router.push({
-        path: '/admin/user/add'
+        path: '/user/add'
       })
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/admin/user/edit?userId=' + row.id
+        path: '/user/edit?userId=' + row.id
       })
     }
   }

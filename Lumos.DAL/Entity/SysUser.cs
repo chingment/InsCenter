@@ -49,7 +49,5 @@ namespace Lumos.DbRelay
         public DateTime? MendTime { get; set; }
         public Enumeration.BelongSite BelongSite { get; set; }
 
-        public bool IsCanDelete { get; set; }
-
     }
 }

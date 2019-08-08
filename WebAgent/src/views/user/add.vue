@@ -10,16 +10,6 @@
       <el-form-item label="姓名" prop="fullName">
         <el-input v-model="form.fullName" />
       </el-form-item>
-      <el-form-item label="所属机构" prop="orgIds">
-        <el-cascader
-          v-model="form.orgIds"
-          :options="cascader_org_options"
-          :props="cascader_org_props"
-          placeholder="请选择"
-          clearable
-          style="width:100%"
-        />
-      </el-form-item>
       <el-form-item label="手机号码" prop="phoneNumber">
         <el-input v-model="form.phoneNumber" />
       </el-form-item>
