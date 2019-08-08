@@ -143,7 +143,6 @@ namespace LocalS.Service.Api.Admin
                     return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "系统未找到默认角色");
                 }
 
-
                 var sysUserRole = new SysUserRole();
 
                 sysUserRole.Id = GuidUtil.New();
