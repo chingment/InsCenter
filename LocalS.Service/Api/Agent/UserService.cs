@@ -44,15 +44,39 @@ namespace LocalS.Service.Api.Agent
             return text;
         }
 
-        public CustomJsonResult GetList(string operater,string agentId, RupUserGetList rup)
+        private IEnumerable<SysAgentUser> GetSons(string pId)
+        {
+            var query = from c in CurrentDb.SysAgentUser
+                        where c.PId == pId
+                        select c;
+
+            return query.ToList().Concat(query.ToList().SelectMany(t => GetSons(t.Id)));
+        }
+
+        public List<string> GetSonIds(string pId)
+        {
+            var list = new List<string>();
+            var son = GetSons(pId);
+            if (son != null)
+            {
+                list = GetSons(pId).Select(m => m.Id).ToList();
+            }
+            return list;
+        }
+
+
+        public CustomJsonResult GetList(string operater, string agentId, RupUserGetList rup)
         {
             var result = new CustomJsonResult();
+
+            var sonIds = GetSonIds(operater);
 
             var query = (from u in CurrentDb.SysAgentUser
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
                          u.IsDelete == false &&
-                         u.IsMaster == false
+                         u.IsMaster &&
+                         sonIds.Contains(u.Id)
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
 
@@ -89,7 +113,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult InitAdd(string operater,string agentId)
+        public CustomJsonResult InitAdd(string operater, string agentId)
         {
             var result = new CustomJsonResult();
             var ret = new RetUserInitAdd();
