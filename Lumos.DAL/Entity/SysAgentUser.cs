@@ -9,5 +9,7 @@ namespace Lumos.DbRelay
     {
         public string AgentId { get; set; }
         public string TppId { get; set; }
+
+        public bool IsMaster { get; set; }
     }
 }

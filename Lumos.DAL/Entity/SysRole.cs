@@ -4,6 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lumos.DbRelay
 {
+    /*
+     IsSuper 作为每个 BelongSite 超级角色，不能删除
+
+    BelongSite = Agent 时，新增商代用户时，使用该角色
+         
+     */
     [Table("SysRole")]
     public class SysRole
     {
@@ -30,5 +36,7 @@ namespace Lumos.DbRelay
         public Enumeration.BelongSite BelongSite { get; set; }
 
         public int Priority { get; set; }
+
+        public bool IsSuper { get; set; }
     }
 }

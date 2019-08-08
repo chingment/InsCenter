@@ -17,6 +17,5 @@ namespace Lumos.DbRelay
         public string UserId { get; set; }
         public string Creator { get; set; }
         public DateTime CreateTime { get; set; }
-        public bool IsCanDelete { get; set; }
     }
 }
