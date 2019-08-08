@@ -44,7 +44,7 @@ namespace LocalS.Service.Api.Agent
             return text;
         }
 
-        public CustomJsonResult GetList(string operater, string agentId, RupUserGetList rup)
+        public CustomJsonResult GetList(string operater, RupUserGetList rup)
         {
             var result = new CustomJsonResult();
 
@@ -52,7 +52,6 @@ namespace LocalS.Service.Api.Agent
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
                          u.IsDelete == false &&
-                         u.AgentId == agentId &&
                          u.IsMaster == false
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
@@ -90,7 +89,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult InitAdd(string operater, string agentId)
+        public CustomJsonResult InitAdd(string operater)
         {
             var result = new CustomJsonResult();
             var ret = new RetUserInitAdd();
@@ -100,7 +99,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult Add(string operater, string agentId, RopUserAdd rop)
+        public CustomJsonResult Add(string operater, RopUserAdd rop)
         {
             var result = new CustomJsonResult();
 
@@ -124,11 +123,11 @@ namespace LocalS.Service.Api.Agent
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var pAgentUser = CurrentDb.SysAgentUser.Where(m => m.Id == agentId).FirstOrDefault();
+                var pAgentUser = CurrentDb.SysAgentUser.Where(m => m.Id == operater).FirstOrDefault();
 
                 var agentUser = new SysAgentUser();
                 agentUser.Id = GuidUtil.New();
-                agentUser.PId = agentId;
+                agentUser.PId = pAgentUser.Id;
                 agentUser.UserName = rop.UserName;
                 agentUser.FullName = rop.FullName;
                 agentUser.PasswordHash = PassWordHelper.HashPassword(rop.Password);
@@ -138,7 +137,7 @@ namespace LocalS.Service.Api.Agent
                 agentUser.IsDelete = false;
                 agentUser.IsDisable = false;
                 agentUser.IsMaster = false;
-                agentUser.AgentId = agentId;
+                agentUser.AgentId = pAgentUser.AgentId;
                 agentUser.Depth = pAgentUser.Depth + 1;
                 agentUser.Creator = operater;
                 agentUser.CreateTime = DateTime.Now;
@@ -155,7 +154,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult InitEdit(string operater, string agentId, string userId)
+        public CustomJsonResult InitEdit(string operater, string userId)
         {
             var result = new CustomJsonResult();
 
@@ -176,7 +175,7 @@ namespace LocalS.Service.Api.Agent
             return result;
         }
 
-        public CustomJsonResult Edit(string operater, string agentId, RopUserEdit rop)
+        public CustomJsonResult Edit(string operater, RopUserEdit rop)
         {
 
             CustomJsonResult result = new CustomJsonResult();
@@ -184,7 +183,7 @@ namespace LocalS.Service.Api.Agent
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var agentUser = CurrentDb.SysAgentUser.Where(m => m.AgentId == agentId && m.Id == rop.UserId).FirstOrDefault();
+                var agentUser = CurrentDb.SysAgentUser.Where(m => m.Id == rop.UserId).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(rop.Password))
                 {
