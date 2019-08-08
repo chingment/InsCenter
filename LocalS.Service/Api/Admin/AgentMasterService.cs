@@ -194,7 +194,7 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var user = CurrentDb.SysAdminUser.Where(m => m.Id == rop.UserId).FirstOrDefault();
+                var user = CurrentDb.SysAgentUser.Where(m => m.Id == rop.UserId).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(rop.Password))
                 {
