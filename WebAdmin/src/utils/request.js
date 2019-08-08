@@ -47,11 +47,11 @@ service.interceptors.response.use(
     // console.log(JSON.stringify(res))
     // if the custom code is not 20000, it is judged as an error.
     if (res.result !== 1) {
-      Message({
-        message: res.message || 'Error',
-        type: 'error',
-        duration: 5 * 1000
-      })
+      // Message({
+      //   message: res.message || 'Error',
+      //   type: 'error',
+      //   duration: 5 * 1000
+      // })
 
       // 5000 login error
       if (res.code === 5000) {

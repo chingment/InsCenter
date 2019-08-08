@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Merch
 {
-    public class RetOwnLoginByAccount
+    public class RupUserGetList: RupBaseGetList
     {
-        public string Token { get; set; }
+
+        public string UserName { get; set; }
+
+        public string FullName { get; set; }
     }
 }

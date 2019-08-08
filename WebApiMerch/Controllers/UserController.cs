@@ -1,4 +1,4 @@
-﻿using LocalS.Service.Api.Agent;
+﻿using LocalS.Service.Api.Merch;
 using Lumos;
 using System;
 using System.Collections.Generic;
@@ -14,34 +14,34 @@ namespace WebApiMerch.Controllers
         [HttpGet]
         public OwnApiHttpResponse GetList([FromUri]RupUserGetList rup)
         {
-            IResult result = AgentServiceFactory.User.GetList(this.CurrentUserId, this.CurrentAgentId, rup);
+            IResult result = MerchServiceFactory.User.GetList(this.CurrentUserId, this.CurrentAgentId, rup);
             return new OwnApiHttpResponse(result);
         }
         [HttpGet]
         public OwnApiHttpResponse InitAdd()
         {
-            IResult result = AgentServiceFactory.User.InitAdd(this.CurrentUserId, this.CurrentAgentId);
+            IResult result = MerchServiceFactory.User.InitAdd(this.CurrentUserId, this.CurrentAgentId);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpPost]
         public OwnApiHttpResponse Add([FromBody]RopUserAdd rop)
         {
-            IResult result = AgentServiceFactory.User.Add(this.CurrentUserId, this.CurrentAgentId, rop);
+            IResult result = MerchServiceFactory.User.Add(this.CurrentUserId, this.CurrentAgentId, rop);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpGet]
         public OwnApiHttpResponse InitEdit([FromUri]string userId)
         {
-            IResult result = AgentServiceFactory.User.InitEdit(this.CurrentUserId, this.CurrentAgentId, userId);
+            IResult result = MerchServiceFactory.User.InitEdit(this.CurrentUserId, this.CurrentAgentId, userId);
             return new OwnApiHttpResponse(result);
         }
 
         [HttpPost]
         public OwnApiHttpResponse Edit([FromBody]RopUserEdit rop)
         {
-            IResult result = AgentServiceFactory.User.Edit(this.CurrentUserId, this.CurrentAgentId, rop);
+            IResult result = MerchServiceFactory.User.Edit(this.CurrentUserId, this.CurrentAgentId, rop);
             return new OwnApiHttpResponse(result);
         }
     }

@@ -131,6 +131,15 @@
     <Compile Include="Api\Agent\UserService.cs" />
     <Compile Include="Api\Agent\RModels\RupBaseGetList.cs" />
     <Compile Include="Api\Agent\RModels\RupUserGetList.cs" />
+    <Compile Include="Api\Merch\MerchServiceFactory.cs" />
+    <Compile Include="Api\Merch\HomeService.cs" />
+    <Compile Include="Api\Merch\RModels\RetUserInitAdd.cs" />
+    <Compile Include="Api\Merch\RModels\RetUserInitEdit.cs" />
+    <Compile Include="Api\Merch\RModels\RopUserAdd.cs" />
+    <Compile Include="Api\Merch\RModels\RopUserEdit.cs" />
+    <Compile Include="Api\Merch\RModels\RupBaseGetList.cs" />
+    <Compile Include="Api\Merch\RModels\RupUserGetList.cs" />
+    <Compile Include="Api\Merch\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\MenuNode.cs" />
     <Compile Include="UI\MenuMeta.cs" />
