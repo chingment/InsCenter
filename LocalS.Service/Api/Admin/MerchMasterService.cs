@@ -139,17 +139,12 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var merch = new LocalS.Entity.Merch();
-                merch.Id = GuidUtil.New();
-                merch.Name = rop.FullName;
-                merch.CreateTime = DateTime.Now;
-                merch.Creator = operater;
-                CurrentDb.Merch.Add(merch);
 
+                string merchId = GuidUtil.New();
 
                 var user = new SysMerchUser();
                 user.Id = GuidUtil.New();
-                user.MerchId = merch.Id;
+                user.MerchId = merchId;
                 user.PId = GuidUtil.Empty();
                 user.UserName = rop.UserName;
                 user.FullName = rop.FullName;
@@ -166,6 +161,13 @@ namespace LocalS.Service.Api.Admin
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
                 CurrentDb.SysMerchUser.Add(user);
 
+                var merch = new LocalS.Entity.Merch();
+                merch.Id = merchId;
+                merch.UserId = user.Id;
+                merch.Name = rop.FullName;
+                merch.CreateTime = DateTime.Now;
+                merch.Creator = operater;
+                CurrentDb.Merch.Add(merch);
 
                 var sysRole = CurrentDb.SysRole.Where(m => m.BelongSite == Enumeration.BelongSite.Merch && m.IsSuper == true).FirstOrDefault();
                 if (sysRole == null)

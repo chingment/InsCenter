@@ -121,13 +121,7 @@ namespace LocalS.Service.Api.Admin
             using (TransactionScope ts = new TransactionScope())
             {
 
-                var agent = new LocalS.Entity.Agent();
-
-                agent.Id = GuidUtil.New();
-                agent.Name = rop.FullName;
-                agent.CreateTime = DateTime.Now;
-                agent.Creator = operater;
-                CurrentDb.Agent.Add(agent);
+                string agentId = GuidUtil.New();
 
                 var user = new SysAgentUser();
                 user.Id = GuidUtil.New();
@@ -142,12 +136,21 @@ namespace LocalS.Service.Api.Admin
                 user.IsDisable = false;
                 user.IsMaster = true;
                 user.Depth = 0;
-                user.AgentId = agent.Id;
+                user.AgentId = agentId;
                 user.Creator = operater;
                 user.CreateTime = DateTime.Now;
                 user.RegisterTime = DateTime.Now;
                 user.SecurityStamp = Guid.NewGuid().ToString().Replace("-", "");
                 CurrentDb.SysAgentUser.Add(user);
+
+                var agent = new LocalS.Entity.Agent();
+                agent.Id = agentId;
+                agent.UserId = user.Id;
+                agent.Name = rop.FullName;
+                agent.CreateTime = DateTime.Now;
+                agent.Creator = operater;
+                CurrentDb.Agent.Add(agent);
+
 
                 CurrentDb.SaveChanges();
                 ts.Complete();
