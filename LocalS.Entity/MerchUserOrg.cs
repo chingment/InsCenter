@@ -9,7 +9,7 @@ namespace LocalS.Entity
     {
         public string Id { get; set; }
         [Key, Column(Order = 1)]
-        public string MerchOrgId { get; set; }
+        public string OrgId { get; set; }
         [Key, Column(Order = 2)]
         public string UserId { get; set; }
         public string Creator { get; set; }

@@ -192,7 +192,7 @@ namespace LocalS.Service.Api.Admin
 
                 var merchUserOrg = new MerchUserOrg();
                 merchUserOrg.Id = GuidUtil.New();
-                merchUserOrg.MerchOrgId = merchOrg.Id;
+                merchUserOrg.OrgId = merchOrg.Id;
                 merchUserOrg.UserId = user.Id;
                 merchUserOrg.CreateTime = DateTime.Now;
                 merchUserOrg.Creator = operater;
