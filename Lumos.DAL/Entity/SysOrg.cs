@@ -18,7 +18,12 @@ namespace Lumos.DbRelay
         [MaxLength(512)]
         public string Description { get; set; }
         public bool IsDelete { get; set; }
-        public Enumeration.SysOrganizationStatus Status { get; set; }
+        public Enumeration.SysOrgStatus Status { get; set; }
+
+        public Enumeration.BelongSite BelongSite { get; set; }
+
+        public string ReferenceId { get; set; }
+
         public int Priority { get; set; }
         public string Creator { get; set; }
         public DateTime CreateTime { get; set; }

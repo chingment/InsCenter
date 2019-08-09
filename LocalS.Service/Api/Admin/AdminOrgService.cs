@@ -94,6 +94,8 @@ namespace LocalS.Service.Api.Admin
                 sysOrg.Name = rop.Name;
                 sysOrg.Description = rop.Description;
                 sysOrg.PId = rop.POrgId;
+                sysOrg.BelongSite = Enumeration.BelongSite.Admin;
+                sysOrg.ReferenceId = GuidUtil.Empty();
                 sysOrg.Depth = 0;
                 sysOrg.CreateTime = DateTime.Now;
                 sysOrg.Creator = operater;

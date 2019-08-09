@@ -179,25 +179,26 @@ namespace LocalS.Service.Api.Admin
                 CurrentDb.SysUserRole.Add(new SysUserRole { Id = GuidUtil.New(), RoleId = sysRole.Id, UserId = user.Id, Creator = operater, CreateTime = DateTime.Now });
 
 
-                var merchOrg = new MerchOrg();
-                merchOrg.Id = GuidUtil.New();
-                merchOrg.MerchId = merch.Id;
-                merchOrg.Name = "根组织";
-                merchOrg.PId = GuidUtil.Empty();
-                merchOrg.IsDelete = false;
-                merchOrg.Priority = 0;
-                merchOrg.Depth = 0;
-                merchOrg.CreateTime = DateTime.Now;
-                merchOrg.Creator = operater;
-                CurrentDb.MerchOrg.Add(merchOrg);
+                var sysOrg = new SysOrg();
+                sysOrg.Id = GuidUtil.New();
+                sysOrg.Name = "根组织";
+                sysOrg.PId = GuidUtil.Empty();
+                sysOrg.BelongSite = Enumeration.BelongSite.Merch;
+                sysOrg.ReferenceId = merch.Id;
+                sysOrg.IsDelete = false;
+                sysOrg.Priority = 0;
+                sysOrg.Depth = 0;
+                sysOrg.CreateTime = DateTime.Now;
+                sysOrg.Creator = operater;
+                CurrentDb.SysOrg.Add(sysOrg);
 
-                var merchUserOrg = new MerchUserOrg();
-                merchUserOrg.Id = GuidUtil.New();
-                merchUserOrg.OrgId = merchOrg.Id;
-                merchUserOrg.UserId = user.Id;
-                merchUserOrg.CreateTime = DateTime.Now;
-                merchUserOrg.Creator = operater;
-                CurrentDb.MerchUserOrg.Add(merchUserOrg);
+                var sysUserOrg = new SysUserOrg();
+                sysUserOrg.Id = GuidUtil.New();
+                sysUserOrg.OrgId = sysOrg.Id;
+                sysUserOrg.UserId = user.Id;
+                sysUserOrg.CreateTime = DateTime.Now;
+                sysUserOrg.Creator = operater;
+                CurrentDb.SysUserOrg.Add(sysUserOrg);
 
                 CurrentDb.SaveChanges();
                 ts.Complete();

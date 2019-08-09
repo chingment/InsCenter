@@ -77,27 +77,13 @@ namespace Lumos.DbRelay
             ExportExcel = 102
         }
 
-        public enum SysOrganizationStatus
+        public enum SysOrgStatus
         {
 
             Unknow = 0,
             Valid = 1,
             Invalid = 2
         }
-
-        //1开头的为管理端系统职位，2开头为商户端系统职位
-        public enum SysPositionId
-        {
-
-            Unknow = 0,
-            AdminAdministrator = 100,
-            AdminJuniorOperators = 101,
-            MerchantAdministrator = 200,
-            MerchantOM = 201,
-            MerchantAM = 202,
-            MerchantRS = 203
-        }
-
 
         public enum WxAutoReplyType
         {

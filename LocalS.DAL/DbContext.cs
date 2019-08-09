@@ -26,9 +26,6 @@ namespace LocalS.DAL
 
         public IDbSet<Merch>  Merch { get; set; }
 
-        public IDbSet<MerchOrg> MerchOrg { get; set; }
-        public IDbSet<MerchUserOrg> MerchUserOrg { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
