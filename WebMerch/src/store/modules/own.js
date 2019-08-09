@@ -30,7 +30,7 @@ const actions = {
   // get user info
   getInfo({ commit, state }, path) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token, 'agent', path).then(res => {
+      getInfo(state.token, 'merch', path).then(res => {
         console.log(JSON.stringify(res))
         if (res.result === 1) {
           const d = res.data
