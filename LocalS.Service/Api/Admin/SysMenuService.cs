@@ -24,7 +24,7 @@ namespace LocalS.Service.Api.Admin
                 TreeNode treeNode = new TreeNode();
                 treeNode.Id = p_sysMenu.Id;
                 treeNode.PId = p_sysMenu.PId;
-                treeNode.Label = p_sysMenu.Name;
+                treeNode.Label = p_sysMenu.Title;
                 treeNode.Description = p_sysMenu.Description;
                 if (p_sysMenu.Depth == 0)
                 {
@@ -116,20 +116,27 @@ namespace LocalS.Service.Api.Admin
 
             var ret = new RetSysMenuInitEdit();
 
-            var sysOrg = CurrentDb.SysOrg.Where(m => m.Id == orgId).FirstOrDefault();
+            var sysMenu = CurrentDb.SysMenu.Where(m => m.Id == orgId).FirstOrDefault();
 
-            if (sysOrg != null)
+            if (sysMenu != null)
             {
-                ret.MenuId = sysOrg.Id;
-                ret.Name = sysOrg.Name;
-                ret.Description = sysOrg.Description;
+                ret.MenuId = sysMenu.Id;
+                ret.Name = sysMenu.Name;
+                ret.Title = sysMenu.Title;
+                ret.Icon = sysMenu.Icon;
+                ret.Path = sysMenu.Path;
+                ret.IsNavbar = sysMenu.IsNavbar;
+                ret.IsRouter = sysMenu.IsRouter;
+                ret.IsSidebar = sysMenu.IsSidebar;
+                ret.Description = sysMenu.Description;
 
-                var p_sysOrg = CurrentDb.SysOrg.Where(m => m.Id == sysOrg.PId).FirstOrDefault();
+                var p_sysMenu = CurrentDb.SysMenu.Where(m => m.Id == sysMenu.PId).FirstOrDefault();
 
-                if (p_sysOrg != null)
+                if (p_sysMenu != null)
                 {
-                    ret.PMenuId = p_sysOrg.Id;
-                    ret.PMenuName = p_sysOrg.Name;
+                    ret.PMenuId = p_sysMenu.Id;
+                    ret.PMenuName = p_sysMenu.Name;
+                    ret.PMenuTile = p_sysMenu.Title;
                 }
                 else
                 {
@@ -158,10 +165,16 @@ namespace LocalS.Service.Api.Admin
                     return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "数据为空");
                 }
                 sysMenu.Name = rop.Name;
+                sysMenu.Title = rop.Title;
+                sysMenu.Path = rop.Path;
+                sysMenu.Component = rop.Path;
+                sysMenu.Icon = rop.Icon;
+                sysMenu.IsSidebar = rop.IsSidebar;
+                sysMenu.IsRouter = rop.IsRouter;
+                sysMenu.IsNavbar = rop.IsNavbar;
                 sysMenu.Description = rop.Description;
                 sysMenu.MendTime = DateTime.Now;
                 sysMenu.Mender = operater;
-
 
                 CurrentDb.SaveChanges();
                 ts.Complete();
