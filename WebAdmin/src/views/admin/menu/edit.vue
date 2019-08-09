@@ -1,8 +1,11 @@
 <template>
   <div id="useradd_container" class="app-container">
-    <el-form ref="form" :model="form" :rules="rules" label-width="85px">
-      <el-form-item label="上级机构">
+    <el-form ref="form" :model="form" :rules="rules" label-width="75px">
+      <el-form-item label="上构名称">
         {{ form.pMenuName }}
+      </el-form-item>
+      <el-form-item label="上级标题">
+        {{ form.pMenuTitle }}
       </el-form-item>
       <el-form-item label="名称" prop="name">
         <el-input v-model="form.name" />
@@ -46,6 +49,7 @@ export default {
       isOpenEditPassword: false,
       form: {
         pMenuName: '',
+        pMenuTitle: '',
         menuId: '',
         name: '',
         title: '',

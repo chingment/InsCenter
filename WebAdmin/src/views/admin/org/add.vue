@@ -1,7 +1,7 @@
 <template>
   <div id="useradd_container" class="app-container">
-    <el-form ref="form" :model="form" :rules="rules" label-width="85px">
-      <el-form-item label="上级机构">
+    <el-form ref="form" :model="form" :rules="rules" label-width="75px">
+      <el-form-item label="上级名称">
         {{ form.pOrgName }}
       </el-form-item>
       <el-form-item label="名称" prop="name">

@@ -11,5 +11,7 @@ namespace LocalS.Service.Api.Admin
         public string PMenuId { get; set; }
 
         public string PMenuName { get; set; }
+
+        public string PMenuTitle { get; set; }
     }
 }

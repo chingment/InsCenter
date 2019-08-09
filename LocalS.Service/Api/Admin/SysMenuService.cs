@@ -70,6 +70,7 @@ namespace LocalS.Service.Api.Admin
             {
                 ret.PMenuId = sysMenu.Id;
                 ret.PMenuName = sysMenu.Name;
+                ret.PMenuTitle = sysMenu.Title;
             }
 
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
@@ -83,19 +84,26 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var isExists = CurrentDb.SysMenu.Where(m => m.Name == rop.Name).FirstOrDefault();
-                if (isExists != null)
+                var pSysMenu = CurrentDb.SysMenu.Where(m => m.Id == rop.PMenuId).FirstOrDefault();
+                if (pSysMenu == null)
                 {
-                    return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该名称已经存在");
+                    return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "找不到上级节点");
                 }
 
                 var sysMenu = new SysMenu();
                 sysMenu.Id = GuidUtil.New();
                 sysMenu.Name = rop.Name;
+                sysMenu.Title = rop.Title;
+                sysMenu.Icon = rop.Icon;
+                sysMenu.Path = rop.Path;
+                sysMenu.Component = rop.Path;
                 sysMenu.Description = rop.Description;
                 sysMenu.PId = rop.PMenuId;
                 sysMenu.BelongSite = belongSite;
-                sysMenu.Depth = 0;
+                sysMenu.Depth = pSysMenu.Depth + 1;
+                sysMenu.IsNavbar = rop.IsNavbar;
+                sysMenu.IsRouter = rop.IsRouter;
+                sysMenu.IsSidebar = rop.IsSidebar;
                 sysMenu.CreateTime = DateTime.Now;
                 sysMenu.Creator = operater;
                 CurrentDb.SysMenu.Add(sysMenu);
@@ -136,11 +144,12 @@ namespace LocalS.Service.Api.Admin
                 {
                     ret.PMenuId = p_sysMenu.Id;
                     ret.PMenuName = p_sysMenu.Name;
-                    ret.PMenuTile = p_sysMenu.Title;
+                    ret.PMenuTitle = p_sysMenu.Title;
                 }
                 else
                 {
                     ret.PMenuName = "/";
+                    ret.PMenuTitle = "/";
                 }
             }
 
