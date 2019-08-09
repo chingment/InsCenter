@@ -11,16 +11,16 @@ using System.Transactions;
 
 namespace LocalS.Service.Api.Admin
 {
-    public class AdminRoleService : BaseDbContext
+    public class SysRoleService : BaseDbContext
     {
-        public CustomJsonResult GetList(string operater, RupAdminRoleGetList rup)
+        public CustomJsonResult GetList(string operater,Enumeration.BelongSite belongSite, RupSysRoleGetList rup)
         {
             var result = new CustomJsonResult();
 
             var query = (from u in CurrentDb.SysRole
                          where (rup.Name == null || u.Name.Contains(rup.Name))
                          &&
-                         u.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Admin
+                         u.BelongSite == belongSite
                          select new { u.Id, u.Name, u.Description, u.CreateTime, u.Priority });
 
 
@@ -73,31 +73,31 @@ namespace LocalS.Service.Api.Admin
             return treeNodes;
         }
 
-        public List<TreeNode> GetMenuTree()
+        private List<TreeNode> GetMenuTree(Enumeration.BelongSite belongSite)
         {
-            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).ToList();
+            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite).ToList();
 
             var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
 
             return GetMenuTree(topMenu.Id, sysMenus);
         }
 
-        public CustomJsonResult InitAdd(string operater)
+        public CustomJsonResult InitAdd(string operater, Enumeration.BelongSite belongSite)
         {
             var result = new CustomJsonResult();
-            var ret = new RetAdminRoleInitAdd();
-            ret.Menus = GetMenuTree();
+            var ret = new RetSysRoleInitAdd();
+            ret.Menus = GetMenuTree(belongSite);
             result = new CustomJsonResult(ResultType.Success, ResultCode.Success, "获取成功", ret);
             return result;
         }
 
-        public CustomJsonResult Add(string operater, RopAdminRoleAdd rop)
+        public CustomJsonResult Add(string operater, Enumeration.BelongSite belongSite, RopSysRoleAdd rop)
         {
             var result = new CustomJsonResult();
 
             using (TransactionScope ts = new TransactionScope())
             {
-                var isExists = CurrentDb.SysRole.Where(m => m.Name == rop.Name && m.BelongSite == Lumos.DbRelay.Enumeration.BelongSite.Admin).FirstOrDefault();
+                var isExists = CurrentDb.SysRole.Where(m => m.Name == rop.Name && m.BelongSite == belongSite).FirstOrDefault();
                 if (isExists != null)
                 {
                     return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该名称已经存在");
@@ -108,7 +108,7 @@ namespace LocalS.Service.Api.Admin
                 sysRole.Name = rop.Name;
                 sysRole.Description = rop.Description;
                 sysRole.PId = GuidUtil.Empty();
-                sysRole.BelongSite = Enumeration.BelongSite.Admin;
+                sysRole.BelongSite = belongSite;
                 sysRole.Dept = 0;
                 sysRole.CreateTime = DateTime.Now;
                 sysRole.Creator = operater;
@@ -132,17 +132,17 @@ namespace LocalS.Service.Api.Admin
 
         }
 
-        public CustomJsonResult InitEdit(string operater, string roleId)
+        public CustomJsonResult InitEdit(string operater, Enumeration.BelongSite belongSite, string roleId)
         {
             var result = new CustomJsonResult();
 
-            var ret = new RetAdminRoleInitEdit();
+            var ret = new RetSysRoleInitEdit();
             var role = CurrentDb.SysRole.Where(m => m.Id == roleId).FirstOrDefault();
 
             ret.RoleId = role.Id;
             ret.Name = role.Name;
             ret.Description = role.Description;
-            ret.Menus = GetMenuTree();
+            ret.Menus = GetMenuTree(belongSite);
 
             var roleMenus = from c in CurrentDb.SysMenu
                             where
@@ -158,7 +158,7 @@ namespace LocalS.Service.Api.Admin
             return result;
         }
 
-        public CustomJsonResult Edit(string operater, RopAdminRoleEdit rop)
+        public CustomJsonResult Edit(string operater, Enumeration.BelongSite belongSite, RopSysRoleEdit rop)
         {
 
             CustomJsonResult result = new CustomJsonResult();

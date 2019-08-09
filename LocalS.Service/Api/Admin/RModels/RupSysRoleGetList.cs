@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Admin
 {
-    public class RopMerchRoleAdd
+    public class RupSysRoleGetList : RupBaseGetList
     {
         public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        public List<string> MenuIds { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Admin
 {
-    public class RetAgentRoleInitEdit
+    public class RetSysRoleInitEdit
     {
         public string RoleId { get; set; }
         public string Name { get; set; }

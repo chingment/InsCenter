@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Admin
 {
-    public class RetAdminRoleInitAdd
+    public class RetSysRoleInitAdd
     {
         public List<TreeNode> Menus { get; set; }
     }

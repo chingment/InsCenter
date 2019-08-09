@@ -16,11 +16,11 @@ namespace LocalS.Service.Api.Admin
             }
         }
 
-        public static AdminRoleService AdminRole
+        public static SysRoleService SysRole
         {
             get
             {
-                return new AdminRoleService();
+                return new SysRoleService();
             }
         }
 
@@ -32,27 +32,11 @@ namespace LocalS.Service.Api.Admin
             }
         }
 
-        public static AgentRoleService AgentRole
-        {
-            get
-            {
-                return new AgentRoleService();
-            }
-        }
-
         public static AgentMasterService AgentMaster
         {
             get
             {
                 return new AgentMasterService();
-            }
-        }
-
-        public static MerchRoleService MerchRole
-        {
-            get
-            {
-                return new MerchRoleService();
             }
         }
 

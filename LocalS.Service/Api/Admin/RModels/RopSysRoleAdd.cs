@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocalS.Service.Api.Admin
 {
-    public class RopAgentRoleAdd
+    public class RopSysRoleAdd
     {
         public string Name { get; set; }
 
