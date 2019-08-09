@@ -32,6 +32,6 @@ namespace Lumos.DbRelay
         public bool IsRouter { get; set; }
         public bool IsSidebar { get; set; }
         public bool IsNavbar { get; set; }
-        public int Dept { get; set; }
+        public int Depth { get; set; }
     }
 }

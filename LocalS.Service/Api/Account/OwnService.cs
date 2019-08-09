@@ -87,11 +87,11 @@ namespace LocalS.Service.Api.Account
         {
             List<MenuNode> menuNodes = new List<MenuNode>();
 
-            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite && m.Dept != 0).OrderBy(m => m.Priority).ToList();
+            var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite && m.Depth != 0).OrderBy(m => m.Priority).ToList();
 
             if (belongSite == Enumeration.BelongSite.Admin)
             {
-                sysMenus = (from menu in CurrentDb.SysMenu where (from rolemenu in CurrentDb.SysRoleMenu where (from sysUserRole in CurrentDb.SysUserRole where sysUserRole.UserId == userId select sysUserRole.RoleId).Contains(rolemenu.RoleId) select rolemenu.MenuId).Contains(menu.Id) && menu.BelongSite == belongSite select menu).Where(m => m.Dept != 0).OrderBy(m => m.Priority).ToList();
+                sysMenus = (from menu in CurrentDb.SysMenu where (from rolemenu in CurrentDb.SysRoleMenu where (from sysUserRole in CurrentDb.SysUserRole where sysUserRole.UserId == userId select sysUserRole.RoleId).Contains(rolemenu.RoleId) select rolemenu.MenuId).Contains(menu.Id) && menu.BelongSite == belongSite select menu).Where(m => m.Depth != 0).OrderBy(m => m.Priority).ToList();
             }
 
             foreach (var sysMenu in sysMenus)

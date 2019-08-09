@@ -77,7 +77,7 @@ namespace LocalS.Service.Api.Admin
         {
             var sysMenus = CurrentDb.SysMenu.Where(m => m.BelongSite == belongSite).ToList();
 
-            var topMenu = sysMenus.Where(m => m.Dept == 0).FirstOrDefault();
+            var topMenu = sysMenus.Where(m => m.Depth == 0).FirstOrDefault();
 
             return GetMenuTree(topMenu.Id, sysMenus);
         }

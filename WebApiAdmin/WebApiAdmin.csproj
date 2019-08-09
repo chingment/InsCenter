@@ -142,6 +142,7 @@
     <Compile Include="App_Start\OwnApi\OwnStatisticsTrackerAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminMenuController.cs" />
     <Compile Include="Controllers\AdminRoleController.cs" />
     <Compile Include="Controllers\AdminOrgController.cs" />
     <Compile Include="Controllers\AgentRoleController.cs" />

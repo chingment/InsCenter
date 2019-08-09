@@ -67,6 +67,12 @@
     <Compile Include="Api\Account\RModels\RupOwnGetInfo.cs" />
     <Compile Include="Api\Account\UserInfoService.cs" />
     <Compile Include="Api\Admin\AdminOrgService.cs" />
+    <Compile Include="Api\Admin\RModels\RetSysMenuInitAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RetSysMenuInitEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RopSysMenuAdd.cs" />
+    <Compile Include="Api\Admin\RModels\RopSysMenuEdit.cs" />
+    <Compile Include="Api\Admin\RModels\RupSysMenuGetList.cs" />
+    <Compile Include="Api\Admin\SysMenuService.cs" />
     <Compile Include="Api\Admin\SysRoleService.cs" />
     <Compile Include="Api\Admin\AdminServiceFactory.cs" />
     <Compile Include="Api\Admin\AdminUserService.cs" />

@@ -24,6 +24,14 @@ namespace LocalS.Service.Api.Admin
             }
         }
 
+        public static SysMenuService SysMenu
+        {
+            get
+            {
+                return new SysMenuService();
+            }
+        }
+
         public static AdminOrgService AdminOrg
         {
             get
