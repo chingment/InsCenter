@@ -55,9 +55,9 @@ export default {
         title: '',
         icon: '',
         path: '',
-        isRouter: '',
-        isSidebar: '',
-        isNavbar: '',
+        isRouter: false,
+        isSidebar: false,
+        isNavbar: false,
         description: ''
       },
       rules: {

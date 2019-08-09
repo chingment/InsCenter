@@ -34,7 +34,7 @@
   </div>
 </template>
 <script>
-import { fetchList } from '@/api/adminmenu'
+import { fetchList } from '@/api/agentmenu'
 export default {
   data() {
     return {
@@ -64,12 +64,12 @@ export default {
     },
     handleCreate(row) {
       this.$router.push({
-        path: '/admin/menu/add?pMenuId=' + row.id
+        path: '/agent/menu/add?pMenuId=' + row.id
       })
     },
     handleUpdate(row) {
       this.$router.push({
-        path: '/admin/menu/edit?menuId=' + row.id
+        path: '/agent/menu/edit?menuId=' + row.id
       })
     }
   }

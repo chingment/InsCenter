@@ -145,11 +145,13 @@
     <Compile Include="Controllers\AdminMenuController.cs" />
     <Compile Include="Controllers\AdminRoleController.cs" />
     <Compile Include="Controllers\AdminOrgController.cs" />
+    <Compile Include="Controllers\AgentMenuController.cs" />
     <Compile Include="Controllers\AgentRoleController.cs" />
     <Compile Include="Controllers\AgentMasterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\MerchMasterController.cs" />
+    <Compile Include="Controllers\MerchMenuController.cs" />
     <Compile Include="Controllers\MerchRoleController.cs" />
     <Compile Include="Controllers\OwnController.cs" />
     <Compile Include="Global.asax.cs">

@@ -1,7 +1,7 @@
 <template>
   <div id="useradd_container" class="app-container">
     <el-form ref="form" :model="form" :rules="rules" label-width="75px">
-      <el-form-item label="上构名称">
+      <el-form-item label="上级名称">
         {{ form.pMenuName }}
       </el-form-item>
       <el-form-item label="上级标题">
@@ -40,14 +40,14 @@
 
 <script>
 import { MessageBox } from 'element-ui'
-import { editMenu, initEditMenu } from '@/api/adminmenu'
+import { addMenu, initAddMenu } from '@/api/merchmenu'
 import fromReg from '@/utils/formReg'
 import { getUrlParam, goBack } from '@/utils/commonUtil'
 export default {
   data() {
     return {
-      isOpenEditPassword: false,
       form: {
+        pMenuId: '',
         pMenuName: '',
         pMenuTitle: '',
         menuId: '',
@@ -72,12 +72,21 @@ export default {
   },
   methods: {
     init() {
-      var menuId = getUrlParam('menuId')
-      initEditMenu({ menuId: menuId }).then(res => {
+      var pMenuId = getUrlParam('pMenuId')
+      initAddMenu({ pMenuId: pMenuId }).then(res => {
         if (res.result === 1) {
-          this.form = res.data
+          var d = res.data
+          this.form.pMenuId = d.pMenuId
+          this.form.pMenuName = d.pMenuName
+          this.form.pMenuTitle = d.pMenuTitle
         }
       })
+    },
+    resetForm() {
+      this.form = {
+        name: '',
+        description: ''
+      }
     },
     onSubmit() {
       this.$refs['form'].validate((valid) => {
@@ -87,7 +96,7 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            editMenu(this.form).then(res => {
+            addMenu(this.form).then(res => {
               this.$message(res.message)
               if (res.result === 1) {
                 goBack(this)

@@ -84,6 +84,12 @@ namespace LocalS.Service.Api.Admin
 
             using (TransactionScope ts = new TransactionScope())
             {
+                var isExists = CurrentDb.SysMenu.Where(m => m.Name == rop.Name).FirstOrDefault();
+                if (isExists != null)
+                {
+                    return new CustomJsonResult(ResultType.Failure, ResultCode.Failure, "该名称已经存在");
+                }
+
                 var pSysMenu = CurrentDb.SysMenu.Where(m => m.Id == rop.PMenuId).FirstOrDefault();
                 if (pSysMenu == null)
                 {
