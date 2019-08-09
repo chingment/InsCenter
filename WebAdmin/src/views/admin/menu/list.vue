@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <el-table
+      ref="dragTable"
       v-loading="listLoading"
       :data="listData"
       style="width: 100%;margin-bottom: 20px;"
