@@ -50,7 +50,7 @@ namespace LocalS.Service.Api.Admin
             var query = (from u in CurrentDb.SysAdminUser
                          where (rup.UserName == null || u.UserName.Contains(rup.UserName)) &&
                          (rup.FullName == null || u.FullName.Contains(rup.FullName)) &&
-                         u.IsDelete == false 
+                         u.IsDelete == false
                          select new { u.Id, u.UserName, u.FullName, u.Email, u.PhoneNumber, u.CreateTime, u.IsDelete, u.IsDisable });
 
 
@@ -99,7 +99,7 @@ namespace LocalS.Service.Api.Admin
                 TreeNode treeNode = new TreeNode();
                 treeNode.Id = p_sysOrg.Id;
                 treeNode.PId = p_sysOrg.PId;
-                treeNode.Value= p_sysOrg.Id;
+                treeNode.Value = p_sysOrg.Id;
                 treeNode.Label = p_sysOrg.Name;
                 treeNode.Children.AddRange(GetOrgTree(treeNode.Id, sysOrgs));
                 treeNodes.Add(treeNode);
@@ -110,7 +110,7 @@ namespace LocalS.Service.Api.Admin
 
         public List<TreeNode> GetOrgTree()
         {
-            var sysOrgs = CurrentDb.SysOrg.OrderBy(m => m.Priority).ToList();
+            var sysOrgs = CurrentDb.SysOrg.Where(m => m.BelongSite == Enumeration.BelongSite.Admin).OrderBy(m => m.Priority).ToList();
             return GetOrgTree(GuidUtil.Empty(), sysOrgs);
         }
 
