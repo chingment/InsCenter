@@ -22,14 +22,16 @@
         <el-input v-model="form.fullName" />
       </el-form-item>
       <el-form-item label="所属机构" prop="orgIds">
-        <el-cascader
+        <treeselect
           v-model="form.orgIds"
-          :options="cascader_org_options"
-          :props="cascader_org_props"
-          placeholder="请选择"
-          clearable
-          style="width:100%"
-          @change="cascader_org_change"
+          :multiple="true"
+          :options="treeselect_org_options"
+          :normalizer="treeselect_org_normalizer"
+          :flat="true"
+          sort-value-by="INDEX"
+          :default-expand-level="99"
+          placeholder="选择"
+          no-children-text=""
         />
       </el-form-item>
       <el-form-item label="手机号码" prop="phoneNumber">
@@ -57,8 +59,12 @@
 import { MessageBox } from 'element-ui'
 import { editUser, initEditUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
-import { getUrlParam, goBack } from '@/utils/commonUtil'
+import { getUrlParam, goBack, treeselectNormalizer } from '@/utils/commonUtil'
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+
 export default {
+  components: { Treeselect },
   data() {
     return {
       isOpenEditPassword: false,
@@ -79,8 +85,8 @@ export default {
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
-      cascader_org_props: { multiple: true, checkStrictly: true, emitPath: false },
-      cascader_org_options: [],
+      treeselect_org_normalizer: treeselectNormalizer,
+      treeselect_org_options: [],
       checkbox_group_role_options: []
     }
   },
@@ -100,7 +106,7 @@ export default {
           this.form.email = d.email
           this.form.orgIds = d.orgIds
           this.form.roleIds = d.roleIds
-          this.cascader_org_options = d.orgs
+          this.treeselect_org_options = d.orgs
           this.checkbox_group_role_options = d.roles
         }
       })
@@ -132,9 +138,6 @@ export default {
         this.isOpenEditPassword = true
         this.rules.password[0].required = true
       }
-    },
-    cascader_org_change() {
-      console.log('dasd')
     }
   }
 }

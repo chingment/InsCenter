@@ -14,13 +14,15 @@
         <treeselect
           v-model="form.orgIds"
           :multiple="true"
-          :options="cascader_org_options"
+          :options="treeselect_org_options"
+          :normalizer="treeselect_org_normalizer"
           :flat="true"
           sort-value-by="INDEX"
           :default-expand-level="99"
           placeholder="选择"
           no-children-text=""
         />
+
       </el-form-item>
       <el-form-item label="手机号码" prop="phoneNumber">
         <el-input v-model="form.phoneNumber" />
@@ -45,7 +47,7 @@
 import { MessageBox } from 'element-ui'
 import { addUser, initAddUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
-import { goBack } from '@/utils/commonUtil'
+import { goBack, treeselectNormalizer } from '@/utils/commonUtil'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
@@ -70,25 +72,8 @@ export default {
         phoneNumber: [{ required: false, message: '格式错误,eg:13800138000', trigger: 'change', pattern: fromReg.phoneNumber }],
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
-      cascader_org_props: { multiple: true, checkStrictly: true, emitPath: false },
-      cascader_org_options: [{
-        id: 'a',
-        label: 'a',
-        children: [{
-          id: 'aa',
-          label: 'aa',
-          children: []
-        }, {
-          id: 'ab',
-          label: 'ab'
-        }]
-      }, {
-        id: 'b',
-        label: 'b'
-      }, {
-        id: 'c',
-        label: 'c'
-      }],
+      treeselect_org_normalizer: treeselectNormalizer,
+      treeselect_org_options: [],
       checkbox_group_role_options: []
     }
   },
@@ -100,7 +85,7 @@ export default {
       initAddUser().then(res => {
         if (res.result === 1) {
           var d = res.data
-          // this.cascader_org_options = d.orgs
+          this.treeselect_org_options = d.orgs
           this.checkbox_group_role_options = d.roles
         }
       })

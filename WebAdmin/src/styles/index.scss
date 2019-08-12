@@ -113,6 +113,13 @@ div:focus {
   top: 10px;
 }
 
-.vue-treeselect__placeholder, .vue-treeselect__single-value{
-  line-height: auto !important;
+.vue-treeselect__placeholder,.vue-treeselect__multi-value{
+  line-height: 38px !important;
+}
+.vue-treeselect__multi-value-label,{
+  line-height: 24px !important;
+}
+
+.vue-treeselect__multi-value{
+  line-height: 24px !important;
 }

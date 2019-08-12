@@ -43,3 +43,15 @@ export function goBack(_this) {
     _this.$router.go(-1)
   }
 }
+
+export function treeselectNormalizer(node) {
+  if (node.children == null || node.children.length === 0) {
+    delete node.children
+  }
+  return {
+    id: node.id,
+    label: node.label,
+    value: node.id,
+    children: node.children
+  }
+}

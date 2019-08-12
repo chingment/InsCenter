@@ -19,6 +19,7 @@ namespace LocalS.Service.UI
         public string Label { get; set; }
         public string Description { get; set; }
         public object ExtAttr { get; set; }
+        public string CustomLabel{ get; set; }
         public List<TreeNode> Children { get; set; }
     }
 }
