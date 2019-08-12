@@ -101,7 +101,16 @@ namespace LocalS.Service.Api.Admin
                 treeNode.PId = p_sysOrg.PId;
                 treeNode.Value = p_sysOrg.Id;
                 treeNode.Label = p_sysOrg.Name;
-                treeNode.Children.AddRange(GetOrgTree(treeNode.Id, sysOrgs));
+
+                var children = GetOrgTree(treeNode.Id, sysOrgs);
+                if (children != null)
+                {
+                    if (children.Count > 0)
+                    {
+                        treeNode.Children = new List<TreeNode>();
+                        treeNode.Children.AddRange(children);
+                    }
+                }
                 treeNodes.Add(treeNode);
             }
 

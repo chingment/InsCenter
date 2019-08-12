@@ -112,3 +112,7 @@ div:focus {
 .el-cascader-node__postfix{
   top: 10px;
 }
+
+.vue-treeselect__placeholder, .vue-treeselect__single-value{
+  line-height: auto !important;
+}

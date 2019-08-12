@@ -11,13 +11,15 @@
         <el-input v-model="form.fullName" />
       </el-form-item>
       <el-form-item label="所属机构" prop="orgIds">
-        <el-cascader
+        <treeselect
           v-model="form.orgIds"
+          :multiple="true"
           :options="cascader_org_options"
-          :props="cascader_org_props"
-          placeholder="请选择"
-          clearable
-          style="width:100%"
+          :flat="true"
+          sort-value-by="INDEX"
+          :default-expand-level="99"
+          placeholder="选择"
+          no-children-text=""
         />
       </el-form-item>
       <el-form-item label="手机号码" prop="phoneNumber">
@@ -44,7 +46,11 @@ import { MessageBox } from 'element-ui'
 import { addUser, initAddUser } from '@/api/adminuser'
 import fromReg from '@/utils/formReg'
 import { goBack } from '@/utils/commonUtil'
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+
 export default {
+  components: { Treeselect },
   data() {
     return {
       form: {
@@ -65,7 +71,24 @@ export default {
         email: [{ required: false, message: '格式错误,eg:xxxx@xxx.xxx', trigger: 'change', pattern: fromReg.email }]
       },
       cascader_org_props: { multiple: true, checkStrictly: true, emitPath: false },
-      cascader_org_options: [],
+      cascader_org_options: [{
+        id: 'a',
+        label: 'a',
+        children: [{
+          id: 'aa',
+          label: 'aa',
+          children: []
+        }, {
+          id: 'ab',
+          label: 'ab'
+        }]
+      }, {
+        id: 'b',
+        label: 'b'
+      }, {
+        id: 'c',
+        label: 'c'
+      }],
       checkbox_group_role_options: []
     }
   },
@@ -77,7 +100,7 @@ export default {
       initAddUser().then(res => {
         if (res.result === 1) {
           var d = res.data
-          this.cascader_org_options = d.orgs
+          // this.cascader_org_options = d.orgs
           this.checkbox_group_role_options = d.roles
         }
       })

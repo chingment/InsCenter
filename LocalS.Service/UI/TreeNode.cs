@@ -10,7 +10,7 @@ namespace LocalS.Service.UI
     {
         public TreeNode()
         {
-            this.Children = new List<TreeNode>();
+            // this.Children = new List<TreeNode>();
         }
 
         public string Id { get; set; }
